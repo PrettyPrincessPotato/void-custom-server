@@ -642,6 +642,7 @@ str = 18
 def = 14
 attack_bonus = 4
 combat_def = "guard_varrock"
+hunt_mode = "aggressive_npcs"
 respawn_delay = 50
 examine = "He tries to keep order around here. His bizarre uniform isn't helping."
 drop_table = "guard"

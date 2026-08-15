@@ -27,10 +27,10 @@ class FairyRing(val fairyRing: FairyRingCodes) : Script {
             if (target.id == "fairy_ring_zanaris") {
                 return@objectOperate
             }
-            if (quest("fairy_tale_ii") == "unstarted") {
-                message("You don't have permission to use that fairy ring.")
-                return@objectOperate
-            }
+//            if (quest("fairy_tale_ii") == "unstarted") { ----- Temporarily disabled, as Fairy Tale 2 isn't in the game. Side note, isn't that FT1?
+//                message("You don't have permission to use that fairy ring.")
+//                return@objectOperate
+//            }
             if (!questCompleted("fairy_tale_iii") && weapon.id != "dramen_staff") {
                 message("The fairy ring only works for those who wield fairy magic.")
                 return@objectOperate
