@@ -1,0 +1,8 @@
+spawns = [
+    { id = "gem_rocks_ingneous_1", x = 3049, y = 9828 },
+    { id = "gem_rocks_ingneous_2", x = 3046, y = 9830 },
+    { id = "gem_rocks_ingneous_3", x = 3046, y = 9823 },
+    { id = "gem_rocks_ingneous_2_1", x = 3048, y = 9822 },
+    { id = "gem_rocks_ingneous_2_2", x = 3046, y = 9820 },
+    { id = "gem_rocks_ingneous_2_3", x = 3055, y = 9823 },
+]

@@ -89,3 +89,19 @@ to = { x = 3282, y = 3936, level = 3 }
 option = "Pull"
 tile = { x = 2273, y = 4680 }
 to = { x = 3067, y = 10254 }
+
+#############################
+#    Broken, unsure why     #
+#############################
+
+# Volcano Entrance Wilderness
+[28121]
+option = "Enter"
+tile = { x = 3164, y = 3686 }
+to = { x = 3164 , y = 3696 }
+
+# Volcano Exit Wilderness
+[28119]
+option = "Exit"
+tile = { x = 3164 , y = 3696 }
+to = { x = 3164 , y = 3685 }
