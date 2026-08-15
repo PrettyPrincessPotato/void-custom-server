@@ -126,6 +126,9 @@ class Mining : Script {
                         }
                         if (added < 1 || deplete(target, ore)) {
                             clearAnim()
+                            // Unsure why, but I'm pretty sure breaking the loop causes it to deplete
+                            // Making the loop continue here surprisingly did nothing. Unsure of nature of this loop.
+                            // Am I looking in the wrong place?
                             break
                         }
                     }
@@ -175,6 +178,7 @@ class Mining : Script {
         }
         // This seems to declare how much ore you get on a successful mine. Gold gets 1 - 4, coal gets 1 - 2, everything else gets only one.
         // Can we make it all 1 - 4? How does the code determine when the ore is depleted?
+        // What if, instead of having a base-line range, it increased based on mining skill?
         var amount = when (target.id) {
             "mineral_deposit_gold" -> random.nextInt(1..4)
             "mineral_deposit_coal" -> random.nextInt(1..2)
