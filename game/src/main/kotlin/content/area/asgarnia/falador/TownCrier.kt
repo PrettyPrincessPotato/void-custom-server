@@ -21,10 +21,10 @@ class TownCrier : Script {
     private val enableHistoricalOverheads = false
 
     private val currentOverheads = listOf(
-        "The Grand Exchange is now open! Buy items from other players!",
+        "The Grand Exchange is now open! Buy items not easily found while we unfuck this game!",
         "New content is being actively developed - stay tuned for updates!",
         "Tristen is a big nerd!",
-        "Goblins are slowly mustering forces near Falador!"
+        "Fairy Rings Free! Hold a dramen staff and no further questing required!"
     )
 
     private val historicalOverheads = listOf(

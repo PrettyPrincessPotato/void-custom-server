@@ -108,28 +108,28 @@ class Mining : Script {
                 for (item in ores) {
                     if (item == "rune_essence" && has(Skill.Mining, 30) && World.members) {
                         // For SOME WEIRD REASON this is the loop that gives pure essence?
-                        if (has(Skill.Mining, 25, true)){
-                            addOre(this, "pure_essence", target)
-                            continue
-                        }
-                        if (has(Skill.Mining, 50, true)){
-                            addOre(this, "pure_essence", target)
-                            addOre(this, "pure_essence", target)
-                            addOre(this, "pure_essence", target)
-                            addOre(this, "pure_essence", target)
-                            continue
-                        }
-                        if (has(Skill.Mining, 99, true)){
-                            addOre(this, "pure_essence", target)
-                            addOre(this, "pure_essence", target)
-                            addOre(this, "pure_essence", target)
-                            addOre(this, "pure_essence", target)
-                            addOre(this, "pure_essence", target)
-                            addOre(this, "pure_essence", target)
-                            addOre(this, "pure_essence", target)
-                            addOre(this, "pure_essence", target)
-                            continue
-                        }
+//                        if (has(Skill.Mining, 25, true)){
+//                            addOre(this, "pure_essence", target)
+//                            continue
+//                        }
+//                        if (has(Skill.Mining, 50, true)){
+//                            addOre(this, "pure_essence", target)
+//                            addOre(this, "pure_essence", target)
+//                            addOre(this, "pure_essence", target)
+//                            addOre(this, "pure_essence", target)
+//                            continue
+//                        }
+//                        if (has(Skill.Mining, 99, true)){
+//                            addOre(this, "pure_essence", target)
+//                            addOre(this, "pure_essence", target)
+//                            addOre(this, "pure_essence", target)
+//                            addOre(this, "pure_essence", target)
+//                            addOre(this, "pure_essence", target)
+//                            addOre(this, "pure_essence", target)
+//                            addOre(this, "pure_essence", target)
+//                            addOre(this, "pure_essence", target)
+//                            continue
+//                        }
                         continue
                     }
                     if (item == "pure_essence" && !World.members) {
@@ -212,11 +212,18 @@ class Mining : Script {
             "mineral_deposit_coal" -> random.nextInt(1..2)
             else -> 1
         }
+
+        // Scaling based on player level -- Temporarily disabled while testing -1 life on ores
+//        if (player.has(Skill.Mining, 25, false)){ amount = random.nextInt(2, 4) }
+//        if (player.has(Skill.Mining, 50, false)) { amount = random.nextInt(3, 6) }
+//        if (player.has(Skill.Mining, 99, false)) { amount = random.nextInt(5, 10) }
+
+        // End scaling, now add items
         val added = player.inventory.addToLimit(ore, amount)
         when (added) {
             1 -> player.message("You manage to mine some ${ore.toLowerSpaceCase()}.")
-            2 -> player.message("You manage to mine two ${ore.toLowerSpaceCase().plural(added)}!")
-            3 -> player.message("You manage to mine three ${ore.toLowerSpaceCase().plural(added)}!")
+            in 2 .. 42069 -> player.message("You manage to mine ${amount} ${ore.toLowerSpaceCase().plural(added)}!")
+           // 3 -> player.message("You manage to mine three ${ore.toLowerSpaceCase().plural(added)}!")
             else -> player.inventoryFull()
         }
         if (diaryDoubleOre(player, ore)) {
