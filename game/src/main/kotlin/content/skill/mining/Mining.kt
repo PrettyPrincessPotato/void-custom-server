@@ -107,36 +107,9 @@ class Mining : Script {
                 }
                 for (item in ores) {
                     if (item == "rune_essence" && has(Skill.Mining, 30) && World.members) {
-                        // For SOME WEIRD REASON this is the loop that gives pure essence?
-//                        if (has(Skill.Mining, 25, true)){
-//                            addOre(this, "pure_essence", target)
-//                            continue
-//                        }
-//                        if (has(Skill.Mining, 50, true)){
-//                            addOre(this, "pure_essence", target)
-//                            addOre(this, "pure_essence", target)
-//                            addOre(this, "pure_essence", target)
-//                            addOre(this, "pure_essence", target)
-//                            continue
-//                        }
-//                        if (has(Skill.Mining, 99, true)){
-//                            addOre(this, "pure_essence", target)
-//                            addOre(this, "pure_essence", target)
-//                            addOre(this, "pure_essence", target)
-//                            addOre(this, "pure_essence", target)
-//                            addOre(this, "pure_essence", target)
-//                            addOre(this, "pure_essence", target)
-//                            addOre(this, "pure_essence", target)
-//                            addOre(this, "pure_essence", target)
-//                            continue
-//                        }
                         continue
                     }
                     if (item == "pure_essence" && !World.members) {
-                        if (has(Skill.Mining, 25, true)) {
-                            addOre(this, "rune_essence", target)
-                            continue
-                        }
                         continue
                     }
                     val ore = Rows.getOrNull("ores.$item") ?: continue
@@ -153,9 +126,6 @@ class Mining : Script {
                         }
                         if (added < 1 || deplete(target, ore)) {
                             clearAnim()
-                            // Unsure why, but I'm pretty sure breaking the loop causes it to deplete
-                            // Making the loop continue here surprisingly did nothing. Unsure of nature of this loop.
-                            // Am I looking in the wrong place?
                             break
                         }
                     }
@@ -205,25 +175,16 @@ class Mining : Script {
         }
         // This seems to declare how much ore you get on a successful mine. Gold gets 1 - 4, coal gets 1 - 2, everything else gets only one.
         // Can we make it all 1 - 4? How does the code determine when the ore is depleted?
-        // What if, instead of having a base-line range, it increased based on mining skill?
-        // You get exp PER ROCK btw
         var amount = when (target.id) {
             "mineral_deposit_gold" -> random.nextInt(1..4)
             "mineral_deposit_coal" -> random.nextInt(1..2)
             else -> 1
         }
-
-        // Scaling based on player level -- Temporarily disabled while testing -1 life on ores
-//        if (player.has(Skill.Mining, 25, false)){ amount = random.nextInt(2, 4) }
-//        if (player.has(Skill.Mining, 50, false)) { amount = random.nextInt(3, 6) }
-//        if (player.has(Skill.Mining, 99, false)) { amount = random.nextInt(5, 10) }
-
-        // End scaling, now add items
         val added = player.inventory.addToLimit(ore, amount)
         when (added) {
             1 -> player.message("You manage to mine some ${ore.toLowerSpaceCase()}.")
-            in 2 .. 42069 -> player.message("You manage to mine ${amount} ${ore.toLowerSpaceCase().plural(added)}!")
-           // 3 -> player.message("You manage to mine three ${ore.toLowerSpaceCase().plural(added)}!")
+            2 -> player.message("You manage to mine two ${ore.toLowerSpaceCase().plural(added)}!")
+            3 -> player.message("You manage to mine three ${ore.toLowerSpaceCase().plural(added)}!")
             else -> player.inventoryFull()
         }
         if (diaryDoubleOre(player, ore)) {
