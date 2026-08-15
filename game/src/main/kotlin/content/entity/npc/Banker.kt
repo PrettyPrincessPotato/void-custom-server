@@ -34,6 +34,9 @@ class Banker : Script {
         objectOperate("Use", "bank_chest_*") {
             openBank()
         }
+        objectOperate("Bank", "*") {
+            openBank()
+        }
 
         objectOperate("Bank", "bank_chest_*") {
             openBank()
