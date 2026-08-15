@@ -57,6 +57,7 @@ class Mining : Script {
             }
             softTimers.start("mining")
             var first = true
+
             while (awaitDialogues()) {
                 if (!GameObjects.contains(target)) {
                     break
@@ -172,6 +173,8 @@ class Mining : Script {
                 return 1
             }
         }
+        // This seems to declare how much ore you get on a successful mine. Gold gets 1 - 4, coal gets 1 - 2, everything else gets only one.
+        // Can we make it all 1 - 4? How does the code determine when the ore is depleted?
         var amount = when (target.id) {
             "mineral_deposit_gold" -> random.nextInt(1..4)
             "mineral_deposit_coal" -> random.nextInt(1..2)
