@@ -40,7 +40,7 @@ class GoblinRaids : Script {
 fun spawnGobbo() {
     println("Starting goblin raid")
     val gobbo = NPCs.addRandom(GOBLIN_ID_TEST, GOBLIN_RAID_VARROCK_AREA.toCuboid(10)) ?: NPCs.add(GOBLIN_ID_TEST, GOBLIN_RAID_VARROCK_AREA)
-    gobbo.huntMode = "aggressive_npcs"
+    gobbo.huntMode = "aggressive"
     gobbo.walkTo(GOBLIN_RAID_MOVEMENT_TILE_TEST)
     println(gobbo)
     println(NPCs.at(GOBLIN_RAID_VARROCK_AREA))
