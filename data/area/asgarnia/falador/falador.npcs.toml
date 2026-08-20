@@ -262,6 +262,7 @@ hitpoints = 220
 att = 19
 str = 18
 def = 14
+hunt_mode = "aggressive_npcs"
 attack_bonus = 4
 combat_def = "guard"
 respawn_delay = 50
