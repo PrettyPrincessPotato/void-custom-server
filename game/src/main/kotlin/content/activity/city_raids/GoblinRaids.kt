@@ -74,7 +74,7 @@ class GoblinRaids : Script {
             World.timers.start("goblin_count_check_timer")
         }
 
-        worldTimerStart("goblin_raid_timer") { TimeUnit.SECONDS.toTicks(15) }
+        worldTimerStart("goblin_raid_timer") { TimeUnit.MINUTES.toTicks(5) }
         worldTimerTick("goblin_raid_timer") {
             if(debugMe){println("spawngobbo")}
             spawnGobbo(pathTo = GOBLIN_VILLAGE_TO_FALADOR_CAMP)
@@ -91,8 +91,8 @@ class GoblinRaids : Script {
                     // We are at the encampment, now we wait to attack
                     // AI seems to be wonky, so let's make a new goblin.
                     gobboAny.despawn(0)
-                    val gobboNew = NPCs.addRandom(GOBLIN_ID_TEST, GOBLIN_CAMP_FALADOR.toCuboid(5)) ?: NPCs.add(GOBLIN_ID_TEST, GOBLIN_CAMP_FALADOR)
-                    gobboNew.huntMode = "aggressive_npcs" // Not close enough to city yet so ignore NPCs.
+                    val gobboNew = NPCs.add(GOBLIN_ID_TEST, GOBLIN_CAMP_FALADOR)
+                    gobboNew.huntMode = "aggressive_npcs"
                     //can do gobboNew.interactObject(TreeObject) once we find nearby trees to have the goblins chop one down nearby. No shot they have anims...
 
 
@@ -112,7 +112,7 @@ class GoblinRaids : Script {
             val iteratorSnapshotAttacking = attackingFalador.toList()
             val iteratorSnapshotInCombat = activeGobbos.toList()
 
-            if(musteringInFalador.count() > 3){
+            if(musteringInFalador.count() >= 5){
                 val iteratorSnapshotMustering = musteringInFalador.toList()
 
                 // Tying waypoints from Falador camp to gate where the guards are
