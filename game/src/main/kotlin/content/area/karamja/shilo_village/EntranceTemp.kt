@@ -17,7 +17,7 @@ class EntranceTemp : Script {
             npc<Neutral>("Would you like to enter Shilo Village?")
             choice {
                 option<Neutral>("Yes please!") {
-                    npc<Angry>("Be warned, the gate to leave is broken. (No, seriously, it's buggy. Don't use it yet.)")
+                    npc<Neutral>("Be warned, the gate to leave is broken. (No, seriously, it's buggy. Don't use it yet.)")
                     tele(2865, 2952)
                 }
                 option<Neutral>("No, but thanks for the offer.") {
