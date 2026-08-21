@@ -915,6 +915,7 @@ degrade = "corrupt_zuriels_staff_degraded"
 deplete = "combat"
 category = "staff"
 slot = "Weapon"
+equip_level_2 = 0
 examine = "This item degrades while worn, and will turn to dust."
 weight = 2.267
 
