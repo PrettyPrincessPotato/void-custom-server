@@ -92,7 +92,7 @@ class GoblinRaids : Script {
                     // AI seems to be wonky, so let's make a new goblin.
                     gobboAny.despawn(0)
                     val gobboNew = NPCs.addRandom(GOBLIN_ID_TEST, GOBLIN_CAMP_FALADOR.toCuboid(5)) ?: NPCs.add(GOBLIN_ID_TEST, GOBLIN_CAMP_FALADOR)
-                    gobboNew.huntMode = "aggressive" // Not close enough to city yet so ignore NPCs.
+                    gobboNew.huntMode = "aggressive_npcs" // Not close enough to city yet so ignore NPCs.
                     //can do gobboNew.interactObject(TreeObject) once we find nearby trees to have the goblins chop one down nearby. No shot they have anims...
 
 
@@ -138,7 +138,7 @@ class GoblinRaids : Script {
                 if(gobboAny.mode == EmptyMode && !gobboAny.inCombat ){ //TODO: Figure out a more graceful "is busy" solution
                     gobboAny.despawn(0)
                     val gobboNew = NPCs.add(GOBLIN_ID_TEST, GOBLIN_ATTACK_FALADOR)
-                    gobboNew.huntMode = "aggressive" // AI for multi-combat attacking inside the city, so focused on NPCs //camp_aggressive
+                    gobboNew.huntMode = "aggressive_npcs" // AI for multi-combat attacking inside the city, so focused on NPCs //camp_aggressive
 
                     attackingFalador.remove(gobboAny)
                     activeGobbos.remove(gobboAny)
@@ -148,7 +148,7 @@ class GoblinRaids : Script {
             // These are all the goblins currently existing through this script, we need to make sure that if they die, they stay dead.
             for(gobboAny in iteratorSnapshotInCombat){
                 if(gobboAny.dead){
-                    gobboAny.despawn(0)
+                    gobboAny.despawn(5)
                     activeGobbos.remove(gobboAny)
                     //Now we need to clean up the other arrays they happen to be in.
                     if(gobboAny in waitingForPatrolEnd){
