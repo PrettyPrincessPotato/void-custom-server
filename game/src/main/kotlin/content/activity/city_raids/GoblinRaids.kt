@@ -48,6 +48,7 @@ private val GOBLIN_VILLAGE_TILE : Tile = Tile(2956, 3503) // Arbitrary tile in g
 /**
  * Mob IDs
  */
+//These IDS happen to have the same name through string.
 private val GOBLIN_IDS = intArrayOf(3264, 3265, 3266, 3267) //TODO: Diversify spawns. Low prio.
 // Just an example low level goblin that happens to share the string name with the ID. String name is needed.
 private const val GOBLIN_ID_TEST = "3264"
@@ -128,7 +129,7 @@ class GoblinRaids : Script {
             for ((gobbo, progress) in trackedGoblins) {
                 if (gobbo.dead) {
                     goblinProgress.remove(gobbo)
-                    gobbo.despawn(8)
+                    gobbo.despawn(0) // For some reason despawn doesn't work properly unless it's 0. Maybe because they're dead? They might not properly drop loot until this is fixed.
                     continue
                 }
             }
@@ -226,6 +227,7 @@ class GoblinRaids : Script {
          */
     }
 
+    //Count how many NPCs are in the selected state.
     private fun goblinsInState(state: RaidState): List<NPC> {
         return goblinProgress
             .filterValues { progress ->
