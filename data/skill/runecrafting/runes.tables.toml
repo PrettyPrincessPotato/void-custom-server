@@ -40,26 +40,27 @@ multipliers = [2, 5, 10, 14, 16, 20, 25, 28, 30, 35, 40, 42, 45, 50, 54, 56, 60,
 level = 20
 xp = 75
 ourania_double_chance = 250
-multipliers = [20, 46, 92]
+multipliers = [20, 23, 25, 27, 30, 32, 35, 40, 46, 50, 55, 60, 65, 70, 75, 80, 85, 90, 92, 95, 99]
 
 [.astral_rune]
 level = 40
 xp = 87
 pure_essence = true
-multipliers = [40, 82]
+multipliers = [40, 43, 45, 47, 50, 53, 55, 57, 60, 63, 65, 69, 70, 73, 75, 78, 80, 82, 85, 90, 99]
 
 [.death_rune]
 level = 65
 xp = 100
 ourania_double_chance = 175
 pure_essence = true
+multipliers = [65, 66, 67, 68, 70, 72, 73, 74, 75, 76, 78, 79, 80, 81, 83, 85, 86, 90, 93, 95, 99]
 
 [.nature_rune]
 level = 44
 xp = 90
 ourania_double_chance = 225
 pure_essence = true
-multipliers = [44, 91]
+multipliers = [44, 45, 46, 47, 50, 53, 55, 57, 60, 63, 65, 67, 70, 73, 75, 77, 80, 85, 90, 91, 99]
 
 [.chaos_rune]
 level = 35
@@ -73,25 +74,28 @@ level = 54
 xp = 95
 ourania_double_chance = 200
 pure_essence = true
+multipliers = [54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 65, 67, 70, 73, 75, 77, 80, 85, 90, 91, 99]
 
 [.cosmic_rune]
 level = 27
 xp = 80
 ourania_double_chance = 250
 pure_essence = true
-multipliers = [27, 59]
+multipliers = [27, 30, 32, 35, 40, 46, 50, 55, 59, 60, 65, 67, 70, 73, 75, 80, 85, 90, 92, 95, 99]
 
 [.blood_rune]
 level = 77
 xp = 105
 ourania_double_chance = 150
 pure_essence = true
+multipliers = [77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 99]
 
 [.soul_rune]
 level = 90
 xp = 297
 ourania_double_chance = 100
 pure_essence = true
+multipliers = [90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99]
 
 [.steam_rune]
 level = 19
