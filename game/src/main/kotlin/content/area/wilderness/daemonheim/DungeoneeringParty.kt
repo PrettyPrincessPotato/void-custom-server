@@ -1,18 +1,13 @@
 package content.area.wilderness.daemonheim
 
-import content.entity.player.bank.BankDeposit
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.statement
-import content.entity.player.modal.Tab
 import content.quest.clearInstance
-import content.quest.openTabs
 import content.skill.summoning.pet.dismissPet
 import world.gregs.voidps.cache.definition.Params
 import world.gregs.voidps.engine.Script
-import world.gregs.voidps.engine.client.clearMinimap
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.close
-import world.gregs.voidps.engine.client.ui.closeInterfaces
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.definition.Areas
 import world.gregs.voidps.engine.entity.character.move.tele
@@ -20,8 +15,12 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
-import world.gregs.voidps.engine.inv.*
-import world.gregs.voidps.engine.queue.longQueue
+import world.gregs.voidps.engine.inv.Inventory
+import world.gregs.voidps.engine.inv.add
+import world.gregs.voidps.engine.inv.clear
+import world.gregs.voidps.engine.inv.equipment
+import world.gregs.voidps.engine.inv.inventory
+import world.gregs.voidps.engine.queue.strongQueue
 import world.gregs.voidps.type.Tile
 
 class DungeoneeringParty : Script {
@@ -38,7 +37,6 @@ class DungeoneeringParty : Script {
         exited("daemonheim_castle") {
             if (!inDungeoneering) {
                 leave(this)
-                close("dungeoneering_party")
             }
         }
 
@@ -47,13 +45,9 @@ class DungeoneeringParty : Script {
             refreshDetails()
         }
 
-        interfaceClosed("dungeoneering_party") {
-            clear("quest_tab")
-            refreshDetails()
-        }
-
         interfaceOption("Close", "dungeoneering_party:close") {
             open("quest_journals")
+            clear("quest_tab")
         }
 
         /*
@@ -85,30 +79,16 @@ class DungeoneeringParty : Script {
             }
         }
 
-        interfaceOption("Leave", "dungeon_complete:readybutton_player*") {
-            val button = it.component.removePrefix("readybutton_player").toInt()
-            val index = dungeonMembers.indexOf(this) + 1
-            if (index != button) {
-                return@interfaceOption
-            }
+        interfaceOption("Leave", "dungeon_complete:readybutton_player1") {
             if (!inParty(this)) {
                 return@interfaceOption
             }
-            val leader = dungeonLeader ?: return@interfaceOption
-            if (leader["dungeon_next_timer", 0] <= 5) {
-                // https://youtu.be/zsSofNiDfnw?t=231
-                message("It's too late to do that: the next dungeon is about to start.")
-                return@interfaceOption
-            }
             choice("Leave the dungeon permanently?") {
-                // https://youtu.be/nA8QMzwGiYc?t=892
-                option("Yes.") {
-                    for (member in dungeonMembers) {
-                        member["rand_ready_state_player$button"] = "left"
-                    }
+                // TODO proper message
+                option("Yes") {
                     leave(this)
                 }
-                option("No.")
+                option("No")
             }
         }
 
@@ -178,9 +158,6 @@ class DungeoneeringParty : Script {
                 option("Yes, reset my progress.") {
                     set("dungeoneering_previous_progress", get("dungeoneering_current_progress", 0))
                     set("dungeoneering_current_progress", 0)
-                    for (i in 1..60) {
-                        clear("dungeon_floor_${i}_complete")
-                    }
                     message("Your dungeon progress have been reset.")
                 }
                 option("No, don't reset my progress.")
@@ -220,7 +197,6 @@ class DungeoneeringParty : Script {
                 message("A vote to kick in a 2-player party cannot succeed.")
                 return@interfaceOption
             }
-            // https://www.youtube.com/watch?v=qVgiDxAIal4
             // TODO kick vote
             member.message("You were kicked from the party.")
             leave(member)
@@ -312,69 +288,33 @@ class DungeoneeringParty : Script {
             player.refreshDetails()
         }
 
-        fun clear(player: Player) {
-            stow(player, player.inventory)
-            stow(player, player.equipment)
-            stow(player, player.beastOfBurden)
-
-            player.clearMinimap()
-            player.openTabs(Tab.Options)
-            player.closeInterfaces()
-            player.inventory.clear()
-            player.dismissPet()
-            player.equipment.clear()
-            player.queue.clear()
-            player.levels.clear()
-            player.close("rand_overlay")
-            player.clear("show_daemonheim_map")
-            player.clear("dungeoneering_party_size")
-            player.clear("dungeon_deaths")
-            player.clear("in_dungeoneering")
-            player.clear("in_multi_combat")
-            player.clear("dungeon_reward_given")
-            player.clearWalkTrigger()
-        }
-
-        /**
-         * Bank any items that were somehow smuggled into dungeoneering rather than delete
-         */
-        private fun stow(player: Player, inventory: Inventory) {
-            val items = inventory.items.filter { !it.def.contains(Params.DUNGEONEERING) && !it.id.startsWith("ring_of_kinship") }
-            if (items.isEmpty()) {
-                return
-            }
-            for (item in items) {
-                BankDeposit.deposit(player, inventory, item, item.amount, check = false)
-            }
-        }
-
         private fun leaveDungeon(player: Player, last: Boolean) {
+            player.close("rand_overlay")
+            player.clear("in_dungeoneering")
             if (!last) {
                 val currentClass = player["kinship_class", "none"]
                 val kinship = if (currentClass == "none") "ring_of_kinship" else "ring_of_kinship_$currentClass"
                 dropAll(player.inventory, player.tile, kinship)
                 dropAll(player.equipment, player.tile, kinship)
             }
-            val hasParty = player.interfaces.contains("dungeoneering_party")
-            clear(player)
-            player.longQueue("dungeon_exit") {
-                player.tele(3460, 3721, 1)
-                if (player["dungeoneering_stored_kinship", false]) {
-                    player.clear("dungeoneering_stored_kinship")
-                    player.inventory.add("ring_of_kinship")
-                }
-                player.open(player["dungeoneering_stored_spellbook", "modern_spellbook"]) // TODO use area
-                player.clear("dungeoneering_stored_spellbook")
-                if (player["dungeoneering_guide_mode", false]) {
+            player.inventory.clear()
+            player.dismissPet()
+            player.equipment.clear()
+            if (player["dungeoneering_stored_kinship", false]) {
+                player.clear("dungeoneering_stored_kinship")
+                player.inventory.add("ring_of_kinship")
+            }
+            player.open(player["dungeoneering_stored_spellbook", "modern_spellbook"])
+            player.clear("dungeoneering_stored_spellbook")
+            player.tele(3460, 3721, 1)
+
+            if (player["dungeoneering_guide_mode", false]) {
+                player.strongQueue("guide_exit") {
                     statement("You have left your dungeon and are now back in the Daemonheim castle. You can exit down by the broken railing to re-enter the lobby and find another party.")
                 }
-                if (hasParty) {
-                    player.open("dungeoneering_party")
-                    player.clear("had_party_open")
-                }
-                if (last) {
-                    player.clearInstance()
-                }
+            }
+            if (last) {
+                player.clearInstance()
             }
         }
 
@@ -385,17 +325,6 @@ class DungeoneeringParty : Script {
                 }
                 FloorItems.add(tile, item.id, item.amount, revealTicks = 0)
             }
-        }
-
-        fun disband(player: Player) {
-            for (member in player.dungeonMembers) {
-                if (member.inDungeoneering) {
-                    leaveDungeon(member, true)
-                }
-                player.dungeonMembers -= member
-                member.refreshDetails()
-            }
-            clearLeader(player)
         }
 
         fun leave(player: Player) {
@@ -415,21 +344,13 @@ class DungeoneeringParty : Script {
                 }
                 member.refreshDetails()
             }
-            clearLeader(player)
-        }
-
-        private fun clearLeader(player: Player) {
             player.clear("dungeoneering_party_leader")
-            //            player["dungeoneering_party_floor"] = 0
-            //            player["dungeoneering_party_complexity"] = 0
+            player["dungeoneering_party_floor"] = 0
+            player["dungeoneering_party_complexity"] = 0
             for (i in 0 until 5) {
                 player.clear("dungeoneering_member_$i")
                 player.clear("dungeoneering_member_disabled_xp_share_$i")
             }
-            player.softTimers.clear("dungeon_continuation")
-            player.softTimers.clear("dungeon_complete")
-            player.clear("dungeon_next_timer")
-            player.clear("dungeon_end_timer")
             player.refreshDetails()
         }
 
@@ -510,7 +431,7 @@ class DungeoneeringParty : Script {
         fun setLeader(player: Player) {
             player["dungeoneering_party_leader"] = player.name
             setMember(player, player, 0)
-            player["dungeoneering_party_floor"] = DungeonFloor.maxFloor(player)
+            player["dungeoneering_party_floor"] = player["dungeoneering_floor", 1]
             player["dungeoneering_party_complexity"] = player["dungeoneering_complexity", 1]
             player.message("You have been set as the party leader.")
             player.refreshDetails()
@@ -521,16 +442,6 @@ class DungeoneeringParty : Script {
             if (members.size > 1) {
                 members.remove(promote)
                 members.add(0, promote)
-            }
-            if (leader.softTimers.contains("dungeon_continuation")) {
-                promote["dungeon_next_timer"] = leader["dungeon_next_timer", 0]
-                leader.softTimers.clear("dungeon_continuation")
-                promote.softTimers.start("dungeon_continuation")
-            }
-            if (leader.softTimers.contains("dungeon_complete")) {
-                promote["dungeon_end_timer"] = leader["dungeon_end_timer", 0]
-                leader.softTimers.clear("dungeon_complete")
-                promote.softTimers.start("dungeon_complete")
             }
             promote["dungeoneering_party_leader"] = promote.name
             promote.dungeonMembers = members
