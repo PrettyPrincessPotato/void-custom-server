@@ -19,6 +19,10 @@ const val DEBUG = false
 
 //IDEA: What if other creatures don't like each-other? Like a dragon and a goblin get assigned to the same camp, there's now a turf war to see who wins. (Just make them fight and whoever lives wins)
 
+private const val GOBLIN_HUNT_MODE = "aggressive_npcs"
+private const val RAID_TIMER = "goblin_raid_timer"
+private const val POLL_TIMER = "goblin_raid_poll"
+
 /**
  * Identifying states for the LSM
  */
@@ -49,7 +53,7 @@ private val GOBLIN_VILLAGE_TILE : Tile = Tile(2956, 3503) // Arbitrary tile in g
  * Mob IDs
  */
 //These IDS happen to have the same name through string.
-private val GOBLIN_IDS = intArrayOf(3264, 3265, 3266, 3267) //TODO: Diversify spawns. Low prio.
+private val GOBLIN_IDS = setOf("3264", "3265", "3266", "3267")
 // Just an example low level goblin that happens to share the string name with the ID. String name is needed.
 private const val GOBLIN_ID_TEST = "3264"
 
@@ -89,18 +93,16 @@ class GoblinRaids : Script {
          * Declaring who can target what.
          */
         huntNPC("aggressive_npcs") { target ->
-            if (id.startsWith("guard_fal") && target.categories.contains("goblins") && !target.id.startsWith("guard_fal")) {
-                interactNpc(target, "Attack")
-            }
-            if (id == GOBLIN_ID_TEST && target.id != GOBLIN_ID_TEST) {
-                interactNpc(target, "Attack")
+            when{
+                isRaidGoblin() && !target.isRaidGoblin() -> interactNpc(target, "attack")
+                isFaladorGuard() && target.isRaidGoblin() -> interactNpc(target, "attack") //TODO: find all raid members and not just goblins
             }
         }
 
         worldSpawn {
             if(DEBUG){println("GoblinRaids - worldSpawn")}
-            World.timers.start("goblin_raid_timer")
-            World.timers.start("polling_timer")
+            World.timers.start(RAID_TIMER)
+            World.timers.start(POLL_TIMER)
         }
 
         /**
@@ -170,6 +172,9 @@ class GoblinRaids : Script {
         }
     }
 
+    /**
+     * Helper Functions
+     */
     private fun setRaidState(
         gobbo: NPC,
         state: RaidState,
@@ -236,4 +241,13 @@ class GoblinRaids : Script {
             .keys
             .toList()
     }
+
+    /**
+     * Who is whoms't?
+     */
+    private fun NPC.isRaidGoblin(): Boolean =
+        id in GOBLIN_IDS
+
+    private fun NPC.isFaladorGuard(): Boolean =
+        id.startsWith("guard_fal")
 }
