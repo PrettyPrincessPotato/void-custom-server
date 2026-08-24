@@ -15,6 +15,7 @@ class Patrol(
     private val waypoints: List<Pair<Tile, Int>>,
     private val loop: Boolean = true,
     private val noCollision: Boolean = false,
+    private val onComplete: () -> Unit = {},
 ) : Movement(character) {
 
     override fun tick() {
@@ -58,6 +59,7 @@ class Patrol(
     }
 
     override fun onCompletion() {
+        onComplete()
     }
 
     override fun stop(replacement: Mode) {

@@ -2,7 +2,6 @@ package content.activity.city_raids
 
 import content.entity.combat.dead
 import content.entity.combat.inCombat
-import content.skill.slayer.categories
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.instruction.handle.interactNpc
 import world.gregs.voidps.engine.entity.World
@@ -19,20 +18,24 @@ const val DEBUG = false
 
 //IDEA: What if other creatures don't like each-other? Like a dragon and a goblin get assigned to the same camp, there's now a turf war to see who wins. (Just make them fight and whoever lives wins)
 
+private const val GOBLIN_HUNT_MODE = "aggressive_npcs"
+private const val RAID_TIMER = "goblin_raid_timer"
+private const val POLL_TIMER = "goblin_raid_poll"
+
 /**
  * Identifying states for the LSM
  */
-private data class GoblinProgress(
+private data class NPCProgress(
     val state: RaidState,
     val destination: RaidDestination
 )
-private enum class RaidState{
+enum class RaidState{
     TRAVELLING_TO_CAMP,
     MUSTERING,
     TRAVELLING_TO_TOWN,
     SIEGING_TOWN
 }
-private enum class RaidDestination {
+enum class RaidDestination {
     FALADOR,
     VARROCK
 }
@@ -49,7 +52,7 @@ private val GOBLIN_VILLAGE_TILE : Tile = Tile(2956, 3503) // Arbitrary tile in g
  * Mob IDs
  */
 //These IDS happen to have the same name through string.
-private val GOBLIN_IDS = intArrayOf(3264, 3265, 3266, 3267) //TODO: Diversify spawns. Low prio.
+private val GOBLIN_IDS = setOf("3264", "3265", "3266", "3267")
 // Just an example low level goblin that happens to share the string name with the ID. String name is needed.
 private const val GOBLIN_ID_TEST = "3264"
 
@@ -79,8 +82,17 @@ private val FALADOR_CAMP_TO_FALADOR_GATE = listOf(
     Tile(2966, 3394)
 )
 
+data class RaidMember(
+    val npc: NPC,
+    var state: RaidState
+)
+
+class Raid(
+    val destination: RaidDestination,
+    val members: MutableList<RaidMember> = mutableListOf()
+)
 class GoblinRaids : Script {
-    private val goblinProgress = mutableMapOf<NPC, GoblinProgress>()
+    private val npcProgress = mutableMapOf<NPC, NPCProgress>()
 
     init {
         if(DEBUG){println("GoblinRaids.kt Loaded...")}
@@ -89,25 +101,23 @@ class GoblinRaids : Script {
          * Declaring who can target what.
          */
         huntNPC("aggressive_npcs") { target ->
-            if (id.startsWith("guard_fal") && target.categories.contains("goblins") && !target.id.startsWith("guard_fal")) {
-                interactNpc(target, "Attack")
-            }
-            if (id == GOBLIN_ID_TEST && target.id != GOBLIN_ID_TEST) {
-                interactNpc(target, "Attack")
+            when{
+                isRaidGoblin() && !target.isRaidGoblin() -> interactNpc(target, "attack")
+                isFaladorGuard() && target.isRaidGoblin() -> interactNpc(target, "attack") //TODO: find all raid members and not just goblins
             }
         }
 
         worldSpawn {
             if(DEBUG){println("GoblinRaids - worldSpawn")}
-            World.timers.start("goblin_raid_timer")
-            World.timers.start("polling_timer")
+            World.timers.start(RAID_TIMER)
+            World.timers.start(POLL_TIMER)
         }
 
         /**
          * Goblin Spawning timer
          */
-        worldTimerStart("goblin_raid_timer") { TimeUnit.MINUTES.toTicks(5) }
-        worldTimerTick("goblin_raid_timer") {
+        worldTimerStart(RAID_TIMER) { TimeUnit.SECONDS.toTicks(5) }
+        worldTimerTick(RAID_TIMER) {
             // Spawn our lil gobbo and send them out, repeat every time unit above ^
             if(DEBUG){println("spawngobbo")}
             val gobbo = NPCs.addRandom(GOBLIN_ID_TEST, GOBLIN_VILLAGE_TILE.toCuboid(5)) ?: NPCs.add(GOBLIN_ID_TEST, GOBLIN_VILLAGE_TILE)
@@ -118,26 +128,21 @@ class GoblinRaids : Script {
         /**
          * Polling timer. ~3x a second.
          */
-        worldTimerStart("polling_timer") { TimeUnit.MILLISECONDS.toTicks(300) }
-        worldTimerTick("polling_timer") {
-            val trackedGoblins = goblinProgress.toList()
+        worldTimerStart(POLL_TIMER) { TimeUnit.MILLISECONDS.toTicks(300) }
+        worldTimerTick(POLL_TIMER) {
+            // Despawning all dead mobs so the world isn't flooded with gobbos
+            cleanUpDeadMembers() // We can move this to a more global script later since this should be affecting EVERYONE that this script spawns
+
+            val trackedGoblins = npcProgress.toList()
             val musteringGoblins = goblinsInState(RaidState.MUSTERING)
             val travelingToCampGoblins = goblinsInState(RaidState.TRAVELLING_TO_CAMP)
             val travellingToTownGoblins = goblinsInState(RaidState.TRAVELLING_TO_TOWN)
 
-            // Despawning all dead mobs so the world isn't flooded with mobs
-            for ((gobbo, progress) in trackedGoblins) {
-                if (gobbo.dead) {
-                    goblinProgress.remove(gobbo)
-                    gobbo.despawn(0) // For some reason despawn doesn't work properly unless it's 0. Maybe because they're dead? They might not properly drop loot until this is fixed.
-                    continue
-                }
-            }
 
             //Count how many goblins are mustering. Will need to consider location here, too.
             //TODO: Expand to accept multiple possible camps.
             if(musteringGoblins.size >= 5){
-                for((gobbo, progress) in goblinProgress){
+                for((gobbo, progress) in npcProgress){
                     if(progress.state == RaidState.MUSTERING && progress.destination == RaidDestination.FALADOR){
                         setRaidState(gobbo, RaidState.TRAVELLING_TO_TOWN, RaidDestination.FALADOR)
                     }
@@ -170,12 +175,27 @@ class GoblinRaids : Script {
         }
     }
 
+    /**
+     * Helper Functions
+     */
+    // Clean up any spawned NPC from the raid
+    private fun cleanUpDeadMembers() {
+        for ((gobbo, progress) in npcProgress) {
+            if (gobbo.dead) {
+                npcProgress.remove(gobbo)
+                gobbo.despawn(0) // For some reason despawn doesn't work properly unless it's 0. Maybe because they're dead? They might not properly drop loot until this is fixed.
+                continue
+            }
+        }
+    }
+
+    // Change what state the goblin is in and state logic
     private fun setRaidState(
         gobbo: NPC,
         state: RaidState,
         destination: RaidDestination
     ) {
-        goblinProgress[gobbo] = GoblinProgress(state, destination)
+        npcProgress[gobbo] = NPCProgress(state, destination)
         /**
          * WHEN STATEMENTS, make sure these don't loop into each-other.
          */
@@ -191,7 +211,12 @@ class GoblinRaids : Script {
                     character = gobbo,
                     waypoints = waypoints,
                     loop = false,
-                    noCollision = false
+                    noCollision = false,
+                    onComplete = {
+                        if (!gobbo.dead) {
+                            setRaidState(gobbo, RaidState.MUSTERING, RaidDestination.FALADOR) // Destination needs to be a variable later
+                        }
+                    }
                 )
             }
 
@@ -208,7 +233,12 @@ class GoblinRaids : Script {
                     character = gobbo,
                     waypoints = waypoints,
                     loop = false,
-                    noCollision = true // Enabled here because they get caught and clump easily. This is more like a goblin rush.
+                    noCollision = true, // Enabled here because they get caught and clump easily. This is more like a goblin rush.
+                    onComplete = {
+                        if (!gobbo.dead) {
+                            setRaidState(gobbo, RaidState.SIEGING_TOWN, RaidDestination.FALADOR)
+                        }
+                    }
                 )
             }
 
@@ -229,11 +259,20 @@ class GoblinRaids : Script {
 
     //Count how many NPCs are in the selected state.
     private fun goblinsInState(state: RaidState): List<NPC> {
-        return goblinProgress
+        return npcProgress
             .filterValues { progress ->
                 progress.state == state
             }
             .keys
             .toList()
     }
+
+    /**
+     * Who is whoms't?
+     */
+    private fun NPC.isRaidGoblin(): Boolean =
+        id in GOBLIN_IDS
+
+    private fun NPC.isFaladorGuard(): Boolean =
+        id.startsWith("guard_fal")
 }
