@@ -24,20 +24,33 @@ import java.util.concurrent.TimeUnit
 private const val GOBLIN_RAID_TIMER = "goblin_raid_timer"
 private val GOBLIN_IDS = setOf("3264", "3265", "3266", "3267")
 private const val GOBLIN_ID = "3264" // TODO: Add variety spawning
-private val GOBLIN_HUNT_MODE = "aggressive_npcs"
+private val GOBLIN_HUNT_MODE = "aggressive_npcs" //Misnomer: will grab every NPC in the game with "aggressive_npcs"
 
 class GoblinRaids : Script {
 
     private val raidManager = RaidManager()
 
     init {
+        // TODO: Move this function in a more appropriate place. This is going to decide who can attack whom.
         huntNPC(GOBLIN_HUNT_MODE) { target ->
             when {
-                raidManager.isRaidMember(target) && canAttackRaidTarget(target) ->
+                // Goblins and Falador guards attack each other
+                // TODO: make Falador a faction
+                // TODO: have factions properly identify each-other to create "sides" potentially.
+                // Does that mean I have to make normally unattackable NPCs attackable and give them proper stats?
+                // TODO: Faction alignment?
+                target.isFaladorGuard() && target.canFight() && !this.isFaladorGuard() -> {
                     interactNpc(target, "Attack")
+                }
 
-                isFaladorGuard() && raidManager.isRaidMember(target) && target.canFight() ->
+                target.isGoblin() && target.canFight() && !this.isGoblin() -> {
                     interactNpc(target, "Attack")
+                }
+//                raidManager.isRaidMember(target) && canAttackRaidTarget(target) ->
+//                    interactNpc(target, "Attack")
+//
+//                isFaladorGuard() && raidManager.isRaidMember(target) && target.canFight() ->
+//                    interactNpc(target, "Attack")
             }
         }
 
@@ -46,7 +59,7 @@ class GoblinRaids : Script {
         }
 
         worldTimerStart(GOBLIN_RAID_TIMER) {
-            TimeUnit.MINUTES.toTicks(5)
+            TimeUnit.SECONDS.toTicks(5)
         }
 
         worldTimerTick(GOBLIN_RAID_TIMER) {
@@ -63,7 +76,10 @@ class GoblinRaids : Script {
      * TODO: Move somewhere more central. RaidManager
      */
     private fun NPC.isFaladorGuard(): Boolean =
-        this.id.contains("guard_falador")
+        id.contains("guard_falador")
+
+    private fun NPC.isGoblin(): Boolean =
+        id in GOBLIN_IDS
 
     private fun NPC.raidMember(): RaidMember? =
         raidManager.memberOf(this)
