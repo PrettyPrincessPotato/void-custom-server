@@ -59,7 +59,7 @@ class GoblinRaids : Script {
         }
 
         worldTimerStart(GOBLIN_RAID_TIMER) {
-            TimeUnit.SECONDS.toTicks(5)
+            TimeUnit.MINUTES.toTicks(5)
         }
 
         worldTimerTick(GOBLIN_RAID_TIMER) {
@@ -73,7 +73,7 @@ class GoblinRaids : Script {
 
     /**
      * Helper functions for identifying raid targets and members
-     * TODO: Move somewhere more central. RaidManager
+     * TODO: Move somewhere more central. RaidManager?
      */
     private fun NPC.isFaladorGuard(): Boolean =
         id.contains("guard_falador")
