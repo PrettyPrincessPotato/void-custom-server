@@ -1,9 +1,5 @@
 package content.activity.city_raids
 
-import content.activity.city_raids.RaidDestination
-import content.activity.city_raids.RaidMember
-import content.activity.city_raids.RaidState
-
 class Raid(
     val faction: RaidFaction,
     val destination: RaidDestination,
