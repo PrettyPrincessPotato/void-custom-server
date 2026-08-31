@@ -1,26 +1,54 @@
 package content.entity.npc.shop.general
 
 import content.entity.npc.shop.openShop
+import content.entity.npc.shop.time.ShopSchedule
 import content.entity.player.dialogue.Happy
 import content.entity.player.dialogue.Idle
 import content.entity.player.dialogue.Neutral
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
+import content.world.time.WorldTime
 import world.gregs.voidps.engine.Script
+import world.gregs.voidps.engine.entity.character.npc.NPC
 
 class GeneralStore : Script {
+    private val generalStoreSchedule = ShopSchedule(
+        openingHour = 8,
+        closingHour = 18
+    )
+
+    fun isGeneralStoreOpen(): Boolean {
+        return generalStoreSchedule.isOpen(WorldTime.hour)
+    }
+
 
     init {
+        fun openGeneralStore(
+            target: NPC,
+            open: (String) -> Unit
+        ) {
+            val shop = target.def.getOrNull<String>("shop") ?: return
+            if (isGeneralStoreOpen()) {
+                open(shop)
+            } else {
+                target.say("Sorry, the shop is closed for now. Please come back later.")
+            }
+        }
+
         npcOperate("Trade", "shopkeeper*,shop_assistant*") { (target) ->
-            openShop(target.def.getOrNull<String>("shop") ?: return@npcOperate)
+            openGeneralStore(target) { shop ->
+                openShop(shop)
+            }
         }
 
         npcOperate("Talk-to", "shopkeeper*") { (target) ->
             npc<Idle>("Can I help you at all?")
             choice {
                 option("Yes please. What are you selling?") {
-                    openShop(target.def.getOrNull<String>("shop") ?: return@option)
+                    openGeneralStore(target) { shop ->
+                        openShop(shop)
+                    }
                 }
                 option("How should I use your shop?") {
                     if (target.id.endsWith("lumbridge")) {

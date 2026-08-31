@@ -3,6 +3,8 @@ package content.entity.player
 import content.bot.isBot
 import content.entity.player.bank.bank
 import content.entity.player.dialogue.type.statement
+import content.world.time.WorldTime
+import content.world.time.WorldTimeAnnouncement
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.open
@@ -20,7 +22,9 @@ import world.gregs.voidps.engine.queue.queue
 class Introduction : Script {
 
     fun welcome(player: Player) {
+        val worldTimeAnnouncement = WorldTimeAnnouncement()
         player.message("Welcome to ${Settings["server.name"]}.", ChatType.Welcome)
+        player.message("The time is roughly ${WorldTime.hour}:00")
         if (player.contains("creation")) {
             return
         }
