@@ -32,7 +32,7 @@ class WorldDarkness : Script {
     }
 
     private fun updatePlayer(player: Player) {
-        // Add the outdoor check here later.
+        // TODO: Add the outdoor check here later.
         setDarkness(player, WorldTime.darknessLevel)
     }
 
