@@ -21,7 +21,7 @@ import world.gregs.voidps.engine.timer.toTicks
 import world.gregs.voidps.type.Tile
 import java.util.concurrent.TimeUnit
 
-private const val GOBLIN_RAID_TIMER = "goblin_raid_timer"
+
 private const val GOBLIN_ID = "3264" // TODO: Add variety spawning
 private val GOBLIN_HUNT_MODE = "aggressive_npcs" //Misnomer: will grab every NPC in the game with "aggressive_npcs"
 
@@ -53,22 +53,7 @@ class GoblinRaids : Script {
             }
         }
 
-        worldSpawn {
-            World.timers.start(GOBLIN_RAID_TIMER)
-        }
 
-        worldTimerStart(GOBLIN_RAID_TIMER) {
-            TimeUnit.MINUTES.toTicks(5) // Live timer
-            //TimeUnit.SECONDS.toTicks(5) // Debug timer
-        }
-
-        worldTimerTick(GOBLIN_RAID_TIMER) {
-            // Initial goblin spawn in goblin village, they then proceed to Falador (to be randomized) where they muster forces nearby
-            // Then attack when they have enough forces.
-            spawnGoblin(IceMountainArea.GOBLIN_VILLAGE)
-            updateGoblinRaids()
-            Timer.CONTINUE
-        }
     }
 
     /**
@@ -76,121 +61,8 @@ class GoblinRaids : Script {
      */
 
     // Spawn a gobbo at the determined tile
-    private fun spawnGoblin(tile: Tile, gobbo: RaidMember? = null, raidState: RaidState? = null) {
-        val npc: NPC
-        if(gobbo == null) {
-            npc = NPCs.add(GOBLIN_ID, tile)
-        }
-        else{
-            gobbo.npc.despawn(0) // TODO: RefreshGoblin()?
-            npc = NPCs.add(GOBLIN_ID, tile)
-        }
 
-        if(raidState == null && gobbo == null){
-            val raid = raidManager.findOrCreateFaladorRaid()
-            val member = raidManager.addMember(
-                raid = raid,
-                npc = npc,
-                type = RaidMemberType.GOBLIN
-            )
-
-            transition(member, RaidState.TRAVELLING_TO_CAMP)
-        }
-        else if(raidState != null && gobbo != null){
-            transition(gobbo, raidState)
-        } else{
-            println("Somewhere, you really messed up. GoblinRaids.kt spawnGoblin() -- Skipping spawn due to invalid spawn criteria")
-            println("This is either due to raidState having null and gobbo isn't, or vice/versa.") // TODO: Separate so these errors aren't possible
-        }
-
-    }
-
-    private fun respawnGoblin(member: RaidMember, tile: Tile): NPC {
-        member.npc.despawn(0)
-
-        val replacement = NPCs.add(GOBLIN_ID, tile)
-        raidManager.replaceMemberNpc(member, replacement)
-
-        return replacement
-    }
-
-    private fun updateGoblinRaids() {
-        raidManager.allRaids()
-            .filter {
-                it.faction == RaidFaction.GOBLINS &&
-                        it.destination == RaidDestination.FALADOR
-            }
-            .forEach { raid ->
-                val mustering = raid.membersInState(RaidState.MUSTERING)
-                if (mustering.size >= 5) {
-                    mustering.forEach {
-                        transition(it, RaidState.TRAVELLING_TO_TOWN)
-                    }
-                }
-            }
-    }
     /**
      * End of Helper Functions
      */
-
-    // Essentially goblin brains. Go big war god!
-    private fun transition(
-        gobbo: RaidMember,
-        state: RaidState
-    ) {
-        gobbo.state = state
-
-        when (state) {
-            RaidState.TRAVELLING_TO_CAMP -> {
-                val waypoints: List<Pair<Tile, Int>> = IceMountainArea.GOBLIN_VILLAGE_TO_FALADOR_CAMP.map { tile -> //TODO: Make this a variable somehow to expand different camps
-                    tile to 0 // or some delay ticks between tiles
-                }
-                // Walk over to encampment
-                gobbo.npc.mode = Patrol(
-                    character = gobbo.npc,
-                    waypoints = waypoints,
-                    loop = false,
-                    noCollision = false,
-                    onComplete = {
-                        if (!gobbo.npc.dead) {
-                            respawnGoblin(gobbo, IceMountainArea.FALADOR_CAMP)
-                            transition( gobbo, RaidState.MUSTERING )
-                        }
-                    }
-                )
-            }
-
-            RaidState.MUSTERING -> {
-                //Find the tree object nearby somehow
-                //can do gobboNew.interactObject(TreeObject) once we find nearby trees to have the goblins chop one down nearby.
-            }
-
-            RaidState.TRAVELLING_TO_TOWN -> {
-                val waypoints: List<Pair<Tile, Int>> = IceMountainArea.FALADOR_CAMP_TO_GATE.map { tile ->
-                    tile to 0 // or some delay ticks between tiles
-                }
-                gobbo.npc.mode = Patrol(
-                    character = gobbo.npc,
-                    waypoints = waypoints,
-                    loop = false,
-                    noCollision = true, // Enabled here because they get caught and clump easily. This is more like a goblin rush.
-                    onComplete = {
-                        if (!gobbo.npc.dead) {
-                            respawnGoblin( gobbo, IceMountainArea.FALADOR_GATE )
-                            transition( gobbo, RaidState.SIEGING_TOWN )
-                        }
-                    }
-                )
-            }
-
-            RaidState.SIEGING_TOWN -> {
-                /**
-                 * Nothing really special needed here, they're in town. Maybe add something fancy to do here. It'd be *really* cool
-                 * if the various mobs can take an entire town through some minigame, king of the hill or something, but I can see
-                 * some issues with that from a gameplay stance.
-                 * That also may be difficult with this engine.
-                 */
-            }
-        }
-    }
 }

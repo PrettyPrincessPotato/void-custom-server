@@ -5,8 +5,6 @@ import world.gregs.voidps.engine.entity.character.npc.NPC
 
 class RaidManager {
 
-    private val goblinIds = setOf("3264", "3265", "3266", "3267")
-
     private val raids = mutableListOf<Raid>()
     private val membersByNpc = mutableMapOf<NPC, RaidMember>()
 
