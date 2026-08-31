@@ -22,7 +22,6 @@ import world.gregs.voidps.type.Tile
 import java.util.concurrent.TimeUnit
 
 private const val GOBLIN_RAID_TIMER = "goblin_raid_timer"
-private val GOBLIN_IDS = setOf("3264", "3265", "3266", "3267")
 private const val GOBLIN_ID = "3264" // TODO: Add variety spawning
 private val GOBLIN_HUNT_MODE = "aggressive_npcs" //Misnomer: will grab every NPC in the game with "aggressive_npcs"
 
@@ -39,11 +38,11 @@ class GoblinRaids : Script {
                 // TODO: have factions properly identify each-other to create "sides" potentially.
                 // Does that mean I have to make normally unattackable NPCs attackable and give them proper stats?
                 // TODO: Faction alignment?
-                target.isFaladorGuard() && target.canFight() && !this.isFaladorGuard() -> {
+                raidManager.isFaladorGuard(target) && target.canFight() && !raidManager.isFaladorGuard(this) -> {
                     interactNpc(target, "Attack")
                 }
 
-                target.isGoblin() && target.canFight() && !this.isGoblin() -> {
+                raidManager.isGoblin(target) && target.canFight() && !raidManager.isGoblin(this) -> {
                     interactNpc(target, "Attack")
                 }
 //                raidManager.isRaidMember(target) && canAttackRaidTarget(target) ->
@@ -59,7 +58,8 @@ class GoblinRaids : Script {
         }
 
         worldTimerStart(GOBLIN_RAID_TIMER) {
-            TimeUnit.MINUTES.toTicks(5)
+            TimeUnit.MINUTES.toTicks(5) // Live timer
+            //TimeUnit.SECONDS.toTicks(5) // Debug timer
         }
 
         worldTimerTick(GOBLIN_RAID_TIMER) {
@@ -73,13 +73,7 @@ class GoblinRaids : Script {
 
     /**
      * Helper functions for identifying raid targets and members
-     * TODO: Move somewhere more central. RaidManager?
      */
-    private fun NPC.isFaladorGuard(): Boolean =
-        id.contains("guard_falador")
-
-    private fun NPC.isGoblin(): Boolean =
-        id in GOBLIN_IDS
 
     // Spawn a gobbo at the determined tile
     private fun spawnGoblin(tile: Tile, gobbo: RaidMember? = null, raidState: RaidState? = null) {
@@ -106,7 +100,7 @@ class GoblinRaids : Script {
             transition(gobbo, raidState)
         } else{
             println("Somewhere, you really messed up. GoblinRaids.kt spawnGoblin() -- Skipping spawn due to invalid spawn criteria")
-            println("This is either due to raidState having null and gobbo isn't, or vice/versa.")
+            println("This is either due to raidState having null and gobbo isn't, or vice/versa.") // TODO: Separate so these errors aren't possible
         }
 
     }

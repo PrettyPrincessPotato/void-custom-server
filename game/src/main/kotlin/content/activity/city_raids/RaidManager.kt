@@ -5,6 +5,8 @@ import world.gregs.voidps.engine.entity.character.npc.NPC
 
 class RaidManager {
 
+    private val goblinIds = setOf("3264", "3265", "3266", "3267")
+
     private val raids = mutableListOf<Raid>()
     private val membersByNpc = mutableMapOf<NPC, RaidMember>()
 
@@ -56,6 +58,12 @@ class RaidManager {
 
     fun isRaidMember(npc: NPC): Boolean =
         npc in membersByNpc
+
+    fun isFaladorGuard(npc: NPC): Boolean =
+        npc.id.contains("guard_falador")
+
+    fun isGoblin(npc: NPC): Boolean =
+        npc.id in goblinIds
 
     fun findOrCreateFaladorRaid(): Raid =
         allRaids().firstOrNull {
