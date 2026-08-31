@@ -1,5 +1,6 @@
 package content.activity.city_raids
 
+import content.skill.summoning.canFight
 import world.gregs.voidps.engine.entity.character.npc.NPC
 
 class RaidManager {
@@ -55,4 +56,32 @@ class RaidManager {
 
     fun isRaidMember(npc: NPC): Boolean =
         npc in membersByNpc
+
+    fun findOrCreateFaladorRaid(): Raid =
+        allRaids().firstOrNull {
+            it.faction == RaidFaction.GOBLINS &&
+                    it.destination == RaidDestination.FALADOR
+        } ?: Raid(
+            faction = RaidFaction.GOBLINS,
+            destination = RaidDestination.FALADOR
+        )
+    fun NPC.raidMember(): RaidMember? =
+        memberOf(this)
+
+    fun NPC.canAttackRaidTarget(target: NPC): Boolean {
+        val attacker = raidMember() ?: return false
+        val victim = target.raidMember() ?: return false
+
+        // Prevent members of the same raid from attacking each other.
+        if (attacker.raid == victim.raid) {
+            return false
+        }
+
+        // Prevent allied factions from attacking each other.
+        if (attacker.raid.faction == victim.raid.faction) {
+            return false
+        }
+
+        return target.canFight()
+    }
 }

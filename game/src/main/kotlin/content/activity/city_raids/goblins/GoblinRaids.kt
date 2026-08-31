@@ -81,26 +81,6 @@ class GoblinRaids : Script {
     private fun NPC.isGoblin(): Boolean =
         id in GOBLIN_IDS
 
-    private fun NPC.raidMember(): RaidMember? =
-        raidManager.memberOf(this)
-
-    private fun NPC.canAttackRaidTarget(target: NPC): Boolean {
-        val attacker = raidMember() ?: return false
-        val victim = target.raidMember() ?: return false
-
-        // Prevent members of the same raid from attacking each other.
-        if (attacker.raid == victim.raid) {
-            return false
-        }
-
-        // Prevent allied factions from attacking each other.
-        if (attacker.raid.faction == victim.raid.faction) {
-            return false
-        }
-
-        return target.canFight()
-    }
-
     // Spawn a gobbo at the determined tile
     private fun spawnGoblin(tile: Tile, gobbo: RaidMember? = null, raidState: RaidState? = null) {
         val npc: NPC
@@ -113,7 +93,7 @@ class GoblinRaids : Script {
         }
 
         if(raidState == null && gobbo == null){
-            val raid = findOrCreateFaladorRaid()
+            val raid = raidManager.findOrCreateFaladorRaid()
             val member = raidManager.addMember(
                 raid = raid,
                 npc = npc,
@@ -139,16 +119,6 @@ class GoblinRaids : Script {
 
         return replacement
     }
-
-
-    private fun findOrCreateFaladorRaid(): Raid =
-        raidManager.allRaids().firstOrNull {
-            it.faction == RaidFaction.GOBLINS &&
-                    it.destination == RaidDestination.FALADOR
-        } ?: Raid(
-            faction = RaidFaction.GOBLINS,
-            destination = RaidDestination.FALADOR
-        )
 
     private fun updateGoblinRaids() {
         raidManager.allRaids()
