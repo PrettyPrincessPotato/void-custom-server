@@ -3,7 +3,6 @@ package content.area.asgarnia.falador
 import content.world.time.HourChangeListener
 import content.world.time.WorldTime
 import world.gregs.voidps.engine.Script
-import world.gregs.voidps.engine.entity.character.npc.NPC
 
 private const val ASSISTANT_LEAVE_HOUR = 17
 private const val ASSISTANT_RETURN_HOUR = 8
