@@ -74,7 +74,9 @@ class GeneralStore : Script {
             }
             choice {
                 option("Yes please. What are you selling?") {
-                    openShop(target.def.getOrNull<String>("shop") ?: return@option)
+                    openGeneralStore(target) { shop ->
+                        openShop(shop)
+                    }
                 }
                 option("How should I use your shop?") {
                     npc<Neutral>("I'm glad you ask! You can buy as many of the items stocked as you wish. You can also sell most items to the shop.")
