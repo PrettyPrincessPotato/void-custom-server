@@ -6,6 +6,7 @@ import content.world.time.WorldTime
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.open
+import world.gregs.voidps.engine.data.definition.Areas
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 
@@ -23,6 +24,9 @@ class WorldDarkness : Script {
         playerSpawn {
             updatePlayer(this)
         }
+        moved {
+            updatePlayer(this)
+        }
     }
 
     private fun updateAllPlayers() {
@@ -32,8 +36,12 @@ class WorldDarkness : Script {
     }
 
     private fun updatePlayer(player: Player) {
-        // TODO: Add the outdoor check here later.
-        setDarkness(player, WorldTime.darknessLevel)
+        val overworld = Areas["overworld"]
+        if(overworld.contains(player.tile)){
+            setDarkness(player, WorldTime.darknessLevel)
+        } else {
+            clearDarkness(player)
+        }
     }
 
     private fun setDarkness(player: Player, level: DarknessLevel) {
