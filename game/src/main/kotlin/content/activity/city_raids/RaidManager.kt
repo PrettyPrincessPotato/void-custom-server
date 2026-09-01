@@ -57,6 +57,12 @@ class RaidManager {
     fun isRaidMember(npc: NPC): Boolean =
         npc in membersByNpc
 
+    fun isFaladorGuard(npc: NPC): Boolean =
+        npc.id.contains("guard_falador")
+
+    fun isGoblin(npc: NPC): Boolean =
+        npc.id in goblinIds
+
     fun findOrCreateFaladorRaid(): Raid =
         allRaids().firstOrNull {
             it.faction == RaidFaction.GOBLINS &&
