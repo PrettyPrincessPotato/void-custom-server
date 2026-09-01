@@ -57,6 +57,7 @@ class ShopAssistantFalador : Script {
             }
         }
     }
+
     private fun leaveForTavern() {
         val npc = shopkeeper ?: return
 
@@ -74,6 +75,7 @@ class ShopAssistantFalador : Script {
             collision = CollisionStrategies.Indoors
         }
     }
+
     private fun returnToShop() {
         val npc = shopkeeper ?: return
 
