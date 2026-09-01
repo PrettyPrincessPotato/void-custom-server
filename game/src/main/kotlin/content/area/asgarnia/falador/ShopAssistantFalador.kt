@@ -1,15 +1,14 @@
 package content.area.asgarnia.falador
 
+import content.entity.npc.movement.travelTo
 import content.entity.npc.schedule.NpcScheduleController
 import content.entity.npc.schedule.NpcSchedules
 import content.entity.npc.schedule.ScheduleTransition
 import org.rsmod.game.pathfinder.collision.CollisionStrategies
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.data.definition.Areas
-import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.type.Tile
-import world.gregs.voidps.engine.queue.queue as enqueue
 
 private const val ASSISTANT_LEAVE_HOUR = 17
 private const val ASSISTANT_RETURN_HOUR = 8
@@ -60,52 +59,36 @@ class ShopAssistantFalador : Script {
     }
     private fun leaveForTavern() {
         val npc = shopkeeper ?: return
-        val destination = TAVERN_TILE
 
-        if (npc.tile in TAVERN_AREA) { // We're already in the tavern, no need to do anything. (Indoor collision just in case)
+        if (npc.tile in TAVERN_AREA) {
             npc.collision = CollisionStrategies.Indoors
             return
         }
 
-        npc["spawn_tile"] = destination
-        npc.say("Ah, finally. Clock-out time!")
-        npc.collision = CollisionStrategies.Normal
-
-        npc.enqueue("go_to_tavern") {
-            npc.walkTo(destination)
-
-            while (npc.tile !in TAVERN_AREA && npc.mode != EmptyMode) {
-                npc.delay()
-            }
-
-            if (npc.tile in TAVERN_AREA) {
-                npc.collision = CollisionStrategies.Indoors
-            }
+        npc.travelTo(
+            destination = TAVERN_TILE,
+            destinationArea = TAVERN_AREA,
+            dialogue = "Ahh, finally clock-out time...",
+            queueName = "travel_to_tavern",
+        ) {
+            collision = CollisionStrategies.Indoors
         }
     }
     private fun returnToShop() {
         val npc = shopkeeper ?: return
-        val destination = SHOP_TILE
 
         if (npc.tile in SHOP_AREA) { // We're already in the shop, no need to do anything. (Indoor collision just in case)
             npc.collision = CollisionStrategies.Indoors
             return // If we don't do this, the NPC will declare they drank too much on world spawn when a player first enters the area.
         }
 
-        npc["spawn_tile"] = destination
-        npc.say("Ugh.. I think I drank too much...")
-        npc.collision = CollisionStrategies.Normal
-
-        npc.enqueue("go_to_shop") {
-            npc.walkTo(destination)
-
-            while (npc.tile !in SHOP_AREA && npc.mode != EmptyMode) {
-                npc.delay()
-            }
-
-            if (npc.tile in SHOP_AREA) {
-                npc.collision = CollisionStrategies.Indoors
-            }
+        npc.travelTo(
+            destination = SHOP_TILE,
+            destinationArea = SHOP_AREA,
+            dialogue = "Ugh... I think I drank too much...",
+            queueName = "travel_to_shop",
+        ){
+            npc.collision = CollisionStrategies.Indoors
         }
     }
 }
