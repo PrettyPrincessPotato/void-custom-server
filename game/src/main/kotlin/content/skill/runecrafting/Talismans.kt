@@ -17,7 +17,7 @@ class Talismans(val teleports: ObjectTeleports) : Script {
                     message("The talisman is pulling towards the ${direction.name.toKebabCase()}.")
                     return@itemOption
                 }  else {
-                    message("You cannot tell which direction the talisman is pulling...")
+                    message("The talisman is having trouble pin-pointing the location.")
                     return@itemOption
                 }
             }
