@@ -20,7 +20,7 @@ class WorldClock : Script {
         worldTimerStart(HOUR_TICK_NAME){
             if(DEBUG){
                 TimeUnit.SECONDS.toTicks(5) // fast cycling for debugging
-            }else{
+            } else {
                 TimeUnit.MINUTES.toTicks(5) // 2 IRL hours = 1 full day in-game.
             }
         }
