@@ -11,7 +11,7 @@ import world.gregs.voidps.engine.timer.toTicks
 import world.gregs.voidps.type.Tile
 import java.util.concurrent.TimeUnit
 
-
+private const val DEBUG = false
 private const val GOBLIN_RAID_TIMER = "goblin_raid_timer"
 val raidManager = RaidManager()
 private val raidController = RaidController(raidManager)
@@ -23,8 +23,11 @@ class RaidSpawner : Script {
             World.timers.start(GOBLIN_RAID_TIMER)
         }
         worldTimerStart(GOBLIN_RAID_TIMER) {
-            //TimeUnit.MINUTES.toTicks(5) // Live timer
-            TimeUnit.SECONDS.toTicks(5) // Debug timer
+            if(DEBUG){
+                TimeUnit.SECONDS.toTicks(5)
+            } else{
+                TimeUnit.MINUTES.toTicks(5)
+            }
         }
 
         worldTimerTick(GOBLIN_RAID_TIMER) {

@@ -1,6 +1,5 @@
 package content.activity.city_raids
 
-import content.activity.city_raids.RaidState
 import world.gregs.voidps.engine.entity.character.npc.NPC
 
 class RaidMember(
