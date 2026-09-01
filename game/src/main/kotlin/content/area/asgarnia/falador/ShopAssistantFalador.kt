@@ -50,7 +50,7 @@ class ShopAssistantFalador : Script {
             NpcSchedules.registry.register(schedule)
         }
 
-        npcDespawn {
+        npcDespawn(ASSISTANT_STRING_ID) {
             NpcSchedules.registry.unregister(schedule)
 
             if (shopkeeper === this) {
