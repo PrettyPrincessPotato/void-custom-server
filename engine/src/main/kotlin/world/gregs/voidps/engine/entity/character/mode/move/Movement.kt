@@ -47,7 +47,12 @@ open class Movement(
         val tile = strategy.destination(character)
         // Players, and owned familiars (which a player directs around the map), use full
         // pathfinding so they route around obstacles. Other NPCs use cheap single-step movement.
-        val pathfinds = character is Player || (character is NPC && character["owner_index", -1] != -1)
+        val pathfinds =
+            character is Player ||
+                    (character is NPC && (
+                            character["owner_index", -1] != -1 ||
+                            character["full_pathfinding", false]
+                            ))
         if (pathfinds && !tile.noCollision) {
             val route = pathFinder.findPath(character, strategy, shape)
             character.steps.queueRoute(route, tile, tile.noCollision, noRun = strategy.forceWalk(character))
