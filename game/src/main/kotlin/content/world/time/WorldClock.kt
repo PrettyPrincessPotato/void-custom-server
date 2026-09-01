@@ -7,6 +7,7 @@ import world.gregs.voidps.engine.timer.toTicks
 import java.util.concurrent.TimeUnit
 
 const val DEBUG = false
+
 const val HOUR_TICK_NAME = "ingame_hour_tick"
 class WorldClock : Script {
     private val announcement = WorldTimeAnnouncement()

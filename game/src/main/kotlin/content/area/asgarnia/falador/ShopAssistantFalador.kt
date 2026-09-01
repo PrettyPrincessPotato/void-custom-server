@@ -1,12 +1,15 @@
 package content.area.asgarnia.falador
 
-import content.world.time.HourChangeListener
-import content.world.time.WorldTime
+import content.entity.npc.schedule.NpcScheduleController
+import content.entity.npc.schedule.NpcSchedules
+import content.entity.npc.schedule.ScheduleTransition
 import org.rsmod.game.pathfinder.collision.CollisionStrategies
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.data.definition.Areas
+import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.type.Tile
+import world.gregs.voidps.engine.queue.queue as enqueue
 
 private const val ASSISTANT_LEAVE_HOUR = 17
 private const val ASSISTANT_RETURN_HOUR = 8
@@ -25,85 +28,85 @@ val SHOP_TILE = Tile(2956, 3389)
  * End of TODO
  */
 
-private enum class AssistantState {
-    AT_SHOP,
-    GOING_TO_TAVERN,
-    AT_TAVERN,
-    GOING_TO_SHOP
-}
-
-class ShopAssistantFalador : Script, HourChangeListener {
+class ShopAssistantFalador : Script {
     private var shopkeeper: NPC? = null
-    private var state = AssistantState.AT_SHOP
 
     init {
-        WorldTime.subscribeToHourChanges(this)
+        val schedule = NpcScheduleController(
+            listOf(
+                ScheduleTransition(ASSISTANT_RETURN_HOUR) {
+                    returnToShop()
+                },
+                ScheduleTransition(ASSISTANT_LEAVE_HOUR) {
+                    leaveForTavern()
+                }
+            )
+        )
 
         npcSpawn(ASSISTANT_STRING_ID) {
             shopkeeper = this
             this["full_pathfinding"] = true
+
+            NpcSchedules.registry.register(schedule)
         }
 
-    }
+        npcDespawn {
+            NpcSchedules.registry.unregister(schedule)
 
-    override fun onHourChanged(previousHour: Int, currentHour: Int) {
-        when (state) {
-            AssistantState.AT_SHOP -> {
-                if (currentHour == ASSISTANT_LEAVE_HOUR) {
-                    shopkeeper?.collision = CollisionStrategies.Normal
-                    leaveForTavern()
-                }
-            }
-
-            AssistantState.GOING_TO_TAVERN -> {
-                if (hasReachedTavern()) {
-                    shopkeeper?.collision = CollisionStrategies.Indoors
-                    state = AssistantState.AT_TAVERN
-                }
-            }
-
-            AssistantState.AT_TAVERN -> {
-                if (currentHour == ASSISTANT_RETURN_HOUR) {
-                    shopkeeper?.collision = CollisionStrategies.Normal
-                    returnToShop()
-                }
-            }
-
-            AssistantState.GOING_TO_SHOP -> {
-                if (hasReachedShop()) {
-                    shopkeeper?.collision = CollisionStrategies.Indoors
-                    state = AssistantState.AT_SHOP
-                }
+            if (shopkeeper === this) {
+                shopkeeper = null
             }
         }
     }
-
     private fun leaveForTavern() {
-        val destination = TAVERN_AREA.random()
+        val npc = shopkeeper ?: return
+        val destination = TAVERN_TILE
 
-        shopkeeper?.let { npc ->
-            npc["spawn_tile"] = TAVERN_TILE
-            npc.say("Ah, finally. Clock-out time!")
-            npc.walkTo(destination)
+        if (npc.tile in TAVERN_AREA) { // We're already in the tavern, no need to do anything. (Indoor collision just in case)
+            npc.collision = CollisionStrategies.Indoors
+            return
         }
 
-        state = AssistantState.GOING_TO_TAVERN
-    }
+        npc["spawn_tile"] = destination
+        npc.say("Ah, finally. Clock-out time!")
+        npc.collision = CollisionStrategies.Normal
 
+        npc.enqueue("go_to_tavern") {
+            npc.walkTo(destination)
+
+            while (npc.tile !in TAVERN_AREA && npc.mode != EmptyMode) {
+                npc.delay()
+            }
+
+            if (npc.tile in TAVERN_AREA) {
+                npc.collision = CollisionStrategies.Indoors
+            }
+        }
+    }
     private fun returnToShop() {
-        val destination = SHOP_AREA.random()
+        val npc = shopkeeper ?: return
+        val destination = SHOP_TILE
 
-        shopkeeper?.let { npc ->
-            npc.say("Ugh... I think I drank too much...")
-            npc["spawn_tile"] = SHOP_TILE
-            npc.walkTo(destination)
+        if (npc.tile in SHOP_AREA) { // We're already in the shop, no need to do anything. (Indoor collision just in case)
+            npc.collision = CollisionStrategies.Indoors
+            return // If we don't do this, the NPC will declare they drank too much on world spawn when a player first enters the area.
         }
 
-        state = AssistantState.GOING_TO_SHOP
-    }
+        npc["spawn_tile"] = destination
+        npc.say("Ugh.. I think I drank too much...")
+        npc.collision = CollisionStrategies.Normal
 
-    private fun hasReachedTavern(): Boolean =
-        shopkeeper?.tile in TAVERN_AREA
-    private fun hasReachedShop(): Boolean =
-        shopkeeper?.tile in SHOP_AREA
+        npc.enqueue("go_to_shop") {
+            npc.walkTo(destination)
+
+            while (npc.tile !in SHOP_AREA && npc.mode != EmptyMode) {
+                npc.delay()
+            }
+
+            if (npc.tile in SHOP_AREA) {
+                npc.collision = CollisionStrategies.Indoors
+            }
+        }
+    }
 }
+
