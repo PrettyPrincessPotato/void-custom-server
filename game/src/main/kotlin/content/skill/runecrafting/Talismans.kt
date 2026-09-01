@@ -5,15 +5,25 @@ import net.pearx.kasechange.toKebabCase
 import net.pearx.kasechange.toSentenceCase
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.data.definition.Areas
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.area.Rectangle
 
 class Talismans(val teleports: ObjectTeleports) : Script {
 
-    val overworld = Rectangle(2048, 2496, 3903, 4159)
+    //val overworld = Rectangle(2048, 2496, 3903, 4159)
 
     init {
         itemOption("Locate", "*_talisman") { (item) ->
+            if (item.id == "cosmic_talisman"){
+                if(tile in Areas["zanaris"]){
+                    message("The talisman is pulling towards the ${direction.name.toKebabCase()}.")
+                    return@itemOption
+                }  else {
+                    message("You cannot tell which direction the talisman is pulling...")
+                    return@itemOption
+                }
+            }
             if (item.id == "elemental_talisman") {
                 message("You cannot tell which direction the talisman is pulling...")
                 return@itemOption
@@ -26,7 +36,7 @@ class Talismans(val teleports: ObjectTeleports) : Script {
                 return@itemOption
             }
             val direction = teleport.to.delta(tile).toDirection()
-            if (tile in overworld || direction == Direction.NONE) {
+            if (tile in Areas["overworld"] || direction == Direction.NONE) {
                 message("The talisman is pulling towards the ${direction.name.toKebabCase()}.")
             } else {
                 message("The talisman is having trouble pin-pointing the location.")
