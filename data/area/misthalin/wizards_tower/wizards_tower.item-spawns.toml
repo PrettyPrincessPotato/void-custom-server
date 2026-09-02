@@ -5,4 +5,7 @@ spawns = [
     { id = "logs", x = 3105, y = 3159, delay = 100 },
     { id = "logs", x = 3106, y = 3159, delay = 100 },
     { id = "logs", x = 3106, y = 3160, delay = 100 },
+    { id = "dagonhai_hat", x = 3109, y = 3157, level = 2, delay = 300 },
+    { id = "dagonhai_robe_top", x = 3109, y = 3156, level = 2, delay = 300 },
+    { id = "dagonhai_robe_bottom", x = 3108, y = 3157, level = 2, delay = 300 },
 ]
