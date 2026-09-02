@@ -1,0 +1,659 @@
+int, int, string, string script_1012(int arg0, int arg1) {
+	switch (arg0) {
+		case 0:
+			switch (arg1) {
+				case 0:
+					return -1, 7620, "To mine rune essence, you must have started Rune Mysteries.", "";
+				case 1:
+					return 1, 556, "Air runes", "You can now craft " + "<col=000080>" + "air runes" + "</col>" + ".";
+				case 2:
+					return 2, 558, "Mind runes", "You can now craft " + "<col=000080>" + "mind runes" + "</col>" + ".";
+				case 3:
+					return 5, 555, "Water runes", "You can now craft " + "<col=000080>" + "water runes" + "</col>" + ".";
+				case 4:
+					return 6, 4695, "Mist runes", "You can now craft " + "<col=000080>" + "mist runes" + "</col>" + ".";
+				case 5:
+					return 9, 557, "Earth runes", "You can now craft " + "<col=000080>" + "earth runes" + "</col>" + ".";
+				case 6:
+					return 10, 4696, "Dust runes", "You can now craft " + "<col=000080>" + "dust runes" + "</col>" + ".";
+				case 7:
+					return 13, 4698, "Mud runes", "You can now craft " + "<col=000080>" + "mud runes" + "</col>" + ".";
+				case 8:
+					return 14, 554, "Fire runes", "You can now craft " + "<col=000080>" + "fire runes" + "</col>" + ".";
+				case 9:
+					return 15, 4697, "Smoke runes", "You can now craft " + "<col=000080>" + "smoke runes" + "</col>" + ".";
+				case 10:
+					return 19, 4694, "Steam runes", "You can now craft " + "<col=000080>" + "steam runes" + "</col>" + ".";
+				case 11:
+					return 20, 559, "Body runes", "You can now craft " + "<col=000080>" + "body runes" + "</col>" + ".";
+				case 12:
+					return 23, 4699, "Lava runes", "You can now craft " + "<col=000080>" + "lava runes" + "</col>" + ".";
+				case 13:
+					return 27, 564, "Cosmic runes", "You can now craft " + "<col=000080>" + "cosmic runes" + "</col>" + ".";
+				case 14:
+					return 35, 562, "Chaos runes", "You can now craft " + "<col=000080>" + "chaos runes" + "</col>" + ".";
+				case 15:
+					return 40, 9075, "Astral runes" + "<br>" + " (after Lunar Diplomacy)", "You now have the Runecrafting level required to craft " + "<col=000080>" + "astral runes" + "</col>" + " (after Lunar Diplomacy, or when in Daemonheim).";
+				case 16:
+					return 44, 561, "Nature runes", "You can now craft " + "<col=000080>" + "nature runes" + "</col>" + ".";
+				case 17:
+					return 54, 563, "Law runes", "You can now craft " + "<col=000080>" + "law runes" + "</col>" + ".";
+				case 18:
+					return 65, 560, "Death runes" + "<br>" + " (after Mourning's Ends Part II)", "You now have the Runecrafting level required to craft " + "<col=000080>" + "death runes" + "</col>" + " (after Mourning's Ends Part II, or when in Daemonheim).";
+				case 19:
+					return 77, 565, "Blood runes" + "<br>" + " (after Legacy of Seergaze)", "You now have the Runecrafting level required to craft " + "<col=000080>" + "blood runes" + "</col>" + " (after Legacy of Seergaze, or when in Daemonheim).";
+			}
+			break;
+		case 1:
+			switch (arg1) {
+				case 0:
+					return -1, 7620, "As your Runecrafting skill develops, you will be able to craft multiple runes from one piece of essence. You only receive experience for each piece of essence crafted, not each rune crafted.", " ";
+				case 1:
+					return 5, 556, "2 Air runes per essence", "You can now craft " + "<col=000080>" + "2 air runes" + "</col>" + " from one piece of essence.";
+				case 2:
+					return 5, 558, "2 Mind runes per essence", "You can now craft " + "<col=000080>" + "2 mind runes" + "</col>" + " from one piece of essence.";
+				case 3:
+					return 7, 555, "2 Water runes per essence", "You can now craft " + "<col=000080>" + "2 water runes" + "</col>" + " from one piece of essence.";
+				case 4:
+					return 10, 555, "3 Water runes per essence", "You can now craft " + "<col=000080>" + "3 water runes" + "</col>" + " from one piece of essence.";
+				case 5:
+					return 10, 556, "3 Air runes per essence", "You can now craft " + "<col=000080>" + "3 air runes" + "</col>" + " from one piece of essence.";
+				case 6:
+					return 10, 557, "2 Earth runes per essence", "You can now craft " + "<col=000080>" + "2 earth runes" + "</col>" + " from one piece of essence.";
+				case 7:
+					return 10, 558, "3 Mind runes per essence", "You can now craft " + "<col=000080>" + "3 mind runes" + "</col>" + " from one piece of essence.";
+				case 8:
+					return 13, 557, "3 Earth runes per essence", "You can now craft " + "<col=000080>" + "3 earth runes" + "</col>" + " from one piece of essence.";
+				case 9:
+					return 14, 558, "4 Mind runes per essence", "You can now craft " + "<col=000080>" + "4 mind runes" + "</col>" + " from one piece of essence.";
+				case 10:
+					return 15, 555, "4 Water runes per essence", "You can now craft " + "<col=000080>" + "4 water runes" + "</col>" + " from one piece of essence.";
+				case 11:
+					return 15, 556, "4 Air runes per essence", "You can now craft " + "<col=000080>" + "4 air runes" + "</col>" + " from one piece of essence.";
+				case 12:
+					return 15, 557, "4 Earth runes per essence", "You can now craft " + "<col=000080>" + "4 earth runes" + "</col>" + " from one piece of essence.";
+				case 13:
+					return 16, 554, "2 Fire runes per essence", "You can now craft " + "<col=000080>" + "2 fire runes" + "</col>" + " from one piece of essence.";
+				case 14:
+					return 16, 558, "5 Mind runes per essence", "You can now craft " + "<col=000080>" + "5 mind runes" + "</col>" + " from one piece of essence.";
+				case 15:
+					return 20, 554, "3 Fire runes per essence", "You can now craft " + "<col=000080>" + "3 fire runes" + "</col>" + " from one piece of essence.";
+				case 16:
+					return 20, 555, "5 Water runes per essence", "You can now craft " + "<col=000080>" + "5 water runes" + "</col>" + " from one piece of essence.";
+				case 17:
+					return 20, 556, "5 Air runes per essence", "You can now craft " + "<col=000080>" + "5 air runes" + "</col>" + " from one piece of essence.";
+				case 18:
+					return 20, 557, "5 Earth runes per essence", "You can now craft " + "<col=000080>" + "5 earth runes" + "</col>" + " from one piece of essence.";
+				case 19:
+					return 20, 558, "6 Mind runes per essence", "You can now craft " + "<col=000080>" + "6 mind runes" + "</col>" + " from one piece of essence.";
+				case 20:
+					return 23, 554, "4 Fire runes per essence", "You can now craft " + "<col=000080>" + "4 fire runes" + "</col>" + " from one piece of essence.";
+				case 21:
+					return 23, 559, "2 Body runes per essence", "You can now craft " + "<col=000080>" + "2 body runes" + "</col>" + " from one piece of essence.";
+				case 22:
+					return 25, 554, "5 Fire runes per essence", "You can now craft " + "<col=000080>" + "5 fire runes" + "</col>" + " from one piece of essence.";
+				case 23:
+					return 25, 555, "6 Water runes per essence", "You can now craft " + "<col=000080>" + "6 water runes" + "</col>" + " from one piece of essence.";
+				case 24:
+					return 25, 556, "6 Air runes per essence", "You can now craft " + "<col=000080>" + "6 air runes" + "</col>" + " from one piece of essence.";
+				case 25:
+					return 25, 557, "6 Earth runes per essence", "You can now craft " + "<col=000080>" + "6 earth runes" + "</col>" + " from one piece of essence.";
+				case 26:
+					return 25, 558, "7 Mind runes per essence", "You can now craft " + "<col=000080>" + "7 mind runes" + "</col>" + " from one piece of essence.";
+				case 27:
+					return 25, 559, "3 Body runes per essence", "You can now craft " + "<col=000080>" + "3 body runes" + "</col>" + " from one piece of essence.";
+				case 28:
+					return 27, 554, "6 Fire runes per essence", "You can now craft " + "<col=000080>" + "6 fire runes" + "</col>" + " from one piece of essence.";
+				case 29:
+					return 27, 559, "4 Body runes per essence", "You can now craft " + "<col=000080>" + "4 body runes" + "</col>" + " from one piece of essence.";
+				case 30:
+					return 28, 558, "8 Mind runes per essence", "You can now craft " + "<col=000080>" + "8 mind runes" + "</col>" + " from one piece of essence.";
+				case 31:
+					return 30, 554, "7 Fire runes per essence", "You can now craft " + "<col=000080>" + "7 fire runes" + "</col>" + " from one piece of essence.";
+				case 32:
+					return 30, 555, "7 Water runes per essence", "You can now craft " + "<col=000080>" + "7 water runes" + "</col>" + " from one piece of essence.";
+				case 33:
+					return 30, 556, "7 Air runes per essence", "You can now craft " + "<col=000080>" + "7 air runes" + "</col>" + " from one piece of essence.";
+				case 34:
+					return 30, 557, "7 Earth runes per essence", "You can now craft " + "<col=000080>" + "7 earth runes" + "</col>" + " from one piece of essence.";
+				case 35:
+					return 30, 558, "9 Mind runes per essence", "You can now craft " + "<col=000080>" + "9 mind runes" + "</col>" + " from one piece of essence.";
+				case 36:
+					return 30, 559, "5 Body runes per essence", "You can now craft " + "<col=000080>" + "5 body runes" + "</col>" + " from one piece of essence.";
+				case 37:
+					return 30, 564, "2 Cosmic runes per essence", "You can now craft " + "<col=000080>" + "2 cosmic runes" + "</col>" + " from one piece of essence.";
+				case 38:
+					return 32, 559, "6 Body runes per essence", "You can now craft " + "<col=000080>" + "6 body runes" + "</col>" + " from one piece of essence.";
+				case 39:
+					return 32, 564, "3 Cosmic runes per essence", "You can now craft " + "<col=000080>" + "3 cosmic runes" + "</col>" + " from one piece of essence.";
+				case 40:
+					return 35, 554, "8 Fire runes per essence", "You can now craft " + "<col=000080>" + "8 fire runes" + "</col>" + " from one piece of essence.";
+				case 41:
+					return 35, 555, "8 Water runes per essence", "You can now craft " + "<col=000080>" + "8 water runes" + "</col>" + " from one piece of essence.";
+				case 42:
+					return 35, 556, "8 Air runes per essence", "You can now craft " + "<col=000080>" + "8 air runes" + "</col>" + " from one piece of essence.";
+				case 43:
+					return 35, 557, "8 Earth runes per essence", "You can now craft " + "<col=000080>" + "8 earth runes" + "</col>" + " from one piece of essence.";
+				case 44:
+					return 35, 558, "10 Mind runes per essence", "You can now craft " + "<col=000080>" + "10 mind runes" + "</col>" + " from one piece of essence.";
+				case 45:
+					return 35, 559, "7 Body runes per essence", "You can now craft " + "<col=000080>" + "7 body runes" + "</col>" + " from one piece of essence.";
+				case 46:
+					return 35, 564, "4 Cosmic runes per essence", "You can now craft " + "<col=000080>" + "4 cosmic runes" + "</col>" + " from one piece of essence.";
+				case 47:
+					return 37, 562, "2 Chaos runes per essence", "You can now craft " + "<col=000080>" + "2 chaos runes" + "</col>" + " from one piece of essence.";
+				case 48:
+					return 40, 554, "9 Fire runes per essence", "You can now craft " + "<col=000080>" + "9 fire runes" + "</col>" + " from one piece of essence.";
+				case 49:
+					return 40, 555, "9 Water runes per essence", "You can now craft " + "<col=000080>" + "9 water runes" + "</col>" + " from one piece of essence.";
+				case 50:
+					return 40, 556, "9 Air runes per essence", "You can now craft " + "<col=000080>" + "9 air runes" + "</col>" + " from one piece of essence.";
+				case 51:
+					return 40, 557, "9 Earth runes per essence", "You can now craft " + "<col=000080>" + "9 earth runes" + "</col>" + " from one piece of essence.";
+				case 52:
+					return 40, 558, "11 Mind runes per essence", "You can now craft " + "<col=000080>" + "11 mind runes" + "</col>" + " from one piece of essence.";
+				case 53:
+					return 40, 559, "8 Body runes per essence", "You can now craft " + "<col=000080>" + "8 body runes" + "</col>" + " from one piece of essence.";
+				case 54:
+					return 40, 562, "3 Chaos runes per essence", "You can now craft " + "<col=000080>" + "3 chaos runes" + "</col>" + " from one piece of essence.";
+				case 55:
+					return 40, 564, "5 Cosmic runes per essence", "You can now craft " + "<col=000080>" + "5 cosmic runes" + "</col>" + " from one piece of essence.";
+				case 56:
+					return 42, 558, "12 Mind runes per essence", "You can now craft " + "<col=000080>" + "12 mind runes" + "</col>" + " from one piece of essence.";
+				case 57:
+					return 43, 9075, "2 Astral runes per essence", "You can now craft " + "<col=000080>" + "2 astral runes" + "</col>" + " from one piece of essence.";
+				case 58:
+					return 43, 562, "4 Chaos runes per essence", "You can now craft " + "<col=000080>" + "4 chaos runes" + "</col>" + " from one piece of essence.";
+				case 59:
+					return 45, 554, "10 Fire runes per essence", "You can now craft " + "<col=000080>" + "10 fire runes" + "</col>" + " from one piece of essence.";
+				case 60:
+					return 45, 555, "10 Water runes per essence", "You can now craft " + "<col=000080>" + "10 water runes" + "</col>" + " from one piece of essence.";
+				case 61:
+					return 45, 556, "10 Air runes per essence", "You can now craft " + "<col=000080>" + "10 air runes" + "</col>" + " from one piece of essence.";
+				case 62:
+					return 45, 557, "10 Earth runes per essence", "You can now craft " + "<col=000080>" + "10 earth runes" + "</col>" + " from one piece of essence.";
+				case 63:
+					return 45, 558, "13 Mind runes per essence", "You can now craft " + "<col=000080>" + "13 mind runes" + "</col>" + " from one piece of essence.";
+				case 64:
+					return 45, 9075, "3 Astral runes per essence", "You can now craft " + "<col=000080>" + "3 astral runes" + "</col>" + " from one piece of essence.";
+				case 65:
+					return 45, 561, "2 Nature runes per essence", "You can now craft " + "<col=000080>" + "2 nature runes" + "</col>" + " from one piece of essence.";
+				case 66:
+					return 45, 562, "5 Chaos runes per essence", "You can now craft " + "<col=000080>" + "5 chaos runes" + "</col>" + " from one piece of essence.";
+				case 67:
+					return 46, 559, "9 Body runes per essence", "You can now craft " + "<col=000080>" + "9 body runes" + "</col>" + " from one piece of essence.";
+				case 68:
+					return 46, 561, "3 Nature runes per essence", "You can now craft " + "<col=000080>" + "3 nature runes" + "</col>" + " from one piece of essence.";
+				case 69:
+					return 46, 564, "6 Cosmic runes per essence", "You can now craft " + "<col=000080>" + "6 cosmic runes" + "</col>" + " from one piece of essence.";
+				case 70:
+					return 47, 9075, "4 Astral runes per essence", "You can now craft " + "<col=000080>" + "4 astral runes" + "</col>" + " from one piece of essence.";
+				case 71:
+					return 47, 561, "4 Nature runes per essence", "You can now craft " + "<col=000080>" + "4 nature runes" + "</col>" + " from one piece of essence.";
+				case 72:
+					return 47, 562, "6 Chaos runes per essence", "You can now craft " + "<col=000080>" + "6 chaos runes" + "</col>" + " from one piece of essence.";
+				case 73:
+					return 50, 554, "11 Fire runes per essence", "You can now craft " + "<col=000080>" + "11 fire runes" + "</col>" + " from one piece of essence.";
+				case 74:
+					return 50, 555, "11 Water runes per essence", "You can now craft " + "<col=000080>" + "11 water runes" + "</col>" + " from one piece of essence.";
+				case 75:
+					return 50, 556, "11 Air runes per essence", "You can now craft " + "<col=000080>" + "11 air runes" + "</col>" + " from one piece of essence.";
+				case 76:
+					return 50, 557, "11 Earth runes per essence", "You can now craft " + "<col=000080>" + "11 earth runes" + "</col>" + " from one piece of essence.";
+				case 77:
+					return 50, 558, "14 Mind runes per essence", "You can now craft " + "<col=000080>" + "14 mind runes" + "</col>" + " from one piece of essence.";
+				case 78:
+					return 50, 559, "10 Body runes per essence", "You can now craft " + "<col=000080>" + "10 body runes" + "</col>" + " from one piece of essence.";
+				case 79:
+					return 50, 9075, "5 Astral runes per essence", "You can now craft " + "<col=000080>" + "5 astral runes" + "</col>" + " from one piece of essence.";
+				case 80:
+					return 50, 561, "5 Nature runes per essence", "You can now craft " + "<col=000080>" + "5 nature runes" + "</col>" + " from one piece of essence.";
+				case 81:
+					return 50, 562, "7 Chaos runes per essence", "You can now craft " + "<col=000080>" + "7 chaos runes" + "</col>" + " from one piece of essence.";
+				case 82:
+					return 50, 564, "7 Cosmic runes per essence", "You can now craft " + "<col=000080>" + "7 cosmic runes" + "</col>" + " from one piece of essence.";
+				case 83:
+					return 53, 9075, "6 Astral runes per essence", "You can now craft " + "<col=000080>" + "6 astral runes" + "</col>" + " from one piece of essence.";
+				case 84:
+					return 53, 561, "6 Nature runes per essence", "You can now craft " + "<col=000080>" + "6 nature runes" + "</col>" + " from one piece of essence.";
+				case 85:
+					return 53, 562, "8 Chaos runes per essence", "You can now craft " + "<col=000080>" + "8 chaos runes" + "</col>" + " from one piece of essence.";
+				case 86:
+					return 54, 558, "15 Mind runes per essence", "You can now craft " + "<col=000080>" + "15 mind runes" + "</col>" + " from one piece of essence.";
+				case 87:
+					return 55, 554, "12 Fire runes per essence", "You can now craft " + "<col=000080>" + "12 fire runes" + "</col>" + " from one piece of essence.";
+				case 88:
+					return 55, 555, "12 Water runes per essence", "You can now craft " + "<col=000080>" + "12 water runes" + "</col>" + " from one piece of essence.";
+				case 89:
+					return 55, 556, "12 Air runes per essence", "You can now craft " + "<col=000080>" + "12 air runes" + "</col>" + " from one piece of essence.";
+				case 90:
+					return 55, 557, "12 Earth runes per essence", "You can now craft " + "<col=000080>" + "12 earth runes" + "</col>" + " from one piece of essence.";
+				case 91:
+					return 55, 559, "11 Body runes per essence", "You can now craft " + "<col=000080>" + "11 body runes" + "</col>" + " from one piece of essence.";
+				case 92:
+					return 55, 9075, "7 Astral runes per essence", "You can now craft " + "<col=000080>" + "7 astral runes" + "</col>" + " from one piece of essence.";
+				case 93:
+					return 55, 561, "7 Nature runes per essence", "You can now craft " + "<col=000080>" + "7 nature runes" + "</col>" + " from one piece of essence.";
+				case 94:
+					return 55, 562, "9 Chaos runes per essence", "You can now craft " + "<col=000080>" + "9 chaos runes" + "</col>" + " from one piece of essence.";
+				case 95:
+					return 55, 563, "2 Law runes per essence", "You can now craft " + "<col=000080>" + "2 law runes" + "</col>" + " from one piece of essence.";
+				case 96:
+					return 55, 564, "8 Cosmic runes per essence", "You can now craft " + "<col=000080>" + "8 cosmic runes" + "</col>" + " from one piece of essence.";
+				case 97:
+					return 56, 558, "16 Mind runes per essence", "You can now craft " + "<col=000080>" + "16 mind runes" + "</col>" + " from one piece of essence.";
+				case 98:
+					return 56, 563, "3 Law runes per essence", "You can now craft " + "<col=000080>" + "3 law runes" + "</col>" + " from one piece of essence.";
+				case 99:
+					return 57, 9075, "8 Astral runes per essence", "You can now craft " + "<col=000080>" + "8 astral runes" + "</col>" + " from one piece of essence.";
+				case 100:
+					return 57, 561, "8 Nature runes per essence", "You can now craft " + "<col=000080>" + "8 nature runes" + "</col>" + " from one piece of essence.";
+				case 101:
+					return 57, 562, "10 Chaos runes per essence", "You can now craft " + "<col=000080>" + "10 chaos runes" + "</col>" + " from one piece of essence.";
+				case 102:
+					return 57, 563, "4 Law runes per essence", "You can now craft " + "<col=000080>" + "4 law runes" + "</col>" + " from one piece of essence.";
+				case 103:
+					return 58, 563, "5 Law runes per essence", "You can now craft " + "<col=000080>" + "5 law runes" + "</col>" + " from one piece of essence.";
+				case 104:
+					return 59, 563, "6 Law runes per essence", "You can now craft " + "<col=000080>" + "6 law runes" + "</col>" + " from one piece of essence.";
+				case 105:
+					return 59, 564, "9 Cosmic runes per essence", "You can now craft " + "<col=000080>" + "9 cosmic runes" + "</col>" + " from one piece of essence.";
+				case 106:
+					return 60, 554, "13 Fire runes per essence", "You can now craft " + "<col=000080>" + "13 fire runes" + "</col>" + " from one piece of essence.";
+				case 107:
+					return 60, 555, "13 Water runes per essence", "You can now craft " + "<col=000080>" + "13 water runes" + "</col>" + " from one piece of essence.";
+				case 108:
+					return 60, 556, "13 Air runes per essence", "You can now craft " + "<col=000080>" + "13 air runes" + "</col>" + " from one piece of essence.";
+				case 109:
+					return 60, 557, "13 Earth runes per essence", "You can now craft " + "<col=000080>" + "13 earth runes" + "</col>" + " from one piece of essence.";
+				case 110:
+					return 60, 558, "17 Mind runes per essence", "You can now craft " + "<col=000080>" + "17 mind runes" + "</col>" + " from one piece of essence.";
+				case 111:
+					return 60, 559, "12 Body runes per essence", "You can now craft " + "<col=000080>" + "12 body runes" + "</col>" + " from one piece of essence.";
+				case 112:
+					return 60, 9075, "9 Astral runes per essence", "You can now craft " + "<col=000080>" + "9 astral runes" + "</col>" + " from one piece of essence.";
+				case 113:
+					return 60, 561, "9 Nature runes per essence", "You can now craft " + "<col=000080>" + "9 nature runes" + "</col>" + " from one piece of essence.";
+				case 114:
+					return 60, 562, "11 Chaos runes per essence", "You can now craft " + "<col=000080>" + "11 chaos runes" + "</col>" + " from one piece of essence.";
+				case 115:
+					return 60, 563, "7 Law runes per essence", "You can now craft " + "<col=000080>" + "7 law runes" + "</col>" + " from one piece of essence.";
+				case 116:
+					return 60, 564, "10 Cosmic runes per essence", "You can now craft " + "<col=000080>" + "10 cosmic runes" + "</col>" + " from one piece of essence.";
+				case 117:
+					return 61, 563, "8 Law runes per essence", "You can now craft " + "<col=000080>" + "8 law runes" + "</col>" + " from one piece of essence.";
+				case 118:
+					return 62, 563, "9 Law runes per essence", "You can now craft " + "<col=000080>" + "9 law runes" + "</col>" + " from one piece of essence.";
+				case 119:
+					return 63, 9075, "10 Astral runes per essence", "You can now craft " + "<col=000080>" + "10 astral runes" + "</col>" + " from one piece of essence.";
+				case 120:
+					return 63, 561, "10 Nature runes per essence", "You can now craft " + "<col=000080>" + "10 nature runes" + "</col>" + " from one piece of essence.";
+				case 121:
+					return 63, 562, "12 Chaos runes per essence", "You can now craft " + "<col=000080>" + "12 chaos runes" + "</col>" + " from one piece of essence.";
+				case 122:
+					return 63, 563, "10 Law runes per essence", "You can now craft " + "<col=000080>" + "10 law runes" + "</col>" + " from one piece of essence.";
+				case 123:
+					return 65, 554, "14 Fire runes per essence", "You can now craft " + "<col=000080>" + "14 fire runes" + "</col>" + " from one piece of essence.";
+				case 124:
+					return 65, 555, "14 Water runes per essence", "You can now craft " + "<col=000080>" + "14 water runes" + "</col>" + " from one piece of essence.";
+				case 125:
+					return 65, 556, "14 Air runes per essence", "You can now craft " + "<col=000080>" + "14 air runes" + "</col>" + " from one piece of essence.";
+				case 126:
+					return 65, 557, "14 Earth runes per essence", "You can now craft " + "<col=000080>" + "14 earth runes" + "</col>" + " from one piece of essence.";
+				case 127:
+					return 65, 558, "18 Mind runes per essence", "You can now craft " + "<col=000080>" + "18 mind runes" + "</col>" + " from one piece of essence.";
+				case 128:
+					return 65, 559, "13 Body runes per essence", "You can now craft " + "<col=000080>" + "13 body runes" + "</col>" + " from one piece of essence.";
+				case 129:
+					return 65, 9075, "11 Astral runes per essence", "You can now craft " + "<col=000080>" + "11 astral runes" + "</col>" + " from one piece of essence.";
+				case 130:
+					return 65, 561, "11 Nature runes per essence", "You can now craft " + "<col=000080>" + "11 nature runes" + "</col>" + " from one piece of essence.";
+				case 131:
+					return 65, 562, "13 Chaos runes per essence", "You can now craft " + "<col=000080>" + "13 chaos runes" + "</col>" + " from one piece of essence.";
+				case 132:
+					return 65, 563, "11 Law runes per essence", "You can now craft " + "<col=000080>" + "11 law runes" + "</col>" + " from one piece of essence.";
+				case 133:
+					return 65, 564, "11 Cosmic runes per essence", "You can now craft " + "<col=000080>" + "11 cosmic runes" + "</col>" + " from one piece of essence.";
+				case 134:
+					return 66, 560, "2 Death runes per essence", "You can now craft " + "<col=000080>" + "2 death runes" + "</col>" + " from one piece of essence.";
+				case 135:
+					return 67, 560, "3 Death runes per essence", "You can now craft " + "<col=000080>" + "3 death runes" + "</col>" + " from one piece of essence.";
+				case 136:
+					return 67, 561, "12 Nature runes per essence", "You can now craft " + "<col=000080>" + "12 nature runes" + "</col>" + " from one piece of essence.";
+				case 137:
+					return 67, 562, "14 Chaos runes per essence", "You can now craft " + "<col=000080>" + "14 chaos runes" + "</col>" + " from one piece of essence.";
+				case 138:
+					return 67, 563, "12 Law runes per essence", "You can now craft " + "<col=000080>" + "12 law runes" + "</col>" + " from one piece of essence.";
+				case 139:
+					return 67, 564, "12 Cosmic runes per essence", "You can now craft " + "<col=000080>" + "12 cosmic runes" + "</col>" + " from one piece of essence.";
+				case 140:
+					return 68, 560, "4 Death runes per essence", "You can now craft " + "<col=000080>" + "4 death runes" + "</col>" + " from one piece of essence.";
+				case 141:
+					return 69, 9075, "12 Astral runes per essence", "You can now craft " + "<col=000080>" + "12 astral runes" + "</col>" + " from one piece of essence.";
+				case 142:
+					return 70, 554, "15 Fire runes per essence", "You can now craft " + "<col=000080>" + "15 fire runes" + "</col>" + " from one piece of essence.";
+				case 143:
+					return 70, 555, "15 Water runes per essence", "You can now craft " + "<col=000080>" + "15 water runes" + "</col>" + " from one piece of essence.";
+				case 144:
+					return 70, 556, "15 Air runes per essence", "You can now craft " + "<col=000080>" + "15 air runes" + "</col>" + " from one piece of essence.";
+				case 145:
+					return 70, 557, "15 Earth runes per essence", "You can now craft " + "<col=000080>" + "15 earth runes" + "</col>" + " from one piece of essence.";
+				case 146:
+					return 70, 558, "19 Mind runes per essence", "You can now craft " + "<col=000080>" + "19 mind runes" + "</col>" + " from one piece of essence.";
+				case 147:
+					return 70, 559, "14 Body runes per essence", "You can now craft " + "<col=000080>" + "14 body runes" + "</col>" + " from one piece of essence.";
+				case 148:
+					return 70, 9075, "13 Astral runes per essence", "You can now craft " + "<col=000080>" + "13 astral runes" + "</col>" + " from one piece of essence.";
+				case 149:
+					return 70, 560, "5 Death runes per essence", "You can now craft " + "<col=000080>" + "5 death runes" + "</col>" + " from one piece of essence.";
+				case 150:
+					return 70, 561, "13 Nature runes per essence", "You can now craft " + "<col=000080>" + "13 nature runes" + "</col>" + " from one piece of essence.";
+				case 151:
+					return 70, 562, "15 Chaos runes per essence", "You can now craft " + "<col=000080>" + "15 chaos runes" + "</col>" + " from one piece of essence.";
+				case 152:
+					return 70, 563, "13 Law runes per essence", "You can now craft " + "<col=000080>" + "13 law runes" + "</col>" + " from one piece of essence.";
+				case 153:
+					return 70, 564, "13 Cosmic runes per essence", "You can now craft " + "<col=000080>" + "13 cosmic runes" + "</col>" + " from one piece of essence.";
+				case 154:
+					return 72, 560, "6 Death runes per essence", "You can now craft " + "<col=000080>" + "6 death runes" + "</col>" + " from one piece of essence.";
+				case 155:
+					return 73, 9075, "14 Astral runes per essence", "You can now craft " + "<col=000080>" + "14 astral runes" + "</col>" + " from one piece of essence.";
+				case 156:
+					return 73, 560, "7 Death runes per essence", "You can now craft " + "<col=000080>" + "7 death runes" + "</col>" + " from one piece of essence.";
+				case 157:
+					return 73, 561, "14 Nature runes per essence", "You can now craft " + "<col=000080>" + "14 nature runes" + "</col>" + " from one piece of essence.";
+				case 158:
+					return 73, 563, "14 Law runes per essence", "You can now craft " + "<col=000080>" + "14 law runes" + "</col>" + " from one piece of essence.";
+				case 159:
+					return 73, 564, "14 Cosmic runes per essence", "You can now craft " + "<col=000080>" + "14 cosmic runes" + "</col>" + " from one piece of essence.";
+				case 160:
+					return 74, 560, "8 Death runes per essence", "You can now craft " + "<col=000080>" + "8 death runes" + "</col>" + " from one piece of essence.";
+				case 161:
+					return 75, 554, "16 Fire runes per essence", "You can now craft " + "<col=000080>" + "16 fire runes" + "</col>" + " from one piece of essence.";
+				case 162:
+					return 75, 555, "16 Water runes per essence", "You can now craft " + "<col=000080>" + "16 water runes" + "</col>" + " from one piece of essence.";
+				case 163:
+					return 75, 556, "16 Air runes per essence", "You can now craft " + "<col=000080>" + "16 air runes" + "</col>" + " from one piece of essence.";
+				case 164:
+					return 75, 557, "16 Earth runes per essence", "You can now craft " + "<col=000080>" + "16 earth runes" + "</col>" + " from one piece of essence.";
+				case 165:
+					return 75, 559, "15 Body runes per essence", "You can now craft " + "<col=000080>" + "15 body runes" + "</col>" + " from one piece of essence.";
+				case 166:
+					return 75, 9075, "15 Astral runes per essence", "You can now craft " + "<col=000080>" + "15 astral runes" + "</col>" + " from one piece of essence.";
+				case 167:
+					return 75, 560, "9 Death runes per essence", "You can now craft " + "<col=000080>" + "9 death runes" + "</col>" + " from one piece of essence.";
+				case 168:
+					return 75, 561, "15 Nature runes per essence", "You can now craft " + "<col=000080>" + "15 nature runes" + "</col>" + " from one piece of essence.";
+				case 169:
+					return 75, 562, "16 Chaos runes per essence", "You can now craft " + "<col=000080>" + "16 chaos runes" + "</col>" + " from one piece of essence.";
+				case 170:
+					return 75, 563, "15 Law runes per essence", "You can now craft " + "<col=000080>" + "15 law runes" + "</col>" + " from one piece of essence.";
+				case 171:
+					return 75, 564, "15 Cosmic runes per essence", "You can now craft " + "<col=000080>" + "15 cosmic runes" + "</col>" + " from one piece of essence.";
+				case 172:
+					return 76, 560, "10 Death runes per essence", "You can now craft " + "<col=000080>" + "10 death runes" + "</col>" + " from one piece of essence.";
+				case 173:
+					return 77, 561, "16 Nature runes per essence", "You can now craft " + "<col=000080>" + "16 nature runes" + "</col>" + " from one piece of essence.";
+				case 174:
+					return 77, 563, "16 Law runes per essence", "You can now craft " + "<col=000080>" + "16 law runes" + "</col>" + " from one piece of essence.";
+				case 175:
+					return 78, 9075, "16 Astral runes per essence", "You can now craft " + "<col=000080>" + "16 astral runes" + "</col>" + " from one piece of essence.";
+				case 176:
+					return 78, 560, "11 Death runes per essence", "You can now craft " + "<col=000080>" + "11 death runes" + "</col>" + " from one piece of essence.";
+				case 177:
+					return 78, 565, "2 Blood runes per essence", "You can now craft " + "<col=000080>" + "2 blood runes" + "</col>" + " from one piece of essence.";
+				case 178:
+					return 79, 560, "12 Death runes per essence", "You can now craft " + "<col=000080>" + "12 death runes" + "</col>" + " from one piece of essence.";
+				case 179:
+					return 79, 565, "3 Blood runes per essence", "You can now craft " + "<col=000080>" + "3 blood runes" + "</col>" + " from one piece of essence.";
+				case 180:
+					return 80, 554, "17 Fire runes per essence", "You can now craft " + "<col=000080>" + "17 fire runes" + "</col>" + " from one piece of essence.";
+				case 181:
+					return 80, 555, "17 Water runes per essence", "You can now craft " + "<col=000080>" + "17 water runes" + "</col>" + " from one piece of essence.";
+				case 182:
+					return 80, 556, "17 Air runes per essence", "You can now craft " + "<col=000080>" + "17 air runes" + "</col>" + " from one piece of essence.";
+				case 183:
+					return 80, 557, "17 Earth runes per essence", "You can now craft " + "<col=000080>" + "17 earth runes" + "</col>" + " from one piece of essence.";
+				case 184:
+					return 80, 559, "16 Body runes per essence", "You can now craft " + "<col=000080>" + "16 body runes" + "</col>" + " from one piece of essence.";
+				case 185:
+					return 80, 9075, "17 Astral runes per essence", "You can now craft " + "<col=000080>" + "17 astral runes" + "</col>" + " from one piece of essence.";
+				case 186:
+					return 80, 560, "13 Death runes per essence", "You can now craft " + "<col=000080>" + "13 death runes" + "</col>" + " from one piece of essence.";
+				case 187:
+					return 80, 561, "17 Nature runes per essence", "You can now craft " + "<col=000080>" + "17 nature runes" + "</col>" + " from one piece of essence.";
+				case 188:
+					return 80, 562, "17 Chaos runes per essence", "You can now craft " + "<col=000080>" + "17 chaos runes" + "</col>" + " from one piece of essence.";
+				case 189:
+					return 80, 563, "17 Law runes per essence", "You can now craft " + "<col=000080>" + "17 law runes" + "</col>" + " from one piece of essence.";
+				case 190:
+					return 80, 564, "16 Cosmic runes per essence", "You can now craft " + "<col=000080>" + "16 cosmic runes" + "</col>" + " from one piece of essence.";
+				case 191:
+					return 80, 565, "4 Blood runes per essence", "You can now craft " + "<col=000080>" + "4 blood runes" + "</col>" + " from one piece of essence.";
+				case 192:
+					return 81, 560, "14 Death runes per essence", "You can now craft " + "<col=000080>" + "14 death runes" + "</col>" + " from one piece of essence.";
+				case 193:
+					return 81, 565, "5 Blood runes per essence", "You can now craft " + "<col=000080>" + "5 blood runes" + "</col>" + " from one piece of essence.";
+				case 194:
+					return 82, 9075, "18 Astral runes per essence", "You can now craft " + "<col=000080>" + "18 astral runes" + "</col>" + " from one piece of essence.";
+				case 195:
+					return 82, 565, "6 Blood runes per essence", "You can now craft " + "<col=000080>" + "6 blood runes" + "</col>" + " from one piece of essence.";
+				case 196:
+					return 83, 560, "15 Death runes per essence", "You can now craft " + "<col=000080>" + "15 death runes" + "</col>" + " from one piece of essence.";
+				case 197:
+					return 83, 565, "7 Blood runes per essence", "You can now craft " + "<col=000080>" + "7 blood runes" + "</col>" + " from one piece of essence.";
+				case 198:
+					return 84, 558, "20 Mind runes per essence", "You can now craft " + "<col=000080>" + "20 mind runes" + "</col>" + " from one piece of essence.";
+				case 199:
+					return 84, 565, "8 Blood runes per essence", "You can now craft " + "<col=000080>" + "8 blood runes" + "</col>" + " from one piece of essence.";
+				case 200:
+					return 85, 554, "18 Fire runes per essence", "You can now craft " + "<col=000080>" + "18 fire runes" + "</col>" + " from one piece of essence.";
+				case 201:
+					return 85, 555, "18 Water runes per essence", "You can now craft " + "<col=000080>" + "18 water runes" + "</col>" + " from one piece of essence.";
+				case 202:
+					return 85, 556, "18 Air runes per essence", "You can now craft " + "<col=000080>" + "18 air runes" + "</col>" + " from one piece of essence.";
+				case 203:
+					return 85, 557, "18 Earth runes per essence", "You can now craft " + "<col=000080>" + "18 earth runes" + "</col>" + " from one piece of essence.";
+				case 204:
+					return 85, 559, "17 Body runes per essence", "You can now craft " + "<col=000080>" + "17 body runes" + "</col>" + " from one piece of essence.";
+				case 205:
+					return 85, 9075, "19 Astral runes per essence", "You can now craft " + "<col=000080>" + "19 astral runes" + "</col>" + " from one piece of essence.";
+				case 206:
+					return 85, 560, "16 Death runes per essence", "You can now craft " + "<col=000080>" + "16 death runes" + "</col>" + " from one piece of essence.";
+				case 207:
+					return 85, 561, "18 Nature runes per essence", "You can now craft " + "<col=000080>" + "18 nature runes" + "</col>" + " from one piece of essence.";
+				case 208:
+					return 85, 562, "18 Chaos runes per essence", "You can now craft " + "<col=000080>" + "18 chaos runes" + "</col>" + " from one piece of essence.";
+				case 209:
+					return 85, 563, "18 Law runes per essence", "You can now craft " + "<col=000080>" + "18 law runes" + "</col>" + " from one piece of essence.";
+				case 210:
+					return 85, 564, "17 Cosmic runes per essence", "You can now craft " + "<col=000080>" + "17 cosmic runes" + "</col>" + " from one piece of essence.";
+				case 211:
+					return 85, 565, "9 Blood runes per essence", "You can now craft " + "<col=000080>" + "9 blood runes" + "</col>" + " from one piece of essence.";
+				case 212:
+					return 86, 560, "17 Death runes per essence", "You can now craft " + "<col=000080>" + "17 death runes" + "</col>" + " from one piece of essence.";
+				case 213:
+					return 86, 565, "10 Blood runes per essence", "You can now craft " + "<col=000080>" + "10 blood runes" + "</col>" + " from one piece of essence.";
+				case 214:
+					return 87, 565, "11 Blood runes per essence", "You can now craft " + "<col=000080>" + "11 blood runes" + "</col>" + " from one piece of essence.";
+				case 215:
+					return 88, 565, "12 Blood runes per essence", "You can now craft " + "<col=000080>" + "12 blood runes" + "</col>" + " from one piece of essence.";
+				case 216:
+					return 89, 565, "13 Blood runes per essence", "You can now craft " + "<col=000080>" + "13 blood runes" + "</col>" + " from one piece of essence.";
+				case 217:
+					return 90, 554, "19 Fire runes per essence", "You can now craft " + "<col=000080>" + "19 fire runes" + "</col>" + " from one piece of essence.";
+				case 218:
+					return 90, 555, "19 Water runes per essence", "You can now craft " + "<col=000080>" + "19 water runes" + "</col>" + " from one piece of essence.";
+				case 219:
+					return 90, 556, "19 Air runes per essence", "You can now craft " + "<col=000080>" + "19 air runes" + "</col>" + " from one piece of essence.";
+				case 220:
+					return 90, 557, "19 Earth runes per essence", "You can now craft " + "<col=000080>" + "19 earth runes" + "</col>" + " from one piece of essence.";
+				case 221:
+					return 90, 559, "18 Body runes per essence", "You can now craft " + "<col=000080>" + "18 body runes" + "</col>" + " from one piece of essence.";
+				case 222:
+					return 90, 9075, "20 Astral runes per essence", "You can now craft " + "<col=000080>" + "20 astral runes" + "</col>" + " from one piece of essence.";
+				case 223:
+					return 90, 560, "18 Death runes per essence", "You can now craft " + "<col=000080>" + "18 death runes" + "</col>" + " from one piece of essence.";
+				case 224:
+					return 90, 561, "19 Nature runes per essence", "You can now craft " + "<col=000080>" + "19 nature runes" + "</col>" + " from one piece of essence.";
+				case 225:
+					return 90, 562, "19 Chaos runes per essence", "You can now craft " + "<col=000080>" + "19 chaos runes" + "</col>" + " from one piece of essence.";
+				case 226:
+					return 90, 563, "19 Law runes per essence", "You can now craft " + "<col=000080>" + "19 law runes" + "</col>" + " from one piece of essence.";
+				case 227:
+					return 90, 564, "18 Cosmic runes per essence", "You can now craft " + "<col=000080>" + "18 cosmic runes" + "</col>" + " from one piece of essence.";
+				case 228:
+					return 90, 565, "14 Blood runes per essence", "You can now craft " + "<col=000080>" + "14 blood runes" + "</col>" + " from one piece of essence.";
+				case 229:
+					return 91, 561, "20 Nature runes per essence", "You can now craft " + "<col=000080>" + "20 nature runes" + "</col>" + " from one piece of essence.";
+				case 230:
+					return 91, 563, "20 Law runes per essence", "You can now craft " + "<col=000080>" + "20 law runes" + "</col>" + " from one piece of essence.";
+				case 231:
+					return 91, 565, "15 Blood runes per essence", "You can now craft " + "<col=000080>" + "15 blood runes" + "</col>" + " from one piece of essence.";
+				case 232:
+					return 92, 559, "19 Body runes per essence", "You can now craft " + "<col=000080>" + "19 body runes" + "</col>" + " from one piece of essence.";
+				case 233:
+					return 92, 564, "19 Cosmic runes per essence", "You can now craft " + "<col=000080>" + "19 cosmic runes" + "</col>" + " from one piece of essence.";
+				case 234:
+					return 92, 565, "16 Blood runes per essence", "You can now craft " + "<col=000080>" + "16 blood runes" + "</col>" + " from one piece of essence.";
+				case 235:
+					return 93, 560, "19 Death runes per essence", "You can now craft " + "<col=000080>" + "19 death runes" + "</col>" + " from one piece of essence.";
+				case 236:
+					return 93, 565, "17 Blood runes per essence", "You can now craft " + "<col=000080>" + "17 blood runes" + "</col>" + " from one piece of essence.";
+				case 237:
+					return 94, 565, "18 Blood runes per essence", "You can now craft " + "<col=000080>" + "18 blood runes" + "</col>" + " from one piece of essence.";
+				case 238:
+					return 95, 554, "20 Fire runes per essence", "You can now craft " + "<col=000080>" + "20 fire runes" + "</col>" + " from one piece of essence.";
+				case 239:
+					return 95, 555, "20 Water runes per essence", "You can now craft " + "<col=000080>" + "20 water runes" + "</col>" + " from one piece of essence.";
+				case 240:
+					return 95, 556, "20 Air runes per essence", "You can now craft " + "<col=000080>" + "20 air runes" + "</col>" + " from one piece of essence.";
+				case 241:
+					return 95, 557, "20 Earth runes per essence", "You can now craft " + "<col=000080>" + "20 earth runes" + "</col>" + " from one piece of essence.";
+				case 242:
+					return 95, 559, "20 Body runes per essence", "You can now craft " + "<col=000080>" + "20 body runes" + "</col>" + " from one piece of essence.";
+				case 243:
+					return 95, 560, "20 Death runes per essence", "You can now craft " + "<col=000080>" + "20 death runes" + "</col>" + " from one piece of essence.";
+				case 244:
+					return 95, 562, "20 Chaos runes per essence", "You can now craft " + "<col=000080>" + "20 chaos runes" + "</col>" + " from one piece of essence.";
+				case 245:
+					return 95, 564, "20 Cosmic runes per essence", "You can now craft " + "<col=000080>" + "20 cosmic runes" + "</col>" + " from one piece of essence.";
+				case 246:
+					return 95, 565, "19 Blood runes per essence", "You can now craft " + "<col=000080>" + "19 blood runes" + "</col>" + " from one piece of essence.";
+				case 247:
+					return 96, 565, "20 Blood runes per essence", "You can now craft " + "<col=000080>" + "20 blood runes" + "</col>" + " from one piece of essence.";
+				case 248:
+					return 99, 554, "21 Fire runes per essence", "You can now craft " + "<col=000080>" + "21 fire runes" + "</col>" + " from one piece of essence.";
+				case 249:
+					return 99, 555, "21 Water runes per essence", "You can now craft " + "<col=000080>" + "21 water runes" + "</col>" + " from one piece of essence.";
+				case 250:
+					return 99, 556, "21 Air runes per essence", "You can now craft " + "<col=000080>" + "21 air runes" + "</col>" + " from one piece of essence.";
+				case 251:
+					return 99, 557, "21 Earth runes per essence", "You can now craft " + "<col=000080>" + "21 earth runes" + "</col>" + " from one piece of essence.";
+				case 252:
+					return 99, 558, "21 Mind runes per essence", "You can now craft " + "<col=000080>" + "21 mind runes" + "</col>" + " from one piece of essence.";
+				case 253:
+					return 99, 559, "21 Body runes per essence", "You can now craft " + "<col=000080>" + "21 body runes" + "</col>" + " from one piece of essence.";
+				case 254:
+					return 99, 9075, "21 Astral runes per essence", "You can now craft " + "<col=000080>" + "21 astral runes" + "</col>" + " from one piece of essence.";
+				case 255:
+					return 99, 560, "21 Death runes per essence", "You can now craft " + "<col=000080>" + "21 death runes" + "</col>" + " from one piece of essence.";
+				case 256:
+					return 99, 561, "21 Nature runes per essence", "You can now craft " + "<col=000080>" + "21 nature runes" + "</col>" + " from one piece of essence.";
+				case 257:
+					return 99, 562, "21 Chaos runes per essence", "You can now craft " + "<col=000080>" + "21 chaos runes" + "</col>" + " from one piece of essence.";
+				case 258:
+					return 99, 563, "21 Law runes per essence", "You can now craft " + "<col=000080>" + "21 law runes" + "</col>" + " from one piece of essence.";
+				case 259:
+					return 99, 564, "21 Cosmic runes per essence", "You can now craft " + "<col=000080>" + "21 cosmic runes" + "</col>" + " from one piece of essence.";
+				case 260:
+					return 99, 565, "21 Blood runes per essence", "You can now craft " + "<col=000080>" + "21 blood runes" + "</col>" + " from one piece of essence.";
+			}
+			break;
+		case 2:
+			switch (arg1) {
+				case 0:
+					return -1, 7620, "Pouches allow you to carry extra essence in them and they come in various sizes. As you use the pouches, they degrade and store less essence. Speak to the Dark Mage at the centre of the Abyss to restore them.", "";
+				case 1:
+					return 1, 5509, "Small pouch" + "<br>" + "Holds 3 extra essence", "You can now use " + "<col=000080>" + "small pouches" + "</col>" + " to store 3 essence.";
+				case 2:
+					return 10, 12863, "Air rune crafting gloves", "You can now wear " + "<col=000080>" + "air rune crafting gloves" + "</col>" + ".";
+				case 3:
+					return 20, 12864, "Water rune crafting gloves", "You can now wear " + "<col=000080>" + "water rune crafting gloves" + "</col>" + ".";
+				case 4:
+					return 25, 5510, "Medium pouch" + "<br>" + "Holds 6 extra essence", "You can now use " + "<col=000080>" + "medium pouches" + "</col>" + " to store 6 essence.";
+				case 5:
+					return 30, 12865, "Earth rune crafting gloves", "You can now wear " + "<col=000080>" + "earth rune crafting gloves" + "</col>" + ".";
+				case 6:
+					return 35, 19671, "Magical blastbox" + "<br>" + " (with 30 Dungeoneering and 30 Magic)", "You can now use " + "<col=000080>" + "magical blastboxes" + "</col>" + ". (You also need level 30 Dungeoneering and 30 Magic.)";
+				case 7:
+					return 50, 5512, "Large pouch" + "<br>" + "Holds 9 extra essence", "You can now use " + "<col=000080>" + "large pouches" + "</col>" + " to store 9 essence.";
+				case 8:
+					return 70, 19889, "Celestial surgebox" + "<br>" + " (with 70 Magic and 70 Dungeoneering)", "You can now use " + "<col=000080>" + "celestial surgeboxes" + "</col>" + ". (They also need level 70 Magic and level 70 Dungeoneering.)";
+				case 9:
+					return 75, 5514, "Giant pouch" + "<br>" + "Holds 12 extra essence", "You can now use " + "<col=000080>" + "giant pouches" + "</col>" + " to store 12 essence.";
+			}
+			break;
+		case 3:
+			switch (arg1) {
+				case 0:
+					return 91, 18778, "Starved ancient effigies", "You can now investigate " + "<col=000080>" + "starved ancient effigies" + "</col>" + " using their knowledge of Runecrafting.";
+				case 1:
+					return 93, 18779, "Nourished ancient effigies", "You can now investigate " + "<col=000080>" + "nourished ancient effigies" + "</col>" + " using their knowledge of Runecrafting.";
+				case 2:
+					return 95, 18780, "Sated ancient effigies", "You can now investigate " + "<col=000080>" + "sated ancient effigies" + "</col>" + " using their knowledge of Runecrafting.";
+				case 3:
+					return 97, 18781, "Gorged ancient effigies", "You can now investigate " + "<col=000080>" + "gorged ancient effigies" + "</col>" + " using their knowledge of Runecrafting.";
+			}
+			break;
+		case 4:
+			switch (arg1) {
+				case 0:
+					return 1, 12851, "Stealing Creation - class 1 sacred clay", "You can now craft runes from class 1 sacred clay in Stealing Creation.";
+				case 1:
+					return 20, 12851, "Stealing Creation - class 2 sacred clay", "You can now craft runes from class 2 sacred clay in Stealing Creation.";
+				case 2:
+					return 40, 12851, "Stealing Creation - class 3 sacred clay", "You can now craft runes from class 3 sacred clay in Stealing Creation.";
+				case 3:
+					return 60, 12851, "Stealing Creation - class 4 sacred clay", "You can now craft runes from class 4 sacred clay in Stealing Creation.";
+				case 4:
+					return 80, 12851, "Stealing Creation - class 5 sacred clay", "You can now craft runes from class 5 sacred clay in Stealing Creation.";
+			}
+			break;
+		case 5:
+			switch (arg1) {
+				case 0:
+					return -1, 15707, "Dungeoneering skill tasks" + "<br>" + "As your Runecrafting level increases, you will be able to attempt higher-level runecrafting tasks within Daemonheim. You will also be more likely to succeed when attempting runecrafting tasks within Daemonheim.", "";
+				case 1:
+					return 10, 16997, "Water staff", "You can now craft " + "<col=000080>" + "water staves" + "</col>" + " within Daemonheim.";
+				case 2:
+					return 20, 17001, "Earth staff", "You can now craft " + "<col=000080>" + "earth staves" + "</col>" + " within Daemonheim.";
+				case 3:
+					return 30, 17005, "Fire staff", "You can now craft " + "<col=000080>" + "fire staves" + "</col>" + " within Daemonheim.";
+				case 4:
+					return 40, 17009, "Air staff", "You can now craft " + "<col=000080>" + "air staves" + "</col>" + " within Daemonheim.";
+				case 5:
+					return 50, 17013, "Catalytic staff", "You can now craft " + "<col=000080>" + "catalytic staves" + "</col>" + " within Daemonheim.";
+				case 6:
+					return 60, 16999, "Empowered water staff", "You can now craft " + "<col=000080>" + "empowered water staves" + "</col>" + " within Daemonheim.";
+				case 7:
+					return 70, 17003, "Empowered earth staff", "You can now craft " + "<col=000080>" + "empowered earth staves" + "</col>" + " within Daemonheim.";
+				case 8:
+					return 80, 17007, "Empowered fire staff", "You can now craft " + "<col=000080>" + "empowered fire staves" + "</col>" + " within Daemonheim.";
+				case 9:
+					return 90, 17011, "Empowered air staff", "You can now craft " + "<col=000080>" + "empowered air staves" + "</col>" + " within Daemonheim.";
+				case 10:
+					return 99, 17015, "Empowered catalytic staff", "You can now craft " + "<col=000080>" + "empowered catalytic staves" + "</col>" + " within Daemonheim.";
+			}
+			break;
+		case 6:
+			switch (arg1) {
+				case 0:
+					return 50, 13625, "Runecrafting Guild", "You can now enter the prestigious " + "<col=000080>" + "Runecrafting Guild" + "</col>" + " and play the " + "<col=000080>" + "Great Orb Project" + "</col>" + ".";
+				case 1:
+					return 99, 9765, "Skill mastery", "<col=000080>" + "Congratulations! You are now a master of " + "<col=800000>" + "Runecrafting" + "<col=000080>" + ". You can visit " + "<col=800000>" + "Aubury" + "<col=000080>" + ", who runs the " + "<col=800000>" + "rune shop" + "<col=000080>" + " in " + "<col=800000>" + "Varrock" + "<col=000080>" + ". He has something special that is only available to true masters of the " + "<col=800000>" + "Runecrafting" + "<col=000080>" + " skill!";
+			}
+			break;
+	}
+	return 0, -1, "", "";
+}
