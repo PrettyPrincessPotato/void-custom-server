@@ -1,5 +1,11 @@
 package content.area.asgarnia.falador
 
+import content.entity.npc.movement.BotNavMeshRouteExecutor
+import content.entity.npc.movement.BotNavMeshRouteFinder
+import content.entity.npc.movement.NativeNpcRouteExecutor
+import content.entity.npc.movement.NpcLocation
+import content.entity.npc.movement.NpcRouteExecutor
+import content.entity.npc.movement.NpcRouteTarget
 import content.entity.npc.schedule.NpcScheduleController
 import content.entity.npc.schedule.NpcSchedules
 import content.entity.npc.schedule.ScheduleAction
@@ -23,35 +29,63 @@ val SHOP_AREA = Areas["falador_general_store"]
 
 val TAVERN_TILE = Tile(2957, 3372)
 val SHOP_TILE = Tile(2956, 3389)
+
+private val tavern = NpcLocation(
+    id = "rising_sun_inn",
+    tile = TAVERN_TILE,
+    area = TAVERN_AREA,
+    navTag = "rising_sun_inn",
+)
+
+private val shop = NpcLocation(
+    id = "falador_general_store",
+    tile = SHOP_TILE,
+    area = SHOP_AREA,
+    navTag = "falador_general_store",
+)
 /**
  * End of TODO
  */
 
+
 class ShopAssistantFalador : Script {
+    val useBotNav = false
+    val routeExecutor: NpcRouteExecutor =
+        if (useBotNav) BotNavMeshRouteExecutor(BotNavMeshRouteFinder(graph))
+        else NativeNpcRouteExecutor()
     private var shopkeeper: NPC? = null
 
     init {
         val schedule = NpcScheduleController(
             npcProvider = { shopkeeper },
+            routeExecutor = routeExecutor,
             scheduleTransitions = listOf(
-                ScheduleTransition(ASSISTANT_RETURN_HOUR, ScheduleAction.Travel(
-                    destination = SHOP_TILE,
-                    area = SHOP_AREA,
-                    dialogue = "Ugh... I think I drank too much...",
-                    queueName = "travel_to_shop",
-                    onArrival = { npc ->
-                        npc.collision = CollisionStrategies.Indoors
-                    }
-                )),
-                ScheduleTransition(ASSISTANT_LEAVE_HOUR, ScheduleAction.Travel(
-                    destination = TAVERN_TILE,
-                    area = TAVERN_AREA,
-                    dialogue = "Ahh, finally clock-out time...",
-                    queueName = "travel_to_tavern",
-                    onArrival = { npc ->
-                        npc.collision = CollisionStrategies.Indoors
-                    }
-                ))
+                ScheduleTransition(
+                    ASSISTANT_RETURN_HOUR,
+                    ScheduleAction.Travel(
+                        NpcRouteTarget(
+                            location = shop,
+                            queueName = "travel_to_shop",
+                            dialogue = "Ugh... I think I drank too much...",
+                            onArrival = { npc ->
+                                npc.collision = CollisionStrategies.Indoors
+                            }
+                        )
+                    )
+                ),
+                ScheduleTransition(
+                    ASSISTANT_LEAVE_HOUR,
+                    ScheduleAction.Travel(
+                        NpcRouteTarget(
+                            location = tavern,
+                            queueName = "travel_to_tavern",
+                            dialogue = "Ahh, finally clock-out time...",
+                            onArrival = { npc ->
+                                npc.collision = CollisionStrategies.Indoors
+                            }
+                        )
+                    )
+                )
             )
         )
 
