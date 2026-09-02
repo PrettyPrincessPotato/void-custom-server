@@ -11,12 +11,10 @@ class RaidManager {
     fun addMember(
         raid: Raid,
         npc: NPC,
-        type: RaidMemberType
     ): RaidMember {
         val member = RaidMember(
             npc = npc,
             raid = raid,
-            type = type
         )
 
         if (raid !in raids) {
@@ -48,6 +46,34 @@ class RaidManager {
         }
     }
 
+    fun identityOf(npc: NPC): RaidIdentity? {
+        memberOf(npc)?.let { member ->
+            return RaidIdentity(
+                race = RaidRace.GOBLIN,
+                faction = member.raid.faction
+            )
+        }
+
+        return when {
+            isFaladorGuard(npc) -> RaidIdentity(
+                race = RaidRace.HUMAN,
+                faction = RaidFaction.FALADOR
+            )
+
+            isVarrockGuard(npc) -> RaidIdentity(
+                race = RaidRace.HUMAN,
+                faction = RaidFaction.VARROCK
+            )
+
+            isGoblin(npc) -> RaidIdentity(
+                race = RaidRace.GOBLIN,
+                faction = RaidFaction.GOBLIN_TRIBE
+            )
+
+            else -> null
+        }
+    }
+
     fun allRaids(): List<Raid> =
         raids.toList()
 
@@ -60,34 +86,48 @@ class RaidManager {
     fun isFaladorGuard(npc: NPC): Boolean =
         npc.id.contains("guard_falador")
 
+    fun isVarrockGuard(npc: NPC): Boolean =
+        npc.id.contains("guard_varrock")
+
     fun isGoblin(npc: NPC): Boolean =
         npc.id in goblinIds
 
     fun findOrCreateFaladorRaid(): Raid =
         allRaids().firstOrNull {
-            it.faction == RaidFaction.GOBLINS &&
+            it.faction == RaidFaction.GOBLIN_TRIBE &&
                     it.destination == RaidDestination.FALADOR
         } ?: Raid(
-            faction = RaidFaction.GOBLINS,
+            faction = RaidFaction.GOBLIN_TRIBE,
             destination = RaidDestination.FALADOR
         )
+
+    /**
+     * TODO: Move these to a more appropriate spot
+     */
     fun NPC.raidMember(): RaidMember? =
         memberOf(this)
 
     fun NPC.canAttackRaidTarget(target: NPC): Boolean {
-        val attacker = raidMember() ?: return false
-        val victim = target.raidMember() ?: return false
+        val attackerIdentity = identityOf(this) ?: return false
+        val targetIdentity = identityOf(target) ?: return false
 
-        // Prevent members of the same raid from attacking each other.
-        if (attacker.raid == victim.raid) {
+        val attackerMember = memberOf(this)
+        val targetMember = memberOf(target)
+
+        // Members of the same raid never attack each other.
+        if (
+            attackerMember != null &&
+            targetMember != null &&
+            attackerMember.raid == targetMember.raid
+        ) {
             return false
         }
 
-        // Prevent allied factions from attacking each other.
-        if (attacker.raid.faction == victim.raid.faction) {
-            return false
-        }
+        val source = attackerIdentity.faction ?: return false
+        val destination = targetIdentity.faction ?: return false
 
-        return target.canFight()
+        return RaidFactions.relation(source, destination) ==
+                FactionRelation.HOSTILE &&
+                target.canFight()
     }
 }
