@@ -14,11 +14,16 @@
 - When a task appears multi-step, cross-cutting, or likely to benefit from coordination, offer to create or update a GitHub Issue before making repository changes.
 - Do not create or modify a GitHub Issue or planning document without the user's approval, unless the user has already explicitly requested planning or implementation work for that task.
 - Mark completed planning documents with a `Status: Complete` heading and retain them for historical reference unless the user asks for cleanup.
+- Do not use GitHub API tools, GitHub CLI authentication, SSH keys, access tokens, or other git/GitHub credentials to create or modify issues, pull requests, comments, or other remote content.
+- When the user asks to create or post a GitHub issue, pull request, comment, or plan, provide the complete text in a fenced Markdown code block for easy copy/paste instead of posting it remotely.
 
 ## Branch awareness
 
-- Occasionally check the current Git branch and briefly remind the user which branch is active, especially at the start of a task, before making changes, before committing or opening a pull request, and after a context switch.
-- Keep reminders lightweight and avoid repeating them on every turn; call out a mismatch or uncertainty clearly before proceeding.
+- Treat branch selection as a required decision gate before making repository changes:
+  1. Classify the task as **restoration** (reinstating content from the original fork, such as quests or NPCs) or **custom development** (new project-specific behavior).
+  2. Restoration work must use a new branch based on `main`; custom development must use a new branch based on `personal-flavor`.
+  3. If the current branch does not match the required base, stop before editing, explicitly name the mismatch, and ask whether to switch/create the correct branch.
 - `personal-flavor` contains the user's custom code and is the default base for custom features, fixes, and other project-specific changes.
-- `main` contains the base code from the original fork and is the appropriate base when restoring lost or missing original content, such as quests or NPCs.
-- Before creating a branch, classify the work as restoration or custom development and branch from `main` or `personal-flavor` accordingly; if the scope is mixed or unclear, clarify the intended base first.
+- `main` contains the base code from the original fork and is the required base when restoring lost or missing original content.
+- At the start of a task, before making changes, before committing or opening a pull request, and after a context switch, briefly state the active branch and intended base. Keep reminders lightweight, but never skip a mismatch or uncertainty.
+- If the scope is mixed or unclear, clarify whether the work should preserve custom changes or restore original content before choosing a base branch.

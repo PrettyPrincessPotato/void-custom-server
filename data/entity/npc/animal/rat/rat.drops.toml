@@ -10,6 +10,13 @@ drops = [
     { table = "rat_tertiary" }
 ]
 
+[giant_rat_dark_drop_table]
+type = "all"
+drops = [
+    { table = "giant_rat_primary" },
+    { table = "easy_clue_scroll", roll = 128 }
+]
+
 [crypt_rat_drop_table]
 type = "all"
 drops = [
@@ -55,11 +62,4 @@ drops = [
     { id = "green_charm", chance = 2500 },
     { id = "crimson_charm", chance = 750 },
     { id = "blue_charm", chance = 750 },
-]
-
-[giant_rat_dark_drop_table]
-type = "all"
-drops = [
-    { table = "giant_rat_primary" },
-    { table = "easy_clue_scroll", roll = 128 }
 ]
