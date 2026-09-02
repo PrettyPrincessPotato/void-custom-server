@@ -5,12 +5,16 @@ import content.entity.player.dialogue.Happy
 import content.entity.player.dialogue.Laugh
 import content.entity.player.dialogue.Neutral
 import content.entity.player.dialogue.Quiz
+import content.entity.player.dialogue.Sad
 import content.entity.player.dialogue.type.ChoiceOption
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import content.quest.quest
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.entity.character.player.name
+import world.gregs.voidps.engine.inv.add
+import world.gregs.voidps.engine.inv.inventory
+import world.gregs.voidps.engine.inv.remove
 
 class WizardGrayzag : Script {
     init {
@@ -24,6 +28,7 @@ class WizardGrayzag : Script {
                             npc<Angry>("Well you'd better just watch your back, because when you least expect it I'll be there. You shouldn't go sticking your nose into other people's affairs, meddler.")
                         }
                         demon()
+                        combatRobes()
                         option<Neutral>("Never mind.")
                     }
                 }
@@ -31,6 +36,7 @@ class WizardGrayzag : Script {
                     npc<Angry>("Not now.<br>I'm trying to concentrate on a very difficult spell!")
                     choice {
                         demon()
+                        combatRobes()
                         option<Neutral>("Oh, sorry.")
                     }
                 }
@@ -47,6 +53,25 @@ class WizardGrayzag : Script {
                     npc<Neutral>("Every time it's destroyed it reappears on the same spot, so we built a containment ward around it and left it there.")
                 }
                 option<Neutral>("Oh, sorry.")
+            }
+        }
+    }
+
+    private fun ChoiceOption.combatRobes() {
+        option<Neutral>("I would like to buy some combat robes, please.") {
+            npc<Neutral>("That will be 5000 coins.")
+            choice{
+                option<Happy>("I'll take it!"){
+                    if(inventory.contains("coins", 5000)) {
+                        inventory.remove("coins", 5000)
+                        inventory.add("combat_hood_100")
+                        inventory.add("combat_robe_bottom_100")
+                        inventory.add("combat_robe_top_100")
+                    } else {
+                        npc<Angry>("Then come back when you got the money!")
+                    }
+                }
+                option<Sad>("I don't have that much..")
             }
         }
     }
