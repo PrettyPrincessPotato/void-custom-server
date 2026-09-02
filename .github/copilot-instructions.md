@@ -14,3 +14,11 @@
 - When a task appears multi-step, cross-cutting, or likely to benefit from coordination, offer to create or update a GitHub Issue before making repository changes.
 - Do not create or modify a GitHub Issue or planning document without the user's approval, unless the user has already explicitly requested planning or implementation work for that task.
 - Mark completed planning documents with a `Status: Complete` heading and retain them for historical reference unless the user asks for cleanup.
+
+## Branch awareness
+
+- Occasionally check the current Git branch and briefly remind the user which branch is active, especially at the start of a task, before making changes, before committing or opening a pull request, and after a context switch.
+- Keep reminders lightweight and avoid repeating them on every turn; call out a mismatch or uncertainty clearly before proceeding.
+- `personal-flavor` contains the user's custom code and is the default base for custom features, fixes, and other project-specific changes.
+- `main` contains the base code from the original fork and is the appropriate base when restoring lost or missing original content, such as quests or NPCs.
+- Before creating a branch, classify the work as restoration or custom development and branch from `main` or `personal-flavor` accordingly; if the scope is mixed or unclear, clarify the intended base first.
