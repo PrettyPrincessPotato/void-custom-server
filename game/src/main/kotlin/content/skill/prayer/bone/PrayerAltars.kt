@@ -1,8 +1,5 @@
 package content.skill.prayer.bone
 
-import content.entity.player.command.PlayerCommands
-import content.skill.prayer.Prayer
-import content.skill.prayer.PrayerApi
 import content.skill.prayer.PrayerConfigs
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
