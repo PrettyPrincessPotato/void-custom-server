@@ -8,7 +8,7 @@ import world.gregs.voidps.engine.timer.Timer
 import world.gregs.voidps.engine.timer.toTicks
 import java.util.concurrent.TimeUnit
 
-private const val DEBUG = true
+private const val DEBUG = false
 
 private const val GOBLIN_RAID_TIMER = "goblin_raid_timer"
 
