@@ -18,10 +18,8 @@ private val goblinRaidSystem = GoblinRaidSystem(raidManager)
 class RaidSpawner : Script {
     init {
         huntNPC("aggressive_npcs") { target ->
-            with(raidManager) {
-                if (this@huntNPC.canAttackRaidTarget(target)) {
-                    interactNpc(target, "Attack")
-                }
+            if (raidManager.canAttackRaidTarget(this@huntNPC, target)) {
+                interactNpc(target, "Attack")
             }
         }
 
