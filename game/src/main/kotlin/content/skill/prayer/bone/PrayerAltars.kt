@@ -27,8 +27,7 @@ class PrayerAltars : Script {
             if(!isCurses()){
                 anim("altar_pray")
                 this[PrayerConfigs.PRAYERS] = "curses"
-            }
-            else{
+            }  else {
                 anim("altar_pray")
                 this[PrayerConfigs.PRAYERS] = "normal"
             }
