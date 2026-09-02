@@ -1,8 +1,8 @@
 package content.area.asgarnia.falador
 
-import content.entity.npc.movement.travelTo
 import content.entity.npc.schedule.NpcScheduleController
 import content.entity.npc.schedule.NpcSchedules
+import content.entity.npc.schedule.ScheduleAction
 import content.entity.npc.schedule.ScheduleTransition
 import org.rsmod.game.pathfinder.collision.CollisionStrategies
 import world.gregs.voidps.engine.Script
@@ -32,13 +32,26 @@ class ShopAssistantFalador : Script {
 
     init {
         val schedule = NpcScheduleController(
-            listOf(
-                ScheduleTransition(ASSISTANT_RETURN_HOUR) {
-                    returnToShop()
-                },
-                ScheduleTransition(ASSISTANT_LEAVE_HOUR) {
-                    leaveForTavern()
-                }
+            npcProvider = { shopkeeper },
+            scheduleTransitions = listOf(
+                ScheduleTransition(ASSISTANT_RETURN_HOUR, ScheduleAction.Travel(
+                    destination = SHOP_TILE,
+                    area = SHOP_AREA,
+                    dialogue = "Ugh... I think I drank too much...",
+                    queueName = "travel_to_shop",
+                    onArrival = { npc ->
+                        npc.collision = CollisionStrategies.Indoors
+                    }
+                )),
+                ScheduleTransition(ASSISTANT_LEAVE_HOUR, ScheduleAction.Travel(
+                    destination = TAVERN_TILE,
+                    area = TAVERN_AREA,
+                    dialogue = "Ahh, finally clock-out time...",
+                    queueName = "travel_to_tavern",
+                    onArrival = { npc ->
+                        npc.collision = CollisionStrategies.Indoors
+                    }
+                ))
             )
         )
 
@@ -55,42 +68,6 @@ class ShopAssistantFalador : Script {
             if (shopkeeper === this) {
                 shopkeeper = null
             }
-        }
-    }
-
-    private fun leaveForTavern() {
-        val npc = shopkeeper ?: return
-
-        if (npc.tile in TAVERN_AREA) {
-            npc.collision = CollisionStrategies.Indoors
-            return
-        }
-
-        npc.travelTo(
-            destination = TAVERN_TILE,
-            destinationArea = TAVERN_AREA,
-            dialogue = "Ahh, finally clock-out time...",
-            queueName = "travel_to_tavern",
-        ) {
-            collision = CollisionStrategies.Indoors
-        }
-    }
-
-    private fun returnToShop() {
-        val npc = shopkeeper ?: return
-
-        if (npc.tile in SHOP_AREA) { // We're already in the shop, no need to do anything. (Indoor collision just in case)
-            npc.collision = CollisionStrategies.Indoors
-            return // If we don't do this, the NPC will declare they drank too much on world spawn when a player first enters the area.
-        }
-
-        npc.travelTo(
-            destination = SHOP_TILE,
-            destinationArea = SHOP_AREA,
-            dialogue = "Ugh... I think I drank too much...",
-            queueName = "travel_to_shop",
-        ){
-            npc.collision = CollisionStrategies.Indoors
         }
     }
 }
