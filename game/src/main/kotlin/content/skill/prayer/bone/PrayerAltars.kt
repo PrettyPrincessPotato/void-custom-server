@@ -28,10 +28,10 @@ class PrayerAltars : Script {
         objectOperate("Convert", "prayer_altar_zaros") {
             message("Swapping prayer books...")
             if(!isCurses()){
-                message("You would swap curses here")
+                this[PrayerConfigs.PRAYERS] = "curses"
             }
             else{
-                message("You would not swap curses here")
+                this[PrayerConfigs.PRAYERS] = "normal"
             }
         }
     }
