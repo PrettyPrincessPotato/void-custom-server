@@ -3,6 +3,7 @@ type = "all"
 drops = [
     { table = "bones" },
     { table = "lumbridge_guard_secondary" },
+    { table = "guard_charms" },
     { table = "easy_clue_scroll", roll = 128 },
 ]
 

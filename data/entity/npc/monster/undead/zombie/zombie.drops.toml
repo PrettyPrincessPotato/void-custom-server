@@ -259,8 +259,8 @@ drops = [
 [zombie_charms]
 roll = 100000
 drops = [
-    { id = "gold_charm", chance = 2875 },
-    { id = "green_charm", chance = 1285 },
-    { id = "crimson_charm", chance = 1040 },
-    { id = "blue_charm", chance = 1285 },
+    { id = "gold_charm", chance = 3000 },
+    { id = "green_charm", chance = 3500 },
+    { id = "crimson_charm", chance = 750 },
+    { id = "blue_charm", chance = 750 },
 ]

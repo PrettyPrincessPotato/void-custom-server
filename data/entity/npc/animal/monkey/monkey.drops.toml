@@ -1,5 +1,15 @@
 [monkey_drop_table]
 type = "all"
 drops = [
-    { id = "monkey_bones" }
+    { id = "monkey_bones" },
+    { table = "monkey_charms" },
+]
+
+[monkey_charms]
+roll = 100000
+drops = [
+    { id = "gold_charm", chance = 7000 },
+    { id = "green_charm", chance = 3500 },
+    { id = "crimson_charm", chance = 750 },
+    { id = "blue_charm", chance = 750 },
 ]

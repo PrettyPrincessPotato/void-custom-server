@@ -3,7 +3,17 @@ type = "all"
 drops = [
     { table = "bones" },
     { table = "minotaur_secondary" },
+    { table = "minotaur_charms" },
     { table = "easy_clue_scroll", roll = 101 },
+]
+
+[minotaur_charms]
+roll = 100000
+drops = [
+    { id = "gold_charm", chance = 7000 },
+    { id = "green_charm", chance = 4500 },
+    { id = "crimson_charm", chance = 750 },
+    { id = "blue_charm", chance = 750 },
 ]
 
 [minotaur_secondary]

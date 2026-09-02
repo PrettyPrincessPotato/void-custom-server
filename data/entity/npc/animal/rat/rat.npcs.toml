@@ -84,7 +84,7 @@ hitpoints = 133
 slayer_xp = 10.0
 respawn_delay = 30
 combat_def = "giant_rat"
-drop_table = "giant_rat"
+drop_table = "giant_rat_dark_drop_table"
 categories = ["giant_rats", "rats"]
 examine = "Overgrown vermin."
 hunt_mode = "cowardly"
@@ -99,6 +99,7 @@ hunt_mode = "cowardly"
 id = 8829
 categories = ["giant_rats", "rats"]
 clone = "giant_rat_dark"
+drop_table = "giant_rat_dark_drop_table"
 hunt_mode = "cowardly"
 
 [rat_ratcatchers]

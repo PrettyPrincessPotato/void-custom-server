@@ -21,6 +21,16 @@ drops = [
 type = "all"
 drops = [
     { table = "bones" },
+    { table = "stronghold_rat_charms" },
+]
+
+[stronghold_rat_charms]
+roll = 100000
+drops = [
+    { id = "gold_charm", chance = 8000 },
+    { id = "green_charm", chance = 4500 },
+    { id = "crimson_charm", chance = 750 },
+    { id = "blue_charm", chance = 750 },
 ]
 
 [giant_rat_primary]
@@ -31,6 +41,23 @@ drops = [
 ]
 
 [giant_rat_drop_table]
+type = "all"
+drops = [
+    { table = "giant_rat_primary" },
+    { table = "giant_rat_charms" },
+    { table = "easy_clue_scroll", roll = 128 }
+]
+
+[giant_rat_charms]
+roll = 100000
+drops = [
+    { id = "gold_charm", chance = 6000 },
+    { id = "green_charm", chance = 2500 },
+    { id = "crimson_charm", chance = 750 },
+    { id = "blue_charm", chance = 750 },
+]
+
+[giant_rat_dark_drop_table]
 type = "all"
 drops = [
     { table = "giant_rat_primary" },

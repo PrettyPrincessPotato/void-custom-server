@@ -63,8 +63,8 @@ drops = [
 [cave_crawler_charms]
 roll = 100000
 drops = [
-    { id = "gold_charm", chance = 9269 },
-    { id = "green_charm", chance = 2863 },
-    { id = "crimson_charm", chance = 1071 },
-    { id = "blue_charm", chance = 446 },
+    { id = "gold_charm", chance = 7000 },
+    { id = "green_charm", chance = 4500 },
+    { id = "crimson_charm", chance = 750 },
+    { id = "blue_charm", chance = 750 },
 ]

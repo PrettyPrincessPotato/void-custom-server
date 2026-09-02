@@ -77,8 +77,8 @@ drops = [
 [goblin_charms]
 roll = 100000
 drops = [
-    { id = "gold_charm", chance = 9657 },
-    { id = "green_charm", chance = 378 },
-    { id = "crimson_charm", chance = 930 },
-    { id = "blue_charm", chance = 142 },
+    { id = "gold_charm", chance = 9000 },
+    { id = "green_charm", chance = 5000 },
+    { id = "crimson_charm", chance = 750 },
+    { id = "blue_charm", chance = 750 },
 ]

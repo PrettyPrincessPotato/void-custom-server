@@ -1,7 +1,17 @@
 [dog_drop_table]
 type = "all"
 drops = [
-    { table = "bones" }
+    { table = "bones" },
+    { table = "dog_charms" },
+]
+
+[dog_charms]
+roll = 100000
+drops = [
+    { id = "gold_charm", chance = 8000 },
+    { id = "green_charm", chance = 4000 },
+    { id = "crimson_charm", chance = 750 },
+    { id = "blue_charm", chance = 750 },
 ]
 
 [jackal_drop_table]
