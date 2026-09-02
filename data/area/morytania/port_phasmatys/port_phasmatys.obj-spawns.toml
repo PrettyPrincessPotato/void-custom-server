@@ -1,0 +1,3 @@
+spawns = [
+  { id = "prayer_altar_zaros", x = 3635, y = 3499, rotation = 1 },
+]

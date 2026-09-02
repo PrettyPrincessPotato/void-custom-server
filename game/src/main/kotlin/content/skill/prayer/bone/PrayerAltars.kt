@@ -28,9 +28,11 @@ class PrayerAltars : Script {
         objectOperate("Convert", "prayer_altar_zaros") {
             message("Swapping prayer books...")
             if(!isCurses()){
+                anim("altar_pray")
                 this[PrayerConfigs.PRAYERS] = "curses"
             }
             else{
+                anim("altar_pray")
                 this[PrayerConfigs.PRAYERS] = "normal"
             }
         }
