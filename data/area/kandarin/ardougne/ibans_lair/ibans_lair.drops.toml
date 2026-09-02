@@ -34,6 +34,7 @@ drops = [
     { id = "staff", chance = 8 },
     { id = "wizard_robe_top", chance = 7 },
     { id = "wizard_hat_blue", chance = 3 },
+    { id = "wizard_boots", chance = 2 },
     { id = "chaos_rune", amount = 2, chance = 8 },
     { id = "nature_rune", amount = 2, chance = 8 },
     { id = "air_rune", amount = 5, chance = 3 },
