@@ -70,8 +70,8 @@ amount = [1, 6]
 message = "You place the adamantite and six heaps of coal into the furnace."
 
 [.rune_bar]
-level = 60
-xp = 52
+level = 50
+xp = 42
 ore = ["runite_ore", "coal"]
 amount = [1, 8]
 message = "You place the runite and six heaps of coal into the furnace."

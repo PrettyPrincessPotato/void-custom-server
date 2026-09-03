@@ -456,111 +456,111 @@ level = 26
 xp = 250
 
 [.rune_2h_sword]
-level = 60
+level = 50
 xp = 156
 
 [.rune_arrowtips]
-level = 60
+level = 50
 xp = 52
 
 [.rune_battleaxe]
-level = 60
+level = 50
 xp = 156
 
 [.rune_bolts_unf]
-level = 60
+level = 50
 xp = 52
 
 [.rune_chainbody]
-level = 60
+level = 50
 xp = 156
 
 [.rune_claws]
-level = 60
+level = 50
 xp = 104
 
 [.rune_dagger]
-level = 60
+level = 50
 xp = 52
 
 [.rune_dart_tip]
-level = 60
+level = 50
 xp = 52
 
 [.rune_full_helm]
-level = 60
+level = 50
 xp = 104
 
 [.rune_hasta]
-level = 60
+level = 50
 xp = 104
 
 [.rune_hatchet]
-level = 60
+level = 50
 xp = 52
 
 [.rune_kiteshield]
-level = 60
+level = 50
 xp = 156
 
 [.rune_knife]
-level = 60
+level = 50
 xp = 52
 
 [.rune_limbs]
-level = 60
+level = 50
 xp = 52
 
 [.rune_longsword]
-level = 60
+level = 50
 xp = 104
 
 [.rune_mace]
-level = 60
+level = 50
 xp = 52
 
 [.rune_med_helm]
-level = 60
+level = 50
 xp = 52
 
 [.rune_nails]
-level = 60
+level = 50
 xp = 52
 
 [.rune_pickaxe]
-level = 60
+level = 50
 xp = 104
 
 [.rune_platebody]
-level = 60
+level = 50
 xp = 260
 
 [.rune_platelegs]
-level = 60
+level = 50
 xp = 156
 
 [.rune_plateskirt]
-level = 60
+level = 50
 xp = 156
 
 [.rune_scimitar]
-level = 60
+level = 50
 xp = 104
 
 [.rune_spear]
-level = 60
+level = 50
 xp = 104
 
 [.rune_sq_shield]
-level = 60
+level = 50
 xp = 104
 
 [.rune_sword]
-level = 60
+level = 50
 xp = 52
 
 [.rune_warhammer]
-level = 60
+level = 50
 xp = 156
 
 [.silver_bolts_unf]
