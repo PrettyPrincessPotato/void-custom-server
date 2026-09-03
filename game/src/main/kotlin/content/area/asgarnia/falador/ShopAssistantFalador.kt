@@ -11,21 +11,17 @@ import content.entity.npc.schedule.NpcScheduleController
 import content.entity.npc.schedule.NpcSchedules
 import content.entity.npc.schedule.ScheduleAction
 import content.entity.npc.schedule.ScheduleTransition
+import content.world.time.WorldTime
 import org.rsmod.game.pathfinder.collision.CollisionStrategies
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.data.definition.Areas
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.type.Tile
 
-private const val ASSISTANT_LEAVE_HOUR = 17
-private const val ASSISTANT_RETURN_HOUR = 8
-private const val ASSISTANT_STRING_ID = "shop_assistant_falador"
+const val ASSISTANT_LEAVE_HOUR = 17
+const val ASSISTANT_RETURN_HOUR = 8
+const val ASSISTANT_STRING_ID = "shop_assistant_falador"
 
-
-/**
- * Main shopkeep will eventually use these
- * TODO: Move somewhere more central
- */
 val TAVERN_AREA = Areas["rising_sun_inn"]
 val SHOP_AREA = Areas["falador_general_store"]
 
@@ -47,9 +43,6 @@ private val shop = NpcLocation(
     navTag = "falador_general_store",
     collision = CollisionStrategies.Indoors,
 )
-/**
- * End of TODO
- */
 
 
 class ShopAssistantFalador(graph: NavigationGraph) : Script {
