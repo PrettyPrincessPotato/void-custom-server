@@ -21,10 +21,6 @@ private const val ASSISTANT_LEAVE_HOUR = 17
 private const val ASSISTANT_RETURN_HOUR = 8
 private const val ASSISTANT_STRING_ID = "shop_assistant_falador"
 
-/**
- * It looks like the NPC can successfully find the start of the navmesh route but it stops after reaching the first point (maybe?) Difficult to tell right now.
- */
-
 
 /**
  * Main shopkeep will eventually use these
