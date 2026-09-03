@@ -59,6 +59,12 @@ tasks.register<JavaExec>("fixEnums") {
     workingDir = rootDir
 }
 
+tasks.register<JavaExec>("addCustomNPC") {
+    classpath = sourceSets["main"].runtimeClasspath
+    mainClass.set("world.gregs.voidps.tools.cache.AddCustomNPC")
+    workingDir = rootDir
+}
+
 tasks.register<JavaExec>("renderPhotoBooth") {
     group = "photobooth"
     description = "Renders photo-booth avatars. Args via -Pargs=\"--player=name --out=/tmp/avatar\" (see PhotoBoothRenderer)."

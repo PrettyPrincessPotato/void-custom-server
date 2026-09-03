@@ -119,4 +119,5 @@ spawns = [
   { id = "wandering_impling", x = 2424, y = 4436, members = true },
   { id = "banker_zanaris_2", x = 2379, y = 4459, members = true },
   { id = "fairy_very_wise", x = 2453, y = 4395, members = true },
+  { id = "oric", x = 2417, y = 4471 },
 ]

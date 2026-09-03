@@ -254,3 +254,8 @@ id = 3347
 clone = "zygomite"
 combat_def = "zygomite"
 examine = "A fun guy. No wait, that's awful.."
+
+[oric]
+id = 16128
+shop = "mage_training_arena"
+examine = "A magical golem, imbued with arcane knowledge."
