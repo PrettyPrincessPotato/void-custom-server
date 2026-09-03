@@ -1,7 +1,8 @@
 package content.area.asgarnia.falador
 
-import content.entity.npc.movement.BotNavMeshRouteExecutor
-import content.entity.npc.movement.BotNavMeshRouteFinder
+import content.bot.behaviour.navigation.NavigationGraph
+import content.entity.npc.movement.GraphNpcRouteExecutor
+import content.entity.npc.movement.NpcNavMeshRouteFinder
 import content.entity.npc.movement.NativeNpcRouteExecutor
 import content.entity.npc.movement.NpcLocation
 import content.entity.npc.movement.NpcRouteExecutor
@@ -21,6 +22,11 @@ private const val ASSISTANT_RETURN_HOUR = 8
 private const val ASSISTANT_STRING_ID = "shop_assistant_falador"
 
 /**
+ * It looks like the NPC can successfully find the start of the navmesh route but it stops after reaching the first point (maybe?) Difficult to tell right now.
+ */
+
+
+/**
  * // Main shopkeep will eventually use these
  * // TODO: Move somewhere more central
  */
@@ -35,6 +41,7 @@ private val tavern = NpcLocation(
     tile = TAVERN_TILE,
     area = TAVERN_AREA,
     navTag = "rising_sun_inn",
+    collision = CollisionStrategies.Indoors,
 )
 
 private val shop = NpcLocation(
@@ -42,17 +49,24 @@ private val shop = NpcLocation(
     tile = SHOP_TILE,
     area = SHOP_AREA,
     navTag = "falador_general_store",
+    collision = CollisionStrategies.Indoors,
 )
 /**
  * End of TODO
  */
 
 
-class ShopAssistantFalador : Script {
-    val useBotNav = false
-    val routeExecutor: NpcRouteExecutor =
-        if (useBotNav) BotNavMeshRouteExecutor(BotNavMeshRouteFinder(graph))
-        else NativeNpcRouteExecutor()
+class ShopAssistantFalador(graph: NavigationGraph) : Script {
+    val useBotNav = false // Set this per NPC since it's sometimes overkill to use the bot's navmesh for not even a chunk over.
+
+    private val routeExecutor: NpcRouteExecutor =
+        if (useBotNav) {
+            GraphNpcRouteExecutor(
+                NpcNavMeshRouteFinder(graph)
+            )
+        } else {
+            NativeNpcRouteExecutor()
+        }
     private var shopkeeper: NPC? = null
 
     init {
@@ -68,7 +82,7 @@ class ShopAssistantFalador : Script {
                             queueName = "travel_to_shop",
                             dialogue = "Ugh... I think I drank too much...",
                             onArrival = { npc ->
-                                npc.collision = CollisionStrategies.Indoors
+                                npc.collision = shop.collision
                             }
                         )
                     )
@@ -81,7 +95,7 @@ class ShopAssistantFalador : Script {
                             queueName = "travel_to_tavern",
                             dialogue = "Ahh, finally clock-out time...",
                             onArrival = { npc ->
-                                npc.collision = CollisionStrategies.Indoors
+                                npc.collision = tavern.collision
                             }
                         )
                     )
