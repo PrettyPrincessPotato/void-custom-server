@@ -21,6 +21,7 @@ tags = ["teleport"]
 [ice_plateau_teleport]
 x = [2972, 2974]
 y = [3939, 3941]
+level = 0
 tags = ["teleport"]
 
 [wilderness]

@@ -1,6 +1,7 @@
 [trollheim_teleport]
 x = [2886, 2890]
 y = [3667, 3669]
+level = 0
 tags = ["teleport"]
 
 [trollheim_multi_area]

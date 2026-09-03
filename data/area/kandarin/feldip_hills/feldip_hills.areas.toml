@@ -13,6 +13,7 @@ hint = "around Feldip Hills, near Gu'Tanoth."
 [south_feldip_hills]
 x = [2368, 2687]
 y = [2816, 2943]
+level = 0
 tags = ["penguin_area"]
 hint = "near some ogres in South Feldip Hills."
 

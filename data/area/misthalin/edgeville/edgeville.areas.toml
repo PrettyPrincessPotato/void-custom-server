@@ -11,6 +11,7 @@ tags = ["teleport"]
 [lassar_teleport]
 x = [3005, 3007]
 y = [3471, 3473]
+level = 0
 tags = ["teleport"]
 
 [monastery_teleport]
