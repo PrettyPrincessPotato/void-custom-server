@@ -15,10 +15,10 @@ drops = [
 ]
 
 [skeleton_unarmed_secondary]
-roll = 132
+roll = 168
 drops = [
-    { id = "skeletal_gloves", chance = 2 },
-    { id = "skeletal_boots", chance = 2 },
+    { id = "skeletal_gloves", chance = 20 },
+    { id = "skeletal_boots", chance = 20 },
     { id = "bronze_arrow", amount = 2, chance = 7 },
     { id = "bronze_arrow", amount = 5, chance = 4 },
     { id = "iron_arrow", chance = 4 },
@@ -54,10 +54,10 @@ drops = [
 ]
 
 [skeleton_armed_secondary]
-roll = 132
+roll = 168
 drops = [
-    { id = "skeletal_gloves", chance = 2 },
-    { id = "skeletal_boots", chance = 2 },
+    { id = "skeletal_gloves", chance = 20 },
+    { id = "skeletal_boots", chance = 20 },
     { id = "iron_med_helm", chance = 6 },
     { id = "iron_sword", chance = 4 },
     { id = "iron_hatchet", chance = 2 },
