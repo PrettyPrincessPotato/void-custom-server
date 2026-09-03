@@ -16,6 +16,12 @@ import world.gregs.voidps.engine.timedLoad
 import world.gregs.voidps.type.Distance
 import world.gregs.voidps.type.Tile
 import java.util.PriorityQueue
+import kotlin.collections.get
+import kotlin.collections.iterator
+import kotlin.compareTo
+import kotlin.io.iterator
+import kotlin.text.get
+import kotlin.text.iterator
 
 /**
  * Weighted navigation graph for bot pathfinding.
@@ -258,6 +264,97 @@ class NavigationGraph(
             println("Nodes: ${nodes.size} edges: $edgeCount")
         }
     }
+
+    /**
+     * Additional functions for NPC Navigation
+     */
+    fun findNpcRoute(
+        startTile: Tile,
+        output: MutableList<Tile>,
+        target: (Tile) -> Boolean,
+    ): Boolean {
+        output.clear()
+
+        val start = nearestNode(startTile) ?: return false
+
+        val queue = PriorityQueue<NavigationGraph.Node>()
+        val visited = BooleanArray(nodeCount)
+        val distance = IntArray(nodeCount) { Int.MAX_VALUE }
+        val parentNode = IntArray(nodeCount) { -1 }
+
+        distance[start] = 0
+        queue.add(NavigationGraph.Node(start, 0))
+
+        while (queue.isNotEmpty()) {
+            val current = queue.poll()
+            val node = current.index
+
+            if (visited[node]) {
+                continue
+            }
+            visited[node] = true
+
+            if (target(Tile(tiles[node]))) {
+                val route = mutableListOf<Int>()
+                var previous = node
+
+                while (parentNode[previous] != -1) {
+                    route.add(previous)
+                    previous = parentNode[previous]
+                }
+
+                route.reverse()
+                output.addAll(route.map { Tile(tiles[it]) })
+                return true
+            }
+
+            for (edge in adjacentEdges[node] ?: continue) {
+                val next = endNodes[edge]
+
+                if (visited[next]) {
+                    continue
+                }
+
+                val newDistance = current.cost + edgeWeights[edge]
+
+                if (newDistance >= distance[next]) {
+                    continue
+                }
+
+                distance[next] = newDistance
+                parentNode[next] = node
+                queue.add(Node(next, newDistance))
+            }
+        }
+
+        return false
+    }
+
+    private fun nearestNode(tile: Tile): Int? {
+        var nearest: Int? = null
+        var nearestDistance = Int.MAX_VALUE
+
+        for (index in 1 until tiles.size) {
+            val candidate = Tile(tiles[index])
+
+            if (candidate.level != tile.level) {
+                continue
+            }
+
+            val distance = tile.distanceTo(candidate)
+
+            if (distance <= 10 && distance < nearestDistance) {
+                nearest = index
+                nearestDistance = distance
+            }
+        }
+
+        return nearest
+    }
+
+    /**
+     * End of additional functions
+     */
 
     companion object {
         fun loadGraph(paths: List<String>, shortcuts: List<NavigationShortcut>): NavigationGraph {

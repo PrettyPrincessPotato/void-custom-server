@@ -1,0 +1,5 @@
+edges = [
+    { from = { x = 2956, y = 3378 }, to = { x = 2956, y = 3382 } }, # rising_sun_inn_to_road
+    { from = { x = 2956, y = 3382 }, to = { x = 2958, y = 3383 } }, # rising_sun_road_to_general_store_road
+    { from = { x = 2958, y = 3383 }, to = { x = 2958, y = 3385 } }, # road_to_general_store
+]
