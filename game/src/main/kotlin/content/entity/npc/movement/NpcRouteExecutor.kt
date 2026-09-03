@@ -87,21 +87,28 @@ class GraphNpcRouteExecutor(
 ) : NpcRouteExecutor {
 
     override fun move(npc: NPC, target: NpcRouteTarget) {
+        moveInternal(
+            npc = npc,
+            target = target,
+            announce = true,
+        )
+    }
+
+    private fun moveInternal(
+        npc: NPC,
+        target: NpcRouteTarget,
+        announce: Boolean,
+    ) {
         if (npc.tile in target.location.area) {
             target.onArrival(npc)
             return
         }
 
         val route = finder.find(
-            context = NpcRouteContext(
-                tile = npc.tile,
-            ),
+            context = NpcRouteContext(npc.tile),
             target = target.location,
         ) ?: run {
-            println(
-                "NPC ${npc.id} failed to find route from ${npc.tile} " +
-                        "to ${target.location.id}"
-            )
+            // Native executor handles the dialogue if graph routing fails.
             NativeNpcRouteExecutor().move(npc, target)
             return
         }
@@ -111,15 +118,24 @@ class GraphNpcRouteExecutor(
             return
         }
 
-        target.dialogue?.let(npc::say)
+        if (announce) {
+            target.dialogue?.let(npc::say)
+        }
 
         npc.travelTo(
             destination = waypoint,
-            destinationArea = target.location.area,
+            destinationArea = null,
             queueName = target.queueName,
         ) {
-
-            move(this, target)
+            if (tile in target.location.area) {
+                target.onArrival(this)
+            } else {
+                moveInternal(
+                    npc = this,
+                    target = target,
+                    announce = false,
+                )
+            }
         }
     }
 }
