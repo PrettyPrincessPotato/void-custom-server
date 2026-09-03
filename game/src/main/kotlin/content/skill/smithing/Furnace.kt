@@ -122,7 +122,7 @@ class Furnace : Script {
                 // https://runescape.wiki/w/Update:Improving_Success_when_Smelting_Iron_(Free_and_Members)
                 chance = Interpolation.lerp(player.levels.get(Skill.Smithing), 15..45, 128..204).coerceIn(128..204)
             }
-            val success = random.nextInt(255) < chance
+            val success = true // personal-flavor branch only. Remove the chance of failure.
             val items = requiredOres(id)
             player.inventory.transaction {
                 remove(items)

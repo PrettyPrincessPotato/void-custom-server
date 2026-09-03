@@ -11,67 +11,67 @@ message = "string"
 
 [.bronze_bar]
 level = 1
-xp = 62
+xp = 10
 ore = ["tin_ore", "copper_ore"]
 amount = [1, 1]
 message = "You smelt the copper and tin together in the furnace."
 
 [.blurite_bar]
-level = 13
-xp = 80
+level = 10
+xp = 14
 ore = ["blurite_ore"]
 message = "You place the blurite and four heaps of coal into the furnace."
 
 [.elemental_bar]
 level = 20
-xp = 75
+xp = 20
 ore = ["elemental_ore", "coal"]
 amount = [1, 4]
 message = "You place the elemental ore and four heaps of coal into the furnace."
 
 [.iron_bar]
-level = 15
-xp = 125
+level = 10
+xp = 14
 chance = 128 # 50%
 ore = ["iron_ore"]
 message = "You smelt the iron in the furnace."
 
 [.steel_bar]
-level = 30
-xp = 175
+level = 20
+xp = 20
 ore = ["iron_ore", "coal"]
 amount = [1, 2]
 message = "You place the iron and two heaps of coal into the furnace."
 
 [.silver_bar]
 level = 20
-xp = 137
+xp = 20
 ore = ["silver_ore"]
 message = "You place the silver into the furnace."
 
 [.gold_bar]
-level = 40
-xp = 225
+level = 30
+xp = 28
 ore = ["gold_ore"]
 message = "You place a lump of gold in the furnace."
 
 [.mithril_bar]
-level = 50
-xp = 300
+level = 30
+xp = 28
 ore = ["mithril_ore", "coal"]
 amount = [1, 4]
 message = "You place the mithril and four heaps of coal into the furnace."
 
 [.adamant_bar]
-level = 70
-xp = 375
+level = 40
+xp = 38
 ore = ["adamantite_ore", "coal"]
 amount = [1, 6]
 message = "You place the adamantite and six heaps of coal into the furnace."
 
 [.rune_bar]
-level = 85
-xp = 500
+level = 60
+xp = 52
 ore = ["runite_ore", "coal"]
 amount = [1, 8]
 message = "You place the runite and six heaps of coal into the furnace."
