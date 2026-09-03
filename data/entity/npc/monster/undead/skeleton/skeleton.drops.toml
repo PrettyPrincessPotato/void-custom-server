@@ -15,7 +15,7 @@ drops = [
 ]
 
 [skeleton_unarmed_secondary]
-roll = 128
+roll = 132
 drops = [
     { id = "skeletal_gloves", chance = 2 },
     { id = "skeletal_boots", chance = 2 },
@@ -54,7 +54,7 @@ drops = [
 ]
 
 [skeleton_armed_secondary]
-roll = 128
+roll = 132
 drops = [
     { id = "skeletal_gloves", chance = 2 },
     { id = "skeletal_boots", chance = 2 },

@@ -29,7 +29,7 @@ drops = [
 ]
 
 [wizard_secondary]
-roll = 128
+roll = 130
 drops = [
     { id = "staff", chance = 8 },
     { id = "wizard_robe_top", chance = 7 },
