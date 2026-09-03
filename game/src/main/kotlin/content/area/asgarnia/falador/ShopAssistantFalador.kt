@@ -57,6 +57,7 @@ private val shop = NpcLocation(
 
 
 class ShopAssistantFalador(graph: NavigationGraph) : Script {
+    // CURRENTLY BROKEN
     val useBotNav = false // Set this per NPC since it's sometimes overkill to use the bot's navmesh for not even a chunk over.
 
     private val routeExecutor: NpcRouteExecutor =
