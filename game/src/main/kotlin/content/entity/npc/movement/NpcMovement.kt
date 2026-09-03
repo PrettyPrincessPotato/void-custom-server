@@ -9,25 +9,24 @@ import world.gregs.voidps.engine.queue.queue as enqueue
 
 fun NPC.travelTo(
     destination: Tile,
-    destinationArea: Area,
-    dialogue: String? = null,
+    destinationArea: Area?,
     queueName: String,
     onArrival: NPC.() -> Unit = {},
 ) {
-    this["spawn_tile"] = destination
-
-    dialogue?.let(::say)
-
-    collision = CollisionStrategies.Normal // Calling in case the collision is indoors, will handle on a per-NPC basis on if they should have indoors afterwards or not.
+    collision = CollisionStrategies.Normal
 
     enqueue(queueName) {
         walkTo(destination)
 
-        while (tile !in destinationArea && mode != EmptyMode) {
+        while (
+            tile != destination &&
+            destinationArea?.contains(tile) != true &&
+            mode != EmptyMode
+        ) {
             delay()
         }
 
-        if (tile in destinationArea) {
+        if (tile == destination || destinationArea?.contains(tile) == true) {
             onArrival()
         }
     }

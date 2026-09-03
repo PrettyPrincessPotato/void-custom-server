@@ -35,10 +35,11 @@ class NativeNpcRouteExecutor : NpcRouteExecutor {
             return
         }
 
+        target.dialogue?.let(npc::say)
+
         npc.travelTo(
             destination = location.tile,
             destinationArea = location.area,
-            dialogue = target.dialogue,
             queueName = target.queueName,
         ) {
             target.onArrival(this)
@@ -110,13 +111,15 @@ class GraphNpcRouteExecutor(
             return
         }
 
+        target.dialogue?.let(npc::say)
+
         npc.travelTo(
             destination = waypoint,
             destinationArea = target.location.area,
-            dialogue = target.dialogue,
             queueName = target.queueName,
         ) {
-            move(npc, target)
+
+            move(this, target)
         }
     }
 }

@@ -57,8 +57,7 @@ private val shop = NpcLocation(
 
 
 class ShopAssistantFalador(graph: NavigationGraph) : Script {
-    // CURRENTLY BROKEN
-    val useBotNav = false // Set this per NPC since it's sometimes overkill to use the bot's navmesh for not even a chunk over.
+    val useBotNav = true // Set this per NPC since it's sometimes overkill to use the bot's navmesh for not even a chunk over.
 
     private val routeExecutor: NpcRouteExecutor =
         if (useBotNav) {
@@ -84,7 +83,7 @@ class ShopAssistantFalador(graph: NavigationGraph) : Script {
                             dialogue = "Ugh... I think I drank too much...",
                             onArrival = { npc ->
                                 npc.collision = shop.collision
-                            }
+                            },
                         )
                     )
                 ),
@@ -97,7 +96,7 @@ class ShopAssistantFalador(graph: NavigationGraph) : Script {
                             dialogue = "Ahh, finally clock-out time...",
                             onArrival = { npc ->
                                 npc.collision = tavern.collision
-                            }
+                            },
                         )
                     )
                 )
