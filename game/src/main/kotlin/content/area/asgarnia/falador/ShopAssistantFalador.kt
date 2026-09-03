@@ -27,8 +27,8 @@ private const val ASSISTANT_STRING_ID = "shop_assistant_falador"
 
 
 /**
- * // Main shopkeep will eventually use these
- * // TODO: Move somewhere more central
+ * Main shopkeep will eventually use these
+ * TODO: Move somewhere more central
  */
 val TAVERN_AREA = Areas["rising_sun_inn"]
 val SHOP_AREA = Areas["falador_general_store"]
