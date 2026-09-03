@@ -39,7 +39,7 @@ object AddCustomNPC {
     private const val COPY_FROM_ID = 3103
 
     /** The name shown when hovering or examining the NPC. */
-    private const val NEW_NPC_NAME = "Oric"
+    private const val NEW_NPC_NAME = "Aaroc"
 
     /**
      * Right-click options (slots 0-4). Slot 5 is always "Examine" by default.
@@ -47,8 +47,8 @@ object AddCustomNPC {
      */
     private val NEW_NPC_OPTIONS = arrayOf("Talk-to", "Trade", null, null, null)
 
-    /** Combat level shown to players. Set to -1 for no level. */
-    private const val NEW_NPC_COMBAT = 69
+    /** Combat level shown to players. Set to 0 for no level. */
+    private const val NEW_NPC_COMBAT = 0
 
     // ---- End configuration ----------------------------------------------
 

@@ -255,7 +255,7 @@ clone = "zygomite"
 combat_def = "zygomite"
 examine = "A fun guy. No wait, that's awful.."
 
-[oric]
+[aaroc]
 id = 16128
 shop = "mage_training_arena"
-examine = "A magical golem, imbued with arcane knowledge."
+examine = "A magical golem."
