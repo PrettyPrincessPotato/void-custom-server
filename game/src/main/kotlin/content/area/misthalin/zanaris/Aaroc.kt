@@ -2,6 +2,7 @@ package content.area.misthalin.zanaris
 
 
 import content.bot.behaviour.navigation.NavigationGraph
+import content.entity.gfx.areaGfx
 import content.entity.npc.movement.GraphNpcRouteExecutor
 import content.entity.npc.movement.NativeNpcRouteExecutor
 import content.entity.npc.movement.NpcNavMeshRouteFinder
@@ -18,6 +19,7 @@ import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.data.definition.Areas
+import world.gregs.voidps.engine.entity.character.areaSound
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.mode.Wander
 import world.gregs.voidps.engine.entity.character.move.tele
@@ -69,6 +71,8 @@ class Aaroc(graph: NavigationGraph) : Script {
 
         fun aarocTeleportArea(teleTo: Area) {
             aarocTeleport {
+                areaSound("smoke_puff", aaroc!!.tile, 10)
+                areaGfx("imp_puff", aaroc!!.tile)
                 tele(teleTo)
             }
         }
@@ -88,6 +92,8 @@ class Aaroc(graph: NavigationGraph) : Script {
                 aarocChant()
                 aaroc?.delay(3)
                 aarocTeleportArea(teleportLoc)
+                areaSound("smoke_puff", aaroc!!.tile, 10)
+                areaGfx("imp_puff", aaroc!!.tile)
             }
         }
         fun moveAarocToZanaris(){
@@ -95,6 +101,8 @@ class Aaroc(graph: NavigationGraph) : Script {
                 aarocChant()
                 aaroc?.delay(3)
                 aarocTeleportTile(AAROC_HIDING_SPOT)
+                areaSound("smoke_puff", aaroc!!.tile, 10)
+                areaGfx("imp_puff", aaroc!!.tile)
             }
         }
 
