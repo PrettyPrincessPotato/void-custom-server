@@ -83,9 +83,6 @@ class Aaroc(graph: NavigationGraph) : Script {
             }
         }
 
-        /**
-         * This function will be responsible for Aaroc picking a location and teleporting there from Zanaris, choosing that spot to wander around until nightfall.
-         */
         fun moveAarocFromZanaris(){
             aaroc?.enqueue("aaroc_tele"){
                 val teleportLoc = AAROC_ROAMING_SPOTS.random()
