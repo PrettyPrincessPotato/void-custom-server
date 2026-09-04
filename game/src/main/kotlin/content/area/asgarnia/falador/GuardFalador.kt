@@ -6,7 +6,9 @@ import content.entity.player.dialogue.Quiz
 import content.entity.player.dialogue.Shifty
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
+import content.skill.summoning.isFamiliar
 import world.gregs.voidps.engine.Script
+import world.gregs.voidps.engine.client.instruction.handle.interactNpc
 
 class GuardFalador : Script {
     init {
