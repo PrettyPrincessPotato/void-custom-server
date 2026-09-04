@@ -36,7 +36,6 @@ private val AAROC_ROAMING_SPOTS = arrayOf(Areas["al_kharid_mine"],Areas["sophane
 // Is this NPC completely incapable of speech? Or Maybe we can make it speak some made-up language?
 // What if it's incapable of talking in Zanaris for some reason?
 class Aaroc(graph: NavigationGraph) : Script {
-    // CAUTION: CURRENTLY BROKEN
     val useBotNav = false
 
     private val routeExecutor: NpcRouteExecutor =
