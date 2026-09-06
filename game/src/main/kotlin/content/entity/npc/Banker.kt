@@ -1,5 +1,7 @@
 package content.entity.npc
 
+import content.entity.player.bank.BankDeposit
+import content.entity.player.bank.BankDeposit.Companion.itemOnDeposit
 import content.entity.player.bank.pin.openBank
 import content.entity.player.bank.pin.openCollection
 import content.entity.player.dialogue.Neutral
@@ -61,6 +63,12 @@ class Banker : Script {
             }
             openCollection()
         }
+
+        objectOperate("Deposit", "bank_deposit_box*") {
+            open("bank_deposit_box")
+        }
+
+        itemOnObjectOperate(obj = "bank_deposit_box*", handler = BankDeposit::itemOnDeposit)
 
         objectOperate("Use", "bank_booth_*", arrive = false) { (target) ->
             if (!banksOpen) {

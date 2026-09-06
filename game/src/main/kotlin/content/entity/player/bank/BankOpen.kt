@@ -98,12 +98,6 @@ class BankOpen(val accounts: AccountDefinitions) : Script {
                 open("bank")
             }
         }
-
-        objectOperate("Deposit", "bank_deposit_box*") {
-            open("bank_deposit_box")
-        }
-
-        itemOnObjectOperate(obj = "bank_deposit_box*", handler = BankDeposit::itemOnDeposit)
     }
 
     fun bank(player: Player, args: List<String>) {
