@@ -30,14 +30,6 @@ class BankOpen(val accounts: AccountDefinitions) : Script {
     init {
         adminCommand("bank", stringArg("player-name", optional = true, autofill = accounts.displayNames.keys), desc = "Open the players bank", handler = ::bank)
 
-        objectOperate("Use-quickly") {
-            openBank()
-        }
-
-        objectOperate("Collect") {
-            openCollection()
-        }
-
         interfaceClosed("bank") {
             set("bank_hidden", true)
             set("bank_searching", false)

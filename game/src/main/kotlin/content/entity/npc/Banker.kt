@@ -8,6 +8,7 @@ import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import content.social.trade.lend.Loan.getSecondsRemaining
 import world.gregs.voidps.engine.Script
+import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.dialogue.talkWith
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.Settings
@@ -32,20 +33,50 @@ class Banker : Script {
         }
 
         objectOperate("Use", "bank_chest_*") {
+            if (!banksOpen) {
+                message("The bank is currently closed...")
+                return@objectOperate
+            }
             openBank()
         }
         objectOperate("Bank", "*") {
+            if (!banksOpen) {
+                message("The bank is currently closed...")
+                return@objectOperate
+            }
             openBank()
         }
 
         objectOperate("Bank", "bank_chest_*") {
+            if (!banksOpen) {
+                message("The bank is currently closed...")
+                return@objectOperate
+            }
             openBank()
+        }
+        objectOperate("Collect") {
+            if (!banksOpen) {
+                message("The bank is currently closed...")
+                return@objectOperate
+            }
+            openCollection()
         }
 
         objectOperate("Use", "bank_booth_*", arrive = false) { (target) ->
+            if (!banksOpen) {
+                message("The bank is currently closed...")
+                return@objectOperate
+            }
             val banker = NPCs.first { it.def.name == "Banker" }
             talkWith(banker)
             menu()
+        }
+        objectOperate("Use-quickly", "bank_booth_*", arrive = false) { (target) ->
+            if (!banksOpen) {
+                message("The bank is currently closed...")
+                return@objectOperate
+            }
+            openBank()
         }
 
         npcApproach("Bank", "banker*,fremennik_banker") {
