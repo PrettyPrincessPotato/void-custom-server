@@ -8,7 +8,6 @@ class ScheduleRegistry : Script, HourChangeListener {
     private val schedules = mutableSetOf<NpcScheduleController>()
 
     init {
-        NpcSchedules.registry = this
         WorldTime.subscribeToHourChanges(this)
     }
 
@@ -28,5 +27,5 @@ class ScheduleRegistry : Script, HourChangeListener {
 }
 
 object NpcSchedules {
-    lateinit var registry: ScheduleRegistry
+    val registry = ScheduleRegistry()
 }
