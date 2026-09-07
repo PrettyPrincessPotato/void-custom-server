@@ -31,6 +31,7 @@ object AddAarocNPC {
     /** A cache ID that doesn't collide with existing NPCs. Higher is safer.
      * WARNING: upon using 69420 the "hanging suspect" npc was placed instead from the
      * evil twin random event.
+     * 69421 is the same, except a different suspect.
      * This implies the existence of a buffer overflow somewhere.
      * */
     private const val NEW_NPC_ID = 16128 // First slot that works for some reason. Slots after may or may not work.
