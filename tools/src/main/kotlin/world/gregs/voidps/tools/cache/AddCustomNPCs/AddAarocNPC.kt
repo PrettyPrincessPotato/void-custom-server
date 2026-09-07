@@ -1,4 +1,4 @@
-package world.gregs.voidps.tools.cache
+package world.gregs.voidps.tools.cache.AddCustomNPCs
 
 import com.displee.cache.CacheLibrary
 import world.gregs.voidps.buffer.read.ArrayReader
@@ -23,7 +23,7 @@ import world.gregs.voidps.cache.definition.encoder.NPCEncoder
  * Run from project root: gradle tools:addCustomNPC
  * Or run directly via IDE main function.
  */
-object AddCustomNPC {
+object AddAarocNPC {
 
     // ---- Configuration --------------------------------------------------
     // Change these values to customize your new NPC.
