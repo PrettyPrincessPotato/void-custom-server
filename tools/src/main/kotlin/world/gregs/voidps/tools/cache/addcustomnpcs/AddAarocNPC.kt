@@ -1,4 +1,4 @@
-package world.gregs.voidps.tools.cache.AddCustomNPCs
+package world.gregs.voidps.tools.cache.addcustomnpcs
 
 import com.displee.cache.CacheLibrary
 import world.gregs.voidps.buffer.read.ArrayReader
