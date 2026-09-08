@@ -4,7 +4,9 @@ import content.world.time.HourChangeListener
 import content.world.time.WorldTime
 import world.gregs.voidps.engine.Script
 
-class ScheduleRegistry : Script, HourChangeListener {
+class ScheduleRegistry :
+    Script,
+    HourChangeListener {
     private val schedules = mutableSetOf<NpcScheduleController>()
 
     init {

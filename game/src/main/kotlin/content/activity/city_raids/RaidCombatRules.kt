@@ -5,7 +5,7 @@ import world.gregs.voidps.engine.entity.character.npc.NPC
 
 class RaidCombatRules(
     private val store: RaidStore,
-    private val identityResolver: RaidIdentityResolver
+    private val identityResolver: RaidIdentityResolver,
 ) {
     fun canAttackRaidTarget(attacker: NPC, target: NPC): Boolean {
         val attackerIdentity = identityResolver.identityOf(attacker) ?: return false
@@ -26,6 +26,6 @@ class RaidCombatRules(
         val destination = targetIdentity.faction ?: return false
 
         return RaidFactions.relation(source, destination) == FactionRelation.HOSTILE &&
-                target.canFight()
+            target.canFight()
     }
 }

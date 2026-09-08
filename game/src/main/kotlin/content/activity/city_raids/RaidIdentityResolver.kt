@@ -3,23 +3,23 @@ package content.activity.city_raids
 import world.gregs.voidps.engine.entity.character.npc.NPC
 
 class RaidIdentityResolver(
-    private val goblinIds: Set<String>
+    private val goblinIds: Set<String>,
 ) {
     fun identityOf(npc: NPC): RaidIdentity? {
         when {
             isGoblin(npc) -> return RaidIdentity(
                 race = RaidRace.GOBLIN,
-                faction = RaidFaction.GOBLIN_TRIBE
+                faction = RaidFaction.GOBLIN_TRIBE,
             )
 
             isFaladorGuard(npc) -> return RaidIdentity(
                 race = RaidRace.HUMAN,
-                faction = RaidFaction.FALADOR
+                faction = RaidFaction.FALADOR,
             )
 
             isVarrockGuard(npc) -> return RaidIdentity(
                 race = RaidRace.HUMAN,
-                faction = RaidFaction.VARROCK
+                faction = RaidFaction.VARROCK,
             )
         }
 

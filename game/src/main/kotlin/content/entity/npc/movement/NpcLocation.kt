@@ -13,5 +13,5 @@ data class NpcLocation(
     val tile: Tile,
     val area: Area,
     val navTag: String? = null,
-    val collision: CollisionStrategy = CollisionStrategies.Normal
+    val collision: CollisionStrategy = CollisionStrategies.Normal,
 )

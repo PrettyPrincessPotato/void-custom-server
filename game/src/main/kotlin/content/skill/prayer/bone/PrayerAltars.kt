@@ -1,11 +1,11 @@
 package content.skill.prayer.bone
 
 import content.skill.prayer.PrayerConfigs
+import content.skill.prayer.isCurses
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import content.skill.prayer.isCurses
 
 class PrayerAltars : Script {
 
@@ -24,10 +24,10 @@ class PrayerAltars : Script {
 
         objectOperate("Convert", "prayer_altar_zaros") {
             message("Swapping prayer books...")
-            if(!isCurses()){
+            if (!isCurses()) {
                 anim("altar_pray")
                 this[PrayerConfigs.PRAYERS] = "curses"
-            }  else {
+            } else {
                 anim("altar_pray")
                 this[PrayerConfigs.PRAYERS] = "normal"
             }

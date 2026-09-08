@@ -4,7 +4,7 @@ interface RaidController {
     fun transition(member: RaidMember, state: RaidState)
 }
 
-//class RaidController(private val raidManager: RaidManager) {
+// class RaidController(private val raidManager: RaidManager) {
 //    // Essentially goblin brains. Go big war god!
 //    fun transition(
 //        gobbo: RaidMember,
@@ -73,4 +73,4 @@ interface RaidController {
 //
 //        return replacement
 //    }
-//}
+// }

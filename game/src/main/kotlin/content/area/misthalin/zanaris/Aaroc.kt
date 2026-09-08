@@ -1,6 +1,5 @@
 package content.area.misthalin.zanaris
 
-
 import content.bot.behaviour.navigation.NavigationGraph
 import content.entity.gfx.areaGfx
 import content.entity.npc.movement.GraphNpcRouteExecutor
@@ -32,7 +31,7 @@ private const val AAROC_STRING_ID = "aaroc"
 private const val AAROC_TO_ZANARIS_HOUR = 20
 private const val AAROC_LEAVE_ZANARIS_HOUR = 5
 private val AAROC_HIDING_SPOT = Tile(2417, 4471)
-private val AAROC_ROAMING_SPOTS = arrayOf(Areas["al_kharid_mine"],Areas["sophanem"],Areas["desert_bandit_camp_multi_area"],Areas["mudskipper_point"],Areas["lassar_teleport"],Areas["trollheim_teleport"],Areas["ice_plateau_teleport"],Areas["south_feldip_hills"])
+private val AAROC_ROAMING_SPOTS = arrayOf(Areas["al_kharid_mine"], Areas["sophanem"], Areas["desert_bandit_camp_multi_area"], Areas["mudskipper_point"], Areas["lassar_teleport"], Areas["trollheim_teleport"], Areas["ice_plateau_teleport"], Areas["south_feldip_hills"])
 
 // TODO: Make him a wandering trader when the schedule slice is finished.
 // Is this NPC completely incapable of speech? Or Maybe we can make it speak some made-up language?
@@ -43,7 +42,7 @@ class Aaroc(graph: NavigationGraph) : Script {
     private val routeExecutor: NpcRouteExecutor =
         if (useBotNav) {
             GraphNpcRouteExecutor(
-                NpcNavMeshRouteFinder(graph)
+                NpcNavMeshRouteFinder(graph),
             )
         } else {
             NativeNpcRouteExecutor()
@@ -51,9 +50,9 @@ class Aaroc(graph: NavigationGraph) : Script {
     private var aaroc: NPC? = null
 
     init {
-        fun aarocChant(){
+        fun aarocChant() {
             aaroc?.mode = EmptyMode
-            if(aaroc?.tile in Areas["zanaris"]){
+            if (aaroc?.tile in Areas["zanaris"]) {
                 aaroc?.say("...")
             } else {
                 aaroc?.say("Zarith... Shenoth... Tarin...")
@@ -83,8 +82,8 @@ class Aaroc(graph: NavigationGraph) : Script {
             }
         }
 
-        fun moveAarocFromZanaris(){
-            aaroc?.enqueue("aaroc_tele"){
+        fun moveAarocFromZanaris() {
+            aaroc?.enqueue("aaroc_tele") {
                 val teleportLoc = AAROC_ROAMING_SPOTS.random()
                 aarocChant()
                 aaroc?.delay(3)
@@ -93,8 +92,8 @@ class Aaroc(graph: NavigationGraph) : Script {
                 areaGfx("imp_puff", aaroc!!.tile)
             }
         }
-        fun moveAarocToZanaris(){
-            aaroc?.enqueue("aaroc_tele"){
+        fun moveAarocToZanaris() {
+            aaroc?.enqueue("aaroc_tele") {
                 aarocChant()
                 aaroc?.delay(3)
                 aarocTeleportTile(AAROC_HIDING_SPOT)
@@ -109,17 +108,17 @@ class Aaroc(graph: NavigationGraph) : Script {
             scheduleTransitions = listOf(
                 ScheduleTransition(
                     AAROC_LEAVE_ZANARIS_HOUR,
-                    ScheduleAction.Custom{
+                    ScheduleAction.Custom {
                         moveAarocFromZanaris()
-                    }
+                    },
                 ),
                 ScheduleTransition(
                     AAROC_TO_ZANARIS_HOUR,
-                    ScheduleAction.Custom{
+                    ScheduleAction.Custom {
                         moveAarocToZanaris()
-                    }
-                )
-            )
+                    },
+                ),
+            ),
         )
 
         npcSpawn(AAROC_STRING_ID) {
@@ -138,12 +137,12 @@ class Aaroc(graph: NavigationGraph) : Script {
             }
         }
     }
-    init{
-        npcOperate("Talk-to", "aaroc"){
-            if(tile in Areas["zanaris"]){
+    init {
+        npcOperate("Talk-to", "aaroc") {
+            if (tile in Areas["zanaris"]) {
                 npc<Neutral>("...")
                 choice {
-                    option<Confused>("Err... Hello?"){
+                    option<Confused>("Err... Hello?") {
                         npc<Sad>("...")
                         openShop("mage_training_arena")
                     }
@@ -151,7 +150,7 @@ class Aaroc(graph: NavigationGraph) : Script {
             } else {
                 npc<Neutral>("Zoltek...? Marthel...?")
                 choice {
-                    option<Confused>("Uh.. I'm sorry what?"){
+                    option<Confused>("Uh.. I'm sorry what?") {
                         npc<Sad>("Malek... Tomek...")
                         openShop("mage_training_arena")
                     }

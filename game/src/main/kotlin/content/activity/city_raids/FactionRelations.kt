@@ -1,12 +1,11 @@
 package content.activity.city_raids
 
-
 class FactionRelations(
-    private val relations: Map<Set<RaidFaction>, FactionRelation>
+    private val relations: Map<Set<RaidFaction>, FactionRelation>,
 ) {
     fun relation(
         source: RaidFaction,
-        target: RaidFaction
+        target: RaidFaction,
     ): FactionRelation {
         if (source == target) {
             return FactionRelation.ALLIED
@@ -19,6 +18,5 @@ class FactionRelations(
 enum class FactionRelation {
     ALLIED,
     NEUTRAL,
-    HOSTILE
+    HOSTILE,
 }
-

@@ -3,12 +3,10 @@ package content.area.asgarnia.falador
 import content.bot.behaviour.navigation.NavigationGraph
 import content.entity.npc.movement.NativeNpcRouteExecutor
 import content.entity.npc.movement.NpcRouteExecutor
-import content.entity.npc.movement.NpcRouteTarget
 import content.entity.npc.schedule.NpcScheduleController
 import content.entity.npc.schedule.NpcSchedules
 import content.entity.npc.schedule.ScheduleAction
 import content.entity.npc.schedule.ScheduleTransition
-import content.world.time.WorldTime
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.queue.queue as enqueue
@@ -26,14 +24,14 @@ class ShopKeeperFalador(graph: NavigationGraph) : Script {
             scheduleTransitions = listOf(
                 ScheduleTransition(
                     ASSISTANT_LEAVE_HOUR,
-                    ScheduleAction.Custom{
-                        shopkeeper?.enqueue("assistant_leaving"){
+                    ScheduleAction.Custom {
+                        shopkeeper?.enqueue("assistant_leaving") {
                             shopkeeper?.delay(5)
                             shopkeeper?.say("Don't let the door hit you on your way out...")
                         }
-                    }
-                )
-            )
+                    },
+                ),
+            ),
         )
 
         npcSpawn(SHOP_KEEPER_STRING_ID) {

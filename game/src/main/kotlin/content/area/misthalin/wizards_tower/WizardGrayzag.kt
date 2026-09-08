@@ -60,9 +60,9 @@ class WizardGrayzag : Script {
     private fun ChoiceOption.combatRobes() {
         option<Neutral>("I would like to buy some combat robes, please.") {
             npc<Neutral>("That will be 5000 coins.")
-            choice{
-                option<Happy>("I'll take it!"){
-                    if(inventory.contains("coins", 5000)) {
+            choice {
+                option<Happy>("I'll take it!") {
+                    if (inventory.contains("coins", 5000)) {
                         inventory.remove("coins", 5000)
                         inventory.add("combat_hood_100")
                         inventory.add("combat_robe_bottom_100")

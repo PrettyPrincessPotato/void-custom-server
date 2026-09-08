@@ -31,7 +31,7 @@ class BankerSchedule : Script {
                             banksOpen = false
                             areaGfx("imp_puff", banker.tile)
                             banker.hide = true
-                        }
+                        },
                     ),
                     ScheduleTransition(
                         BANK_OPEN_TIME,
@@ -39,9 +39,9 @@ class BankerSchedule : Script {
                             banksOpen = true
                             areaGfx("imp_puff", banker.tile)
                             banker.hide = false
-                        }
-                    )
-                )
+                        },
+                    ),
+                ),
             )
             NpcSchedules.registry.register(schedule)
         }

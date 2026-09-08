@@ -27,13 +27,13 @@ class RaidSpawner : Script {
             World.timers.start(GOBLIN_RAID_TIMER)
         }
         worldTimerStart(GOBLIN_RAID_TIMER) {
-            if(DEBUG){
+            if (DEBUG) {
                 TimeUnit.SECONDS.toTicks(5)
             } else {
                 TimeUnit.MINUTES.toTicks(5)
             }
         }
-        worldTimerTick(GOBLIN_RAID_TIMER){
+        worldTimerTick(GOBLIN_RAID_TIMER) {
             goblinRaidSystem.runGoblinSpawnCycle()
             Timer.CONTINUE
         }
@@ -43,4 +43,3 @@ class RaidSpawner : Script {
         }
     }
 }
-

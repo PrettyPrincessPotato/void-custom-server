@@ -17,13 +17,13 @@ object IceMountainArea {
         Tile(2952, 3468),
         Tile(2948, 3452),
         Tile(2949, 3424),
-        Tile(2953, 3407)
+        Tile(2953, 3407),
     )
 
     val FALADOR_CAMP_TO_GATE = listOf(
         Tile(2955, 3405),
         Tile(2956, 3398),
         Tile(2966, 3398),
-        Tile(2966, 3394)
+        Tile(2966, 3394),
     )
 }

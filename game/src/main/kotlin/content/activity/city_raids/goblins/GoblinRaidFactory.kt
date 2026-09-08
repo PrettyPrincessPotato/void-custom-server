@@ -26,12 +26,11 @@ import content.activity.city_raids.RaidStore
  */
 
 class GoblinRaidFactory {
-    fun findOrCreateFaladorRaid(store: RaidStore): Raid =
-        store.allRaids().firstOrNull {
-            it.faction == RaidFaction.GOBLIN_TRIBE &&
-                    it.destination == RaidDestination.FALADOR
-        } ?: Raid(
-            faction = RaidFaction.GOBLIN_TRIBE,
-            destination = RaidDestination.FALADOR
-        )
+    fun findOrCreateFaladorRaid(store: RaidStore): Raid = store.allRaids().firstOrNull {
+        it.faction == RaidFaction.GOBLIN_TRIBE &&
+            it.destination == RaidDestination.FALADOR
+    } ?: Raid(
+        faction = RaidFaction.GOBLIN_TRIBE,
+        destination = RaidDestination.FALADOR,
+    )
 }

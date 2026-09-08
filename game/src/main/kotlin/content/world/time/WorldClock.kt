@@ -12,20 +12,20 @@ const val HOUR_TICK_NAME = "ingame_hour_tick"
 class WorldClock : Script {
     private val announcement = WorldTimeAnnouncement()
 
-    init{
+    init {
         worldSpawn {
             World.timers.start(HOUR_TICK_NAME)
         }
 
-        worldTimerStart(HOUR_TICK_NAME){
-            if(DEBUG){
+        worldTimerStart(HOUR_TICK_NAME) {
+            if (DEBUG) {
                 TimeUnit.SECONDS.toTicks(5) // fast cycling for debugging
             } else {
                 TimeUnit.MINUTES.toTicks(5) // 2 IRL hours = 1 full day in-game.
             }
         }
 
-        worldTimerTick(HOUR_TICK_NAME){
+        worldTimerTick(HOUR_TICK_NAME) {
             val previousTimeOfDay = WorldTime.timeOfDay
 
             WorldTime.advanceHour()
@@ -38,6 +38,5 @@ class WorldClock : Script {
 
             Timer.CONTINUE // restarts the timer
         }
-
     }
 }

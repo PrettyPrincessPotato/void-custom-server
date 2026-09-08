@@ -24,7 +24,7 @@ class TownCrier : Script {
         "The Grand Exchange is now open! Buy items from other players!",
         "New content is being actively developed - stay tuned for updates!",
         "Tristen is a big nerd!",
-        "Goblins are slowly mustering forces near Falador!"
+        "Goblins are slowly mustering forces near Falador!",
     )
 
     private val historicalOverheads = listOf(

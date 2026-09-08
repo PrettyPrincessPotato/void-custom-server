@@ -222,8 +222,8 @@ class Mining : Script {
         val added = player.inventory.addToLimit(ore, amount)
         when (added) {
             1 -> player.message("You manage to mine some ${ore.toLowerSpaceCase()}.")
-            in 2 .. 42069 -> player.message("You manage to mine ${amount} ${ore.toLowerSpaceCase().plural(added)}!")
-           // 3 -> player.message("You manage to mine three ${ore.toLowerSpaceCase().plural(added)}!")
+            in 2..42069 -> player.message("You manage to mine $amount ${ore.toLowerSpaceCase().plural(added)}!")
+            // 3 -> player.message("You manage to mine three ${ore.toLowerSpaceCase().plural(added)}!")
             else -> player.inventoryFull()
         }
         if (diaryDoubleOre(player, ore)) {

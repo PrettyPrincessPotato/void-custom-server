@@ -37,7 +37,7 @@ class WorldDarkness : Script {
 
     private fun updatePlayer(player: Player) {
         val overworld = Areas["overworld"]
-        if(overworld.contains(player.tile)){
+        if (overworld.contains(player.tile)) {
             setDarkness(player, WorldTime.darknessLevel)
         } else {
             clearDarkness(player)
@@ -59,4 +59,3 @@ class WorldDarkness : Script {
         player.close("level_two_darkness")
     }
 }
-

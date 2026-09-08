@@ -2,16 +2,15 @@ package content.area.asgarnia.falador
 
 import content.bot.behaviour.navigation.NavigationGraph
 import content.entity.npc.movement.GraphNpcRouteExecutor
-import content.entity.npc.movement.NpcNavMeshRouteFinder
 import content.entity.npc.movement.NativeNpcRouteExecutor
 import content.entity.npc.movement.NpcLocation
+import content.entity.npc.movement.NpcNavMeshRouteFinder
 import content.entity.npc.movement.NpcRouteExecutor
 import content.entity.npc.movement.NpcRouteTarget
 import content.entity.npc.schedule.NpcScheduleController
 import content.entity.npc.schedule.NpcSchedules
 import content.entity.npc.schedule.ScheduleAction
 import content.entity.npc.schedule.ScheduleTransition
-import content.world.time.WorldTime
 import org.rsmod.game.pathfinder.collision.CollisionStrategies
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.data.definition.Areas
@@ -44,14 +43,13 @@ private val shop = NpcLocation(
     collision = CollisionStrategies.Indoors,
 )
 
-
 class ShopAssistantFalador(graph: NavigationGraph) : Script {
     val useBotNav = false // Set this per NPC since it's sometimes overkill to use the bot's navmesh for not even a chunk over.
 
     private val routeExecutor: NpcRouteExecutor =
         if (useBotNav) {
             GraphNpcRouteExecutor(
-                NpcNavMeshRouteFinder(graph)
+                NpcNavMeshRouteFinder(graph),
             )
         } else {
             NativeNpcRouteExecutor()
@@ -73,8 +71,8 @@ class ShopAssistantFalador(graph: NavigationGraph) : Script {
                             onArrival = { npc ->
                                 npc.collision = shop.collision
                             },
-                        )
-                    )
+                        ),
+                    ),
                 ),
                 ScheduleTransition(
                     ASSISTANT_LEAVE_HOUR,
@@ -86,10 +84,10 @@ class ShopAssistantFalador(graph: NavigationGraph) : Script {
                             onArrival = { npc ->
                                 npc.collision = tavern.collision
                             },
-                        )
-                    )
-                )
-            )
+                        ),
+                    ),
+                ),
+            ),
         )
 
         npcSpawn(ASSISTANT_STRING_ID) {
@@ -108,4 +106,3 @@ class ShopAssistantFalador(graph: NavigationGraph) : Script {
         }
     }
 }
-

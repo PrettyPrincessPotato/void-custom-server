@@ -12,12 +12,12 @@ import world.gregs.voidps.type.Tile
 
 class GoblinRaidController(
     private val raidManager: RaidManager,
-    private val goblinIds: List<String>
+    private val goblinIds: List<String>,
 ) : RaidController {
 
     override fun transition(
         member: RaidMember,
-        state: RaidState
+        state: RaidState,
     ) {
         member.state = state
 
@@ -40,12 +40,12 @@ class GoblinRaidController(
         patrol(
             member = member,
             route = IceMountainArea.GOBLIN_VILLAGE_TO_FALADOR_CAMP,
-            noCollision = false
+            noCollision = false,
         ) {
             replaceAt(
                 member = member,
                 tile = IceMountainArea.FALADOR_CAMP,
-                nextState = RaidState.MUSTERING
+                nextState = RaidState.MUSTERING,
             )
         }
     }
@@ -59,12 +59,12 @@ class GoblinRaidController(
         patrol(
             member = member,
             route = IceMountainArea.FALADOR_CAMP_TO_GATE,
-            noCollision = true
+            noCollision = true,
         ) {
             replaceAt(
                 member = member,
                 tile = IceMountainArea.FALADOR_GATE,
-                nextState = RaidState.SIEGING_TOWN
+                nextState = RaidState.SIEGING_TOWN,
             )
         }
     }
@@ -81,7 +81,7 @@ class GoblinRaidController(
         member: RaidMember,
         route: List<Tile>,
         noCollision: Boolean,
-        onComplete: () -> Unit
+        onComplete: () -> Unit,
     ) {
         member.npc.mode = Patrol(
             character = member.npc,
@@ -92,14 +92,14 @@ class GoblinRaidController(
                 if (!member.npc.dead) {
                     onComplete()
                 }
-            }
+            },
         )
     }
 
     private fun replaceAt(
         member: RaidMember,
         tile: Tile,
-        nextState: RaidState
+        nextState: RaidState,
     ) {
         member.npc.despawn(0)
 

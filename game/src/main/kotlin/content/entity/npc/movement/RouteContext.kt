@@ -5,7 +5,7 @@ import world.gregs.voidps.type.Tile
 data class RouteContext(
     val tile: Tile,
     val level: Int,
-    val isBot: Boolean
+    val isBot: Boolean,
 )
 
 interface RouteFinder {

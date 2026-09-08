@@ -12,8 +12,6 @@ import world.gregs.voidps.engine.entity.obj.GameObject
 private val routeExecutor: NpcRouteExecutor = NativeNpcRouteExecutor()
 private val bankBooths = mutableSetOf<GameObject>()
 
-
-
 class BankSchedule : Script {
     init {
         objectSpawn("bank_booth_*") {
@@ -28,15 +26,15 @@ class BankSchedule : Script {
                     BANK_CLOSE_TIME,
                     ScheduleAction.Custom {
                         banksOpen = false
-                    }
+                    },
                 ),
                 ScheduleTransition(
                     BANK_OPEN_TIME,
                     ScheduleAction.Custom {
                         banksOpen = true
-                    }
-                )
-            )
+                    },
+                ),
+            ),
         )
 
         NpcSchedules.registry.register(schedule)

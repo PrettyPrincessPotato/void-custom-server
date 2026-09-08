@@ -2,7 +2,7 @@ package content.activity.city_raids
 
 val relationsMap = mapOf(
     setOf(RaidFaction.GOBLIN_TRIBE, RaidFaction.FALADOR) to FactionRelation.HOSTILE,
-    setOf(RaidFaction.FALADOR, RaidFaction.VARROCK) to FactionRelation.ALLIED
+    setOf(RaidFaction.FALADOR, RaidFaction.VARROCK) to FactionRelation.ALLIED,
 )
 
 object RaidFactions {
@@ -10,8 +10,6 @@ object RaidFactions {
 
     fun relation(
         source: RaidFaction,
-        target: RaidFaction
-    ): FactionRelation {
-        return relations.relation(source, target)
-    }
+        target: RaidFaction,
+    ): FactionRelation = relations.relation(source, target)
 }

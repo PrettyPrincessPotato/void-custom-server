@@ -5,10 +5,10 @@ import world.gregs.voidps.engine.entity.character.npc.NPC
 
 sealed interface ScheduleAction {
     data class Travel(
-        val target: NpcRouteTarget
+        val target: NpcRouteTarget,
     ) : ScheduleAction
 
     data class Custom(
-        val handler: (NPC) -> Unit
+        val handler: (NPC) -> Unit,
     ) : ScheduleAction
 }

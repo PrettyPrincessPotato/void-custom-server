@@ -66,21 +66,20 @@ class NpcNavMeshRouteFinder(
         )
         println(
             "NPC route search: " +
-                    "start=${context.tile}, " +
-                    "level=${context.level}, " +
-                    "target=${target.id}, " +
-                    "targetTile=${target.tile}, " +
-                    "targetArea=${target.area}, " +
-                    "navTag=${target.navTag}, " +
-                    "found=$found, " +
-                    "routeLength=${route.size}, " +
-                    "lastTile=${route.lastOrNull()}"
+                "start=${context.tile}, " +
+                "level=${context.level}, " +
+                "target=${target.id}, " +
+                "targetTile=${target.tile}, " +
+                "targetArea=${target.area}, " +
+                "navTag=${target.navTag}, " +
+                "found=$found, " +
+                "routeLength=${route.size}, " +
+                "lastTile=${route.lastOrNull()}",
         )
 
         return route.takeIf { found }
     }
 }
-
 
 class GraphNpcRouteExecutor(
     private val finder: NpcRouteFinder,

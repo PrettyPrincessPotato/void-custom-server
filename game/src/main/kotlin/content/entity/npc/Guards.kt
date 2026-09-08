@@ -10,7 +10,7 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.queue.queue
 
 class Guards : Script {
-    init{
+    init {
         // Blanket catch to have all guards attack random NPCs. Not clean yet but good enough.
         huntNPC("aggressive_npcs") { target ->
             if (id.contains("guard_") && !target.id.contains("guard") && !target.isFamiliar && target.canFight()) {
@@ -34,5 +34,4 @@ class Guards : Script {
             }
         }
     }
-
 }

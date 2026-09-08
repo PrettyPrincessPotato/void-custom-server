@@ -6,7 +6,7 @@ import world.gregs.voidps.engine.entity.character.npc.NPC
 class NpcScheduleController(
     private val npcProvider: () -> NPC?,
     private val routeExecutor: NpcRouteExecutor,
-    scheduleTransitions: List<ScheduleTransition>
+    scheduleTransitions: List<ScheduleTransition>,
 ) {
     private val transitions = scheduleTransitions.sortedBy { it.hour }
     private var lastTransition = -1

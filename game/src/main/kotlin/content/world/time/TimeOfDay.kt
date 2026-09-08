@@ -4,15 +4,15 @@ enum class TimeOfDay {
     DAWN,
     DAY,
     DUSK,
-    NIGHT;
+    NIGHT,
+    ;
 
-    fun next(): TimeOfDay =
-        entries[(ordinal + 1) % entries.size]
+    fun next(): TimeOfDay = entries[(ordinal + 1) % entries.size]
 }
 enum class DarknessLevel {
     NONE,
     ONE,
-    TWO
+    TWO,
 }
 
 fun interface HourChangeListener {
@@ -40,7 +40,6 @@ object WorldTime {
         hourChangeListeners
             .toList()
             .forEach { it.onHourChanged(previousHour, hour) }
-
     }
 
     val timeOfDay: TimeOfDay
@@ -57,4 +56,3 @@ object WorldTime {
             TimeOfDay.NIGHT -> DarknessLevel.TWO
         }
 }
-

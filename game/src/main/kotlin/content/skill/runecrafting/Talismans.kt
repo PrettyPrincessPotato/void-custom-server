@@ -12,11 +12,11 @@ class Talismans(val teleports: ObjectTeleports) : Script {
 
     init {
         itemOption("Locate", "*_talisman") { (item) ->
-            if (item.id == "cosmic_talisman"){
-                if(tile in Areas["zanaris"]){
+            if (item.id == "cosmic_talisman") {
+                if (tile in Areas["zanaris"]) {
                     message("The talisman is pulling towards the ${direction.name.toKebabCase()}.")
                     return@itemOption
-                }  else {
+                } else {
                     message("The talisman is having trouble pin-pointing the location.")
                     return@itemOption
                 }

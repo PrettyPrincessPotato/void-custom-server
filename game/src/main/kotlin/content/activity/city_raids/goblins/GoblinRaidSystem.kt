@@ -11,15 +11,13 @@ import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.type.Tile
 
-
-
 class GoblinRaidSystem(
-    private val raidManager: RaidManager
+    private val raidManager: RaidManager,
 ) {
 
     private val controller = GoblinRaidController(
         raidManager = raidManager,
-        goblinIds = goblinIds.toList()
+        goblinIds = goblinIds.toList(),
     )
 
     fun runGoblinSpawnCycle() {
@@ -30,7 +28,7 @@ class GoblinRaidSystem(
     private fun spawnGoblin(
         tile: Tile,
         gobbo: RaidMember? = null,
-        raidState: RaidState? = null
+        raidState: RaidState? = null,
     ) {
         val npc: NPC
 
@@ -47,7 +45,7 @@ class GoblinRaidSystem(
                 val raid = raidManager.findOrCreateFaladorRaid()
                 val member = raidManager.addMember(
                     raid = raid,
-                    npc = npc
+                    npc = npc,
                 )
                 controller.transition(member, RaidState.TRAVELLING_TO_CAMP)
             }

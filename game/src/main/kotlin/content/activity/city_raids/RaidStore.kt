@@ -40,5 +40,7 @@ class RaidStore {
     fun memberOf(npc: NPC): RaidMember? = membersByNpc[npc]
 
     fun isRaidMember(npc: NPC): Boolean = npc in membersByNpc
-    fun removeRaid(raid: Raid) { raids.remove(raid) }
+    fun removeRaid(raid: Raid) {
+        raids.remove(raid)
+    }
 }

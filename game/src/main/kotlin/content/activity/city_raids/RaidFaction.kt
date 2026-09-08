@@ -4,7 +4,7 @@ val goblinIds = setOf("3264", "3265", "3266", "3267")
 
 data class RaidIdentity(
     val race: RaidRace,
-    val faction: RaidFaction?
+    val faction: RaidFaction?,
 )
 
 enum class RaidRace {
@@ -12,7 +12,7 @@ enum class RaidRace {
     GOBLIN,
     DRAGON,
     DWARF,
-    OGRE
+    OGRE,
 }
 
 enum class RaidFaction {
@@ -21,7 +21,7 @@ enum class RaidFaction {
     FALADOR,
     VARROCK,
     BARBARIAN_SETTLEMENT,
-    DORGESHUUN
+    DORGESHUUN,
 }
 
 val goblin = RaidIdentity(

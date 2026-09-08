@@ -4,5 +4,5 @@ enum class RaidState {
     TRAVELLING_TO_CAMP,
     MUSTERING,
     TRAVELLING_TO_TOWN,
-    SIEGING_TOWN
+    SIEGING_TOWN,
 }
