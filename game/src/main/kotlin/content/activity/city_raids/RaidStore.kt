@@ -26,9 +26,9 @@ class RaidStore {
         membersByNpc[replacement] = member
     }
 
-    fun removeMember(member: RaidMember) {
-        member.raid.members.remove(member)
-        membersByNpc.remove(member.npc)
+    fun removeMember(member: RaidMember?) {
+        member?.raid?.members?.remove(member)
+        membersByNpc.remove(member?.npc ?: return)
 
         if (member.raid.isEmpty()) {
             raids.remove(member.raid)
@@ -40,4 +40,5 @@ class RaidStore {
     fun memberOf(npc: NPC): RaidMember? = membersByNpc[npc]
 
     fun isRaidMember(npc: NPC): Boolean = npc in membersByNpc
+    fun removeRaid(raid: Raid) { raids.remove(raid) }
 }

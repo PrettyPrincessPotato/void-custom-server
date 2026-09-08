@@ -22,9 +22,9 @@ class GoblinRaidSystem(
         goblinIds = goblinIds.toList()
     )
 
-    fun tick() {
+    fun runGoblinSpawnCycle() {
         spawnGoblin(IceMountainArea.GOBLIN_VILLAGE)
-        updateGoblinRaids()
+        advanceMusteringRaids()
     }
 
     private fun spawnGoblin(
@@ -63,7 +63,7 @@ class GoblinRaidSystem(
         }
     }
 
-    private fun updateGoblinRaids() {
+    private fun advanceMusteringRaids() {
         raidManager.allRaids()
             .filter {
                 it.faction == RaidFaction.GOBLIN_TRIBE &&

@@ -34,8 +34,12 @@ class RaidSpawner : Script {
             }
         }
         worldTimerTick(GOBLIN_RAID_TIMER){
-            goblinRaidSystem.tick()
+            goblinRaidSystem.runGoblinSpawnCycle()
             Timer.CONTINUE
+        }
+
+        npcDeath {
+            raidManager.onRaidNpcDeath(this)
         }
     }
 }
