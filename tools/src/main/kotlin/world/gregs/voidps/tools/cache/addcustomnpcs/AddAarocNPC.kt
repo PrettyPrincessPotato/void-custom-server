@@ -33,6 +33,11 @@ object AddAarocNPC {
      * evil twin random event.
      * 69421 is the same, except a different suspect.
      * This implies the existence of a buffer overflow somewhere.
+     *
+     * It's likely not a buffer overflow, but instead an indexing issue. The client expects a maximum number (16 bit?)
+     * but I sent a number WAY TOO HIGH  (69420) so it looped itself back around and displayed a different character entirely.
+     * So to fix either modify the client to somehow accept that which sounds kinda insanely difficult
+     * or we get the last npc ID in the index, add one, and assign aaroc to that. We need to also check if aaroc already exists.
      * */
     private const val NEW_NPC_ID = 16128 // First slot that works for some reason. Slots after may or may not work.
 
