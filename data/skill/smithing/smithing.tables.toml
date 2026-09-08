@@ -5,223 +5,223 @@ xp = "int"
 
 [.adamant_2h_sword]
 level = 40
-xp = 114
+xp = 1350
 
 [.adamant_arrowtips]
 level = 40
-xp = 38
+xp = 450
 
 [.adamant_battleaxe]
 level = 40
-xp = 114
+xp = 1350
 
 [.adamant_bolts_unf]
 level = 40
-xp = 38
+xp = 450
 
 [.adamant_chainbody]
 level = 40
-xp = 114
+xp = 1350
 
 [.adamant_claws]
 level = 40
-xp = 76
+xp = 900
 
 [.adamant_dagger]
 level = 40
-xp = 38
+xp = 450
 
 [.adamant_dart_tip]
 level = 40
-xp = 38
+xp = 450
 
 [.adamant_full_helm]
 level = 40
-xp = 76
+xp = 900
 
 [.adamant_hasta]
 level = 40
-xp = 76
+xp = 900
 
 [.adamant_hatchet]
 level = 40
-xp = 38
+xp = 450
 
 [.adamant_kiteshield]
 level = 40
-xp = 114
+xp = 1350
 
 [.adamant_knife]
 level = 40
-xp = 38
+xp = 450
 
 [.adamant_limbs]
 level = 40
-xp = 38
+xp = 450
 
 [.adamant_longsword]
 level = 40
-xp = 76
+xp = 900
 
 [.adamant_mace]
 level = 40
-xp = 38
+xp = 450
 
 [.adamant_med_helm]
 level = 40
-xp = 38
+xp = 450
 
 [.adamant_nails]
 level = 40
-xp = 38
+xp = 450
 
 [.adamant_pickaxe]
 level = 40
-xp = 61
+xp = 900
 
 [.adamant_platebody]
 level = 40
-xp = 190
+xp = 2250
 
 [.adamant_platelegs]
 level = 40
-xp = 114
+xp = 1350
 
 [.adamant_plateskirt]
 level = 40
-xp = 114
+xp = 1350
 
 [.adamant_scimitar]
 level = 40
-xp = 76
+xp = 900
 
 [.adamant_spear]
 level = 40
-xp = 76
+xp = 900
 
 [.adamant_sq_shield]
 level = 40
-xp = 76
+xp = 900
 
 [.adamant_sword]
 level = 40
-xp = 38
+xp = 114
 
 [.adamant_warhammer]
 level = 40
-xp = 114
+xp = 1350
 
 [.bronze_2h_sword]
 level = 1
-xp = 30
+xp = 375
 
 [.bronze_arrowtips]
 level = 1
-xp = 10
+xp = 125
 
 [.bronze_battleaxe]
 level = 1
-xp = 30
+xp = 375
 
 [.bronze_bolts_unf]
 level = 1
-xp = 10
+xp = 125
 
 [.bronze_chainbody]
 level = 1
-xp = 30
+xp = 375
 
 [.bronze_claws]
 level = 1
-xp = 20
+xp = 250
 
 [.bronze_dagger]
 level = 1
-xp = 10
+xp = 125
 
 [.bronze_dart_tip]
 level = 1
-xp = 10
+xp = 125
 
 [.bronze_full_helm]
 level = 1
-xp = 20
+xp = 250
 
 [.bronze_hasta]
 level = 1
-xp = 20
+xp = 250
 
 [.bronze_hatchet]
 level = 1
-xp = 10
+xp = 125
 
 [.bronze_kiteshield]
 level = 1
-xp = 30
+xp = 375
 
 [.bronze_knife]
 level = 1
-xp = 10
+xp = 125
 
 [.bronze_limbs]
 level = 1
-xp = 10
+xp = 125
 
 [.bronze_longsword]
 level = 1
-xp = 20
+xp = 250
 
 [.bronze_mace]
 level = 1
-xp = 10
+xp = 125
 
 [.bronze_med_helm]
 level = 1
-xp = 10
+xp = 125
 
 [.bronze_nails]
 level = 1
-xp = 10
+xp = 125
 
 [.bronze_pickaxe]
 level = 1
-xp = 20
+xp = 250
 
 [.bronze_platebody]
 level = 1
-xp = 50
+xp = 625
 
 [.bronze_platelegs]
 level = 1
-xp = 30
+xp = 375
 
 [.bronze_plateskirt]
 level = 1
-xp = 30
+xp = 375
 
 [.bronze_scimitar]
 level = 1
-xp = 20
+xp = 250
 
 [.bronze_spear]
 level = 1
-xp = 20
+xp = 250
 
 [.bronze_sq_shield]
 level = 1
-xp = 20
+xp = 250
 
 [.bronze_sword]
 level = 1
-xp = 10
+xp = 125
 
 [.bronze_warhammer]
 level = 1
-xp = 30
+xp = 375
 
 [.bronze_wire]
 level = 1
-xp = 10
+xp = 125
 
 [.cannonball]
 level = 35
@@ -229,452 +229,452 @@ xp = 256
 
 [.iron_2h_sword]
 level = 10
-xp = 42
+xp = 480
 
 [.iron_arrowtips]
 level = 10
-xp = 14
+xp = 160
 
 [.iron_battleaxe]
 level = 10
-xp = 42
+xp = 480
 
 [.iron_bolts_unf]
 level = 10
-xp = 14
+xp = 160
 
 [.iron_chainbody]
 level = 10
-xp = 42
+xp = 480
 
 [.iron_claws]
 level = 10
-xp = 28
+xp = 320
 
 [.iron_dagger]
 level = 10
-xp = 14
+xp = 160
 
 [.iron_dart_tip]
 level = 10
-xp = 14
+xp = 160
 
 [.iron_full_helm]
 level = 10
-xp = 28
+xp = 320
 
 [.iron_hasta]
 level = 10
-xp = 28
+xp = 320
 
 [.iron_hatchet]
 level = 10
-xp = 14
+xp = 160
 
 [.iron_kiteshield]
 level = 10
-xp = 42
+xp = 480
 
 [.iron_knife]
 level = 10
-xp = 14
+xp = 160
 
 [.iron_limbs]
 level = 10
-xp = 14
+xp = 160
 
 [.iron_longsword]
 level = 10
-xp = 28
+xp = 320
 
 [.iron_mace]
 level = 10
-xp = 14
+xp = 160
 
 [.iron_med_helm]
 level = 10
-xp = 14
+xp = 160
 
 [.iron_nails]
 level = 10
-xp = 14
+xp = 160
 
 [.iron_pickaxe]
 level = 10
-xp = 28
+xp = 320
 
 [.iron_platebody]
 level = 10
-xp = 70
+xp = 800
 
 [.iron_platelegs]
 level = 10
-xp = 42
+xp = 480
 
 [.iron_plateskirt]
 level = 10
-xp = 42
+xp = 480
 
 [.iron_scimitar]
 level = 10
-xp = 28
+xp = 320
 
 [.iron_spear]
 level = 10
-xp = 28
+xp = 320
 
 [.iron_spit]
 level = 10
-xp = 14
+xp = 160
 
 [.iron_sq_shield]
 level = 10
-xp = 28
+xp = 320
 
 [.iron_sword]
 level = 10
-xp = 14
+xp = 160
 
 [.iron_warhammer]
 level = 10
-xp = 42
+xp = 480
 
 [.mithril_2h_sword]
 level = 30
-xp = 84
+xp = 1050
 
 [.mithril_arrowtips]
 level = 30
-xp = 28
+xp = 350
 
 [.mithril_battleaxe]
 level = 30
-xp = 84
+xp = 1050
 
 [.mithril_bolts_unf]
 level = 30
-xp = 28
+xp = 350
 
 [.mithril_chainbody]
 level = 30
-xp = 84
+xp = 1050
 
 [.mithril_claws]
 level = 30
-xp = 56
+xp = 700
 
 [.mithril_dagger]
 level = 30
-xp = 28
+xp = 350
 
 [.mithril_dart_tip]
 level = 30
-xp = 28
+xp = 350
 
 [.mithril_full_helm]
 level = 30
-xp = 56
+xp = 700
 
 [.mithril_grapple_tip]
 level = 30
-xp = 28
+xp = 350
 
 [.mithril_hasta]
 level = 30
-xp = 56
+xp = 700
 
 [.mithril_hatchet]
 level = 30
-xp = 28
+xp = 350
 
 [.mithril_kiteshield]
 level = 30
-xp = 84
+xp = 1050
 
 [.mithril_knife]
 level = 30
-xp = 28
+xp = 350
 
 [.mithril_limbs]
 level = 30
-xp = 28
+xp = 350
 
 [.mithril_longsword]
 level = 30
-xp = 56
+xp = 700
 
 [.mithril_mace]
 level = 30
-xp = 28
+xp = 350
 
 [.mithril_med_helm]
 level = 30
-xp = 28
+xp = 350
 
 [.mithril_nails]
 level = 30
-xp = 28
+xp = 350
 
 [.mithril_pickaxe]
 level = 30
-xp = 70
+xp = 700
 
 [.mithril_platebody]
 level = 30
-xp = 140
+xp = 1750
 
 [.mithril_platelegs]
 level = 30
-xp = 84
+xp = 1050
 
 [.mithril_plateskirt]
 level = 30
-xp = 84
+xp = 1050
 
 [.mithril_scimitar]
 level = 30
-xp = 56
+xp = 700
 
 [.mithril_spear]
 level = 30
-xp = 56
+xp = 700
 
 [.mithril_sq_shield]
 level = 30
-xp = 56
+xp = 700
 
 [.mithril_sword]
 level = 30
-xp = 28
+xp = 350
 
 [.mithril_warhammer]
 level = 30
-xp = 84
+xp = 1050
 
 [.oil_lantern_frame]
-level = 26
-xp = 250
+level = 10
+xp = 160
 
 [.rune_2h_sword]
 level = 50
-xp = 156
+xp = 1800
 
 [.rune_arrowtips]
 level = 50
-xp = 52
+xp = 600
 
 [.rune_battleaxe]
 level = 50
-xp = 156
+xp = 1800
 
 [.rune_bolts_unf]
 level = 50
-xp = 52
+xp = 600
 
 [.rune_chainbody]
 level = 50
-xp = 156
+xp = 1800
 
 [.rune_claws]
 level = 50
-xp = 104
+xp = 1200
 
 [.rune_dagger]
 level = 50
-xp = 52
+xp = 600
 
 [.rune_dart_tip]
 level = 50
-xp = 52
+xp = 600
 
 [.rune_full_helm]
 level = 50
-xp = 104
+xp = 1200
 
 [.rune_hasta]
 level = 50
-xp = 104
+xp = 1200
 
 [.rune_hatchet]
 level = 50
-xp = 52
+xp = 600
 
 [.rune_kiteshield]
 level = 50
-xp = 156
+xp = 1800
 
 [.rune_knife]
 level = 50
-xp = 52
+xp = 600
 
 [.rune_limbs]
 level = 50
-xp = 52
+xp = 600
 
 [.rune_longsword]
 level = 50
-xp = 104
+xp = 1200
 
 [.rune_mace]
 level = 50
-xp = 52
+xp = 600
 
 [.rune_med_helm]
 level = 50
-xp = 52
+xp = 600
 
 [.rune_nails]
 level = 50
-xp = 52
+xp = 600
 
 [.rune_pickaxe]
 level = 50
-xp = 104
+xp = 1200
 
 [.rune_platebody]
 level = 50
-xp = 260
+xp = 3000
 
 [.rune_platelegs]
 level = 50
-xp = 156
+xp = 1800
 
 [.rune_plateskirt]
 level = 50
-xp = 156
+xp = 1800
 
 [.rune_scimitar]
 level = 50
-xp = 104
+xp = 1200
 
 [.rune_spear]
 level = 50
-xp = 104
+xp = 1200
 
 [.rune_sq_shield]
 level = 50
-xp = 104
+xp = 1200
 
 [.rune_sword]
 level = 50
-xp = 52
+xp = 600
 
 [.rune_warhammer]
 level = 50
-xp = 156
+xp = 1800
 
 [.silver_bolts_unf]
-level = 21
-xp = 500
+level = 20
+xp = 274
 
 [.steel_2h_sword]
 level = 20
-xp = 60
+xp = 882
 
 [.steel_arrowtips]
 level = 20
-xp = 20
+xp = 274
 
 [.steel_battleaxe]
 level = 20
-xp = 60
+xp = 882
 
 [.steel_bolts_unf]
 level = 20
-xp = 20
+xp = 274
 
 [.steel_chainbody]
 level = 20
-xp = 60
+xp = 882
 
 [.steel_claws]
 level = 20
-xp = 40
+xp = 548
 
 [.steel_dagger]
 level = 20
-xp = 20
+xp = 274
 
 [.steel_dart_tip]
 level = 20
-xp = 20
+xp = 274
 
 [.steel_full_helm]
 level = 20
-xp = 40
+xp = 548
 
 [.steel_hasta]
 level = 20
-xp = 40
+xp = 548
 
 [.steel_hatchet]
 level = 20
-xp = 20
+xp = 274
 
 [.steel_kiteshield]
 level = 20
-xp = 60
+xp = 882
 
 [.steel_knife]
 level = 20
-xp = 20
+xp = 274
 
 [.steel_limbs]
 level = 20
-xp = 20
+xp = 274
 
 [.steel_longsword]
 level = 20
-xp = 40
+xp = 548
 
 [.steel_mace]
 level = 20
-xp = 20
+xp = 274
 
 [.steel_med_helm]
 level = 20
-xp = 20
+xp = 274
 
 [.steel_nails]
 level = 20
-xp = 20
+xp = 274
 
 [.steel_pickaxe]
 level = 20
-xp = 40
+xp = 548
 
 [.steel_platebody]
 level = 20
-xp = 100
+xp = 1370
 
 [.steel_platelegs]
 level = 20
-xp = 60
+xp = 882
 
 [.steel_plateskirt]
 level = 20
-xp = 60
+xp = 882
 
 [.steel_scimitar]
 level = 20
-xp = 40
+xp = 548
 
 [.steel_spear]
 level = 20
-xp = 40
+xp = 548
 
 [.steel_sq_shield]
 level = 20
-xp = 40
+xp = 548
 
 [.steel_studs]
 level = 20
-xp = 20
+xp = 274
 
 [.steel_sword]
 level = 20
-xp = 20
+xp = 274
 
 [.steel_warhammer]
 level = 20
-xp = 60
+xp = 882
