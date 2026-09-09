@@ -19,7 +19,6 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.engine.inv.inventory
-import world.gregs.voidps.engine.queue.queue as enqueue
 
 private const val SIN_MISTER_STRING_ID = "sin_mister"
 
