@@ -15,7 +15,6 @@ class RaidManager(
 
     fun allRaids(): List<Raid> = store.allRaids()
     fun memberOf(npc: NPC): RaidMember? = store.memberOf(npc)
-    // fun isRaidMember(npc: NPC): Boolean = store.isRaidMember(npc)
 
     fun identityOf(npc: NPC): RaidIdentity? = identityResolver.identityOf(npc)
     fun findOrCreateFaladorRaid(): Raid = raidFactory.findOrCreateFaladorRaid(store)
