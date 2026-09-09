@@ -1,4 +1,4 @@
-package world.gregs.voidps.tools.cache.addcustomnpcs
+package world.gregs.voidps.tools.cache.custompatches.addcustomnpcs
 
 import com.displee.cache.CacheLibrary
 import world.gregs.voidps.buffer.read.ArrayReader
