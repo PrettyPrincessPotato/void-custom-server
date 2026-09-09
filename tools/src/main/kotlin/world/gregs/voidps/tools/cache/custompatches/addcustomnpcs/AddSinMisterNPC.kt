@@ -13,7 +13,7 @@ import world.gregs.voidps.cache.definition.encoder.NPCEncoder
  * This is a copy and paste of AddAarocNPC
  * See that for warnings and notes.
  */
-object AddGhostBankerNPC {
+object AddSinMisterNPC {
 
     // ---- Configuration --------------------------------------------------
     // Change these values to customize your new NPC.
@@ -25,7 +25,7 @@ object AddGhostBankerNPC {
     private const val COPY_FROM_ID = 1702
 
     /** The name shown when hovering or examining the NPC. */
-    private const val NEW_NPC_NAME = "Ghost Banker"
+    private const val NEW_NPC_NAME = "Sin Mister"
 
     /**
      * Right-click options (slots 0-4). Slot 5 is always "Examine" by default.
@@ -114,13 +114,13 @@ object AddGhostBankerNPC {
         println()
         println("1. Add to data/area/wilderness/wilderness.npcs.toml:")
         println()
-        println("   [lonely_ghost_banker]")
+        println("   [sin_mister]")
         println("   id = $actualId")
-        println("   examine = \"He's not very transparent on where he actually keeps the bank...\"")
+        println("   examine = \"He's got nothing to hide.\"")
         println()
         println("2. Add a spawn in wilderness.npc-spawns.toml:")
         println()
-        println("   { id = \"lonely_ghost_banker\", x = 3236, y = 3618, members = true }")
+        println("   { id = \"sin_mister\", x = 3236, y = 3618, members = true }")
         println()
         if (actualId != NEW_NPC_ID) {
             println("NOTE: Requested ID $NEW_NPC_ID was in use; used $actualId instead.")
