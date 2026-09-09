@@ -2,6 +2,10 @@ package content.activity.city_raids
 
 import content.activity.city_raids.goblins.GoblinRaidFactory
 import world.gregs.voidps.engine.entity.character.npc.NPC
+import world.gregs.voidps.engine.timer.toTicks
+import world.gregs.voidps.type.Tile
+import java.util.concurrent.TimeUnit
+import world.gregs.voidps.engine.queue.queue as enqueue
 
 class RaidManager(
     private val store: RaidStore = RaidStore(),
@@ -29,6 +33,7 @@ class RaidManager(
         val member = memberOf(npc) ?: return
         val raid = member.raid
 
+        member.npc.despawn(0)
         removeMember(member)
 
         if (raid.members.isEmpty()) {
