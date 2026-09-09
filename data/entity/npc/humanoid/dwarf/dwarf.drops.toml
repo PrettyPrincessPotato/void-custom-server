@@ -16,12 +16,14 @@ drops = [
 ]
 
 [dwarf_secondary]
-roll = 128
+roll = 146
 drops = [
     { id = "bronze_pickaxe", chance = 13 },
     { id = "bronze_med_helm", chance = 4 },
     { id = "bronze_battleaxe", chance = 2 },
+    { id = "bronze_defender", chance = 12 },
     { id = "iron_battleaxe" },
+    { id = "iron_defender", chance = 6 },
     { id = "nothing", chance = 30, members = false },
     { id = "nothing", chance = 23, members = true },
     { id = "bronze_bolts", min = 2, max = 12, chance = 7, members = true },
@@ -49,10 +51,12 @@ drops = [
 ]
 
 [chaos_dwarf_secondary]
-roll = 128
+roll = 132
 drops = [
   { id = "steel_full_helm", chance = 2 },
+  { id = "steel_defender", chance = 2 },
   { id = "mithril_longsword" },
+    { id = "mithril_defender", chance = 2 },
   { id = "mithril_sq_shield" },
   { id = "law_rune", amount = 3, chance = 4 },
   { id = "air_rune", amount = 24, chance = 3 },

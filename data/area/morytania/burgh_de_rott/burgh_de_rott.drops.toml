@@ -6,7 +6,7 @@ drops = [
 ]
 
 [vampyre_juvinate_secondary]
-roll = 1024
+roll = 1056
 drops = [
     { id = "staff_of_air", chance = 32 },
     { id = "staff_of_fire", chance = 32 },
@@ -14,12 +14,14 @@ drops = [
     { id = "black_battleaxe", chance = 32 },
     { id = "black_2h_sword", chance = 32 },
     { id = "mithril_battleaxe", chance = 32 },
+    { id = "mithril_defender", chance = 32 },
     { id = "mithril_2h_sword", chance = 32 },
     { id = "mithril_scimitar", chance = 32 },
     { id = "mithril_longsword", chance = 32 },
     { id = "mithril_warhammer", chance = 32 },
     { id = "adamant_hatchet", chance = 32 },
     { id = "adamant_sword", chance = 32 },
+    { id = "adamant_defender", chance = 32 },
     { id = "adamant_mace", chance = 32 },
     { id = "adamant_scimitar", chance = 32 },
     { id = "steel_plateskirt", chance = 32 },

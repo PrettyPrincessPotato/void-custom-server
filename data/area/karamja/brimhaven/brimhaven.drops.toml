@@ -6,7 +6,7 @@ drops = [
 ]
 
 [thief_secondary]
-roll = 1024
+roll = 1088
 drops = [
     { id = "bronze_arrow", chance = 64 },
     { id = "cabbage", chance = 64 },
@@ -17,6 +17,7 @@ drops = [
     { id = "fire_rune", chance = 64 },
     { id = "fishing_bait", chance = 64 },
     { id = "iron_dagger", chance = 64 },
+    { id = "bronze_defender", chance = 64 },
     { id = "mind_rune", chance = 64 },
     { id = "sling", chance = 64 },
 ]

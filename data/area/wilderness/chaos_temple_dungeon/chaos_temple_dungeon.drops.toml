@@ -6,13 +6,14 @@ drops = [
 ]
 
 [armoured_zombie_secondary]
-roll = 1024
+roll = 1056
 drops = [
     { id = "coins", min = 50, max = 2500, chance = 64 },
     { id = "pure_essence", min = 3, max = 16, chance = 64 },
     { id = "zombie_bone", chance = 64 },
     { id = "mithril_arrow", amount = 4, chance = 32 },
     { id = "steel_mace", chance = 32 },
+    { id = "steel_defender", chance = 30 },
     { id = "adamant_kiteshield", chance = 32 },
     { id = "cosmic_rune", amount = 6, chance = 32 },
     { id = "chaos_rune", amount = 12, chance = 32 },
@@ -42,6 +43,7 @@ drops = [
     { id = "shield_left_half", chance = 2 },
     { id = "rune_spear", chance = 2 },
     { id = "rune_javelin", chance = 2 },
+    { id = "rune_defender", chance = 2},
     { id = "rune_full_helm", chance = 2 },
     { id = "loop_half_of_a_key", chance = 2 },
     { id = "tooth_half_of_a_key", chance = 2 },

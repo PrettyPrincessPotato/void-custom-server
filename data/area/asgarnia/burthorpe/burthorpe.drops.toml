@@ -41,10 +41,11 @@ drops = [
 ]
 
 [citizen_secondary]
-roll = 128
+roll = 129
 drops = [
     { id = "bronze_med_helm", chance = 2 },
     { id = "iron_dagger" },
+    { id = "bronze_defender", chance = 1 },
     { id = "bronze_bolts", min = 2, max = 12, chance = 22 },
     { id = "bronze_arrow", amount = 7, chance = 3 },
     { id = "earth_rune", amount = 4, chance = 2 },
@@ -71,11 +72,12 @@ drops = [
 ]
 
 [soldier_burthorpe_secondary]
-roll = 128
+roll = 138
 drops = [
     { id = "steel_full_helm" },
     { id = "black_dart", amount = 6, chance = 9 },
     { id = "black_knife", amount = 6, chance = 13 },
+    { id = "steel_defender", chance = 10 },
     { id = "steel_claws", chance = 2 },
     { id = "black_claws" },
     { id = "steel_bar" },

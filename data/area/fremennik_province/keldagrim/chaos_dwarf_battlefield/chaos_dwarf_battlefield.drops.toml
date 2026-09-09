@@ -7,7 +7,7 @@ drops = [
 ]
 
 [black_guard_secondary]
-roll = 1024
+roll = 1084
 drops = [
     { id = "bronze_med_helm", chance = 64 },
     { id = "coins", min = 4, max = 42, chance = 64 },
@@ -16,8 +16,10 @@ drops = [
     { id = "bronze_battleaxe", chance = 32 },
     { id = "bronze_bolts", amount = 6, chance = 32 },
     { id = "bronze_warhammer", chance = 32 },
+    { id = "bronze_defender", chance = 30 },
     { id = "bronze_pickaxe", chance = 32 },
     { id = "iron_battleaxe", chance = 32 },
+    { id = "iron_defender", chance = 30 },
     { id = "black_warhammer", chance = 32 },
     { id = "uncut_sapphire", chance = 32 },
     { id = "uncut_emerald", chance = 32 },
@@ -107,11 +109,13 @@ drops = [
 ]
 
 [black_guard_berserker_secondary]
-roll = 1024
+roll = 1084
 drops = [
     { id = "coins", min = 35, max = 57, chance = 64 },
     { id = "bronze_warhammer", chance = 32 },
+    { id = "bronze_defender", chance = 30 },
     { id = "iron_warhammer", chance = 32 },
+    { id = "steel_defender", chance = 30 },
     { id = "steel_warhammer", chance = 32 },
     { id = "black_warhammer", chance = 32 },
     { id = "uncut_sapphire", chance = 32 },
@@ -138,7 +142,7 @@ drops = [
 ]
 
 [chaos_dwogre_secondary]
-roll = 1045
+roll = 1075
 drops = [
     { id = "chaos_rune", amount = 20, chance = 64 },
     { id = "strawberry_seed", chance = 64 },
@@ -153,6 +157,7 @@ drops = [
     { id = "muddy_key", chance = 64 },
     { id = "mithril_bar", chance = 64 },
     { id = "mithril_longsword", chance = 32 },
+    { id = "mithril_defender", chance = 30 },
     { id = "mithril_sq_shield", chance = 32 },
     { id = "poison_ivy_seed", chance = 32 },
     { id = "lantadyme_seed", chance = 32 },

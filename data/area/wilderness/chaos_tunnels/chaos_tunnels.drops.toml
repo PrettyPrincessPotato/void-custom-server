@@ -93,10 +93,12 @@ drops = [
 ]
 
 [dust_devil_secondary]
-roll = 32768
+roll = 33668
 drops = [
     { id = "adamant_hatchet", chance = 768 },
+    { id = "adamant_defender", chance = 500 },
     { id = "rune_dagger", chance = 512 },
+    { id = "rune_defender", chance = 400 },
     { id = "red_dragonhide_vambraces", chance = 512 },
     { id = "black_dragonhide_vambraces", chance = 256 },
     { id = "air_battlestaff", chance = 512 },

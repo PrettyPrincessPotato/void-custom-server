@@ -7,9 +7,10 @@ drops = [
 ]
 
 [canifis_werewolf_secondary]
-roll = 512
+roll = 532
 drops = [
     { id = "steel_hatchet", chance = 10 },
+    { id = "steel_defender", chance = 20 },
     { id = "steel_arrow", amount = 50, chance = 10 },
     { id = "steel_arrow_p", amount = 5, chance = 10 },
     { table = "herb_drop_table", chance = 2 },
