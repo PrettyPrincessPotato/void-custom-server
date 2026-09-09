@@ -3,7 +3,6 @@ package content.skill.smithing
 import com.github.michaelbull.logging.InlineLogger
 import content.entity.player.dialogue.type.intEntry
 import content.entity.player.dialogue.type.statement
-import content.quest.quest
 import net.pearx.kasechange.toSentenceCase
 import net.pearx.kasechange.toTitleCase
 import world.gregs.voidps.engine.Script
