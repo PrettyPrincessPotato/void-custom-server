@@ -2,10 +2,6 @@ package content.activity.city_raids
 
 import content.activity.city_raids.goblins.GoblinRaidFactory
 import world.gregs.voidps.engine.entity.character.npc.NPC
-import world.gregs.voidps.engine.timer.toTicks
-import world.gregs.voidps.type.Tile
-import java.util.concurrent.TimeUnit
-import world.gregs.voidps.engine.queue.queue as enqueue
 
 class RaidManager(
     private val store: RaidStore = RaidStore(),
