@@ -20,8 +20,7 @@ import world.gregs.voidps.cache.definition.encoder.NPCEncoder
  * After running this script, define the NPC in a .npcs.toml file and add a spawn
  * in a .npc-spawns.toml file. See the printed instructions after running.
  *
- * Run from project root: gradle tools:addCustomNPC
- * Or run directly via IDE main function.
+ * Run directly via IDE main function.
  */
 object AddAarocNPC {
 
