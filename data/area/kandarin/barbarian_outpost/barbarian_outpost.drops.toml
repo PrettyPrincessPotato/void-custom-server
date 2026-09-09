@@ -8,9 +8,10 @@ drops = [
 ]
 
 [barbarian_low_secondary]
-roll = 128
+roll = 132
 drops = [
     { id = "bronze_hatchet", chance = 6 },
+    { id = "bronze_hasta", chance = 5 },
     { id = "staff", chance = 4 },
     { id = "iron_mace" },
     { id = "chaos_rune", amount = 2, chance = 4 },
@@ -42,11 +43,13 @@ drops = [
 ]
 
 [barbarian_high_secondary]
-roll = 128
+roll = 147
 drops = [
     { id = "iron_hatchet", chance = 6 },
     { id = "bronze_battleaxe", chance = 4 },
     { id = "iron_mace" },
+    { id = "bronze_hasta", chance = 15 },
+    { id = "iron_hasta", chance = 5 },
     { id = "bronze_arrow", amount = 10, chance = 4 },
     { id = "chaos_rune", amount = 3, chance = 4 },
     { id = "iron_arrow", amount = 8, chance = 3 },
