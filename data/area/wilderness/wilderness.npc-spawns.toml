@@ -213,6 +213,7 @@ spawns = [
     { id = "poison_spider", x = 3069, y = 10259 },
     { id = "king_scorpion", x = 3069, y = 3836 },
     { id = "king_scorpion", x = 3070, y = 3829 },
+    { id = "sin_mister", x = 3236, y = 3618 },
     { id = "king_scorpion", x = 3075, y = 3848 },
     { id = "king_scorpion", x = 3090, y = 3841 },
     { id = "moss_giant_2", x = 3138, y = 3797 },
