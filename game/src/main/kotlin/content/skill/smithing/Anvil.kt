@@ -116,9 +116,9 @@ class Anvil : Script {
             interfaces.sendVisibility("smithing", "bullseye_lantern", metal == "steel")
             interfaces.sendItem("smithing", "lantern", ItemDefinitions.get("bullseye_lantern_frame").id, 1)
             interfaces.sendVisibility("smithing", "grapple", metal == "mithril")
-            interfaces.sendVisibility("smithing", "darts", quest("tourist_trap") == "completed")
-            interfaces.sendVisibility("smithing", "claw", quest("death_plateau") == "completed")
-            interfaces.sendVisibility("smithing", "pickaxes", quest("perils_of_ice_mountain") == "completed")
+            interfaces.sendVisibility("smithing", "darts", true)
+            interfaces.sendVisibility("smithing", "claw", true)
+            interfaces.sendVisibility("smithing", "pickaxes", true)
         }
 
         itemOnObjectOperate("hammer", "anvil*", arrive = false) {
