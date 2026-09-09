@@ -116,7 +116,7 @@ object AddGhostBankerNPC {
         println()
         println("   [lonely_ghost_banker]")
         println("   id = $actualId")
-        println("   examine = \"He seems to be a wanderer. Yeah, a wanderer. He roams around around around around.\"")
+        println("   examine = \"He's not very transparent on where he actually keeps the bank...\"")
         println()
         println("2. Add a spawn in wilderness.npc-spawns.toml:")
         println()
