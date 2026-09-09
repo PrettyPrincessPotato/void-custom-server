@@ -19,7 +19,7 @@ object AddSinMisterNPC {
     // Change these values to customize your new NPC.
 
     /** A cache ID that doesn't collide with existing NPCs. Higher is safer. */
-    private const val NEW_NPC_ID = 16128 // First slot that works for some reason. Slots after may or may not work.
+    private const val NEW_NPC_ID = 16256 // Actual ID for Sin Mister
 
     /** NPC ID to copy appearance from. 1702 = ghost_banker_port_phasmatys. */
     private const val COPY_FROM_ID = 1702
