@@ -79,7 +79,7 @@ object Target {
             return false
         }
         if (source is Player && target is Player) {
-            val disablePvP = true // TODO: Move to a property under main branch and make a PR
+            val disablePvP = true // TODO: Move to a server.properties setting under main branch and make a PR
             if (disablePvP){
                 if (message) source.message("The Administrator has disabled PVP on this server.")
                 return false
