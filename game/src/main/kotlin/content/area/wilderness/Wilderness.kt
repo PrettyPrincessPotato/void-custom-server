@@ -31,12 +31,10 @@ val Character.wildernessLevel: Int
     }
 
 val Character.inPvp: Boolean
-    get() = false
-    //get() = get("in_pvp", false)
+    get() = get("in_pvp", false)
 
 val Character.inWilderness: Boolean
-    get() = false
-    //get() = get("in_wilderness", false)
+    get() = get("in_wilderness", false)
 
 /**
  * True when wilderness-style PvP consequences apply: combat-start skull and full item drops on
