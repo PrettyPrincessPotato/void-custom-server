@@ -15,6 +15,7 @@ import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap
 import it.unimi.dsi.fastutil.objects.ObjectArrayList
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.variable.hasClock
+import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.definition.NPCDefinitions
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.mode.PauseMode
@@ -79,9 +80,8 @@ object Target {
             return false
         }
         if (source is Player && target is Player) {
-            val disablePvP = true // TODO: Move to a server.properties setting under main branch and make a PR
-            if (disablePvP){
-                if (message) source.message("The administrator has disabled player-vs-player on this server.")
+            if (Settings["combat.pvp", false]){
+                if (message) source.message("Player-vs-player has been disabled in this world.")
                 return false
             }
             if (!source.inPvp && !source.inWilderness) {
