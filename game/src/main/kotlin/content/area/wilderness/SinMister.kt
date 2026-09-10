@@ -7,10 +7,10 @@ import content.entity.npc.movement.NpcNavMeshRouteFinder
 import content.entity.npc.movement.NpcRouteExecutor
 import content.entity.player.bank.pin.openBank
 import content.entity.player.dialogue.Confused
-import content.entity.player.dialogue.Evil
 import content.entity.player.dialogue.Happy
 import content.entity.player.dialogue.Idle
 import content.entity.player.dialogue.Neutral
+import content.entity.player.dialogue.Shifty
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
@@ -50,7 +50,7 @@ class SinMister(graph: NavigationGraph) : Script {
                         npc<Neutral>("Why, I'm a banker of course!")
                         choice {
                             option<Confused>("What's a ghost banker doing out here?") {
-                                npc<Evil>("Let's just say I'm... Paying off a debt.")
+                                npc<Shifty>("Let's just say I'm... Paying off a debt.")
                                 choice {
                                     option<Happy>("Well that doesn't at all sound ominous. Can I see my bank please?") {
                                         openBank()
