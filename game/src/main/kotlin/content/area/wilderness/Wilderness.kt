@@ -31,10 +31,12 @@ val Character.wildernessLevel: Int
     }
 
 val Character.inPvp: Boolean
-    get() = get("in_pvp", false)
+    get() = false
+    //get() = get("in_pvp", false)
 
 val Character.inWilderness: Boolean
-    get() = get("in_wilderness", false)
+    get() = false
+    //get() = get("in_wilderness", false)
 
 /**
  * True when wilderness-style PvP consequences apply: combat-start skull and full item drops on
@@ -42,7 +44,8 @@ val Character.inWilderness: Boolean
  * only gates "can you attack here" and is also true in safer arenas (FFA safe, etc.).
  */
 val Character.inFullPvp: Boolean
-    get() = inWilderness || tile in Areas["clan_wars_ffa_dangerous_arena"]
+    get() = false
+    //get() = inWilderness || tile in Areas["clan_wars_ffa_dangerous_arena"]
 
 val Character.inMultiCombat: Boolean
     get() = contains("in_multi_combat")
