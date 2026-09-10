@@ -68,6 +68,7 @@ class SinMister(graph: NavigationGraph) : Script {
                 player<Idle>("Why can't I understand you? Oh, yeah, it might help if I wear this amulet!")
             } else {
                 sinMister?.say("Woo.. Wooo!!")
+                sinMister?.face(this)
                 message("Sadly, you don't speak ghost.")
             }
         }
@@ -79,6 +80,7 @@ class SinMister(graph: NavigationGraph) : Script {
                 player<Idle>("Why can't I understand you? Oh, yeah, it might help if I wear this amulet!")
             } else {
                 sinMister?.say("Woo.. Wooo!!")
+                sinMister?.face(this)
                 message("Sadly, you don't speak ghost.")
             }
         }
