@@ -43,7 +43,7 @@ class SinMister(graph: NavigationGraph) : Script {
             // NpcSchedules.registry.register(schedule) TEMPORARILY DISABLED
         }
         npcOperate("Talk-to", SIN_MISTER_STRING_ID) {
-            if(equipment.contains("ghostspeak_amulet")) {
+            if (equipment.contains("ghostspeak_amulet")) {
                 npc<Neutral>("Hello.")
                 choice {
                     option<Confused>("What's a ghost doing out here?") {
@@ -58,7 +58,6 @@ class SinMister(graph: NavigationGraph) : Script {
                                 }
                             }
                         }
-
                     }
                     option("I would like to open my bank account, please.") {
                         openBank()
@@ -73,7 +72,7 @@ class SinMister(graph: NavigationGraph) : Script {
             }
         }
         npcOperate("Bank", SIN_MISTER_STRING_ID) {
-            if(equipment.contains("ghostspeak_amulet")){
+            if (equipment.contains("ghostspeak_amulet")) {
                 openBank()
             } else if (inventory.contains("ghostspeak_amulet")) {
                 npc<Idle>("Wooo wooo wooooo!")
@@ -84,5 +83,4 @@ class SinMister(graph: NavigationGraph) : Script {
             }
         }
     }
-
 }
