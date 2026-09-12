@@ -7,11 +7,10 @@ import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
 import content.entity.player.dialogue.type.statement
 import content.quest.member.gertrudes_cat.GERTRUDES_CAT_STRING_NAME
-import content.quest.member.gertrudes_cat.KITTEN_CRATES
-import content.quest.member.gertrudes_cat.KittenCrates
 import content.quest.quest
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.data.definition.Areas
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.inv.add
@@ -25,8 +24,15 @@ const val FLUFFS_MILK_VAR = "gertrudes_cat_fluffs_milk"
 const val KITTENS_HIDING_SPOT = "kittens_hiding_here"
 
 class Fluffs : Script {
+    private var kittenCrates = mutableSetOf<Tile>()
 
     init {
+        objectSpawn("crate*") { // Not getting called, need to find ID and assign or look to see if you can "search" the object itself and look at all objects
+            if(this.tile in Areas["kitten_search_area"]){
+                kittenCrates += tile
+            }
+        }
+
         itemOnNPCOperate("doogle_sardine", FLUFFS_STRING_ID) {
             foundCatCheck()
             when(quest(GERTRUDES_CAT_STRING_NAME)){
@@ -157,7 +163,9 @@ class Fluffs : Script {
     private suspend fun Player.yoinkCatFoundFluffs(cat: NPC) {
         if(get(FLUFFS_FED_VAR, false) && get(FLUFFS_MILK_VAR, false)){
             doNotTheCat(cat)
-            val crate = KITTEN_CRATES.random()
+
+            val crate = kittenCrates.random()
+
             set(KITTENS_HIDING_SPOT, crate)
             statement("Fluffs seems afraid to leave. \nIn the Lumber Yard below you can hear kittens mewing.")
             return

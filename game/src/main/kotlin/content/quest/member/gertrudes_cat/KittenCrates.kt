@@ -5,14 +5,15 @@ import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.data.definition.Areas
 import world.gregs.voidps.type.Tile
 
-var KITTEN_CRATES = mutableSetOf<Tile>()
+
 
 class KittenCrates : Script {
+    private var kittenCrates = mutableSetOf<Tile>()
 
     init {
         objectSpawn("Crate") {
             if(this.tile in Areas["kitten_search_area"]){
-                KITTEN_CRATES += tile
+                kittenCrates += tile
             }
         }
         objectOperate("Search", "Crate") { interact ->
