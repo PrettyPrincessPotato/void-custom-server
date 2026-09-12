@@ -1,6 +1,5 @@
 package content.area.wilderness
 
-import world.gregs.voidps.engine.data.definition.Areas
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.combatLevel
@@ -43,7 +42,7 @@ val Character.inWilderness: Boolean
  */
 val Character.inFullPvp: Boolean
     get() = false
-    //get() = inWilderness || tile in Areas["clan_wars_ffa_dangerous_arena"]
+// get() = inWilderness || tile in Areas["clan_wars_ffa_dangerous_arena"]
 
 val Character.inMultiCombat: Boolean
     get() = contains("in_multi_combat")

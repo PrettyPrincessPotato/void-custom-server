@@ -8,18 +8,13 @@ import content.entity.npc.movement.NpcRouteExecutor
 import content.entity.player.bank.pin.openBank
 import content.entity.player.dialogue.Confused
 import content.entity.player.dialogue.Happy
-import content.entity.player.dialogue.Idle
 import content.entity.player.dialogue.Neutral
 import content.entity.player.dialogue.Shifty
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
-import content.entity.player.dialogue.type.player
 import content.quest.member.ghosts_ahoy.checkGhostspeak
 import world.gregs.voidps.engine.Script
-import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.npc.NPC
-import world.gregs.voidps.engine.inv.equipment
-import world.gregs.voidps.engine.inv.inventory
 
 private const val SIN_MISTER_STRING_ID = "sin_mister"
 
