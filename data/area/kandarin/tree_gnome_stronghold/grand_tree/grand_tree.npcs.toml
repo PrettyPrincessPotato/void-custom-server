@@ -68,6 +68,7 @@ id = 5064
 
 [rometti_grand_tree]
 id = 601
+dialogue = "old"
 examine = "It's a well-dressed tree gnome."
 
 [gulluck_grand_tree]
