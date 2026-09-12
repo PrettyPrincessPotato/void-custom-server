@@ -18,7 +18,6 @@ import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.type.Tile
-import world.gregs.voidps.type.Region
 
 private const val FLUFFS_STRING_ID = "fluffs_normal"
 const val FLUFFS_FED_VAR = "gertrudes_cat_fluffs_fed"
