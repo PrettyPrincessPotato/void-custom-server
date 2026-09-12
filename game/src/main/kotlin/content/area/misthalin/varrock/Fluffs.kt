@@ -13,10 +13,12 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.data.definition.Areas
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.type.Tile
+import world.gregs.voidps.type.Region
 
 private const val FLUFFS_STRING_ID = "fluffs_normal"
 const val FLUFFS_FED_VAR = "gertrudes_cat_fluffs_fed"
@@ -25,15 +27,9 @@ const val KITTENS_HIDING_SPOT = "kittens_hiding_here"
 
 class Fluffs : Script {
     private var kittenCrates = mutableSetOf<Tile>()
+    private val kittenSearchArea = Areas["kitten_search_area"]
 
     init {
-        objectSpawn("crate_17") {
-            println("Crate 17 spawned")
-            if(this.tile in Areas["kitten_search_area"]){
-                println("Found match $this at " + this.tile)
-                kittenCrates += tile
-            }
-        }
 
         itemOnNPCOperate("doogle_sardine", FLUFFS_STRING_ID) {
             foundCatCheck()
@@ -94,6 +90,15 @@ class Fluffs : Script {
                 else -> dontBotherCat()
             }
         }
+    }
+
+    private fun discoverKittenCrates() {
+        kittenCrates += Areas["kitten_search_area"]
+            .flatMap { tile ->
+                GameObjects.at(tile)
+                    .filter { it.id == "crate_17" }
+                    .map { it.tile }
+            }
     }
 
     private suspend fun Player.checkCanFeed() {
@@ -166,9 +171,11 @@ class Fluffs : Script {
         if(get(FLUFFS_FED_VAR, false) && get(FLUFFS_MILK_VAR, false)){
             doNotTheCat(cat)
 
+            discoverKittenCrates()
             val crate = kittenCrates.random()
-
             set(KITTENS_HIDING_SPOT, crate)
+            println("Your cat is hiding at $crate")
+
             statement("Fluffs seems afraid to leave. \nIn the Lumber Yard below you can hear kittens mewing.")
             return
         }
