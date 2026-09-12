@@ -56,7 +56,7 @@ class Fluffs : Script {
             foundCatCheck()
             when(quest(GERTRUDES_CAT_STRING_NAME)) {
                 "completed" -> dontBotherCat()
-                else -> message("<red>Fluffs regards you with distain.")
+                else -> message("<red>Fluffs regards you with disdain.")
             }
         }
         npcOperate("Talk-to", FLUFFS_STRING_ID) { interact ->
