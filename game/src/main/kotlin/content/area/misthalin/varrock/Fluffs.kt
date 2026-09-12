@@ -189,7 +189,7 @@ class Fluffs : Script {
         delay(1)
         cat.say("Prr...")
         delay(1)
-        statement("Seems like the cat doesn't hate you anymore.")
+        statement("Seems like Fluffs doesn't hate you anymore.")
     }
 
     private suspend fun Player.strokeCatFoundFluffs(cat: NPC) {
