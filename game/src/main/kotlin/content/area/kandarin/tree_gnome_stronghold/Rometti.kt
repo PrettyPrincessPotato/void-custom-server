@@ -3,7 +3,6 @@ package content.area.kandarin.tree_gnome_stronghold
 import content.entity.npc.shop.openShop
 import content.entity.player.dialogue.Happy
 import content.entity.player.dialogue.Neutral
-import content.entity.player.dialogue.No
 import content.entity.player.dialogue.Yes
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
@@ -16,7 +15,7 @@ private const val ROMETTIS_SHOP_STRING_NAME = "romettis_fine_fashions"
 /**
  * Dialogue Source: https://oldschool.runescape.wiki/w/Transcript:Rometti
  * Identical between RS3 and OSRS.
-  */
+ */
 
 class Rometti : Script {
     init {
