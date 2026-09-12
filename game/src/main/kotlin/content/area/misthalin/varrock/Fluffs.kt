@@ -27,8 +27,10 @@ class Fluffs : Script {
     private var kittenCrates = mutableSetOf<Tile>()
 
     init {
-        objectSpawn("crate*") { // Not getting called, need to find ID and assign or look to see if you can "search" the object itself and look at all objects
+        objectSpawn("crate_17") {
+            println("Crate 17 spawned")
             if(this.tile in Areas["kitten_search_area"]){
+                println("Found match $this at " + this.tile)
                 kittenCrates += tile
             }
         }
