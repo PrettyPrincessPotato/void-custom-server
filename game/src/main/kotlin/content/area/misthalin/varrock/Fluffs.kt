@@ -26,7 +26,6 @@ const val KITTENS_HIDING_SPOT = "kittens_hiding_here"
 
 class Fluffs : Script {
     private var kittenCrates = mutableSetOf<Tile>()
-    private val kittenSearchArea = Areas["kitten_search_area"]
 
     init {
 
