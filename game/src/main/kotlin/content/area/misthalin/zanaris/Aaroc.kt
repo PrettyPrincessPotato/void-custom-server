@@ -33,9 +33,6 @@ private const val AAROC_LEAVE_ZANARIS_HOUR = 5
 private val AAROC_HIDING_SPOT = Tile(2417, 4471)
 private val AAROC_ROAMING_SPOTS = arrayOf(Areas["al_kharid_mine"], Areas["sophanem"], Areas["desert_bandit_camp_multi_area"], Areas["mudskipper_point"], Areas["lassar_teleport"], Areas["trollheim_teleport"], Areas["ice_plateau_teleport"], Areas["south_feldip_hills"])
 
-// TODO: Make him a wandering trader when the schedule slice is finished.
-// Is this NPC completely incapable of speech? Or Maybe we can make it speak some made-up language?
-// What if it's incapable of talking in Zanaris for some reason?
 class Aaroc(graph: NavigationGraph) : Script {
     val useBotNav = false
 
