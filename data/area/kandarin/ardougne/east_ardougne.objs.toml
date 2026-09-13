@@ -222,8 +222,7 @@ id = 34755
 examine = "It lets you put the items into your bank."
 
 # I'm identifying each of the remaining deposit boxes, the final number representing their string ID.
-# I'm adding the string ID to the examine text to let us know that it's a lost deposit box, and needs to be properly assigned
-# To an area.
+# I'm adding the string ID to the examine text to let us know that it's a lost deposit box, and needs to be properly assigned to an area.
 # This allows all deposit boxes to work functionally, even if they're not all properly identified.
 [bank_deposit_box_6836]
 id = 6836
