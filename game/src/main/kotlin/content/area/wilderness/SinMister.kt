@@ -10,6 +10,7 @@ import content.entity.player.bank.pin.openBank
 import content.entity.player.dialogue.Confused
 import content.entity.player.dialogue.Happy
 import content.entity.player.dialogue.Neutral
+import content.entity.player.dialogue.Quiz
 import content.entity.player.dialogue.Shifty
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
@@ -83,12 +84,18 @@ class SinMister(graph: NavigationGraph) : Script {
 
 private suspend fun Player.sinMisterCheckGhostspeak(): Boolean {
     if(bank.contains(GHOSTSPEAK_AMULET_STRING_ID)) {
+        if(fullInv()){
+            return false
+        }
         bank.remove(GHOSTSPEAK_AMULET_STRING_ID)
         inventory.add(GHOSTSPEAK_AMULET_STRING_ID)
         statement("Sin Mister hands you your Amulet of Ghostspeak from your bank.")
         return false
     }
     if(bank.contains(ENCH_GHOSTSPEAK_AMULET_STRING_ID)) {
+        if(fullInv()){
+            return false
+        }
         bank.remove(ENCH_GHOSTSPEAK_AMULET_STRING_ID)
         inventory.add(ENCH_GHOSTSPEAK_AMULET_STRING_ID)
         statement("Sin Mister hands you your Enchanted Amulet of Ghostspeak from your bank.")
@@ -98,4 +105,13 @@ private suspend fun Player.sinMisterCheckGhostspeak(): Boolean {
         return false
     }
     return true
+}
+
+private suspend fun Player.fullInv(): Boolean {
+    if(inventory.isFull()) {
+        npc<Quiz>("Woo...? Woo...")
+        statement("Sin Mister would love to hand you your Ghostspeak Amulet, but your inventory is full.")
+        return true
+    }
+    return false
 }
