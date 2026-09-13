@@ -52,7 +52,7 @@ class Aaroc(graph: NavigationGraph) : Script {
             if (aaroc?.tile in Areas["zanaris"]) {
                 aaroc?.say("...")
             } else {
-                aaroc?.say("Zarith... Shenoth... Tarin...")
+                aaroc?.say("Zarith... Shenoth... Tariin...")
             }
         }
         fun aarocTeleport(teleport: NPC.() -> Unit) {
