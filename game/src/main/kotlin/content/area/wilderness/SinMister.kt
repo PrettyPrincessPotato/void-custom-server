@@ -56,7 +56,7 @@ class SinMister(graph: NavigationGraph) : Script {
             npc<Neutral>("Hello.")
             choice {
                 option<Confused>("What's a ghost doing out here?") {
-                    npc<Neutral>("Why, I'm a banker of course!")
+                    npc<Happy>("Why, I'm a banker of course!")
                     choice {
                         option<Confused>("What's a ghost banker doing out here?") {
                             npc<Shifty>("Let's just say I'm... Paying off a debt.")
