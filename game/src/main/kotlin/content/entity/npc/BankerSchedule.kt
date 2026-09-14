@@ -11,7 +11,7 @@ import world.gregs.voidps.engine.Script
 
 const val BANK_CLOSE_TIME = 20
 const val BANK_OPEN_TIME = 5
-const val BANKER_STRING_ID = "banker*" // NPC Schedules doesn't appear to support regex? Multiple NPCs? Not sure what's going on here.
+const val BANKER_STRING_ID = "banker*"
 
 private val routeExecutor: NpcRouteExecutor = NativeNpcRouteExecutor()
 var banksOpen = true // Always starts true, server starts at noon.
