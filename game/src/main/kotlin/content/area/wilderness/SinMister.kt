@@ -17,7 +17,6 @@ import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.statement
 import content.quest.member.ghosts_ahoy.checkGhostspeak
 import world.gregs.voidps.engine.Script
-import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.inv.add
@@ -49,7 +48,7 @@ class SinMister(graph: NavigationGraph) : Script {
             // NpcSchedules.registry.register(schedule) TEMPORARILY DISABLED
         }
         npcOperate("Talk-to", SIN_MISTER_STRING_ID) {
-            if(!sinMisterCheckGhostspeak()){
+            if (!sinMisterCheckGhostspeak()) {
                 return@npcOperate
             }
 
@@ -74,7 +73,7 @@ class SinMister(graph: NavigationGraph) : Script {
             }
         }
         npcOperate("Bank", SIN_MISTER_STRING_ID) {
-            if(!sinMisterCheckGhostspeak()){
+            if (!sinMisterCheckGhostspeak()) {
                 return@npcOperate
             }
             openBank()
@@ -83,8 +82,8 @@ class SinMister(graph: NavigationGraph) : Script {
 }
 
 private suspend fun Player.sinMisterCheckGhostspeak(): Boolean {
-    if(bank.contains(GHOSTSPEAK_AMULET_STRING_ID)) {
-        if(fullInv()){
+    if (bank.contains(GHOSTSPEAK_AMULET_STRING_ID)) {
+        if (fullInv()) {
             return false
         }
         bank.remove(GHOSTSPEAK_AMULET_STRING_ID)
@@ -92,8 +91,8 @@ private suspend fun Player.sinMisterCheckGhostspeak(): Boolean {
         statement("Sin Mister hands you your Amulet of Ghostspeak from your bank.")
         return false
     }
-    if(bank.contains(ENCH_GHOSTSPEAK_AMULET_STRING_ID)) {
-        if(fullInv()){
+    if (bank.contains(ENCH_GHOSTSPEAK_AMULET_STRING_ID)) {
+        if (fullInv()) {
             return false
         }
         bank.remove(ENCH_GHOSTSPEAK_AMULET_STRING_ID)
@@ -108,7 +107,7 @@ private suspend fun Player.sinMisterCheckGhostspeak(): Boolean {
 }
 
 private suspend fun Player.fullInv(): Boolean {
-    if(inventory.isFull()) {
+    if (inventory.isFull()) {
         npc<Quiz>("Woo...? Woo...")
         statement("Sin Mister would love to hand you your Ghostspeak Amulet, but your inventory is full.")
         return true
