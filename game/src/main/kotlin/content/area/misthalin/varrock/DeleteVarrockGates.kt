@@ -18,7 +18,7 @@ class DeleteVarrockGates : Script {
             val tile4 = Tile(3245, 3501, 0)
             val door3GameObject = GameObjects.at(tile3).first()
             val door4GameObject = GameObjects.at(tile4).first()
-            //println("Dooorr $door3GameObject $door4GameObject")
+            // println("Dooorr $door3GameObject $door4GameObject")
             // Dooorr GameObject(id=, intId=46258, tile=Tile(3246, 3501, 0), shape=0, rotation=1)
             // GameObject(id=gate_west_varrock_closed, intId=45849, tile=Tile(3245, 3501, 0), shape=0, rotation=1)
 

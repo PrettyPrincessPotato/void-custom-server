@@ -19,8 +19,6 @@ class PickPocketParker : Script {
     private val routeExecutor: NpcRouteExecutor = NativeNpcRouteExecutor()
     private val spawnTile = Tile(3121, 3121, 0)
 
-
-
     init {
         worldSpawn {
             var parker: NPC = NPCs.add("man", spawnTile)
@@ -34,15 +32,15 @@ class PickPocketParker : Script {
                         BANK_CLOSE_TIME,
                         ScheduleAction.Custom {
                             parker.say("I sure hope I don't get pick-pocketted!")
-                        }
+                        },
                     ),
                     ScheduleTransition(
                         BANK_OPEN_TIME,
                         ScheduleAction.Custom {
                             parker.say("The bank is open!")
-                        }
-                    )
-                )
+                        },
+                    ),
+                ),
             )
 
             NpcSchedules.registry.register(schedule)
