@@ -7,11 +7,13 @@ import world.gregs.voidps.type.Tile
 class DeleteVarrockGates : Script {
     init {
         worldSpawn {
+            // West gate
             val tile1 = Tile(3273, 3429)
             val tile2 = Tile(3273, 3428)
             val door1GameObject = GameObjects.find(tile1, "gate_west_varrock_closed")
             val door2GameObject = GameObjects.find(tile2, "gate_west_varrock_2_closed")
 
+            // North Gate
             val tile3 = Tile(3246, 3501, 0)
             val tile4 = Tile(3245, 3501, 0)
             val door3GameObject = GameObjects.at(tile3).first()
