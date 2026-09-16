@@ -36,16 +36,15 @@ private val AAROC_ROAMING_SPOTS = arrayOf(Areas["al_kharid_mine"], Areas["sophan
 
 class Aaroc(graph: NavigationGraph) : Script {
     val useBotNav = false
+    private var aaroc: NPC? = null
 
     private val routeExecutor: NpcRouteExecutor =
         if (useBotNav) {
-            GraphNpcRouteExecutor(
-                NpcNavMeshRouteFinder(graph),
-            )
+            GraphNpcRouteExecutor(NpcNavMeshRouteFinder(graph))
         } else {
             NativeNpcRouteExecutor()
         }
-    private var aaroc: NPC? = null
+
 
     init {
         fun aarocChant() {
