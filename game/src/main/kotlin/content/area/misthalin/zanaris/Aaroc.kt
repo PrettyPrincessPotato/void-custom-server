@@ -1,6 +1,7 @@
 package content.area.misthalin.zanaris
 
 import content.bot.behaviour.navigation.NavigationGraph
+import content.entity.combat.target
 import content.entity.gfx.areaGfx
 import content.entity.npc.movement.GraphNpcRouteExecutor
 import content.entity.npc.movement.NativeNpcRouteExecutor
@@ -135,13 +136,13 @@ class Aaroc(graph: NavigationGraph) : Script {
         }
     }
     init {
-        npcOperate("Talk-to", "aaroc") {
+        npcOperate("Talk-to", "aaroc") { (target) ->
             if (tile in Areas["zanaris"]) {
                 npc<Neutral>("...")
                 choice {
                     option<Confused>("Err... Hello?") {
                         npc<Sad>("...")
-                        openShop("mage_training_arena")
+                        openShop(target.def["shop"])
                     }
                 }
             } else {
@@ -149,7 +150,7 @@ class Aaroc(graph: NavigationGraph) : Script {
                 choice {
                     option<Confused>("Uh.. I'm sorry what?") {
                         npc<Sad>("Malek... Tomek...")
-                        openShop("mage_training_arena")
+                        openShop(target.def["shop"])
                     }
                 }
             }
