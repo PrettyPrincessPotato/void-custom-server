@@ -2,7 +2,6 @@ package content.entity.combat
 
 import content.area.wilderness.Wilderness
 import content.area.wilderness.inPvp
-import content.area.wilderness.inSingleCombat
 import content.area.wilderness.inWilderness
 import content.entity.combat.hit.Hit
 import content.entity.combat.hit.directHit
@@ -125,7 +124,7 @@ object Target {
             if (message) (source as? Player)?.message("You are already in combat.")
             return false
         }
-        */
+         */
         // PVP area, slayer requirements, in combat etc..
         return true
     }

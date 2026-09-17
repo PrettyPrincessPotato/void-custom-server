@@ -45,7 +45,6 @@ class Aaroc(graph: NavigationGraph) : Script {
             NativeNpcRouteExecutor()
         }
 
-
     init {
         fun aarocChant() {
             aaroc?.mode = EmptyMode

@@ -3,7 +3,6 @@ package content.area.fremennik_province.rellekka
 import content.entity.combat.attacker
 import content.entity.combat.attackers
 import content.entity.combat.hit.damage
-import content.entity.combat.underAttack
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
