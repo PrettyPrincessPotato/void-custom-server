@@ -107,6 +107,7 @@ object Target {
             return true
         }
         // If the target I'm trying to attack is already in combat and I am not the attacker
+        /* -- Disabled
         if (target.inSingleCombat && target.underAttack && target.attacker != source) {
             if (message) {
                 if (target is NPC) {
@@ -122,6 +123,7 @@ object Target {
             if (message) (source as? Player)?.message("You are already in combat.")
             return false
         }
+        */
         // PVP area, slayer requirements, in combat etc..
         return true
     }
