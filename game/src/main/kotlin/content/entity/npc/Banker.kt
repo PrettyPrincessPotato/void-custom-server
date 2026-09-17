@@ -17,6 +17,8 @@ import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 
+private const val CLOSED_BANK_TEXT = "The bank is currently closed."
+
 class Banker : Script {
 
     init {
@@ -39,14 +41,14 @@ class Banker : Script {
 
         objectOperate("Use", "bank_chest_*") {
             if (!banksOpen) {
-                message("The bank is currently closed...")
+                message(CLOSED_BANK_TEXT)
                 return@objectOperate
             }
             openBank()
         }
         objectOperate("Bank", "*") {
             if (!banksOpen) {
-                message("The bank is currently closed...")
+                message(CLOSED_BANK_TEXT)
                 return@objectOperate
             }
             openBank()
@@ -54,14 +56,14 @@ class Banker : Script {
 
         objectOperate("Bank", "bank_chest_*") {
             if (!banksOpen) {
-                message("The bank is currently closed...")
+                message(CLOSED_BANK_TEXT)
                 return@objectOperate
             }
             openBank()
         }
         objectOperate("Collect") {
             if (!banksOpen) {
-                message("The bank is currently closed...")
+                message(CLOSED_BANK_TEXT)
                 return@objectOperate
             }
             openCollection()
@@ -75,7 +77,7 @@ class Banker : Script {
 
         objectOperate("Use", "bank_booth_*", arrive = false) { (target) ->
             if (!banksOpen) {
-                message("The bank is currently closed...")
+                message(CLOSED_BANK_TEXT)
                 return@objectOperate
             }
             val banker = NPCs.first { it.def.name == "Banker" }
@@ -84,7 +86,7 @@ class Banker : Script {
         }
         objectOperate("Use-quickly", "bank_booth_*", arrive = false) { (target) ->
             if (!banksOpen) {
-                message("The bank is currently closed...")
+                message(CLOSED_BANK_TEXT)
                 return@objectOperate
             }
             openBank()
