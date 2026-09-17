@@ -44,6 +44,7 @@ object Target {
                 if (message) source.message("You can't attack your own familiar.")
                 return false
             }
+            /*
             if (source is Player && target.contains("owner")) {
                 val owner = target.get<String>("owner")
                 if (source.accountName != owner) {
@@ -51,6 +52,7 @@ object Target {
                     return false
                 }
             }
+             */
             if ((source.spell == "bind" || source.spell == "snare" || source.spell == "entangle") && target.id.endsWith("_impling")) {
                 return true
             }

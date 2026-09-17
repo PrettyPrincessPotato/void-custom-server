@@ -17,18 +17,18 @@ class Gargoyle : Script {
 
     init {
         npcOperate("Smash", "gargoyle") { (target) ->
-            if (target.underAttack && target.attacker != this) {
+            /*if (target.underAttack && target.attacker != this) {
                 message("Someone else is fighting that.")
                 return@npcOperate
-            }
+            }*/
             smash(this, target)
         }
 
         itemOnNPCOperate("rock_hammer", "gargoyle") { (target) ->
-            if (target.underAttack && target.attacker != this) {
+            /*if (target.underAttack && target.attacker != this) {
                 message("Someone else is fighting that.")
                 return@itemOnNPCOperate
-            }
+            }*/
             smash(this, target)
         }
 

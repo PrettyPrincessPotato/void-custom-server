@@ -39,10 +39,12 @@ class Zygomite : Script {
                 message("The spray pump is empty! Reload it with another fungicide canister!")
                 return@itemOnNPCOperate
             }
+            /*
             if (target.underAttack && target.attacker != this) {
                 message("Someone else is fighting that.")
                 return@itemOnNPCOperate
             }
+             */
             fungicide(this, target, index)
         }
     }

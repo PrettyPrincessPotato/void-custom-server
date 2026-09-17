@@ -18,10 +18,10 @@ class Rockslug : Script {
     init {
         itemOnNPCOperate("bag_of_salt", "rockslug*") { (target) ->
             arriveDelay()
-            if (target.underAttack && target.attacker != this) {
+            /*if (target.underAttack && target.attacker != this) {
                 message("Someone else is fighting that.")
                 return@itemOnNPCOperate
-            }
+            }*/
             salt(this, target)
         }
 
