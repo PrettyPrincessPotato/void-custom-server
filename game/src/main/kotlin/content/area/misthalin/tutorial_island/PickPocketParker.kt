@@ -16,6 +16,7 @@ import world.gregs.voidps.engine.timer.Timer
 import world.gregs.voidps.engine.timer.toTicks
 import world.gregs.voidps.type.Tile
 import java.util.concurrent.TimeUnit
+import kotlin.collections.set
 
 // This poor NPC's only purpose is to be a pick pocket target.
 // In the morning, if this npc was pickpocketted, he should remark that his purse feels lighter.
@@ -30,38 +31,59 @@ class PickPocketParker : Script {
         "I mean, I could use the deposit box... But it's so dirty!",
     )
 
+    private fun spawnParker() {
+        parker = NPCs.add("man", spawnTile)
+        parker!!["full_pathfinding"] = true
+        parker!!.softTimers.start("parker_hint_timer")
+    }
+
+    private val schedule = NpcScheduleController(
+        npcProvider = { parker },
+        routeExecutor = routeExecutor,
+        scheduleTransitions = listOf(
+            ScheduleTransition(
+                BANK_CLOSE_TIME,
+                ScheduleAction.Custom {
+                    parker!!.say("The bank is closed!")
+                },
+            ),
+            ScheduleTransition(
+                BANK_OPEN_TIME,
+                ScheduleAction.Custom {
+                    parker!!.say("The bank is open!")
+                },
+            ),
+        ),
+    )
+
     init {
         worldSpawn {
-            parker = NPCs.add("man", spawnTile)
-            parker!!["full_pathfinding"] = true
-            parker!!.softTimers.start("parker_hint_timer")
+            spawnParker()
+        }
 
-            val schedule = NpcScheduleController(
-                npcProvider = { parker },
-                routeExecutor = routeExecutor,
-                scheduleTransitions = listOf(
-                    ScheduleTransition(
-                        BANK_CLOSE_TIME,
-                        ScheduleAction.Custom {
-                            parker!!.say("The bank is closed!")
-                        },
-                    ),
-                    ScheduleTransition(
-                        BANK_OPEN_TIME,
-                        ScheduleAction.Custom {
-                            parker!!.say("The bank is open!")
-                        },
-                    ),
-                ),
-            )
-
+        npcSpawn("man") {
+            if (this.index != parker?.index) {
+                return@npcSpawn
+            }
             NpcSchedules.registry.register(schedule)
         }
+
+        npcDespawn("man") {
+            if (this.index != parker?.index) {
+                return@npcDespawn
+            }
+            NpcSchedules.registry.unregister(schedule)
+        }
+
+//        npcApproach("Attack", parker!!.id) {
+//            say("No")
+//        }
 
         npcTimerStart("parker_hint_timer") {
             TimeUnit.SECONDS.toTicks(7)
         }
         npcTimerTick("parker_hint_timer") {
+            println("Parker ID = $parker")
             if (!banksOpen) {
                 parker?.say(pickPocketHintLines.random())
             }
