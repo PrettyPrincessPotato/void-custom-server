@@ -1,7 +1,6 @@
 package content.area.misthalin.zanaris
 
 import content.bot.behaviour.navigation.NavigationGraph
-import content.entity.combat.target
 import content.entity.gfx.areaGfx
 import content.entity.npc.movement.GraphNpcRouteExecutor
 import content.entity.npc.movement.NativeNpcRouteExecutor
@@ -32,7 +31,16 @@ private const val AAROC_STRING_ID = "aaroc"
 private const val AAROC_TO_ZANARIS_HOUR = 20
 private const val AAROC_LEAVE_ZANARIS_HOUR = 5
 private val AAROC_HIDING_SPOT = Tile(2417, 4471)
-private val AAROC_ROAMING_SPOTS = arrayOf(Areas["al_kharid_mine"], Areas["sophanem"], Areas["desert_bandit_camp_multi_area"], Areas["mudskipper_point"], Areas["lassar_teleport"], Areas["trollheim_teleport"], Areas["ice_plateau_teleport"], Areas["south_feldip_hills"])
+private val AAROC_ROAMING_SPOTS = arrayOf(
+    Areas["al_kharid_mine"],
+    Areas["sophanem"],
+    Areas["desert_bandit_camp_multi_area"],
+    Areas["mudskipper_point"],
+    Areas["lassar_teleport"],
+    Areas["trollheim_teleport"],
+    Areas["ice_plateau_teleport"],
+    Areas["south_feldip_hills"],
+)
 
 class Aaroc(graph: NavigationGraph) : Script {
     val useBotNav = false
