@@ -83,7 +83,6 @@ class PickPocketParker : Script {
             TimeUnit.SECONDS.toTicks(7)
         }
         npcTimerTick("parker_hint_timer") {
-            println("Parker ID = $parker")
             if (!banksOpen) {
                 parker?.say(pickPocketHintLines.random())
             }
