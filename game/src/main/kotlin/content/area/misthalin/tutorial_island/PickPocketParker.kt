@@ -9,8 +9,6 @@ import content.entity.npc.schedule.NpcScheduleController
 import content.entity.npc.schedule.NpcSchedules
 import content.entity.npc.schedule.ScheduleAction
 import content.entity.npc.schedule.ScheduleTransition
-import content.entity.player.dialogue.type.statement
-import content.skill.summoning.canFight
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
@@ -64,11 +62,10 @@ class PickPocketParker : Script {
             TimeUnit.SECONDS.toTicks(7)
         }
         npcTimerTick("parker_hint_timer") {
-            if(!banksOpen) {
+            if (!banksOpen) {
                 parker?.say(pickPocketHintLines.random())
             }
             Timer.CONTINUE
         }
-
     }
 }
