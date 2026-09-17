@@ -4,8 +4,6 @@ import content.area.misthalin.tutorial_island.inTutorial
 import content.bot.isBot
 import content.entity.player.bank.bank
 import content.entity.player.dialogue.type.statement
-import content.world.time.WorldTime
-import content.world.time.WorldTimeAnnouncement
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.open
@@ -19,13 +17,14 @@ import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.queue.queue
+import world.gregs.voidps.engine.timer.epochMilliseconds
+import java.util.concurrent.TimeUnit
 
 class Introduction : Script {
 
     fun welcome(player: Player) {
-        val worldTimeAnnouncement = WorldTimeAnnouncement()
         player.message("Welcome to ${Settings["server.name"]}.", ChatType.Welcome)
-        player.message("The time is roughly ${WorldTime.hour}:00")
+        player["login_time"] = epochMilliseconds()
         if (player.contains("creation")) {
             return
         }
@@ -53,6 +52,13 @@ class Introduction : Script {
             }
             flagAppearance()
             setup(this)
+        }
+
+        playerDespawn {
+            val start = get("login_time", 0L)
+            val duration = epochMilliseconds() - start
+            val seconds = TimeUnit.MILLISECONDS.toSeconds(duration).toInt()
+            inc("playtime", seconds)
         }
     }
 
