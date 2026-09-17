@@ -34,7 +34,6 @@ class PickPocketParker : Script {
     private fun spawnParker() {
         parker = NPCs.add("man", spawnTile)
         parker!!["full_pathfinding"] = true
-        parker!!.softTimers.start("parker_hint_timer")
     }
 
     private val schedule = NpcScheduleController(
@@ -65,6 +64,7 @@ class PickPocketParker : Script {
             if (this.index != parker?.index) {
                 return@npcSpawn
             }
+            parker!!.softTimers.start("parker_hint_timer")
             NpcSchedules.registry.register(schedule)
         }
 
