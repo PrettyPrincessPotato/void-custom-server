@@ -72,6 +72,7 @@ class PickPocketParker : Script {
             if (this.index != parker?.index) {
                 return@npcDespawn
             }
+            parker!!.softTimers.stop("parker_hint_timer")
             NpcSchedules.registry.unregister(schedule)
         }
 
