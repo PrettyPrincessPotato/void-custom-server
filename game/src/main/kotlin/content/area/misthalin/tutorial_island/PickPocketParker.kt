@@ -2,27 +2,41 @@ package content.area.misthalin.tutorial_island
 
 import content.entity.npc.BANK_CLOSE_TIME
 import content.entity.npc.BANK_OPEN_TIME
+import content.entity.npc.banksOpen
 import content.entity.npc.movement.NativeNpcRouteExecutor
 import content.entity.npc.movement.NpcRouteExecutor
 import content.entity.npc.schedule.NpcScheduleController
 import content.entity.npc.schedule.NpcSchedules
 import content.entity.npc.schedule.ScheduleAction
 import content.entity.npc.schedule.ScheduleTransition
+import content.entity.player.dialogue.type.statement
+import content.skill.summoning.canFight
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
+import world.gregs.voidps.engine.timer.Timer
+import world.gregs.voidps.engine.timer.toTicks
 import world.gregs.voidps.type.Tile
+import java.util.concurrent.TimeUnit
 
 // This poor NPC's only purpose is to be a pick pocket target.
 // In the morning, if this npc was pickpocketted, he should remark that his purse feels lighter.
 class PickPocketParker : Script {
     private val routeExecutor: NpcRouteExecutor = NativeNpcRouteExecutor()
     private val spawnTile = Tile(3121, 3121, 0)
+    private var parker: NPC? = null
+    private val pickPocketHintLines = arrayOf(
+        "I sure hope I don't get pick-pocketted!",
+        "Aw gee... The bank's closed, and I've got all this gold in my pockets!",
+        "I can't deposit all this gold at this hour!",
+        "I mean, I could use the deposit box... But it's so dirty!",
+    )
 
     init {
         worldSpawn {
-            var parker: NPC = NPCs.add("man", spawnTile)
-            parker["full_pathfinding"] = true
+            parker = NPCs.add("man", spawnTile)
+            parker!!["full_pathfinding"] = true
+            parker!!.softTimers.start("parker_hint_timer")
 
             val schedule = NpcScheduleController(
                 npcProvider = { parker },
@@ -31,13 +45,13 @@ class PickPocketParker : Script {
                     ScheduleTransition(
                         BANK_CLOSE_TIME,
                         ScheduleAction.Custom {
-                            parker.say("I sure hope I don't get pick-pocketted!")
+                            parker!!.say("The bank is closed!")
                         },
                     ),
                     ScheduleTransition(
                         BANK_OPEN_TIME,
                         ScheduleAction.Custom {
-                            parker.say("The bank is open!")
+                            parker!!.say("The bank is open!")
                         },
                     ),
                 ),
@@ -45,5 +59,16 @@ class PickPocketParker : Script {
 
             NpcSchedules.registry.register(schedule)
         }
+
+        npcTimerStart("parker_hint_timer") {
+            TimeUnit.SECONDS.toTicks(7)
+        }
+        npcTimerTick("parker_hint_timer") {
+            if(!banksOpen) {
+                parker?.say(pickPocketHintLines.random())
+            }
+            Timer.CONTINUE
+        }
+
     }
 }
