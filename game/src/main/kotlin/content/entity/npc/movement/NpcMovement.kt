@@ -2,6 +2,7 @@ package content.entity.npc.movement
 
 import org.rsmod.game.pathfinder.collision.CollisionStrategies
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
+import world.gregs.voidps.engine.entity.character.mode.Wander
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.type.Area
 import world.gregs.voidps.type.Tile
@@ -31,4 +32,9 @@ fun NPC.travelTo(
             onArrival()
         }
     }
+}
+
+fun setSpawnAndWander(npc: NPC, spawnTile: Tile) {
+    npc["spawn_tile"] = spawnTile
+    npc.mode = Wander(npc, spawnTile)
 }
