@@ -6,6 +6,7 @@ import content.entity.npc.movement.NpcNavMeshRouteFinder
 import content.entity.npc.movement.NpcRouteExecutor
 import content.entity.npc.movement.npcCloseDoor
 import content.entity.npc.movement.npcOpenDoor
+import content.entity.npc.movement.setSpawnAndWander
 import content.entity.npc.movement.travelTo
 import content.entity.npc.schedule.NpcScheduleController
 import content.entity.npc.schedule.NpcSchedules
@@ -13,6 +14,7 @@ import content.entity.npc.schedule.ScheduleAction
 import content.entity.npc.schedule.ScheduleTransition
 import org.rsmod.game.pathfinder.collision.CollisionStrategies
 import world.gregs.voidps.engine.Script
+import world.gregs.voidps.engine.entity.character.mode.Wander
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.obj.GameObjects
@@ -51,7 +53,7 @@ class BobSchedule(graph: NavigationGraph) : Script {
                             npcCloseDoor(shopDoor, DOOR_CLOSE_TIME, 0, 3)
                             it.travelTo(BOTTOM_STAIRS_TILE, queueName = "bob_door_to_stairs") {
                                 tele(TOP_STAIRS_TILE)
-                                it["spawn_tile"] = TOP_STAIRS_TILE
+                                setSpawnAndWander(it, TOP_STAIRS_TILE)
                             }
                         }
                     },
@@ -64,8 +66,8 @@ class BobSchedule(graph: NavigationGraph) : Script {
                             it.say("Another day another coin.")
                             npcOpenDoor(shopDoorClosed, DOOR_CLOSE_TIME)
                             it.travelTo(BOBS_SPAWN_POINT, queueName = "bob_door_to_desk") {
-                                it["spawn_tile"] = BOBS_SPAWN_POINT
                                 it.collision = CollisionStrategies.Indoors
+                                setSpawnAndWander(it, BOBS_SPAWN_POINT)
                             }
                         }
                     },
@@ -77,9 +79,10 @@ class BobSchedule(graph: NavigationGraph) : Script {
                         it.travelTo(TOP_STAIRS_TILE, queueName = "bob_bed_to_stairs") {
                             tele(BOTTOM_STAIRS_TILE)
                             it.travelTo(DOOR_TILE_INSIDE, queueName = "bob_stairs_to_door") {
-                                npcOpenDoor(shopDoorClosed, 10)
+                                npcOpenDoor(shopDoorClosed, 5)
                                 it.travelTo(CHURCH_TILE, queueName = "bob_to_church") {
                                     it.collision = CollisionStrategies.Indoors
+                                    setSpawnAndWander(it, CHURCH_TILE)
                                 }
                             }
                         }
