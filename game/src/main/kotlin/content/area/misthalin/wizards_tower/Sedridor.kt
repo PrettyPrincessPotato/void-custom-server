@@ -213,9 +213,40 @@ class Sedridor : Script {
             teleportEssenceMine(target)
             whoElseKnows(target)
             oldWizardsTower(target)
+            buyTalismansMenu()
             option<Idle>("Nothing thanks, I'm just looking around.") {
                 npc<Happy>("Well, take care. You stand on the ruins of the old destroyed Wizards' Tower. Strange and powerful magicks lurk here.")
             }
+        }
+    }
+
+    fun ChoiceOption.buyTalismansMenu(): Unit = option<Quiz>("Any chance you have extra talismans for sale?") {
+        npc<Happy>("I sure do, have a look here.")
+        choice {
+            option("Elemental") {
+                choice {
+                    buyTalisman("air", 100)
+                    buyTalisman("earth", 100)
+                    buyTalisman("water", 100)
+                    buyTalisman("fire", 100)
+                    option("Go back.") {
+                        choice {
+                            buyTalismansMenu()
+                        }
+                    }
+                }
+            }
+            buyTalisman("mind", 500)
+            buyTalisman("body", 500)
+        }
+    }
+
+    fun ChoiceOption.buyTalisman(element: String, price: Int): Unit = option<Happy>("One $element talisman please. ($price coins.)") {
+        if (inventory.contains("coins", price)) {
+            inventory.remove("coins", price)
+            inventory.add(element + "_talisman")
+        } else {
+            player<Sad>("Oh, sorry, it appears I don't have the gold.")
         }
     }
 
