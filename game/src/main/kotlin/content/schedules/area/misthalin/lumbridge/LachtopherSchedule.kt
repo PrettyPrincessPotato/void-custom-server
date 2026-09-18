@@ -44,9 +44,9 @@ class LachtopherSchedule(graph: NavigationGraph) : Script {
                     GO_HOME_HOUR,
                     ScheduleAction.Custom {
                         it.say("Ugh, I don't walk all the way home.")
-                        it.travelTo(EAST_TILE, null, "lachtopher_to_door") {
+                        it.travelTo(EAST_TILE, "lachtopher_to_door") {
                             npcOpenDoor(HOME_DOOR, 100)
-                            travelTo(DOWNSTAIRS, null, "lachtopher_to_stairs_bottom") {
+                            travelTo(DOWNSTAIRS, "lachtopher_to_stairs_bottom") {
                                 tele(UPSTAIRS)
                                 walkTo(LACHTOPHER_HOME)
                                 setSpawnAndWander(it, LACHTOPHER_HOME)
@@ -61,11 +61,11 @@ class LachtopherSchedule(graph: NavigationGraph) : Script {
                             return@Custom
                         }
                         it.say("Ugh, I don't want to walk all the way there.")
-                        it.travelTo(UPSTAIRS, null, "lachtopher_to_stairs_top") {
+                        it.travelTo(UPSTAIRS, "lachtopher_to_stairs_top") {
                             tele(DOWNSTAIRS)
-                            travelTo(WEST_TILE, null, "lachtopher_stairs_to_door") {
+                            travelTo(WEST_TILE, "lachtopher_stairs_to_door") {
                                 npcOpenDoor(HOME_DOOR, 100)
-                                travelTo(LACHTOPHER_HANGOUT, null, "lachtopher_home_to_hangout") {
+                                travelTo(LACHTOPHER_HANGOUT, "lachtopher_home_to_hangout") {
                                     setSpawnAndWander(it, LACHTOPHER_HANGOUT)
                                 }
                             }
