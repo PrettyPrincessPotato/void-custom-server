@@ -5,12 +5,14 @@ import content.entity.npc.movement.GraphNpcRouteExecutor
 import content.entity.npc.movement.NpcNavMeshRouteFinder
 import content.entity.npc.movement.NpcRouteExecutor
 import content.entity.npc.movement.npcOpenDoor
+import content.entity.npc.movement.setSpawnAndWander
 import content.entity.npc.movement.travelTo
 import content.entity.npc.schedule.NpcScheduleController
 import content.entity.npc.schedule.NpcSchedules
 import content.entity.npc.schedule.ScheduleAction
 import content.entity.npc.schedule.ScheduleTransition
 import world.gregs.voidps.engine.Script
+import world.gregs.voidps.engine.entity.character.mode.Wander
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.obj.GameObjects
@@ -43,11 +45,11 @@ class LachtopherSchedule(graph: NavigationGraph) : Script {
                     ScheduleAction.Custom {
                         it.say("Ugh, I don't walk all the way home.")
                         it.travelTo(EAST_TILE, null, "lachtopher_to_door") {
-                            npcOpenDoor(HOME_DOOR, 30)
+                            npcOpenDoor(HOME_DOOR, 100)
                             travelTo(DOWNSTAIRS, null, "lachtopher_to_stairs_bottom") {
                                 tele(UPSTAIRS)
                                 walkTo(LACHTOPHER_HOME)
-                                it["spawn_tile"] = LACHTOPHER_HOME
+                                setSpawnAndWander(it, LACHTOPHER_HOME)
                             }
                         }
                     },
@@ -62,9 +64,9 @@ class LachtopherSchedule(graph: NavigationGraph) : Script {
                         it.travelTo(UPSTAIRS, null, "lachtopher_to_stairs_top") {
                             tele(DOWNSTAIRS)
                             travelTo(WEST_TILE, null, "lachtopher_stairs_to_door") {
-                                npcOpenDoor(HOME_DOOR, 30)
+                                npcOpenDoor(HOME_DOOR, 100)
                                 travelTo(LACHTOPHER_HANGOUT, null, "lachtopher_home_to_hangout") {
-                                    it["spawn_tile"] = LACHTOPHER_HANGOUT
+                                    setSpawnAndWander(it, LACHTOPHER_HANGOUT)
                                 }
                             }
                         }
