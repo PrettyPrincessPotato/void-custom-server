@@ -1,6 +1,5 @@
 package content.schedules.area.misthalin.lumbridge
 
-import content.bot.behaviour.navigation.NavigationGraph
 import content.entity.npc.movement.NativeNpcRouteExecutor
 import content.entity.npc.movement.NpcRouteExecutor
 import content.entity.npc.movement.npcOpenDoor
@@ -16,7 +15,7 @@ import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
 
-private var roddeck : NPC? = null
+private var roddeck: NPC? = null
 private const val RODDECK_STRING_ID = "roddeck"
 
 private const val WAKE_UP_HOUR = 8
@@ -39,7 +38,7 @@ private val RODDECK_SLEEP_LOC = Tile(3230, 3236, 1) // Face north
 private val HOME_DOOR = GameObjects.at(RODDECK_DOOR_OUTSIDE).first()
 private val BEDROOM_DOOR = GameObjects.at(RODDECK_BEDROOM_DOOR_INSIDE).first()
 
-class RoddeckSchedule() : Script {
+class RoddeckSchedule : Script {
     private val routeExecutor: NpcRouteExecutor = NativeNpcRouteExecutor()
     init {
         val schedule = NpcScheduleController(
@@ -55,7 +54,7 @@ class RoddeckSchedule() : Script {
                                 it.say("Ah... The ducks are so lovely this time of day.")
                             }
                         }
-                    }
+                    },
                 ),
                 ScheduleTransition(
                     MUSIC_HOUR,
@@ -64,7 +63,7 @@ class RoddeckSchedule() : Script {
                             it.say("Music sounds wonderful, as always.")
                             it.face(Direction.SOUTH)
                         }
-                    }
+                    },
                 ),
                 ScheduleTransition(
                     GO_HOME_HOUR,
@@ -75,7 +74,7 @@ class RoddeckSchedule() : Script {
                                 it.face(Direction.WEST)
                             }
                         }
-                    }
+                    },
                 ),
                 ScheduleTransition(
                     GO_TO_BED_HOUR,
@@ -89,7 +88,7 @@ class RoddeckSchedule() : Script {
                                 }
                             }
                         }
-                    }
+                    },
                 ),
                 ScheduleTransition(
                     WAKE_UP_HOUR,
@@ -103,7 +102,7 @@ class RoddeckSchedule() : Script {
                                 }
                             }
                         }
-                    }
+                    },
                 ),
             ),
         )

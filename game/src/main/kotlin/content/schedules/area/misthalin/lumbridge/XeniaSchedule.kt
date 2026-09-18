@@ -64,9 +64,9 @@ class XeniaSchedule(graph: NavigationGraph) : Script {
                                 it.travelTo(XENIA_HANGOUT, "xenia_home_to_hangout")
                             }
                         }
-                    }
+                    },
                 ),
-            )
+            ),
         )
 
         npcSpawn(XENIA_STRING_ID) {
