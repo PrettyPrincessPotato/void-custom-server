@@ -10,7 +10,7 @@ import content.activity.city_raids.RaidStore
  * goblins DO NOT GIVE A FUCK if you attack them while they're routing.
  * Sometimes they'll attack back, but it's rare
  * We also have the ability to use bot navmesh now, so might as well switch it over entirely.
- * See ShopAssistantFalador.kt for an example
+ * See ShopAssistantFaladorSchedule.kt for an example
  * Could make the goblins chant something like "for the big war god" while they're attacking
  *
  * In the issues page I wrote that falador guards and goblins aggro is broken, that is no longer true:

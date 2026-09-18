@@ -1,4 +1,4 @@
-package content.area.asgarnia.falador
+package content.schedules.area.asgarnia.falador
 
 import content.bot.behaviour.navigation.NavigationGraph
 import content.entity.npc.movement.GraphNpcRouteExecutor

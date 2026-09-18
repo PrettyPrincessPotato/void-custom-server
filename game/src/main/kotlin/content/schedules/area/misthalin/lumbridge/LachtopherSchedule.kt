@@ -1,4 +1,4 @@
-package content.area.misthalin.lumbridge.schedules
+package content.schedules.area.misthalin.lumbridge
 
 import content.bot.behaviour.navigation.NavigationGraph
 import content.entity.npc.movement.GraphNpcRouteExecutor

@@ -1,8 +1,8 @@
 package content.entity.npc.shop.general
 
-import content.area.asgarnia.falador.ASSISTANT_LEAVE_HOUR
-import content.area.asgarnia.falador.ASSISTANT_RETURN_HOUR
-import content.area.asgarnia.falador.ASSISTANT_STRING_ID
+import content.schedules.area.asgarnia.falador.ASSISTANT_LEAVE_HOUR
+import content.schedules.area.asgarnia.falador.ASSISTANT_RETURN_HOUR
+import content.schedules.area.asgarnia.falador.ASSISTANT_STRING_ID
 import content.entity.npc.shop.openShop
 import content.entity.npc.shop.time.ShopSchedule
 import content.entity.player.dialogue.Happy
