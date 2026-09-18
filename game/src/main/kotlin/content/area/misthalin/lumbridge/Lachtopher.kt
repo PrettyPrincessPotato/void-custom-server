@@ -1,15 +1,5 @@
 package content.area.misthalin.lumbridge
 
-import content.bot.behaviour.navigation.NavigationGraph
-import content.entity.npc.movement.GraphNpcRouteExecutor
-import content.entity.npc.movement.NpcNavMeshRouteFinder
-import content.entity.npc.movement.NpcRouteExecutor
-import content.entity.npc.movement.npcOpenDoor
-import content.entity.npc.movement.travelTo
-import content.entity.npc.schedule.NpcScheduleController
-import content.entity.npc.schedule.NpcSchedules
-import content.entity.npc.schedule.ScheduleAction
-import content.entity.npc.schedule.ScheduleTransition
 import content.entity.player.dialogue.Angry
 import content.entity.player.dialogue.Bored
 import content.entity.player.dialogue.Happy
@@ -17,13 +7,8 @@ import content.entity.player.dialogue.Quiz
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
 import world.gregs.voidps.engine.Script
-import world.gregs.voidps.engine.entity.character.move.tele
-import world.gregs.voidps.engine.entity.character.npc.NPC
-import world.gregs.voidps.engine.entity.obj.GameObjects
-import world.gregs.voidps.type.Tile
 
-
-class Lachtopher() : Script {
+class Lachtopher : Script {
 
     init {
         npcOperate("Talk-to", "lachtopher") {
@@ -42,4 +27,3 @@ class Lachtopher() : Script {
         }
     }
 }
-

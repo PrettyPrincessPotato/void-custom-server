@@ -11,10 +11,8 @@ import content.entity.npc.schedule.NpcScheduleController
 import content.entity.npc.schedule.NpcSchedules
 import content.entity.npc.schedule.ScheduleAction
 import content.entity.npc.schedule.ScheduleTransition
-import content.entity.obj.door.Door
 import org.rsmod.game.pathfinder.collision.CollisionStrategies
 import world.gregs.voidps.engine.Script
-import world.gregs.voidps.engine.entity.character.mode.Wander
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.obj.GameObjects
@@ -32,18 +30,17 @@ private val BOTTOM_STAIRS_TILE = Tile(3232, 3205, 0)
 private val TOP_STAIRS_TILE = Tile(3229, 3205, 1)
 private val BOBS_SPAWN_POINT = Tile(3228, 3203, 0)
 private val CHURCH_TILE = Tile(3243, 3209, 0)
-private val SHOP_DOOR = GameObjects.at(DOOR_TILE_INSIDE).first()
+private val shopDoor = GameObjects.at(DOOR_TILE_INSIDE).first()
 private val DOOR_CLOSE_TIME = TimeUnit.HOURS.toTicks(2)
 
-private var BOB: NPC? = null
-
+private var bob: NPC? = null
 
 class BobSchedule(graph: NavigationGraph) : Script {
     private val routeExecutor: NpcRouteExecutor = GraphNpcRouteExecutor(NpcNavMeshRouteFinder(graph))
 
     init {
         val schedule = NpcScheduleController(
-            npcProvider = { BOB },
+            npcProvider = { bob },
             routeExecutor = routeExecutor,
             scheduleTransitions = listOf(
                 ScheduleTransition(
@@ -51,13 +48,13 @@ class BobSchedule(graph: NavigationGraph) : Script {
                     ScheduleAction.Custom {
                         it.say("Time to close up.")
                         it.travelTo(destination = DOOR_TILE_INSIDE, queueName = "bob_to_close_door") {
-                            npcCloseDoor(SHOP_DOOR, DOOR_CLOSE_TIME, 0, 3)
+                            npcCloseDoor(shopDoor, DOOR_CLOSE_TIME, 0, 3)
                             it.travelTo(BOTTOM_STAIRS_TILE, queueName = "bob_door_to_stairs") {
                                 tele(TOP_STAIRS_TILE)
                                 it["spawn_tile"] = TOP_STAIRS_TILE
                             }
                         }
-                    }
+                    },
                 ),
                 ScheduleTransition(
                     BOB_SHOP_OPEN_TIME,
@@ -66,12 +63,12 @@ class BobSchedule(graph: NavigationGraph) : Script {
                             val shopDoorClosed = GameObjects.at(DOOR_TILE_OUTSIDE).first()
                             it.say("Another day another coin.")
                             npcOpenDoor(shopDoorClosed, DOOR_CLOSE_TIME)
-                            it.travelTo(BOBS_SPAWN_POINT, queueName = "bob_door_to_desk"){
+                            it.travelTo(BOBS_SPAWN_POINT, queueName = "bob_door_to_desk") {
                                 it["spawn_tile"] = BOBS_SPAWN_POINT
                                 it.collision = CollisionStrategies.Indoors
                             }
                         }
-                    }
+                    },
                 ),
                 ScheduleTransition(
                     BOB_PRAY_TIME,
@@ -86,12 +83,12 @@ class BobSchedule(graph: NavigationGraph) : Script {
                                 }
                             }
                         }
-                    }
-                )
-            )
+                    },
+                ),
+            ),
         )
         npcSpawn("bob") {
-            BOB = this
+            bob = this
             this["full_pathfinding"] = true
 
             NpcSchedules.registry.register(schedule)
@@ -99,8 +96,8 @@ class BobSchedule(graph: NavigationGraph) : Script {
         npcDespawn("bob") {
             NpcSchedules.registry.unregister(schedule)
 
-            if(BOB == this){
-                BOB = null
+            if (bob == this) {
+                bob = null
             }
         }
     }

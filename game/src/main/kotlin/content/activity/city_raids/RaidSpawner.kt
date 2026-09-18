@@ -3,7 +3,6 @@ package content.activity.city_raids
 import content.activity.city_raids.goblins.GoblinRaidSystem
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.instruction.handle.interactNpc
-import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.timer.Timer
 import world.gregs.voidps.engine.timer.toTicks
 import java.util.concurrent.TimeUnit
@@ -24,7 +23,7 @@ class RaidSpawner : Script {
         }
 
         worldSpawn {
-            //World.timers.start(GOBLIN_RAID_TIMER)
+            // World.timers.start(GOBLIN_RAID_TIMER)
         }
         worldTimerStart(GOBLIN_RAID_TIMER) {
             if (DEBUG) {

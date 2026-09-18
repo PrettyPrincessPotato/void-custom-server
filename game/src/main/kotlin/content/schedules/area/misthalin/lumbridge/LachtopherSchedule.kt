@@ -22,7 +22,7 @@ private const val GO_HOME_HOUR = 20
 private const val GO_HANGOUT_HOUR = 10
 private const val LACHTOPHER_STRING_ID = "lachtopher"
 
-private var LACHTOPHER: NPC? = null
+private var lachtopher: NPC? = null
 
 private val DOWNSTAIRS = Tile(3232, 3209, 0)
 private val UPSTAIRS = Tile(3229, 3209, 1)
@@ -35,7 +35,7 @@ class LachtopherSchedule(graph: NavigationGraph) : Script {
 
     init {
         val schedule = NpcScheduleController(
-            npcProvider = { LACHTOPHER },
+            npcProvider = { lachtopher },
             routeExecutor = routeExecutor,
             scheduleTransitions = listOf(
                 ScheduleTransition(
@@ -55,7 +55,7 @@ class LachtopherSchedule(graph: NavigationGraph) : Script {
                 ScheduleTransition(
                     GO_HANGOUT_HOUR,
                     ScheduleAction.Custom {
-                        if(it.tile.level == 0){
+                        if (it.tile.level == 0) {
                             return@Custom
                         }
                         it.say("Ugh, I don't want to walk all the way there.")
@@ -74,15 +74,15 @@ class LachtopherSchedule(graph: NavigationGraph) : Script {
         )
 
         npcSpawn(LACHTOPHER_STRING_ID) {
-            LACHTOPHER = this
+            lachtopher = this
             this["full_pathfinding"] = true
             NpcSchedules.registry.register(schedule)
         }
         npcDespawn(LACHTOPHER_STRING_ID) {
             NpcSchedules.registry.unregister(schedule)
 
-            if(LACHTOPHER == this){
-                LACHTOPHER = null
+            if (lachtopher == this) {
+                lachtopher = null
             }
         }
     }

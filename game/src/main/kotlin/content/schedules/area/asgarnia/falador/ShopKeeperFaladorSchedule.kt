@@ -13,7 +13,7 @@ import world.gregs.voidps.engine.queue.queue as enqueue
 
 private const val SHOP_KEEPER_STRING_ID = "shopkeeper_falador"
 
-class ShopKeeperFalador(graph: NavigationGraph) : Script {
+class ShopKeeperFaladorSchedule(graph: NavigationGraph) : Script {
     private val routeExecutor: NpcRouteExecutor = NativeNpcRouteExecutor()
     private var shopkeeper: NPC? = null
 
