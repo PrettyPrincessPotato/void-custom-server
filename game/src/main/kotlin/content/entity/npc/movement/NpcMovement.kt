@@ -11,12 +11,13 @@ fun NPC.travelTo(
     destination: Tile,
     destinationArea: Area? = null,
     queueName: String,
+    pathingCollision: Boolean = false,
     onArrival: NPC.() -> Unit = {},
 ) {
     collision = CollisionStrategies.Normal
 
     enqueue(queueName) {
-        walkTo(destination)
+        walkTo(destination, noCollision = pathingCollision)
 
         while (
             tile != destination &&
