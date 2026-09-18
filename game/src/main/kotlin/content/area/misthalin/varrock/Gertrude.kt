@@ -1,5 +1,6 @@
 package content.area.misthalin.varrock
 
+import content.entity.player.bank.bank
 import content.entity.player.dialogue.Angry
 import content.entity.player.dialogue.Confused
 import content.entity.player.dialogue.Disheartened
@@ -146,7 +147,7 @@ class Gertrude : Script {
     }
 
     private suspend fun Player.giveKitten() {
-        if (inventory.contains("pet_kitten")) {
+        if (inventory.contains("pet_kitten") || bank.contains("pet_kitten")) {
             npc<Sad>("It looks like you've already got a kitten with you. Come back when you'd like another.")
             return
         }
