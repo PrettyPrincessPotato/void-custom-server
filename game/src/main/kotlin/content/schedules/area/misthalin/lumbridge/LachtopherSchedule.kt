@@ -21,18 +21,19 @@ private val LACHTOPHER_HANGOUT = Tile(3227, 3237, 0)
 private const val GO_HOME_HOUR = 20
 private const val GO_HANGOUT_HOUR = 10
 private const val LACHTOPHER_STRING_ID = "lachtopher"
+
 private var LACHTOPHER: NPC? = null
+
+private val DOWNSTAIRS = Tile(3232, 3209, 0)
+private val UPSTAIRS = Tile(3229, 3209, 1)
+private val EAST_TILE = Tile(3234, 3207, 0)
+private val WEST_TILE = Tile(3233, 3207, 0)
+private val HOME_DOOR = GameObjects.at(EAST_TILE).first()
 
 class LachtopherSchedule(graph: NavigationGraph) : Script {
     private val routeExecutor: NpcRouteExecutor = GraphNpcRouteExecutor(NpcNavMeshRouteFinder(graph))
 
     init {
-        val downstairs = Tile(3232, 3209, 0)
-        val upstairs = Tile(3229, 3209, 1)
-        val eastTile = Tile(3234, 3207, 0)
-        val westTile = Tile(3233, 3207, 0)
-        val homeDoor = GameObjects.at(eastTile).first()
-
         val schedule = NpcScheduleController(
             npcProvider = { LACHTOPHER },
             routeExecutor = routeExecutor,
@@ -41,10 +42,10 @@ class LachtopherSchedule(graph: NavigationGraph) : Script {
                     GO_HOME_HOUR,
                     ScheduleAction.Custom {
                         it.say("Ugh, I don't walk all the way home.")
-                        it.travelTo(eastTile, null, "lachtopher_to_door") {
-                            npcOpenDoor(homeDoor, 30)
-                            travelTo(downstairs, null, "lachtopher_to_stairs_bottom") {
-                                tele(upstairs)
+                        it.travelTo(EAST_TILE, null, "lachtopher_to_door") {
+                            npcOpenDoor(HOME_DOOR, 30)
+                            travelTo(DOWNSTAIRS, null, "lachtopher_to_stairs_bottom") {
+                                tele(UPSTAIRS)
                                 walkTo(LACHTOPHER_HOME)
                                 it["spawn_tile"] = LACHTOPHER_HOME
                             }
@@ -58,10 +59,10 @@ class LachtopherSchedule(graph: NavigationGraph) : Script {
                             return@Custom
                         }
                         it.say("Ugh, I don't want to walk all the way there.")
-                        it.travelTo(upstairs, null, "lachtopher_to_stairs_top") {
-                            tele(downstairs)
-                            travelTo(westTile, null, "lachtopher_stairs_to_door") {
-                                npcOpenDoor(homeDoor, 30)
+                        it.travelTo(UPSTAIRS, null, "lachtopher_to_stairs_top") {
+                            tele(DOWNSTAIRS)
+                            travelTo(WEST_TILE, null, "lachtopher_stairs_to_door") {
+                                npcOpenDoor(HOME_DOOR, 30)
                                 travelTo(LACHTOPHER_HANGOUT, null, "lachtopher_home_to_hangout") {
                                     it["spawn_tile"] = LACHTOPHER_HANGOUT
                                 }
