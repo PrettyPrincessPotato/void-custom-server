@@ -103,7 +103,7 @@ object Door {
     /**
      * Plays [suffix] to everyone nearby once a temporary door reverts to its original state
      */
-    private fun revert(definition: ObjectDefinition, obj: GameObject, suffix: String): () -> Unit = {
+    fun revert(definition: ObjectDefinition, obj: GameObject, suffix: String): () -> Unit = {
         areaSound(soundName(definition, suffix), obj.tile)
     }
 
@@ -134,7 +134,7 @@ object Door {
     /**
      * Replace door [obj] with [next] for [ticks]
      */
-    private fun replace(obj: GameObject, def: ObjectDefinition, current: String, next: String, tileRotation: Int, objRotation: Int, ticks: Int, collision: Boolean = true, onRevert: (() -> Unit)? = null) {
+    fun replace(obj: GameObject, def: ObjectDefinition, current: String, next: String, tileRotation: Int, objRotation: Int, ticks: Int, collision: Boolean = true, onRevert: (() -> Unit)? = null) {
         val hinged = !def.stringId.contains("single")
         obj.replace(
             id = def.stringId.replace(current, next),

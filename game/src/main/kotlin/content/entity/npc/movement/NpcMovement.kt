@@ -9,7 +9,7 @@ import world.gregs.voidps.engine.queue.queue as enqueue
 
 fun NPC.travelTo(
     destination: Tile,
-    destinationArea: Area?,
+    destinationArea: Area? = null,
     queueName: String,
     onArrival: NPC.() -> Unit = {},
 ) {
