@@ -54,6 +54,9 @@ class LachtopherSchedule(graph: NavigationGraph) : Script {
                 ScheduleTransition(
                     GO_HANGOUT_HOUR,
                     ScheduleAction.Custom {
+                        if(it.tile.level == 0){
+                            return@Custom
+                        }
                         it.say("Ugh, I don't want to walk all the way there.")
                         it.travelTo(upstairs, null, "lachtopher_to_stairs_top") {
                             tele(downstairs)
@@ -72,7 +75,6 @@ class LachtopherSchedule(graph: NavigationGraph) : Script {
         npcSpawn(LACHTOPHER_STRING_ID) {
             LACHTOPHER = this
             this["full_pathfinding"] = true
-            this["spawn_tile"] = LACHTOPHER_HANGOUT
             NpcSchedules.registry.register(schedule)
         }
         npcDespawn(LACHTOPHER_STRING_ID) {
