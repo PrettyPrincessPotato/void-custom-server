@@ -9,7 +9,6 @@ import content.entity.npc.schedule.NpcScheduleController
 import content.entity.npc.schedule.NpcSchedules
 import content.entity.npc.schedule.ScheduleAction
 import content.entity.npc.schedule.ScheduleTransition
-import org.rsmod.game.pathfinder.collision.CollisionStrategies
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.queue.queue as enqueue
 import world.gregs.voidps.engine.entity.character.mode.PauseMode
@@ -54,72 +53,25 @@ class DonieSchedule : Script {
                 ScheduleTransition(
                     WAKE_UP_HOUR,
                     ScheduleAction.Custom {
-                        it.travelTo(RODDECK_BEDROOM_DOOR_INSIDE, "donie_bed_to_door") {
-                            npcOpenDoor(BEDROOM_DOOR, 3)
-                            travelTo(DONIE_SIDE_DOOR_OUTSIDE, "donie_bed_to_side") {
-                                npcOpenDoor(SIDE_DOOR, 3)
-                                travelTo(DONIE_SIDE_DOOR_INSIDE, "donie_walk_in_side_room") {
-                                    setSpawnAndWander(it, DONIE_SIDE_DOOR_INSIDE)
-                                }
-                            }
-                        }
+                        travelToSideRoom(it)
                     }
                 ),
                 ScheduleTransition(
                     ADVENTURE_HOUR,
                     ScheduleAction.Custom {
-                        if (it.tile.level == 0) {
-                            return@Custom
-                        }
-                        it.travelTo(DONIE_SIDE_DOOR_INSIDE, "donie_leave_side_room") {
-                            npcOpenDoor(SIDE_DOOR, 3)
-                            travelTo(RODDECK_STAIRS_TOP, "donie_side_room_to_stairs") {
-                                tele(RODDECK_STAIRS_BOTTOM)
-                                travelTo(DONIE_DOOR_INSIDE, "donie_stairs_to_out") {
-                                    npcOpenDoor(HOME_DOOR, 3)
-                                    travelTo(donieSpawnTile!!, "donie_to_spawn") {
-                                        setSpawnAndWander(it, donieSpawnTile!!)
-                                    }
-                                }
-                            }
-                        }
+                        returnToSpawnTile(it)
                     }
                 ),
                 ScheduleTransition(
                     GO_HOME_HOUR,
                     ScheduleAction.Custom {
-                        it.travelTo(DONIE_DOOR_OUTSIDE, "donie_to_home") {
-                            npcOpenDoor(HOME_DOOR, 3)
-                            travelTo(DONIE_INDOOR_HANGOUT_LOC, "donie_walk_indoors") {
-                                setSpawnAndWander(it, DONIE_INDOOR_HANGOUT_LOC)
-                                it.collision = CollisionStrategies.Indoors
-                                enqueue("welcome_home_donie_roddeck") {
-                                    say("Hello, father!")
-                                    pause(5)
-                                    roddeckNpc!!.say("Who're you?")
-                                    pause(5)
-                                    say("Har, har, har. Love you too.")
-                                    pause(5)
-                                    roddeckNpc!!.say("And I love you.")
-                                }
-                            }
-                        }
+                        travelHome(it)
                     }
                 ),
                 ScheduleTransition(
                     GO_TO_BED_HOUR,
                     ScheduleAction.Custom {
-                        it.say("I should turn in...")
-                        it.travelTo(RODDECK_STAIRS_BOTTOM, "donie_indoors_to_upstairs") {
-                            tele(RODDECK_STAIRS_TOP)
-                            travelTo(RODDECK_BEDROOM_DOOR_OUTSIDE, "donie_stairs_to_bedroom") {
-                                npcOpenDoor(BEDROOM_DOOR, 3)
-                                travelTo(DONIE_SLEEP_LOC, "donie_to_bed") {
-                                    face(Direction.WEST)
-                                    mode = PauseMode
-                                }
-                            }
-                        }
+                        goToBed(it)
                     }
                 ),
             )
@@ -137,6 +89,68 @@ class DonieSchedule : Script {
 
             if (donieNpc == this) {
                 donieNpc = null
+            }
+        }
+    }
+}
+
+private fun travelToSideRoom(npc: NPC) {
+    npc.travelTo(RODDECK_BEDROOM_DOOR_INSIDE, "donie_bed_to_door") {
+        npcOpenDoor(BEDROOM_DOOR, 3)
+        travelTo(DONIE_SIDE_DOOR_OUTSIDE, "donie_bed_to_side") {
+            npcOpenDoor(SIDE_DOOR, 3)
+            travelTo(DONIE_SIDE_DOOR_INSIDE, "donie_walk_in_side_room") {
+                setSpawnAndWander(npc, DONIE_SIDE_DOOR_INSIDE)
+            }
+        }
+    }
+}
+
+private fun returnToSpawnTile(npc: NPC) {
+    if (npc.tile.level == 0) {
+        return
+    }
+    npc.travelTo(DONIE_SIDE_DOOR_INSIDE, "donie_leave_side_room") {
+        npcOpenDoor(SIDE_DOOR, 3)
+        travelTo(RODDECK_STAIRS_TOP, "donie_side_room_to_stairs") {
+            tele(RODDECK_STAIRS_BOTTOM)
+            travelTo(DONIE_DOOR_INSIDE, "donie_stairs_to_out") {
+                npcOpenDoor(HOME_DOOR, 3)
+                travelTo(donieSpawnTile!!, "donie_to_spawn") {
+                    setSpawnAndWander(npc, donieSpawnTile!!)
+                }
+            }
+        }
+    }
+}
+
+private fun travelHome(npc: NPC) {
+    npc.travelTo(DONIE_DOOR_OUTSIDE, "donie_to_home") {
+        npcOpenDoor(HOME_DOOR, 3)
+        travelTo(DONIE_INDOOR_HANGOUT_LOC, "donie_walk_indoors") {
+            setSpawnAndWander(npc, DONIE_INDOOR_HANGOUT_LOC, true)
+            enqueue("welcome_home_donie_roddeck") {
+                say("Hello, father!")
+                pause(5)
+                roddeckNpc!!.say("Who're you?")
+                pause(5)
+                say("Har, har, har. Love you too.")
+                pause(5)
+                roddeckNpc!!.say("And I love you.")
+            }
+        }
+    }
+}
+
+private fun goToBed(npc: NPC) {
+    npc.say("I should turn in...")
+    npc.travelTo(RODDECK_STAIRS_BOTTOM, "donie_indoors_to_upstairs") {
+        tele(RODDECK_STAIRS_TOP)
+        travelTo(RODDECK_BEDROOM_DOOR_OUTSIDE, "donie_stairs_to_bedroom") {
+            npcOpenDoor(BEDROOM_DOOR, 3)
+            travelTo(DONIE_SLEEP_LOC, "donie_to_bed") {
+                face(Direction.WEST)
+                mode = PauseMode
             }
         }
     }
