@@ -34,7 +34,10 @@ fun NPC.travelTo(
     }
 }
 
-fun setSpawnAndWander(npc: NPC, spawnTile: Tile) {
+fun setSpawnAndWander(npc: NPC, spawnTile: Tile, indoorCollision: Boolean = false) {
+    if(indoorCollision){
+        npc.collision = CollisionStrategies.Indoors
+    }
     npc["spawn_tile"] = spawnTile
     npc.mode = Wander(npc, spawnTile)
 }
