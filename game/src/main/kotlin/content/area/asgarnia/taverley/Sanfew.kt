@@ -57,6 +57,9 @@ class Sanfew : Script {
                     option<Quiz>("Where can I find this cauldron?") {
                         npc<Idle>("It is located somewhere in the mysterious underground halls which are located somewhere in the woods just South of here. They are too dangerous for me to go myself however.")
                     }
+                    option<Quiz>("What kind of meat do I need?") {
+                        npc<Idle>("You need raw chicken, beef, rat meat, and bear meat.")
+                    }
                     option<Idle>("Ok, I'll do that then.") {
                         npc<Happy>("Well thank you very much!")
                     }
@@ -92,6 +95,9 @@ class Sanfew : Script {
                 choice {
                     option<Quiz>("Where can I find this cauldron?") {
                         npc<Idle>("It is located somewhere in the mysterious underground halls which are located somewhere in the woods just South of here. They are too dangerous for me to go myself however.")
+                    }
+                    option<Quiz>("What kind of meat do I need?") {
+                        npc<Idle>("You need raw chicken, beef, rat meat, and bear meat.")
                     }
                     option<Idle>("Ok, I'll do that then.") {
                         npc<Happy>("Well thank you very much!")
