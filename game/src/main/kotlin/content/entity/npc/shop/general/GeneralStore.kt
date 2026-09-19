@@ -15,36 +15,20 @@ import content.world.time.WorldTime
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.entity.character.npc.NPC
 
+private val generalStoreSchedule = ShopSchedule(
+    openingHour = 8,
+    closingHour = 18,
+)
+
+fun isGeneralStoreOpen(): Boolean = generalStoreSchedule.isOpen(WorldTime.hour)
+
 class GeneralStore : Script {
-    private val generalStoreSchedule = ShopSchedule(
-        openingHour = 8,
-        closingHour = 18,
-    )
-
-    fun isGeneralStoreOpen(): Boolean = generalStoreSchedule.isOpen(WorldTime.hour)
-
-    fun checkFaladorAssistant(target: NPC): Boolean {
-        val isAway =
-            target.id == ASSISTANT_STRING_ID &&
-                WorldTime.hour !in ASSISTANT_RETURN_HOUR..<ASSISTANT_LEAVE_HOUR
-
-        if (isAway) {
-            target.say("I'm off the clock.")
-            return true
-        }
-
-        return false
-    }
 
     init {
         fun openGeneralStore(
             target: NPC,
             open: (String) -> Unit,
         ) {
-            if (checkFaladorAssistant(target)) {
-                return
-            }
-
             val shop = target.def.getOrNull<String>("shop") ?: return
             if (isGeneralStoreOpen()) {
                 open(shop)
