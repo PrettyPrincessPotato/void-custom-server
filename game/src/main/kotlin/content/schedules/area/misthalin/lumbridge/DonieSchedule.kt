@@ -96,7 +96,11 @@ class DonieSchedule : Script {
                                 enqueue("welcome_home_donie_roddeck") {
                                     say("Hello, father!")
                                     pause(5)
-                                    roddeckNpc!!.say("Ah, welcome home!")
+                                    roddeckNpc!!.say("Who're you?")
+                                    pause(5)
+                                    say("Har, har, har. Love you too.")
+                                    pause(5)
+                                    roddeckNpc!!.say("And I love you.")
                                 }
                             }
                         }
