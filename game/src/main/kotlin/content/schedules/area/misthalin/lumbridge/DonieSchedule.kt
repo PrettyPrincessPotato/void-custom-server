@@ -19,7 +19,7 @@ import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
 
-private var donie: NPC? = null
+private var donieNpc: NPC? = null
 private var donieSpawnTile: Tile? = null
 private const val DONIE_STRING_ID = "donie"
 
@@ -28,8 +28,8 @@ private const val ADVENTURE_HOUR = 11
 private const val GO_HOME_HOUR = 19
 private const val GO_TO_BED_HOUR = 22
 
-private val DONNI_DOOR_INSIDE = Tile(3229, 3240, 0)
-private val DONNI_DOOR_OUTSIDE = Tile(3228, 3240, 0)
+private val DONIE_DOOR_INSIDE = Tile(3229, 3240, 0)
+private val DONIE_DOOR_OUTSIDE = Tile(3228, 3240, 0)
 private val RODDECK_STAIRS_BOTTOM = Tile(3232, 3238, 0)
 private val RODDECK_STAIRS_TOP = Tile(3232, 3241, 1)
 private val RODDECK_BEDROOM_DOOR_OUTSIDE = Tile(3230, 3239, 1)
@@ -39,7 +39,7 @@ private val DONIE_SIDE_DOOR_OUTSIDE = Tile(3229, 3240, 1)
 private val DONIE_SIDE_DOOR_INSIDE = Tile(3228, 3240, 1)
 private val DONIE_INDOOR_HANGOUT_LOC = Tile(3230, 3239, 0)
 
-private val HOME_DOOR = GameObjects.at(DONNI_DOOR_OUTSIDE).first()
+private val HOME_DOOR = GameObjects.at(DONIE_DOOR_OUTSIDE).first()
 private val BEDROOM_DOOR = GameObjects.at(RODDECK_BEDROOM_DOOR_INSIDE).first()
 private val SIDE_DOOR = GameObjects.at(DONIE_SIDE_DOOR_INSIDE).first()
 
@@ -48,7 +48,7 @@ class DonieSchedule : Script {
 
     init {
         val schedule = NpcScheduleController(
-            npcProvider = { donie },
+            npcProvider = { donieNpc },
             routeExecutor = routeExecutor,
             scheduleTransitions = listOf(
                 ScheduleTransition(
@@ -75,7 +75,7 @@ class DonieSchedule : Script {
                             npcOpenDoor(SIDE_DOOR, 3)
                             travelTo(RODDECK_STAIRS_TOP, "donie_side_room_to_stairs") {
                                 tele(RODDECK_STAIRS_BOTTOM)
-                                travelTo(DONNI_DOOR_INSIDE, "donie_stairs_to_out") {
+                                travelTo(DONIE_DOOR_INSIDE, "donie_stairs_to_out") {
                                     npcOpenDoor(HOME_DOOR, 3)
                                     travelTo(donieSpawnTile!!, "donie_to_spawn") {
                                         setSpawnAndWander(it, donieSpawnTile!!)
@@ -88,7 +88,7 @@ class DonieSchedule : Script {
                 ScheduleTransition(
                     GO_HOME_HOUR,
                     ScheduleAction.Custom {
-                        it.travelTo(DONNI_DOOR_OUTSIDE, "donie_to_home") {
+                        it.travelTo(DONIE_DOOR_OUTSIDE, "donie_to_home") {
                             npcOpenDoor(HOME_DOOR, 3)
                             travelTo(DONIE_INDOOR_HANGOUT_LOC, "donie_walk_indoors") {
                                 setSpawnAndWander(it, DONIE_INDOOR_HANGOUT_LOC)
@@ -126,7 +126,7 @@ class DonieSchedule : Script {
         )
 
         npcSpawn(DONIE_STRING_ID) {
-            donie = this
+            donieNpc = this
             donieSpawnTile = this.tile
             this["full_pathfinding"] = true
 
@@ -135,8 +135,8 @@ class DonieSchedule : Script {
         npcDespawn(DONIE_STRING_ID) {
             NpcSchedules.registry.unregister(schedule)
 
-            if (donie == this) {
-                donie = null
+            if (donieNpc == this) {
+                donieNpc = null
             }
         }
     }
