@@ -131,9 +131,9 @@ private fun travelHome(npc: NPC) {
             setSpawnAndWander(npc, DONIE_INDOOR_HANGOUT_LOC, true)
             enqueue("welcome_home_donie_roddeck") {
                 say("Hello, father!")
-                pause(5)
+                pause(3)
                 roddeckNpc!!.say("Who're you?")
-                pause(5)
+                pause(3)
                 say("Har, har, har. Love you too.")
                 pause(5)
                 roddeckNpc!!.say("And I love you.")
