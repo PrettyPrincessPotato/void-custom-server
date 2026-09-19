@@ -15,7 +15,7 @@ import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
 
-private var roddeck: NPC? = null
+var roddeckNpc: NPC? = null
 private const val RODDECK_STRING_ID = "roddeck"
 
 private const val WAKE_UP_HOUR = 8
@@ -42,7 +42,7 @@ class RoddeckSchedule : Script {
     private val routeExecutor: NpcRouteExecutor = NativeNpcRouteExecutor()
     init {
         val schedule = NpcScheduleController(
-            npcProvider = { roddeck },
+            npcProvider = { roddeckNpc },
             routeExecutor = routeExecutor,
             scheduleTransitions = listOf(
                 ScheduleTransition(
@@ -108,15 +108,15 @@ class RoddeckSchedule : Script {
         )
 
         npcSpawn(RODDECK_STRING_ID) {
-            roddeck = this
+            roddeckNpc = this
             this["full_pathfinding"] = true
             NpcSchedules.registry.register(schedule)
         }
         npcDespawn(RODDECK_STRING_ID) {
             NpcSchedules.registry.unregister(schedule)
 
-            if (roddeck == this) {
-                roddeck = null
+            if (roddeckNpc == this) {
+                roddeckNpc = null
             }
         }
     }
