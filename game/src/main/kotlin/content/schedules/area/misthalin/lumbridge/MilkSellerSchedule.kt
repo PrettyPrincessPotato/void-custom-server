@@ -4,30 +4,53 @@ import content.bot.behaviour.navigation.NavigationGraph
 import content.entity.npc.movement.GraphNpcRouteExecutor
 import content.entity.npc.movement.NpcNavMeshRouteFinder
 import content.entity.npc.movement.NpcRouteExecutor
+import content.entity.npc.movement.npcOpenDoor
+import content.entity.npc.movement.setSpawnAndWander
 import content.entity.npc.movement.travelTo
 import content.entity.npc.schedule.NpcScheduleController
 import content.entity.npc.schedule.NpcSchedules
 import content.entity.npc.schedule.ScheduleAction
+import world.gregs.voidps.engine.queue.queue as enqueue
 import content.entity.npc.schedule.ScheduleTransition
 import world.gregs.voidps.engine.Script
+import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPC
+import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.type.Tile
 
 private var milkSellerNpc: NPC? = null
+private var gertrudeNpc: NPC? = null
 private const val MILK_SELLER_STRING_ID = "milk_seller"
 private var milkSellerSpawnTile: Tile? = null
 
+private const val TRAVEL_WARN_HOUR = 4
 private const val TRAVEL_HOUR = 5
 
-private val LUMBRIDGE = Tile(3221, 3219, 0)
+private val LUMBRIDGE = Tile(3225, 3221, 0)
 private val VARROCK = Tile(3209, 3435, 0)
+private val EDGEVILLE = Tile(3101, 3504, 0)
 private val FALADOR = Tile(2968, 3377, 0)
 private val PORT_SARIM = Tile(3043, 3256, 0)
 private val RIMMINGTON = Tile(2959, 3218, 0)
 
+private val LUMBRIDGE_GATE_SOUTH = Tile(3177, 3315, 0)
+private val LUMBRIDGE_GATE_NORTH = Tile(3177, 3316, 0)
+private val GERTRUDE_DOOR_OUTSIDE = Tile(3151, 3412, 0)
+private val GERTRUDE_DOOR_INSIDE = Tile(3151, 3411, 0)
+
+private val LUMBRIDGE_MARKET = Tile(3221, 3243, 0)
+private val VARROCK_SOUTH_MINE = Tile(3179, 3363, 0)
+private val BLUE_MOON_INN = Tile(3229, 3399, 0)
+private val SOUTH_WEST_GE = Tile(3134, 3461, 0)
+private val EDGEVILLE_FAIRY_RING = Tile(3129, 3497, 0)
+
+private val LUMBRIDGE_GATE = GameObjects.at(LUMBRIDGE_GATE_NORTH).first()
+private val GERTRUDE_DOOR = GameObjects.at(GERTRUDE_DOOR_OUTSIDE).first()
+
 private val SELL_LOCATIONS = arrayOf(
     LUMBRIDGE,
     VARROCK,
+    EDGEVILLE,
     FALADOR,
     PORT_SARIM,
     RIMMINGTON,
@@ -50,6 +73,12 @@ class MilkSellerSchedule(graph: NavigationGraph) : Script {
                         travelSomewhereNew(it)
                     }
                 ),
+                ScheduleTransition(
+                    TRAVEL_WARN_HOUR,
+                    ScheduleAction.Custom {
+                        it.say("Last call! We're heading out soon.")
+                    }
+                )
             )
         )
 
@@ -67,15 +96,23 @@ class MilkSellerSchedule(graph: NavigationGraph) : Script {
                 milkSellerNpc = null
             }
         }
+        npcSpawn("gertrude") {
+            gertrudeNpc = this
+        }
+        npcDespawn("gertrude") {
+            if(gertrudeNpc == this) {
+                gertrudeNpc = null
+            }
+        }
     }
 }
 
 private fun travelSomewhereNew(npc: NPC) {
     npc.say("Well Bessie, time we headed out.")
-    val destination = nextSellingLocation()
-    when(destination){
+    when(val destination = nextSellingLocation()){
         LUMBRIDGE -> travelToLumbridge(npc)
-        VARROCK -> npc.say("I'd travel to $destination")
+        VARROCK -> travelToVarrock(npc)
+        EDGEVILLE -> varrockToEdgeville(npc)
         FALADOR -> npc.say("I'd travel to $destination")
         PORT_SARIM -> npc.say("I'd travel to $destination")
         RIMMINGTON -> npc.say("I'd travel to $destination")
@@ -91,5 +128,69 @@ private fun nextSellingLocation(): Tile {
 }
 
 private fun travelToLumbridge(npc: NPC) {
-    npc.travelTo(LUMBRIDGE, "spawn_to_lumbridge")
+    npc.travelTo(LUMBRIDGE_MARKET, "milk_seller_spawn_to_lumbridge_market") {
+        npc.travelTo(LUMBRIDGE, "milk_seller_market_to_lumbridge") {
+            say("Careful about Bob, Bessie. I think he was looking at you funny.")
+            // Moo
+            setSpawnAndWander(npc, LUMBRIDGE)
+        }
+    }
+}
+
+private fun travelToVarrock(npc: NPC) {
+    npc.travelTo(LUMBRIDGE_MARKET, "milk_seller_lumbridge_to_market") {
+        travelTo(milkSellerSpawnTile!!, "milk_seller_lumbridge_to_spawn") {
+            travelTo(LUMBRIDGE_GATE_SOUTH, "milk_seller_spawn_to_gate") {
+                tele(LUMBRIDGE_GATE_NORTH)
+                travelTo(VARROCK_SOUTH_MINE, "milk_seller_gate_to_mines") {
+                    travelTo(BLUE_MOON_INN, "milk_seller_mines_to_inn") {
+                        say("Hey, just dropping off the usual.")
+                        travelTo(VARROCK, "milk_seller_inn_to_varrock") {
+                            say("We should remember to stop by Gertrude's on the way over, Bessie.")
+                            // Moo
+                            setSpawnAndWander(npc, VARROCK)
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+private fun varrockToEdgeville(npc: NPC) {
+    npc.travelTo(GERTRUDE_DOOR_OUTSIDE, "milk_seller_varrock_to_gertrude") {
+        npcOpenDoor(GERTRUDE_DOOR, 69420)
+        travelTo(GERTRUDE_DOOR_INSIDE, "milk_seller_walk_in_gertrudes_home") {
+            enqueue("milk_seller_gertrude_talk") {
+                say("Hey Gertrude, came to see if you need a top-off.")
+                pause(3)
+                gertrudeNpc!!.say("Thank you dearie. Want a kitten?")
+                pause(3)
+                say("Oh no, thank you. Bessie is enough for me.")
+                pause(3)
+                // Moo
+                pause(3)
+                say("I better get back to it before she breaks the house down.")
+                pause(3)
+                gertrudeNpc!!.say("Haha, take care dearie.")
+                npcOpenDoor(GERTRUDE_DOOR, 5)
+                travelTo(SOUTH_WEST_GE, "milk_seller_gertrude_to_ge") {
+                    enqueue("milk_seller_bessie_teleport") {
+                        say("Ugh... Guards... Bessie, could you please?")
+                        pause(3)
+                        // Moo...
+                        pause(3)
+                        tele(EDGEVILLE_FAIRY_RING)
+                        say("Thanks, Bessie.")
+                        pause(3)
+                        // Moo.
+                        travelTo(EDGEVILLE, "milk_seller_ge_to_edgeville") {
+                            say("I hope the programmer remembers to enter flavor text here...")
+                            // Moo
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
