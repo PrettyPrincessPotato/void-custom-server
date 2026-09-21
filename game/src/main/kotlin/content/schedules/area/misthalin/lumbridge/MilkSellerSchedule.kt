@@ -92,7 +92,7 @@ class MilkSellerSchedule(graph: NavigationGraph) : Script {
             milkSellerSpawnTile = this.tile
             this["full_pathfinding"] = true
 
-            NpcSchedules.registry.register(schedule)
+            // NpcSchedules.registry.register(schedule)
         }
         npcDespawn(MILK_SELLER_STRING_ID) {
             NpcSchedules.registry.unregister(schedule)
