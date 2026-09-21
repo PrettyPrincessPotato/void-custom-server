@@ -1,5 +1,8 @@
 package content.entity.player.combat
 
+import content.activity.level_sync.SyncedLevels
+import content.activity.level_sync.effectiveLevels
+import content.activity.level_sync.syncedLevels
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.World
@@ -14,6 +17,8 @@ class CombatLevel : Script {
 
     init {
         playerSpawn {
+            val levels = effectiveLevels()
+
             combatLevel = calculateCombatLevel(levels, summoning = World.members)
             summoningCombatLevel = calculateCombatLevel(levels, summoning = true)
         }
@@ -24,10 +29,14 @@ class CombatLevel : Script {
     }
 
     fun recalculate(player: Player, skill: Skill, from: Int, to: Int) {
-        val previous = player.summoningCombatLevel
-        val level = calculateCombatLevel(player.levels, summoning = World.members)
+        val levels = player.effectiveLevels()
+
+        val previous = player.combatLevel
+
+        val level = calculateCombatLevel(levels, summoning = World.members)
+
         player.combatLevel = level
-        player.summoningCombatLevel = calculateCombatLevel(player.levels, summoning = true)
+        player.summoningCombatLevel = calculateCombatLevel(levels, summoning = true)
         if (player["skip_level_up", false]) {
             return
         }
@@ -59,16 +68,20 @@ class CombatLevel : Script {
             }
         }
     }
+}
 
-    fun calculateCombatLevel(levels: Levels, summoning: Boolean = false): Int {
-        val melee = levels.getMax(Skill.Attack) + levels.getMax(Skill.Strength)
-        val ranged = (levels.getMax(Skill.Ranged) * 3) / 2
-        val mage = (levels.getMax(Skill.Magic) * 3) / 2
-        val highest = max(melee, max(ranged, mage)) * 13
-        var def = levels.getMax(Skill.Defence) + (levels.getMax(Skill.Constitution) / 10) + (levels.getMax(Skill.Prayer) / 2)
-        if (World.members && summoning) {
-            def += levels.getMax(Skill.Summoning) / 2
-        }
-        return ((highest / 10) + def) / 4
+fun calculateCombatLevel(levels: SyncedLevels, summoning: Boolean = false): Int {
+    val melee = levels.attack + levels.strength
+    val ranged = (levels.ranged * 3) / 2
+    val magic = (levels.magic * 3) / 2
+    val highest = max(melee, max(ranged, magic)) * 13
+
+    var defence =
+        levels.defence + (levels.hitpoints / 10) + (levels.prayer / 2)
+
+    if (World.members && summoning) {
+        defence += levels.summoning / 2
     }
+
+    return ((highest / 10) + defence) / 4
 }
