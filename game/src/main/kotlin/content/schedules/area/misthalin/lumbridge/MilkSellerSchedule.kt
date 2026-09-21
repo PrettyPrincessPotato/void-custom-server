@@ -225,10 +225,10 @@ private fun varrockToEdgeville(npc: NPC) {
         npcOpenDoor(GERTRUDE_DOOR, 69420)
         travelTo(GERTRUDE_DOOR_INSIDE, "milk_seller_walk_in_gertrudes_home") {
             enqueue("milk_seller_gertrude_talk") {
-                milkSellerNpc!!.mode = PauseMode
+                milkSellerNpc?.mode = PauseMode
                 say("Hey Gertrude, came to see if you need a top-off.")
                 pause(3)
-                gertrudeNpc!!.say("Thank you dearie. Want a kitten?")
+                gertrudeNpc?.say("Thank you dearie. Want a kitten?")
                 pause(3)
                 say("Oh no, thank you. Bessie is enough for me.")
                 pause(3)
@@ -236,7 +236,7 @@ private fun varrockToEdgeville(npc: NPC) {
                 pause(3)
                 say("I better get back to it before she breaks the house down.")
                 pause(3)
-                gertrudeNpc!!.say("Haha, take care dearie.")
+                gertrudeNpc?.say("Haha, take care dearie.")
                 npcOpenDoor(GERTRUDE_DOOR, 5)
                 travelTo(SOUTH_WEST_GE, "milk_seller_gertrude_to_ge") {
                     enqueue("milk_seller_bessie_teleport") {
