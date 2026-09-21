@@ -48,7 +48,7 @@ private fun Player.levelDesync() {
 }
 
 fun levelSync(player: Player, target: Player) {
-    if(target.combatLevel > player.combatLevel) {
+    if (target.combatLevel > player.combatLevel) {
         player.message("You cannot sync your level higher; only lower.")
         return
     }

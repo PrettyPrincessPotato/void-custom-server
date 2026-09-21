@@ -1,6 +1,5 @@
 package content.entity.player.command
 
-import content.activity.level_sync.levelSync
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.statement
 import content.skill.prayer.PrayerConfigs
