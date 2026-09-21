@@ -19,8 +19,8 @@ price = 312
 limit = 5000
 weight = 0.02
 examine = "I can summon a spirit terrorbird familiar with this."
-summon_experience = 0.8
-infuse_experience = 68.4
+summon_experience = 34.2
+infuse_experience = 34.2
 summon_points = 6
 
 [spirit_terrorbird_pouch_noted]
@@ -32,8 +32,8 @@ price = 241
 limit = 5000
 weight = 0.02
 examine = "I can summon a granite crab familiar with this."
-summon_experience = 0.2
-infuse_experience = 21.6
+summon_experience = 10.8
+infuse_experience = 10.8
 summon_points = 2
 
 [granite_crab_pouch_noted]
@@ -45,8 +45,8 @@ price = 2935
 limit = 5000
 weight = 0.02
 examine = "I can summon a praying mantis familiar with this."
-summon_experience = 3.6
-infuse_experience = 329.6
+summon_experience = 164.8
+infuse_experience = 164.8
 summon_points = 8
 
 [praying_mantis_pouch_noted]
@@ -58,8 +58,8 @@ price = 2154
 limit = 5000
 weight = 0.02
 examine = "I can summon a giant ent familiar with this."
-summon_experience = 1.6
-infuse_experience = 136.8
+summon_experience = 68.4
+infuse_experience = 68.4
 summon_points = 8
 
 [giant_ent_pouch_noted]
@@ -71,8 +71,8 @@ price = 2006
 limit = 5000
 weight = 0.02
 examine = "I can summon a spirit cobra familiar with this."
-summon_experience = 3.1
-infuse_experience = 276.8
+summon_experience = 138.4
+infuse_experience = 138.4
 summon_points = 7
 
 [spirit_cobra_pouch_noted]
@@ -84,8 +84,8 @@ price = 148
 limit = 5000
 weight = 0.02
 examine = "I can summon a spirit dagannoth familiar with this."
-summon_experience = 4.1
-infuse_experience = 364.8
+summon_experience = 182.4
+infuse_experience = 182.4
 summon_points = 9
 
 [spirit_dagannoth_pouch_noted]
@@ -97,8 +97,8 @@ price = 300
 limit = 5000
 weight = 0.02
 examine = "I can summon a thorny snail familiar with this."
-summon_experience = 0.2
-infuse_experience = 12.6
+summon_experience = 6.3
+infuse_experience = 6.3
 summon_points = 2
 
 [thorny_snail_pouch_noted]
@@ -110,8 +110,8 @@ price = 1263
 limit = 5000
 weight = 0.02
 examine = "I can summon a beaver familiar with this."
-summon_experience = 0.7
-infuse_experience = 57.6
+summon_experience = 28.8
+infuse_experience = 28.8
 summon_points = 4
 
 [beaver_pouch_noted]
@@ -123,8 +123,8 @@ price = 2508
 limit = 5000
 weight = 0.02
 examine = "I can summon a karamthulhu overlord familiar with this."
-summon_experience = 5.8
-infuse_experience = 510.5
+summon_experience = 255.3
+infuse_experience = 255.3
 
 [karam_overlord_pouch_noted]
 id = 12024
@@ -135,8 +135,8 @@ price = 2242
 limit = 5000
 weight = 0.02
 examine = "I can summon a hydra familiar with this."
-summon_experience = 1.6
-infuse_experience = 140.8
+summon_experience = 70.4
+infuse_experience = 70.4
 summon_points = 8
 
 [hydra_pouch_noted]
@@ -148,8 +148,8 @@ price = 2639
 limit = 5000
 weight = 0.02
 examine = "I can summon a spirit jelly familiar with this."
-summon_experience = 5.5
-infuse_experience = 484.0
+summon_experience = 242.0
+infuse_experience = 242.0
 summon_points = 6
 
 [spirit_jelly_pouch_noted]
@@ -161,8 +161,8 @@ price = 2894
 limit = 5000
 weight = 0.02
 examine = "I can summon a bunyip familiar with this."
-summon_experience = 1.4
-infuse_experience = 119.2
+summon_experience = 59.6
+infuse_experience = 59.6
 summon_points = 7
 
 [bunyip_pouch_noted]
@@ -174,8 +174,8 @@ price = 9309
 limit = 5000
 weight = 0.02
 examine = "I can summon a war tortoise familiar with this."
-summon_experience = 0.7
-infuse_experience = 58.6
+summon_experience = 29.3
+infuse_experience = 29.3
 summon_points = 7
 
 [war_tortoise_pouch_noted]
@@ -187,8 +187,8 @@ price = 2535
 limit = 5000
 weight = 0.02
 examine = "I can summon a fruit bat familiar with this."
-summon_experience = 1.4
-infuse_experience = 121.2
+summon_experience = 60.6
+infuse_experience = 60.6
 summon_points = 7
 
 [fruit_bat_pouch_noted]
@@ -200,8 +200,8 @@ price = 5122
 limit = 5000
 weight = 0.02
 examine = "I can summon an abyssal parasite familiar with this."
-summon_experience = 1.1
-infuse_experience = 94.8
+summon_experience = 47.4
+infuse_experience = 47.4
 summon_points = 6
 
 [abyssal_parasite_pouch_noted]
@@ -213,8 +213,8 @@ price = 8885
 limit = 5000
 weight = 0.02
 examine = "I can summon an abyssal lurker familiar with this."
-summon_experience = 1.9
-infuse_experience = 109.6
+summon_experience = 54.8
+infuse_experience = 54.8
 summon_points = 7
 
 [abyssal_lurker_pouch_noted]
@@ -226,8 +226,8 @@ price = 2455
 limit = 5000
 weight = 0.02
 examine = "I can summon a unicorn stallion familiar with this."
-summon_experience = 1.8
-infuse_experience = 154.4
+summon_experience = 77.2
+infuse_experience = 77.2
 summon_points = 9
 
 [unicorn_stallion_pouch_noted]
@@ -239,8 +239,8 @@ price = 1544
 limit = 5000
 weight = 0.02
 examine = "I can summon a magpie familiar with this."
-summon_experience = 0.9
-infuse_experience = 83.2
+summon_experience = 41.6
+infuse_experience = 41.6
 summon_points = 5
 
 [magpie_pouch_noted]
@@ -252,8 +252,8 @@ price = 255
 limit = 5000
 weight = 0.02
 examine = "I can summon a dreadfowl familiar with this."
-summon_experience = 0.1
-infuse_experience = 9.3
+summon_experience = 4.7
+infuse_experience = 4.7
 summon_points = 1
 
 [dreadfowl_pouch_noted]
@@ -265,8 +265,8 @@ price = 2237
 limit = 5000
 weight = 0.02
 examine = "I can summon a stranger plant familiar with this."
-summon_experience = 3.2
-infuse_experience = 281.6
+summon_experience = 140.8
+infuse_experience = 140.8
 summon_points = 7
 
 [stranger_plant_pouch_noted]
@@ -278,8 +278,8 @@ price = 261
 limit = 5000
 weight = 0.02
 examine = "I can summon a spirit wolf familiar with this."
-summon_experience = 0.1
-infuse_experience = 4.8
+summon_experience = 2.4
+infuse_experience = 2.4
 summon_points = 1
 
 [spirit_wolf_pouch_noted]
@@ -291,8 +291,8 @@ price = 820
 limit = 5000
 weight = 0.02
 examine = "I can summon a desert wyrm familiar with this."
-summon_experience = 0.4
-infuse_experience = 31.2
+summon_experience = 15.6
+infuse_experience = 15.6
 summon_points = 1
 
 [desert_wyrm_pouch_noted]
@@ -304,8 +304,8 @@ price = 1800
 limit = 5000
 weight = 0.02
 examine = "I can summon an evil turnip familiar with this."
-summon_experience = 2.1
-infuse_experience = 184.8
+summon_experience = 92.4
+infuse_experience = 92.4
 summon_points = 5
 
 [evil_turnip_pouch_noted]
@@ -317,8 +317,8 @@ price = 1386
 limit = 5000
 weight = 0.02
 examine = "I can summon a vampyre bat familiar with this."
-summon_experience = 1.5
-infuse_experience = 136.0
+summon_experience = 68.0
+infuse_experience = 68.0
 summon_points = 4
 
 [vampyre_bat_pouch_noted]
@@ -330,8 +330,8 @@ price = 980
 limit = 5000
 weight = 0.02
 examine = "I can summon a spirit scorpion familiar with this."
-summon_experience = 0.9
-infuse_experience = 83.2
+summon_experience = 41.6
+infuse_experience = 41.6
 summon_points = 2
 
 [spirit_scorpion_pouch_noted]
@@ -343,8 +343,8 @@ price = 344
 limit = 5000
 weight = 0.02
 examine = "I can summon an arctic bear familiar with this."
-summon_experience = 1.1
-infuse_experience = 93.2
+summon_experience = 46.6
+infuse_experience = 46.6
 summon_points = 8
 
 [arctic_bear_pouch_noted]
@@ -356,8 +356,8 @@ price = 414
 limit = 5000
 weight = 0.02
 examine = "I can summon a spirit spider familiar with this."
-summon_experience = 0.2
-infuse_experience = 12.6
+summon_experience = 6.3
+infuse_experience = 6.3
 summon_points = 2
 
 [spirit_spider_pouch_noted]
@@ -369,8 +369,8 @@ price = 2042
 limit = 5000
 weight = 0.02
 examine = "I can summon a bloated leech familiar with this."
-summon_experience = 2.4
-infuse_experience = 215.2
+summon_experience = 107.6
+infuse_experience = 107.6
 summon_points = 5
 
 [bloated_leech_pouch_noted]
@@ -382,8 +382,8 @@ price = 3724
 limit = 5000
 weight = 0.02
 examine = "I can summon a spirit kalphite familiar with this."
-summon_experience = 2.5
-infuse_experience = 220.0
+summon_experience = 110.0
+infuse_experience = 110.0
 summon_points = 3
 
 [spirit_kalphite_pouch_noted]
@@ -395,8 +395,8 @@ price = 1468
 limit = 5000
 weight = 0.02
 examine = "I can summon a honey badger familiar with this."
-summon_experience = 1.6
-infuse_experience = 140.8
+summon_experience = 70.4
+infuse_experience = 70.4
 summon_points = 4
 
 [honey_badger_pouch_noted]
@@ -408,8 +408,8 @@ price = 1752
 limit = 5000
 weight = 0.02
 examine = "I can summon an albino rat familiar with this."
-summon_experience = 2.3
-infuse_experience = 202.4
+summon_experience = 101.2
+infuse_experience = 101.2
 summon_points = 3
 
 [albino_rat_pouch_noted]
@@ -421,8 +421,8 @@ price = 2918
 limit = 5000
 weight = 0.02
 examine = "I can summon a granite lobster familiar with this."
-summon_experience = 3.7
-infuse_experience = 325.6
+summon_experience = 162.8
+infuse_experience = 162.8
 summon_points = 8
 
 [granite_lobster_pouch_noted]
@@ -434,8 +434,8 @@ price = 1368
 limit = 5000
 weight = 0.02
 examine = "I can summon a macaw familiar with this."
-summon_experience = 0.8
-infuse_experience = 72.4
+summon_experience = 36.2
+infuse_experience = 36.2
 summon_points = 5
 
 [macaw_pouch_noted]
@@ -447,8 +447,8 @@ price = 1865
 limit = 5000
 weight = 0.02
 examine = "Summons a level 43 combat familiar."
-summon_experience = 3.6
-infuse_experience = 316.8
+summon_experience = 158.4
+infuse_experience = 158.4
 summon_points = 9
 
 [bronze_minotaur_pouch_noted]
@@ -460,8 +460,8 @@ price = 2149
 limit = 5000
 weight = 0.02
 examine = "I can summon an iron minotaur familiar with this."
-summon_experience = 4.6
-infuse_experience = 404.8
+summon_experience = 202.4
+infuse_experience = 202.4
 summon_points = 9
 
 [iron_minotaur_pouch_noted]
@@ -473,8 +473,8 @@ price = 2449
 limit = 5000
 weight = 0.02
 examine = "I can summon a steel minotaur familiar with this."
-summon_experience = 1.1
-infuse_experience = 492.8
+summon_experience = 246.4
+infuse_experience = 246.4
 summon_points = 9
 
 [steel_minotaur_pouch_noted]
@@ -486,8 +486,8 @@ price = 2649
 limit = 5000
 weight = 0.02
 examine = "I can summon a mithril minotaur with this."
-summon_experience = 1.0
-infuse_experience = 580.8
+summon_experience = 290.4
+infuse_experience = 290.4
 summon_points = 9
 
 [mithril_minotaur_pouch_noted]
@@ -499,8 +499,8 @@ price = 2513
 limit = 5000
 weight = 0.02
 examine = "I can summon an adamant minotaur familiar with this."
-summon_experience = 1.5
-infuse_experience = 668.8
+summon_experience = 334.4
+infuse_experience = 334.4
 summon_points = 9
 
 [adamant_minotaur_pouch_noted]
@@ -512,8 +512,8 @@ price = 394
 limit = 5000
 weight = 0.02
 examine = "I can summon a rune minotaur with this."
-summon_experience = 8.6
-infuse_experience = 756.8
+summon_experience = 378.4
+infuse_experience = 378.4
 summon_points = 9
 
 [rune_minotaur_pouch_noted]
@@ -525,8 +525,8 @@ price = 2466
 limit = 5000
 weight = 0.02
 examine = "I can summon a smoke devil familiar with this."
-summon_experience = 3.0
-infuse_experience = 268.0
+summon_experience = 134.0
+infuse_experience = 134.0
 summon_points = 7
 
 [smoke_devil_pouch_noted]
@@ -538,8 +538,8 @@ price = 309
 limit = 5000
 weight = 0.02
 examine = "I can summon a bull ant familiar with this."
-summon_experience = 0.6
-infuse_experience = 52.8
+summon_experience = 26.4
+infuse_experience = 26.4
 summon_points = 5
 
 [bull_ant_pouch_noted]
@@ -551,8 +551,8 @@ price = 3556
 limit = 5000
 weight = 0.02
 examine = "I can summon a wolpertinger familiar with this."
-summon_experience = 4.5
-infuse_experience = 404.8
+summon_experience = 202.4
+infuse_experience = 202.4
 summon_points = 10
 
 [wolpertinger_pouch_noted]
@@ -564,8 +564,8 @@ price = 827
 limit = 5000
 weight = 0.02
 examine = "I can summon a compost mound familiar with this."
-summon_experience = 0.6
-infuse_experience = 49.8
+summon_experience = 24.9
+infuse_experience = 24.9
 summon_points = 6
 
 [compost_mound_pouch_noted]
@@ -577,8 +577,8 @@ price = 3696
 limit = 5000
 weight = 0.02
 examine = "I can summon a pack yak familiar with this."
-summon_experience = 4.8
-infuse_experience = 422.4
+summon_experience = 211.2
+infuse_experience = 211.2
 summon_points = 10
 
 [pack_yak_pouch_noted]
@@ -590,8 +590,8 @@ price = 1543
 limit = 5000
 weight = 0.02
 examine = "I can summon a spirit cockatrice familiar with this."
-summon_experience = 0.9
-infuse_experience = 75.2
+summon_experience = 37.6
+infuse_experience = 37.6
 summon_points = 5
 
 [spirit_cockatrice_pouch_noted]
@@ -603,8 +603,8 @@ price = 1504
 limit = 5000
 weight = 0.02
 examine = "I can summon a spirit guthatrice familiar with this."
-summon_experience = 0.9
-infuse_experience = 75.2
+summon_experience = 37.6
+infuse_experience = 37.6
 summon_points = 5
 
 [spirit_guthatrice_pouch_noted]
@@ -616,8 +616,8 @@ price = 1506
 limit = 5000
 weight = 0.02
 examine = "I can summon a spirit saratrice familiar with this."
-summon_experience = 0.9
-infuse_experience = 75.2
+summon_experience = 37.6
+infuse_experience = 37.6
 summon_points = 5
 
 [spirit_saratrice_pouch_noted]
@@ -629,8 +629,8 @@ price = 1517
 limit = 5000
 weight = 0.02
 examine = "I can summon a spirit zamatrice familiar with this."
-summon_experience = 0.9
-infuse_experience = 75.2
+summon_experience = 37.6
+infuse_experience = 37.6
 summon_points = 5
 
 [spirit_zamatrice_pouch_noted]
@@ -642,8 +642,8 @@ price = 1528
 limit = 5000
 weight = 0.02
 examine = "I can summon a spirit pengatrice familiar with this."
-summon_experience = 0.9
-infuse_experience = 75.2
+summon_experience = 37.6
+infuse_experience = 37.6
 summon_points = 5
 
 [spirit_pengatrice_pouch_noted]
@@ -655,8 +655,8 @@ price = 4576
 limit = 5000
 weight = 0.02
 examine = "I can summon a spirit coraxatrice familiar with this."
-summon_experience = 0.9
-infuse_experience = 75.2
+summon_experience = 37.6
+infuse_experience = 37.6
 summon_points = 5
 
 [spirit_coraxatrice_pouch_noted]
@@ -668,8 +668,8 @@ price = 4829
 limit = 5000
 weight = 0.02
 examine = "I can summon a spirit vulatrice familiar with this."
-summon_experience = 0.9
-infuse_experience = 75.2
+summon_experience = 37.6
+infuse_experience = 37.6
 summon_points = 5
 
 [spirit_vulatrice_pouch_noted]
@@ -751,7 +751,7 @@ price = 303
 limit = 5000
 weight = 0.02
 examine = "I can summon a barker toad familiar with this."
-summon_experience = 6.6
+summon_experience = 43.5
 infuse_experience = 87.0
 summon_points = 7
 
@@ -2901,8 +2901,8 @@ price = 1917
 limit = 5000
 weight = 0.02
 examine = "I can summon an ibis familiar with this."
-summon_experience = 5.6
-infuse_experience = 98.8
+summon_experience = 49.4
+infuse_experience = 49.4
 summon_points = 6
 
 [ibis_pouch_noted]
@@ -3934,8 +3934,8 @@ price = 2614
 limit = 5000
 weight = 0.02
 examine = "I can summon a swamp titan familiar with this."
-summon_experience = 4.2
-infuse_experience = 373.6
+summon_experience = 186.8
+infuse_experience = 186.8
 summon_points = 9
 
 [swamp_titan_pouch_noted]
@@ -3947,8 +3947,8 @@ price = 154
 limit = 5000
 weight = 0.02
 examine = "I can summon a spirit mosquito familiar with this."
-summon_experience = 0.5
-infuse_experience = 46.5
+summon_experience = 23.3
+infuse_experience = 23.3
 summon_points = 2
 
 [spirit_mosquito_pouch_noted]
@@ -3960,8 +3960,8 @@ price = 15900
 limit = 5000
 weight = 0.02
 examine = "I can summon a void spinner familiar with this."
-summon_experience = 0.7
-infuse_experience = 59.6
+summon_experience = 29.8
+infuse_experience = 29.8
 summon_points = 4
 
 [void_spinner_pouch_noted]
@@ -3973,8 +3973,8 @@ price = 2458
 limit = 5000
 weight = 0.02
 examine = "I can summon a forge regent familiar with this."
-summon_experience = 7.6
-infuse_experience = 134.0
+summon_experience = 67.0
+infuse_experience = 67.0
 summon_points = 9
 
 [forge_regent_pouch_noted]
@@ -3986,8 +3986,8 @@ price = 2810
 limit = 5000
 weight = 0.02
 examine = "I can summon a spirit larupia familiar with this."
-summon_experience = 5.7
-infuse_experience = 501.6
+summon_experience = 250.8
+infuse_experience = 250.8
 summon_points = 6
 
 [spirit_larupia_pouch_noted]
@@ -3999,8 +3999,8 @@ price = 3878
 limit = 5000
 weight = 0.02
 examine = "I can summon a geyser titan familiar with this."
-summon_experience = 8.9
-infuse_experience = 783.2
+summon_experience = 391.6
+infuse_experience = 391.6
 summon_points = 10
 
 [geyser_titan_pouch_noted]
@@ -4012,8 +4012,8 @@ price = 3793
 limit = 5000
 weight = 0.02
 examine = "I can summon a lava titan familiar with this."
-summon_experience = 8.3
-infuse_experience = 730.4
+summon_experience = 365.2
+infuse_experience = 365.2
 summon_points = 9
 
 [lava_titan_pouch_noted]
@@ -4025,8 +4025,8 @@ price = 4633
 limit = 5000
 weight = 0.02
 examine = "I can summon a steel titan familiar with this."
-summon_experience = 4.9
-infuse_experience = 435.2
+summon_experience = 217.6
+infuse_experience = 217.6
 summon_points = 10
 
 [steel_titan_pouch_noted]
@@ -4038,8 +4038,8 @@ price = 3379
 limit = 5000
 weight = 0.02
 examine = "I can summon an obsidian golem familiar with this."
-summon_experience = 7.3
-infuse_experience = 642.4
+summon_experience = 321.2
+infuse_experience = 321.2
 summon_points = 8
 
 [obsidian_golem_pouch_noted]
@@ -4051,8 +4051,8 @@ price = 3016
 limit = 5000
 weight = 0.02
 examine = "I can summon a talon beast familiar with this."
-summon_experience = 3.9
-infuse_experience = 1015.2
+summon_experience = 507.6
+infuse_experience = 507.6
 summon_points = 9
 
 [talon_beast_pouch_noted]
@@ -4064,8 +4064,8 @@ price = 3907
 limit = 5000
 weight = 0.02
 examine = "I can summon an abyssal titan familiar with this."
-summon_experience = 1.9
-infuse_experience = 163.2
+summon_experience = 81.6
+infuse_experience = 81.6
 summon_points = 10
 
 [abyssal_titan_pouch_noted]
@@ -4077,8 +4077,8 @@ price = 17900
 limit = 5000
 weight = 0.02
 examine = "I can summon a void torcher familiar with this."
-summon_experience = 0.7
-infuse_experience = 59.6
+summon_experience = 29.8
+infuse_experience = 29.8
 summon_points = 4
 
 [void_torcher_pouch_noted]
@@ -4090,8 +4090,8 @@ price = 1463
 limit = 5000
 weight = 0.02
 examine = "I can summon a giant chinchompa familiar with this."
-summon_experience = 2.9
-infuse_experience = 225.2
+summon_experience = 112.6
+infuse_experience = 112.6
 summon_points = 1
 
 [giant_chinchompa_pouch_noted]
@@ -4103,8 +4103,8 @@ price = 3468
 limit = 5000
 weight = 0.02
 examine = "I can summon a fire titan familiar with this."
-summon_experience = 7.9
-infuse_experience = 695.2
+summon_experience = 347.6
+infuse_experience = 347.6
 summon_points = 9
 
 [fire_titan_pouch_noted]
@@ -4116,8 +4116,8 @@ price = 3549
 limit = 5000
 weight = 0.02
 examine = "I can summon a moss titan familiar with this."
-summon_experience = 7.9
-infuse_experience = 695.2
+summon_experience = 347.6
+infuse_experience = 347.6
 summon_points = 9
 
 [moss_titan_pouch_noted]
@@ -4129,8 +4129,8 @@ price = 6376
 limit = 5000
 weight = 0.02
 examine = "I can summon an ice titan familiar with this."
-summon_experience = 7.9
-infuse_experience = 695.2
+summon_experience = 347.6
+infuse_experience = 347.6
 summon_points = 9
 
 [ice_titan_pouch_noted]
@@ -4142,8 +4142,8 @@ price = 1114
 limit = 5000
 weight = 0.02
 examine = "I can summon a spirit Tz-Kih familiar with this."
-summon_experience = 1.1
-infuse_experience = 96.8
+summon_experience = 48.4
+infuse_experience = 48.4
 summon_points = 3
 
 [spirit_tz_kih_pouch_noted]
@@ -4155,8 +4155,8 @@ price = 13200
 limit = 5000
 weight = 0.02
 examine = "I can summon a spirit graahk familiar with this."
-summon_experience = 5.7
-infuse_experience = 501.6
+summon_experience = 250.8
+infuse_experience = 250.8
 summon_points = 6
 
 [spirit_graahk_pouch_noted]
@@ -4168,8 +4168,8 @@ price = 16900
 limit = 5000
 weight = 0.02
 examine = "I can summon a spirit kyatt familiar with this."
-summon_experience = 5.7
-infuse_experience = 501.6
+summon_experience = 250.8
+infuse_experience = 250.8
 summon_points = 6
 
 [spirit_kyatt_pouch_noted]
@@ -4181,8 +4181,8 @@ price = 18000
 limit = 5000
 weight = 0.02
 examine = "I can summon a void shifter familiar with this."
-summon_experience = 0.7
-infuse_experience = 59.6
+summon_experience = 29.8
+infuse_experience = 29.8
 summon_points = 4
 
 [void_shifter_pouch_noted]
@@ -4194,8 +4194,8 @@ price = 1943
 limit = 5000
 weight = 0.02
 examine = "I can summon a pyrelord familiar with this."
-summon_experience = 2.3
-infuse_experience = 202.4
+summon_experience = 101.2
+infuse_experience = 101.2
 summon_points = 5
 
 [pyrelord_pouch_noted]
@@ -4207,8 +4207,8 @@ price = 11400
 limit = 5000
 weight = 0.02
 examine = "I can summon a void ravager familiar with this."
-summon_experience = 0.7
-infuse_experience = 59.6
+summon_experience = 29.8
+infuse_experience = 29.8
 summon_points = 4
 
 [void_ravager_pouch_noted]
@@ -4220,8 +4220,8 @@ price = 1390
 limit = 5000
 weight = 0.02
 examine = "I can summon a ravenous locust familiar with this."
-summon_experience = 1.5
-infuse_experience = 132.0
+summon_experience = 66.0
+infuse_experience = 66.0
 summon_points = 4
 
 [ravenous_locust_pouch_noted]
@@ -4233,8 +4233,8 @@ price = 3469
 limit = 5000
 weight = 0.02
 examine = "I can summon an iron titan familiar with this."
-summon_experience = 4.7
-infuse_experience = 417.6
+summon_experience = 208.8
+infuse_experience = 208.8
 summon_points = 10
 
 [iron_titan_pouch_noted]
@@ -4424,8 +4424,8 @@ price = 2865
 limit = 5000
 weight = 0.02
 examine = "I can summon a phoenix familiar with this."
-summon_experience = 1.1
-infuse_experience = 301.0
+summon_experience = 150.5
+infuse_experience = 150.5
 summon_points = 8
 
 [phoenix_pouch_noted]
