@@ -37,7 +37,7 @@ drops = [
 ]
 
 [warped_fly_secondary]
-roll = 256
+roll = 276
 drops = [
   { id = "mask_part_1", chance = 85 },
   { id = "water_rune", amount = 3, chance = 16 },
@@ -79,7 +79,7 @@ drops = [
 ]
 
 [warped_rat_secondary]
-roll = 262
+roll = 348
 drops = [
   { id = "mask_part_3", chance = 87 },
   { id = "bronze_arrow", amount = 18, chance = 16 },

@@ -6,7 +6,7 @@ drops = [
 ]
 
 [crawling_corpse_torso_secondary]
-roll = 256
+roll = 273
 drops = [
   { id = "mask_part_2", chance = 85 },
   { id = "air_rune", amount = 10, chance = 8 },
@@ -45,7 +45,7 @@ drops = [
 ]
 
 [corpse_spider_secondary]
-roll = 256
+roll = 281
 drops = [
   { id = "mask_part_1", chance = 85 },
   { id = "bronze_mace", chance = 16 },
@@ -77,7 +77,7 @@ drops = [
 ]
 
 [corpse_archer_secondary]
-roll = 256
+roll = 314
 drops = [
   { id = "mask_part_3", chance = 85 },
   { id = "air_rune", amount = 12, chance = 8 },
@@ -124,7 +124,7 @@ drops = [
 ]
 
 [corpse_mage_secondary]
-roll = 256
+roll = 340
 drops = [
   { id = "mask_part_4", chance = 85 },
   { id = "air_rune", amount = 18, chance = 8 },

@@ -6,7 +6,7 @@ drops = [
 ]
 
 [skoblin_secondary]
-roll = 512
+roll = 597
 drops = [
   { id = "mask_part_4", chance = 171 },
   { id = "shortbow", chance = 16 },

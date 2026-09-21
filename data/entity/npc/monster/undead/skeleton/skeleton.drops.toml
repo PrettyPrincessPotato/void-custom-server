@@ -90,7 +90,7 @@ drops = [
 ]
 
 [skeleton_catacombs_secondary]
-roll = 512
+roll = 566
 drops = [
     { id = "mask_part_2", chance = 171 },
     { id = "bronze_arrow", amount = 22, chance = 16 },
