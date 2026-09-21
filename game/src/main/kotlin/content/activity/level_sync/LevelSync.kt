@@ -34,15 +34,9 @@ private fun Player.levelDesync() {
 
     val levels = effectiveLevels()
 
-    combatLevel = calculateCombatLevel(
-        levels,
-        summoning = World.members,
-    )
+    combatLevel = calculateCombatLevel(levels, summoning = World.members)
 
-    summoningCombatLevel = calculateCombatLevel(
-        levels,
-        summoning = true,
-    )
+    summoningCombatLevel = calculateCombatLevel(levels, summoning = true)
 
     message("Your normal combat levels have been restored.")
 }
@@ -72,15 +66,9 @@ fun levelSync(player: Player, target: Player) {
 
         val levels = player.effectiveLevels()
 
-        player.combatLevel = calculateCombatLevel(
-            levels,
-            summoning = World.members,
-        )
+        player.combatLevel = calculateCombatLevel(levels, summoning = World.members)
 
-        player.summoningCombatLevel = calculateCombatLevel(
-            levels,
-            summoning = true,
-        )
+        player.summoningCombatLevel = calculateCombatLevel(levels, summoning = true)
 
         return player.combatLevel
     }
