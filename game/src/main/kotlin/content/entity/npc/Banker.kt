@@ -40,10 +40,6 @@ class Banker : Script {
         }
 
         objectOperate("Use", "bank_chest_*") {
-            if (!banksOpen) {
-                message(CLOSED_BANK_TEXT)
-                return@objectOperate
-            }
             openBank()
         }
         objectOperate("Bank", "*") {
@@ -55,10 +51,6 @@ class Banker : Script {
         }
 
         objectOperate("Bank", "bank_chest_*") {
-            if (!banksOpen) {
-                message(CLOSED_BANK_TEXT)
-                return@objectOperate
-            }
             openBank()
         }
         objectOperate("Collect") {
