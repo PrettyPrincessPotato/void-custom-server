@@ -2,6 +2,8 @@ package content.entity.combat.hit
 
 import com.github.michaelbull.logging.InlineLogger
 import content.activity.level_sync.combatCurrentLevel
+import content.activity.level_sync.combatMaxHitpoints
+import content.activity.level_sync.syncedLevels
 import content.entity.combat.Bonus
 import content.entity.combat.dead
 import content.entity.player.combat.special.specialAttack
@@ -26,6 +28,7 @@ import world.gregs.voidps.engine.queue.strongQueue
 import world.gregs.voidps.engine.timer.CLIENT_TICKS
 import world.gregs.voidps.type.random
 import kotlin.math.floor
+import kotlin.math.roundToInt
 
 object Hit {
     private val logger = InlineLogger()
@@ -150,6 +153,13 @@ object Hit {
     fun meleeType(type: String) = type == "melee" || type == "stab" || type == "crush" || type == "slash" || type == "typeless_stab" || type == "typeless_crush" || type == "typeless_slash"
 }
 
+private fun Character.combatCurrentHitpoints(): Int =
+    if (this is Player) {
+        combatCurrentLevel(Skill.Constitution)
+    } else {
+        levels.get(Skill.Constitution)
+    }
+
 /**
  * Hit a character during combat
  * @param target The target to hit
@@ -172,8 +182,25 @@ fun Character.hit(
     defensiveType: String = offensiveType,
     damage: Int = Damage.roll(this, target, offensiveType, weapon, spell, special, defensiveType),
 ): Int {
-    val actualDamage = Damage.modify(this, target, offensiveType, damage, weapon, spell, special)
-        .coerceAtMost(target.levels.get(Skill.Constitution))
+    /**
+     * Modifying damage to player based on scaled HP
+     */
+    val modifiedDamage = Damage.modify(
+        this,
+        target,
+        offensiveType,
+        damage,
+        weapon,
+        spell,
+        special,
+    )
+
+    val scaledDamage = scaleDamageForTarget(target, modifiedDamage)
+
+    val actualDamage = scaledDamage.coerceAtMost(
+        target.levels.get(Skill.Constitution)
+    )
+
     if (target is Player) {
         target.closeInterfaces()
     }
@@ -194,6 +221,22 @@ fun Character.hit(
     return actualDamage
 }
 
+private fun Character.scaleDamageForTarget(target: Character, damage: Int,): Int {
+    if (target !is Player || target.syncedLevels == null) {
+        return damage
+    }
+
+    val normalMax = target.levels.getMax(Skill.Constitution)
+    val syncedMax = target.combatMaxHitpoints()
+
+    if (syncedMax <= 0) {
+        return damage
+    }
+
+    return (damage.toDouble() * normalMax / syncedMax)
+        .roundToInt()
+        .coerceAtLeast(if (damage > 0) 1 else 0)
+}
 /**
  * Hits player without interrupting them
  */
