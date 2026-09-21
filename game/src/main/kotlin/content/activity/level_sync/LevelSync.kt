@@ -56,7 +56,6 @@ fun levelSync(player: Player, args: List<String>) {
     }
 
     val playerLevels = player.levels
-    val targetLevels = target.levels
     val targetCombatLevel = target.combatLevel
     val maximumDifference = 3
 
@@ -96,7 +95,7 @@ fun levelSync(player: Player, args: List<String>) {
             attack = (synced.attack - 1).coerceAtLeast(1),
             strength = (synced.strength - 1).coerceAtLeast(1),
             defence = (synced.defence - 1).coerceAtLeast(1),
-            hitpoints = (synced.hitpoints - 1).coerceAtLeast(10),
+            hitpoints = (synced.hitpoints - 10).coerceAtLeast(10),
             ranged = (synced.ranged - 1).coerceAtLeast(1),
             magic = (synced.magic - 1).coerceAtLeast(1),
             prayer = (synced.prayer - 1).coerceAtLeast(1),
