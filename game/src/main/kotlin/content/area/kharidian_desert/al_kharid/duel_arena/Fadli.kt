@@ -1,5 +1,7 @@
 package content.area.kharidian_desert.al_kharid.duel_arena
 
+import content.entity.npc.CLOSED_BANK_TEXT
+import content.entity.npc.banksOpen
 import content.entity.npc.shop.openShop
 import content.entity.player.bank.pin.openBank
 import content.entity.player.bank.pin.openCollection
@@ -52,6 +54,10 @@ class Fadli : Script {
         }
 
         npcOperate("Bank", "fadli") {
+            if (!banksOpen) {
+                message(CLOSED_BANK_TEXT)
+                return@npcOperate
+            }
             openBank()
         }
 

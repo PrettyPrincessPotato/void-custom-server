@@ -17,7 +17,7 @@ import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 
-private const val CLOSED_BANK_TEXT = "The bank is currently closed."
+const val CLOSED_BANK_TEXT = "The bank is currently closed."
 
 class Banker : Script {
 
