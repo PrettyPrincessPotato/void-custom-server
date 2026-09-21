@@ -1,15 +1,10 @@
 package content.activity.level_sync
 
-import content.activity.level_sync.effectiveLevels
-import content.activity.level_sync.syncedLevels
 import content.entity.player.combat.calculateCombatLevel
-import content.entity.player.command.find
 import world.gregs.voidps.engine.Script
-import world.gregs.voidps.engine.client.command.playerCommand
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.combatLevel
 import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
@@ -18,41 +13,45 @@ import world.gregs.voidps.engine.entity.character.player.summoningCombatLevel
 class LevelSync : Script {
 
     init {
-        playerCommand("unsync") {
-            syncedLevels = null
-
-            val levels = effectiveLevels()
-
-            combatLevel = calculateCombatLevel(
-                levels,
-                summoning = World.members,
-            )
-
-            summoningCombatLevel = calculateCombatLevel(
-                levels,
-                summoning = true,
-            )
-
-            message("Your normal combat levels have been restored.")
+        playerSpawn {
+            options.set(6, "Sync Level")
+        }
+        playerOperate("Sync Level") {
+            levelSync(this, it.target)
+            this.options.remove("Sync Level")
+            this.options.set(6, "Desync Level")
+        }
+        playerOperate("Desync Level") {
+            levelDesync()
+            this.options.remove("Desync Level")
+            this.options.set(6, "Sync Level")
         }
     }
 }
 
-fun levelSync(player: Player, args: List<String>) {
-    val targetName = args.getOrNull(0)
+private fun Player.levelDesync() {
+    syncedLevels = null
 
-    if (targetName == null) {
-        player.message("Usage: <red>sync <player_name>")
+    val levels = effectiveLevels()
+
+    combatLevel = calculateCombatLevel(
+        levels,
+        summoning = World.members,
+    )
+
+    summoningCombatLevel = calculateCombatLevel(
+        levels,
+        summoning = true,
+    )
+
+    message("Your normal combat levels have been restored.")
+}
+
+fun levelSync(player: Player, target: Player) {
+    if(target.combatLevel > player.combatLevel) {
+        player.message("You cannot sync your level higher; only lower.")
         return
     }
-
-    val target = Players.find(player, targetName)
-
-    if (target == null) {
-        player.message("Player '$targetName' could not be found.")
-        return
-    }
-
     val playerLevels = player.levels
     val targetCombatLevel = target.combatLevel
     val maximumDifference = 3

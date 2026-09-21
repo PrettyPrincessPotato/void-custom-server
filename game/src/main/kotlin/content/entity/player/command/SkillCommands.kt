@@ -51,7 +51,7 @@ class SkillCommands(
             message("Level up pop-ups are now ${if (toggle("skip_level_up_dialogues")) "enabled" else "disabled"}.")
         }
 
-        playerCommand("sync", stringArg("player-name", "target player", optional = false, autofill = accounts.displayNames.keys), desc = "Sync your account to target player's combat level.", handler = ::levelSync)
+        // playerCommand("sync", stringArg("player-name", "target player", optional = false, autofill = accounts.displayNames.keys), desc = "Sync your account to target player's combat level.", handler = ::levelSync)
     }
 
     fun set(player: Player, args: List<String>) {
