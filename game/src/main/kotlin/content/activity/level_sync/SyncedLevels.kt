@@ -38,6 +38,21 @@ fun SyncedLevels.level(skill: Skill): Int {
     }
 }
 
+fun Player.combatBaseLevel(skill: Skill): Int {
+    return syncedLevels?.level(skill)
+        ?: levels.getMax(skill)
+}
+
+fun Player.combatCurrentLevel(skill: Skill): Int {
+    val synced = syncedLevels ?: return levels.get(skill)
+
+    val normalMax = levels.getMax(skill)
+    val normalCurrent = levels.get(skill)
+    val boostOrDrain = normalCurrent - normalMax
+
+    return (synced.level(skill) + boostOrDrain).coerceAtLeast(1)
+}
+
 fun Player.effectiveLevels(): SyncedLevels {
     return syncedLevels ?: SyncedLevels(
         attack = levels.getMax(Skill.Attack),

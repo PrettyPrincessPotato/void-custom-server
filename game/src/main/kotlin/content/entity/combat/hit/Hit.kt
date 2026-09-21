@@ -1,6 +1,7 @@
 package content.entity.combat.hit
 
 import com.github.michaelbull.logging.InlineLogger
+import content.activity.level_sync.combatCurrentLevel
 import content.entity.combat.Bonus
 import content.entity.combat.dead
 import content.entity.player.combat.special.specialAttack
@@ -118,9 +119,10 @@ object Hit {
     }
 
     private fun effectiveLevel(character: Character, skill: Skill, type: String, accuracy: Boolean): Int {
-        var level = character.levels.get(skill)
+        var level = combatLevel(character, skill)
+
         if (!accuracy && type == "magic" && character is Player) {
-            level = (level * 0.3 + floor(character.levels.get(Skill.Magic) * 0.7)).toInt()
+            level = (level * 0.3 + combatLevel(character, Skill.Magic) * 0.7).toInt()
         }
         level = Prayer.effectiveLevelModifier(character, skill, accuracy, level)
         if (skill == Skill.Magic && Equipment.hasVoidEffect(character)) {
@@ -138,6 +140,13 @@ object Hit {
         return level
     }
 
+    private fun combatLevel(character: Character, skill: Skill): Int {
+        return if (character is Player) {
+            character.combatCurrentLevel(skill)
+        } else {
+            character.levels.get(skill)
+        }
+    }
     fun meleeType(type: String) = type == "melee" || type == "stab" || type == "crush" || type == "slash" || type == "typeless_stab" || type == "typeless_crush" || type == "typeless_slash"
 }
 
