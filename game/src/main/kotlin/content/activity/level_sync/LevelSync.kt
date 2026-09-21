@@ -55,19 +55,20 @@ fun levelSync(player: Player, args: List<String>) {
         return
     }
 
+    val playerLevels = player.levels
     val targetLevels = target.levels
     val targetCombatLevel = target.combatLevel
     val maximumDifference = 3
 
     var synced = SyncedLevels(
-        attack = targetLevels.getMax(Skill.Attack),
-        strength = targetLevels.getMax(Skill.Strength),
-        defence = targetLevels.getMax(Skill.Defence),
-        hitpoints = targetLevels.getMax(Skill.Constitution),
-        ranged = targetLevels.getMax(Skill.Ranged),
-        magic = targetLevels.getMax(Skill.Magic),
-        prayer = targetLevels.getMax(Skill.Prayer),
-        summoning = targetLevels.getMax(Skill.Summoning),
+        attack = playerLevels.getMax(Skill.Attack),
+        strength = playerLevels.getMax(Skill.Strength),
+        defence = playerLevels.getMax(Skill.Defence),
+        hitpoints = playerLevels.getMax(Skill.Constitution),
+        ranged = playerLevels.getMax(Skill.Ranged),
+        magic = playerLevels.getMax(Skill.Magic),
+        prayer = playerLevels.getMax(Skill.Prayer),
+        summoning = playerLevels.getMax(Skill.Summoning),
     )
 
     fun updateCombatLevel(): Int {
