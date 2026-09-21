@@ -38,20 +38,6 @@ fun SyncedLevels.level(skill: Skill): Int = when (skill) {
 
 fun Player.combatMaxHitpoints(): Int = syncedLevels?.hitpoints ?: levels.getMax(Skill.Constitution)
 
-fun Player.combatCurrentHitpoints(): Int {
-    val normalMax = levels.getMax(Skill.Constitution)
-    val normalCurrent = levels.get(Skill.Constitution)
-    val combatMax = combatMaxHitpoints()
-
-    if (syncedLevels == null) {
-        return normalCurrent
-    }
-
-    return (normalCurrent.toDouble() / normalMax * combatMax)
-        .toInt()
-        .coerceAtLeast(0)
-}
-
 fun Player.combatCurrentLevel(skill: Skill): Int {
     val synced = syncedLevels ?: return levels.get(skill)
 
