@@ -10,13 +10,13 @@ import content.entity.npc.schedule.NpcSchedules
 import content.entity.npc.schedule.ScheduleAction
 import content.entity.npc.schedule.ScheduleTransition
 import world.gregs.voidps.engine.Script
-import world.gregs.voidps.engine.queue.queue as enqueue
 import world.gregs.voidps.engine.entity.character.mode.PauseMode
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
+import world.gregs.voidps.engine.queue.queue as enqueue
 
 private var donieNpc: NPC? = null
 private var donieSpawnTile: Tile? = null
@@ -54,27 +54,27 @@ class DonieSchedule : Script {
                     WAKE_UP_HOUR,
                     ScheduleAction.Custom {
                         travelToSideRoom(it)
-                    }
+                    },
                 ),
                 ScheduleTransition(
                     ADVENTURE_HOUR,
                     ScheduleAction.Custom {
                         returnToSpawnTile(it)
-                    }
+                    },
                 ),
                 ScheduleTransition(
                     GO_HOME_HOUR,
                     ScheduleAction.Custom {
                         travelHome(it)
-                    }
+                    },
                 ),
                 ScheduleTransition(
                     GO_TO_BED_HOUR,
                     ScheduleAction.Custom {
                         goToBed(it)
-                    }
+                    },
                 ),
-            )
+            ),
         )
 
         npcSpawn(DONIE_STRING_ID) {

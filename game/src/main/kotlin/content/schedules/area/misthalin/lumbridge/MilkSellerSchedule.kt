@@ -10,15 +10,14 @@ import content.entity.npc.movement.travelTo
 import content.entity.npc.schedule.NpcScheduleController
 import content.entity.npc.schedule.NpcSchedules
 import content.entity.npc.schedule.ScheduleAction
-import world.gregs.voidps.engine.queue.queue as enqueue
 import content.entity.npc.schedule.ScheduleTransition
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.entity.character.mode.PauseMode
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.obj.GameObjects
-import world.gregs.voidps.engine.queue.queue
 import world.gregs.voidps.type.Tile
+import world.gregs.voidps.engine.queue.queue as enqueue
 
 private var milkSellerNpc: NPC? = null
 private var gertrudeNpc: NPC? = null
@@ -63,7 +62,6 @@ private val SELL_LOCATIONS = arrayOf(
     milkSellerSpawnTile,
 )
 
-
 private var routeIndex = 0
 
 class MilkSellerSchedule(graph: NavigationGraph) : Script {
@@ -78,15 +76,15 @@ class MilkSellerSchedule(graph: NavigationGraph) : Script {
                     TRAVEL_HOUR,
                     ScheduleAction.Custom {
                         travelSomewhereNew(it)
-                    }
+                    },
                 ),
                 ScheduleTransition(
                     TRAVEL_WARN_HOUR,
                     ScheduleAction.Custom {
                         it.say("Last call! We're heading out soon.")
-                    }
-                )
-            )
+                    },
+                ),
+            ),
         )
 
         npcSpawn(MILK_SELLER_STRING_ID) {
@@ -107,7 +105,7 @@ class MilkSellerSchedule(graph: NavigationGraph) : Script {
             gertrudeNpc = this
         }
         npcDespawn("gertrude") {
-            if(gertrudeNpc == this) {
+            if (gertrudeNpc == this) {
                 gertrudeNpc = null
             }
         }
@@ -116,7 +114,7 @@ class MilkSellerSchedule(graph: NavigationGraph) : Script {
 
 private fun travelSomewhereNew(npc: NPC) {
     npc.say("Well Bessie, time we headed out.")
-    when(val destination = nextSellingLocation()){
+    when (val destination = nextSellingLocation()) {
         LUMBRIDGE -> travelToLumbridge(npc)
         VARROCK -> travelToVarrock(npc)
         EDGEVILLE -> varrockToEdgeville(npc)
@@ -183,7 +181,7 @@ private fun faladorToRimmington(npc: NPC) {
 }
 
 private fun edgevilleToFalador(npc: NPC) {
-    npc.enqueue("milk_seller_to_falador"){
+    npc.enqueue("milk_seller_to_falador") {
         enqueue("milk_seller_falador_banter") {
             patrolDelay("edgeville_to_falador")
             say("I hear the white knights need plenty of milk to drink.")

@@ -35,7 +35,7 @@ fun NPC.travelTo(
 }
 
 fun setSpawnAndWander(npc: NPC, spawnTile: Tile, indoorCollision: Boolean = false) {
-    if(indoorCollision){
+    if (indoorCollision) {
         npc.collision = CollisionStrategies.Indoors
     }
     npc["spawn_tile"] = spawnTile

@@ -8,9 +8,6 @@ import content.entity.player.dialogue.Neutral
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
-import content.schedules.area.asgarnia.falador.ASSISTANT_LEAVE_HOUR
-import content.schedules.area.asgarnia.falador.ASSISTANT_RETURN_HOUR
-import content.schedules.area.asgarnia.falador.ASSISTANT_STRING_ID
 import content.world.time.WorldTime
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.entity.character.npc.NPC

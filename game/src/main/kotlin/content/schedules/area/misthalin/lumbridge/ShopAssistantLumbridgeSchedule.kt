@@ -11,7 +11,6 @@ import content.entity.npc.schedule.NpcSchedules
 import content.entity.npc.schedule.ScheduleAction
 import content.entity.npc.schedule.ScheduleTransition
 import content.entity.npc.shop.general.isGeneralStoreOpen
-import org.rsmod.game.pathfinder.collision.CollisionStrategies
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.entity.character.mode.PauseMode
 import world.gregs.voidps.engine.entity.character.move.tele
@@ -51,7 +50,7 @@ class ShopAssistantLumbridgeSchedule(graph: NavigationGraph) : Script {
                                 setSpawnAndWander(it, CHURCH_SPOT, true)
                             }
                         }
-                    }
+                    },
                 ),
                 ScheduleTransition(
                     MAN_STORE_HOUR,
@@ -59,7 +58,7 @@ class ShopAssistantLumbridgeSchedule(graph: NavigationGraph) : Script {
                         it.travelTo(sALSpawn!!, "SAL_church_to_spawn") {
                             setSpawnAndWander(it, sALSpawn!!, true)
                         }
-                    }
+                    },
                 ),
                 ScheduleTransition(
                     GO_HOME_HOUR,
@@ -69,7 +68,7 @@ class ShopAssistantLumbridgeSchedule(graph: NavigationGraph) : Script {
                             tele(SAL_STAIRS_TOP)
                             setSpawnAndWander(it, SAL_STAIRS_TOP)
                         }
-                    }
+                    },
                 ),
                 ScheduleTransition(
                     GO_TO_BED_HOUR,
@@ -78,13 +77,13 @@ class ShopAssistantLumbridgeSchedule(graph: NavigationGraph) : Script {
                             face(Direction.NORTH)
                             mode = PauseMode
                         }
-                    }
-                )
+                    },
+                ),
             ),
         )
 
         npcOperate("Trade", SAL_STRING_ID) {
-            if(!isGeneralStoreOpen()) {
+            if (!isGeneralStoreOpen()) {
                 it.target.say("I'm off the clock, try again when I'm at the store.")
                 return@npcOperate
             }
