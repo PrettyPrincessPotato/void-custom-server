@@ -9,7 +9,7 @@ import java.math.MathContext
 
 class ConfigReader(
     private val input: InputStream,
-    private val stringBuffer: ByteArray = ByteArray(100), // Maximum string length
+    private val stringBuffer: ByteArray = ByteArray(150), // Maximum string length
     private val debug: String = "",
 ) : Closeable {
     private var byte: Int = input.read()
