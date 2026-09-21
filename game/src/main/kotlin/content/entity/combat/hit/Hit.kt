@@ -27,7 +27,6 @@ import world.gregs.voidps.engine.queue.queue
 import world.gregs.voidps.engine.queue.strongQueue
 import world.gregs.voidps.engine.timer.CLIENT_TICKS
 import world.gregs.voidps.type.random
-import kotlin.math.floor
 import kotlin.math.roundToInt
 
 object Hit {
@@ -143,22 +142,19 @@ object Hit {
         return level
     }
 
-    private fun combatLevel(character: Character, skill: Skill): Int {
-        return if (character is Player) {
-            character.combatCurrentLevel(skill)
-        } else {
-            character.levels.get(skill)
-        }
+    private fun combatLevel(character: Character, skill: Skill): Int = if (character is Player) {
+        character.combatCurrentLevel(skill)
+    } else {
+        character.levels.get(skill)
     }
     fun meleeType(type: String) = type == "melee" || type == "stab" || type == "crush" || type == "slash" || type == "typeless_stab" || type == "typeless_crush" || type == "typeless_slash"
 }
 
-private fun Character.combatCurrentHitpoints(): Int =
-    if (this is Player) {
-        combatCurrentLevel(Skill.Constitution)
-    } else {
-        levels.get(Skill.Constitution)
-    }
+private fun Character.combatCurrentHitpoints(): Int = if (this is Player) {
+    combatCurrentLevel(Skill.Constitution)
+} else {
+    levels.get(Skill.Constitution)
+}
 
 /**
  * Hit a character during combat
@@ -198,7 +194,7 @@ fun Character.hit(
     val scaledDamage = scaleDamageForTarget(target, modifiedDamage)
 
     val actualDamage = scaledDamage.coerceAtMost(
-        target.levels.get(Skill.Constitution)
+        target.levels.get(Skill.Constitution),
     )
 
     if (target is Player) {
@@ -221,7 +217,7 @@ fun Character.hit(
     return actualDamage
 }
 
-private fun Character.scaleDamageForTarget(target: Character, damage: Int,): Int {
+private fun Character.scaleDamageForTarget(target: Character, damage: Int): Int {
     if (target !is Player || target.syncedLevels == null) {
         return damage
     }
@@ -237,6 +233,7 @@ private fun Character.scaleDamageForTarget(target: Character, damage: Int,): Int
         .roundToInt()
         .coerceAtLeast(if (damage > 0) 1 else 0)
 }
+
 /**
  * Hits player without interrupting them
  */

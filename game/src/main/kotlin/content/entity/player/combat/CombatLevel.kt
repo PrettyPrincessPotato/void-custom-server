@@ -2,14 +2,12 @@ package content.entity.player.combat
 
 import content.activity.level_sync.SyncedLevels
 import content.activity.level_sync.effectiveLevels
-import content.activity.level_sync.syncedLevels
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.combatLevel
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.entity.character.player.skill.level.Levels
 import world.gregs.voidps.engine.entity.character.player.summoningCombatLevel
 import kotlin.math.max
 

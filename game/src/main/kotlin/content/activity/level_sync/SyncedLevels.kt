@@ -24,22 +24,19 @@ data class SyncedLevels(
     val summoning: Int,
 )
 
-fun SyncedLevels.level(skill: Skill): Int {
-    return when (skill) {
-        Skill.Attack -> attack
-        Skill.Strength -> strength
-        Skill.Defence -> defence
-        Skill.Constitution -> hitpoints
-        Skill.Ranged -> ranged
-        Skill.Magic -> magic
-        Skill.Prayer -> prayer
-        Skill.Summoning -> summoning
-        else -> error("Skill $skill is not a combat skill")
-    }
+fun SyncedLevels.level(skill: Skill): Int = when (skill) {
+    Skill.Attack -> attack
+    Skill.Strength -> strength
+    Skill.Defence -> defence
+    Skill.Constitution -> hitpoints
+    Skill.Ranged -> ranged
+    Skill.Magic -> magic
+    Skill.Prayer -> prayer
+    Skill.Summoning -> summoning
+    else -> error("Skill $skill is not a combat skill")
 }
 
-fun Player.combatMaxHitpoints(): Int =
-    syncedLevels?.hitpoints ?: levels.getMax(Skill.Constitution)
+fun Player.combatMaxHitpoints(): Int = syncedLevels?.hitpoints ?: levels.getMax(Skill.Constitution)
 
 fun Player.combatCurrentHitpoints(): Int {
     val normalMax = levels.getMax(Skill.Constitution)
@@ -55,7 +52,6 @@ fun Player.combatCurrentHitpoints(): Int {
         .coerceAtLeast(0)
 }
 
-
 fun Player.combatCurrentLevel(skill: Skill): Int {
     val synced = syncedLevels ?: return levels.get(skill)
 
@@ -66,15 +62,13 @@ fun Player.combatCurrentLevel(skill: Skill): Int {
     return (synced.level(skill) + boostOrDrain).coerceAtLeast(1)
 }
 
-fun Player.effectiveLevels(): SyncedLevels {
-    return syncedLevels ?: SyncedLevels(
-        attack = levels.getMax(Skill.Attack),
-        strength = levels.getMax(Skill.Strength),
-        defence = levels.getMax(Skill.Defence),
-        hitpoints = levels.getMax(Skill.Constitution),
-        ranged = levels.getMax(Skill.Ranged),
-        magic = levels.getMax(Skill.Magic),
-        prayer = levels.getMax(Skill.Prayer),
-        summoning = levels.getMax(Skill.Summoning),
-    )
-}
+fun Player.effectiveLevels(): SyncedLevels = syncedLevels ?: SyncedLevels(
+    attack = levels.getMax(Skill.Attack),
+    strength = levels.getMax(Skill.Strength),
+    defence = levels.getMax(Skill.Defence),
+    hitpoints = levels.getMax(Skill.Constitution),
+    ranged = levels.getMax(Skill.Ranged),
+    magic = levels.getMax(Skill.Magic),
+    prayer = levels.getMax(Skill.Prayer),
+    summoning = levels.getMax(Skill.Summoning),
+)
