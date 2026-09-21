@@ -13,9 +13,11 @@ import content.entity.npc.schedule.ScheduleAction
 import world.gregs.voidps.engine.queue.queue as enqueue
 import content.entity.npc.schedule.ScheduleTransition
 import world.gregs.voidps.engine.Script
+import world.gregs.voidps.engine.entity.character.mode.PauseMode
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.obj.GameObjects
+import world.gregs.voidps.engine.queue.queue
 import world.gregs.voidps.type.Tile
 
 private var milkSellerNpc: NPC? = null
@@ -32,6 +34,7 @@ private val EDGEVILLE = Tile(3101, 3504, 0)
 private val FALADOR = Tile(2968, 3377, 0)
 private val PORT_SARIM = Tile(3043, 3256, 0)
 private val RIMMINGTON = Tile(2959, 3218, 0)
+private val DRAYNOR = Tile(3080, 3250, 0)
 
 private val LUMBRIDGE_GATE_SOUTH = Tile(3177, 3315, 0)
 private val LUMBRIDGE_GATE_NORTH = Tile(3177, 3316, 0)
@@ -43,6 +46,8 @@ private val VARROCK_SOUTH_MINE = Tile(3179, 3363, 0)
 private val BLUE_MOON_INN = Tile(3229, 3399, 0)
 private val SOUTH_WEST_GE = Tile(3134, 3461, 0)
 private val EDGEVILLE_FAIRY_RING = Tile(3129, 3497, 0)
+private val PORT_SARIM_TELE_SPOT = Tile(3043, 3270, 0)
+private val WIZARDS_TOWER_FAIRY_RING = Tile(3107, 3149, 0)
 
 private val LUMBRIDGE_GATE = GameObjects.at(LUMBRIDGE_GATE_NORTH).first()
 private val GERTRUDE_DOOR = GameObjects.at(GERTRUDE_DOOR_OUTSIDE).first()
@@ -54,6 +59,8 @@ private val SELL_LOCATIONS = arrayOf(
     FALADOR,
     PORT_SARIM,
     RIMMINGTON,
+    DRAYNOR,
+    milkSellerSpawnTile,
 )
 
 
@@ -113,9 +120,11 @@ private fun travelSomewhereNew(npc: NPC) {
         LUMBRIDGE -> travelToLumbridge(npc)
         VARROCK -> travelToVarrock(npc)
         EDGEVILLE -> varrockToEdgeville(npc)
-        FALADOR -> npc.say("I'd travel to $destination")
-        PORT_SARIM -> npc.say("I'd travel to $destination")
-        RIMMINGTON -> npc.say("I'd travel to $destination")
+        FALADOR -> edgevilleToFalador(npc)
+        RIMMINGTON -> faladorToRimmington(npc)
+        PORT_SARIM -> rimmingtonToPortSarim(npc)
+        DRAYNOR -> portSarimToDraynor(npc)
+        milkSellerSpawnTile -> draynorToSpawn(npc)
     }
 }
 
@@ -124,7 +133,59 @@ private fun nextSellingLocation(): Tile {
 
     routeIndex = (routeIndex + 1) % SELL_LOCATIONS.size
 
-    return destination
+    return destination!!
+}
+
+private fun draynorToSpawn(npc: NPC) {
+    npc.enqueue("milk_seller_to_spawn") {
+        patrolDelay("wizard_tower_to_draynor")
+        setSpawnAndWander(npc, milkSellerSpawnTile!!)
+    }
+}
+
+private fun portSarimToDraynor(npc: NPC) {
+    npc.travelTo(PORT_SARIM_TELE_SPOT, "milk_seller_to_tele") {
+        enqueue("milk_seller_to_draynor") {
+            say("Could you please take us away, Bessie?")
+            pause(3)
+            // Moo
+            pause(3)
+            tele(WIZARDS_TOWER_FAIRY_RING)
+            say("Thanks, Bessie.")
+            pause(3)
+            // Moo
+            pause(3)
+            patrolDelay("wizard_tower_to_draynor")
+            setSpawnAndWander(npc, DRAYNOR)
+        }
+    }
+}
+
+private fun rimmingtonToPortSarim(npc: NPC) {
+    npc.enqueue("milk_seller_to_port_sarim") {
+        patrolDelay("rimmington_to_port_sarim")
+        say("Let's be sure to sell to the bar while we're here.")
+        // Moo
+        setSpawnAndWander(npc, PORT_SARIM)
+    }
+}
+
+private fun faladorToRimmington(npc: NPC) {
+    npc.enqueue("milk_seller_to_rimmington") {
+        patrolDelay("falador_to_rimmington")
+        say("Maybe the local witch here needs milk for some brews.")
+        // Moo
+        setSpawnAndWander(npc, RIMMINGTON)
+    }
+}
+
+private fun edgevilleToFalador(npc: NPC) {
+    npc.enqueue("milk_seller_to_falador"){
+        patrolDelay("edgeville_to_falador")
+        say("I hear the white knights need plenty of milk to drink.")
+        // Moo
+        setSpawnAndWander(npc, FALADOR)
+    }
 }
 
 private fun travelToLumbridge(npc: NPC) {
@@ -162,6 +223,7 @@ private fun varrockToEdgeville(npc: NPC) {
         npcOpenDoor(GERTRUDE_DOOR, 69420)
         travelTo(GERTRUDE_DOOR_INSIDE, "milk_seller_walk_in_gertrudes_home") {
             enqueue("milk_seller_gertrude_talk") {
+                milkSellerNpc!!.mode = PauseMode
                 say("Hey Gertrude, came to see if you need a top-off.")
                 pause(3)
                 gertrudeNpc!!.say("Thank you dearie. Want a kitten?")
@@ -187,6 +249,7 @@ private fun varrockToEdgeville(npc: NPC) {
                         travelTo(EDGEVILLE, "milk_seller_ge_to_edgeville") {
                             say("I hope the programmer remembers to enter flavor text here...")
                             // Moo
+                            setSpawnAndWander(npc, EDGEVILLE)
                         }
                     }
                 }
