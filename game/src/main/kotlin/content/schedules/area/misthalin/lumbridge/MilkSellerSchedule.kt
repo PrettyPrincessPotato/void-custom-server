@@ -139,6 +139,7 @@ private fun nextSellingLocation(): Tile {
 private fun draynorToSpawn(npc: NPC) {
     npc.enqueue("milk_seller_to_spawn") {
         patrolDelay("wizard_tower_to_draynor")
+        say("Home sweet home.")
         setSpawnAndWander(npc, milkSellerSpawnTile!!)
     }
 }
@@ -172,19 +173,23 @@ private fun rimmingtonToPortSarim(npc: NPC) {
 
 private fun faladorToRimmington(npc: NPC) {
     npc.enqueue("milk_seller_to_rimmington") {
-        patrolDelay("falador_to_rimmington")
-        say("Maybe the local witch here needs milk for some brews.")
-        // Moo
-        setSpawnAndWander(npc, RIMMINGTON)
+        enqueue("milk_seller_rimmington_banter") {
+            patrolDelay("falador_to_rimmington")
+            say("Maybe the local witch here needs milk for some brews.")
+            // Moo
+            setSpawnAndWander(npc, RIMMINGTON)
+        }
     }
 }
 
 private fun edgevilleToFalador(npc: NPC) {
     npc.enqueue("milk_seller_to_falador"){
-        patrolDelay("edgeville_to_falador")
-        say("I hear the white knights need plenty of milk to drink.")
-        // Moo
-        setSpawnAndWander(npc, FALADOR)
+        enqueue("milk_seller_falador_banter") {
+            patrolDelay("edgeville_to_falador")
+            say("I hear the white knights need plenty of milk to drink.")
+            // Moo
+            setSpawnAndWander(npc, FALADOR)
+        }
     }
 }
 
