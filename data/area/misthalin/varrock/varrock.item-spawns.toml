@@ -26,7 +26,7 @@ spawns = [
   { id = "cooking_apple", x = 3141, y = 3447, level = 2, delay = 100 },
   # 12853
   { id = "spade", x = 3218, y = 3412, level = 1, delay = 100 },
-  { id = "knife", x = 3218, y = 3418, level = 1, delay = 100 }
+  { id = "knife", x = 3218, y = 3418, level = 1, delay = 100 },
   # Gertrude's Cat https://youtu.be/_pZcnvI1l_Q?t=195
   { id = "doogle_leaves", x = 3152, y = 3399, delay = 100 },
   { id = "doogle_leaves", x = 3152, y = 3400, delay = 100 },
