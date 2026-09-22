@@ -88,10 +88,11 @@ class FairyRing(val fairyRing: FairyRingCodes) : Script {
     }
 
     fun Player.canUseFairyRing(): Boolean {
-        if (quest("fairy_tale_ii") == "unstarted") {
-            message("You don't have permission to use that fairy ring.")
-            return false
-        }
+        // Disabled until fairy tale 2 is in the game
+//        if (quest("fairy_tale_ii") == "unstarted") {
+//            message("You don't have permission to use that fairy ring.")
+//            return false
+//        }
         if (!questCompleted("fairy_tale_iii") && weapon.id != "dramen_staff" && weapon.id != "lunar_staff") {
             message("The fairy ring only works for those who wield fairy magic.")
             return false
