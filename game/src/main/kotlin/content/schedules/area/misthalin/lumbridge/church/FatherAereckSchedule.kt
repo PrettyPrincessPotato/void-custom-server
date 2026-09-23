@@ -68,7 +68,7 @@ class FatherAereckSchedule : Script {
                     PREACH_END_HOUR,
                     ScheduleAction.Custom {
                         it.softTimers.stop("aereck_preaching")
-                        it.say("Okay get the fuck out of my church now thanks")
+                        it.say("Okay get the fuck out of my church now, thanks.")
                     }
                 ),
                 ScheduleTransition(
