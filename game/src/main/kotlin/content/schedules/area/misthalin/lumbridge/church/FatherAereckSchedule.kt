@@ -8,6 +8,8 @@ import content.entity.npc.schedule.ScheduleAction
 import content.entity.npc.schedule.ScheduleTransition
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.entity.character.npc.NPC
+import world.gregs.voidps.engine.timer.Timer
+import world.gregs.voidps.type.random
 
 private val SERMON_SAYINGS = arrayOf(
     "O, Saradomin! Bless us with your light!",
@@ -59,12 +61,13 @@ class FatherAereckSchedule : Script {
                 ScheduleTransition(
                     PREACH_HOUR,
                     ScheduleAction.Custom {
-                        it.say("Preachy preachy")
+                        it.softTimers.start("aereck_preaching")
                     },
                 ),
                 ScheduleTransition(
                     PREACH_END_HOUR,
                     ScheduleAction.Custom {
+                        it.softTimers.stop("aereck_preaching")
                         it.say("Okay get the fuck out of my church now thanks")
                     }
                 ),
@@ -82,6 +85,15 @@ class FatherAereckSchedule : Script {
                 ),
             ),
         )
+
+        npcTimerStart("aereck_preaching") {
+            random.nextInt(30, 150)
+        }
+        npcTimerTick("aereck_preaching") {
+            this.say(SERMON_SAYINGS.random())
+            Timer.CONTINUE
+        }
+
         npcSpawn("father_aereck") {
             fatherAereck = this
             this["full_pathfinding"] = true
