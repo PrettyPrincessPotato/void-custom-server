@@ -47,7 +47,7 @@ class ConfusedWizard : Script {
             spawnConfusedWizard()
         }
         npcOperate("Talk-to", "wizard_yanille") {
-            if(it.target.index != wizard!!.index) {
+            if(it.target.index != wizard?.index) {
                 return@npcOperate
             }
             when(get("the_lost_talisman", "unstarted")) {
