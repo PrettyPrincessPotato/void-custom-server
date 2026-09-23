@@ -10,7 +10,6 @@ import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
 import content.entity.player.dialogue.type.statement
-import content.quest.quest
 import content.quest.questComplete
 import content.quest.questCompleted
 import world.gregs.voidps.engine.Script
@@ -40,17 +39,17 @@ class ConfusedWizard : Script {
             spawnConfusedWizard()
         }
         npcOperate("Talk-to", "wizard_yanille") {
-            if(it.target.index != wizard?.index) {
+            if (it.target.index != wizard?.index) {
                 return@npcOperate
             }
-            when(get("the_lost_talisman", "unstarted")) {
+            when (get("the_lost_talisman", "unstarted")) {
                 "unstarted" -> questStart()
                 "completed" -> postQuest()
                 else -> howsTheSearch()
             }
         }
         entered("cosmic_altar_teleport") {
-            if(get("the_lost_talisman", "unstarted") == "searching") {
+            if (get("the_lost_talisman", "unstarted") == "searching") {
                 set("the_lost_talisman", "altar_found")
                 message("Looks like you found the altar the wizard was looking for. You should return to tell him where it is.")
             }
@@ -60,12 +59,12 @@ class ConfusedWizard : Script {
 
 private suspend fun Player.howsTheSearch() {
     npc<Quiz>("How goes the search?")
-    if(get("the_lost_talisman", "unstarted") == "searching") {
+    if (get("the_lost_talisman", "unstarted") == "searching") {
         player<Sad>("I haven't found it yet.")
         npc<Neutral>("That's alright, I'm sure you'll find it eventually.")
         return
     }
-    if(get("the_lost_talisman", "unstarted") == "altar_found") {
+    if (get("the_lost_talisman", "unstarted") == "altar_found") {
         player<Happy>("I've found it!")
         npc<Happy>("That's wonderful! Where is it, then?")
         player<Neutral>("It's in the lost city of Zanaris.")
@@ -97,7 +96,7 @@ private suspend fun Player.questStart() {
     npc<Confused>("Hmm... I just can't...")
     npc<Neutral>("Oh, hello there.")
     player<Quiz>("Hello, what's that you're messing with?")
-    if(!questCompleted("rune_mysteries") || !questCompleted("enter_the_abyss") || !questCompleted("lost_city")) {
+    if (!questCompleted("rune_mysteries") || !questCompleted("enter_the_abyss") || !questCompleted("lost_city")) {
         npc<Neutral>("Hm? Oh, sorry. I don't think you'd be of any use here.")
         statement("You must complete Rune Mysteries, Enter the Abyss, and Lost City to start The Lost Talisman")
         return
