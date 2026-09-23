@@ -36,13 +36,6 @@ class ConfusedWizard : Script {
     }
 
     init {
-        entered("cosmic_altar_teleport") {
-            if(get("the_lost_talisman", "unstarted") == "searching") {
-                set("the_lost_talisman", "altar_found")
-                message("Looks like you found the altar the wizard was looking for. You should return to tell him where it is.")
-            }
-        }
-
         worldSpawn {
             spawnConfusedWizard()
         }
@@ -54,6 +47,12 @@ class ConfusedWizard : Script {
                 "unstarted" -> questStart()
                 "completed" -> postQuest()
                 else -> howsTheSearch()
+            }
+        }
+        entered("cosmic_altar_teleport") {
+            if(get("the_lost_talisman", "unstarted") == "searching") {
+                set("the_lost_talisman", "altar_found")
+                message("Looks like you found the altar the wizard was looking for. You should return to tell him where it is.")
             }
         }
     }
