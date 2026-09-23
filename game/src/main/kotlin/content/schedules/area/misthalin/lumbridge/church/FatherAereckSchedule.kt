@@ -29,8 +29,12 @@ private val SERMON_SAYINGS = arrayOf(
 
 private var fatherAereck : NPC? = null
 
-private val PREACH_HOUR = 5
+private val AWAKE_HOUR = 3
+private val PREPARE_HOUR = 5
+private val PREACH_HOUR = 6
+private val PREACH_END_HOUR = 8
 private val RING_BELL_HOUR = 12
+private val SLEEP_HOUR = 19
 
 class FatherAereckSchedule : Script {
     private val routeExecutor: NpcRouteExecutor = NativeNpcRouteExecutor()
