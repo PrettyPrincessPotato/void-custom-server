@@ -35,6 +35,7 @@ private val AWAKE_HOUR = 3
 private val PREPARE_HOUR = 5
 private val PREACH_HOUR = 6
 private val PREACH_END_HOUR = 8
+private val PREPARE_RING_BELL_HOUR = 11
 private val RING_BELL_HOUR = 12
 private val SLEEP_HOUR = 19
 
@@ -69,6 +70,12 @@ class FatherAereckSchedule : Script {
                     ScheduleAction.Custom {
                         it.softTimers.stop("aereck_preaching")
                         it.say("Okay get the fuck out of my church now, thanks.")
+                    }
+                ),
+                ScheduleTransition(
+                    PREPARE_RING_BELL_HOUR,
+                    ScheduleAction.Custom {
+                        it.say("Gotta head upstairs")
                     }
                 ),
                 ScheduleTransition(
