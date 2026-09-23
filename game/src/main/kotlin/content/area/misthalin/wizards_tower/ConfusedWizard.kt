@@ -82,7 +82,7 @@ private suspend fun Player.howsTheSearch() {
             questComplete(
                 "The Lost Talisman",
                 "A Cosmic Talisman",
-                "500 Cooking XP",
+                "500 Runecrafting XP",
                 item = "cosmic_talisman",
             )
         }
