@@ -45,15 +45,39 @@ class FatherAereckSchedule : Script {
             routeExecutor = routeExecutor,
             scheduleTransitions = listOf(
                 ScheduleTransition(
+                    AWAKE_HOUR,
+                    ScheduleAction.Custom {
+                        it.say("Wakie wakie eggs and bakie")
+                    }
+                ),
+                ScheduleTransition(
+                    PREPARE_HOUR,
+                    ScheduleAction.Custom {
+                        it.say("Hurry up Saradomin waits for nobody")
+                    }
+                ),
+                ScheduleTransition(
                     PREACH_HOUR,
                     ScheduleAction.Custom {
                         it.say("Preachy preachy")
                     },
                 ),
                 ScheduleTransition(
+                    PREACH_END_HOUR,
+                    ScheduleAction.Custom {
+                        it.say("Okay get the fuck out of my church now thanks")
+                    }
+                ),
+                ScheduleTransition(
                     RING_BELL_HOUR,
                     ScheduleAction.Custom {
                         it.say("Ring-a-ding-ding!")
+                    }
+                ),
+                ScheduleTransition(
+                    SLEEP_HOUR,
+                    ScheduleAction.Custom {
+                        it.say("zzz... Not to be confused with zenless zone zero")
                     }
                 ),
             ),
