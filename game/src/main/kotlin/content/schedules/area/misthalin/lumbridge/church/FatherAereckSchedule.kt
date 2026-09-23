@@ -40,7 +40,7 @@ private val SERMON_SAYINGS = arrayOf(
     "The currency of goodness is honour; It retains its value through scarcity. This is Saradomin's wisdom.",
 )
 
-private var fatherAereck : NPC? = null
+private var fatherAereck: NPC? = null
 
 private val AWAKE_HOUR = 3
 private val PREPARE_HOUR = 5
@@ -84,7 +84,7 @@ class FatherAereckSchedule : Script {
                             walkToDelay(SERMON_LOC)
                             setSpawnAndWander(it, SERMON_LOC)
                         }
-                    }
+                    },
                 ),
                 ScheduleTransition(
                     PREPARE_HOUR,
@@ -94,7 +94,7 @@ class FatherAereckSchedule : Script {
                             face(Direction.NORTH)
                             mode = PauseMode
                         }
-                    }
+                    },
                 ),
                 ScheduleTransition(
                     PREACH_HOUR,
@@ -108,7 +108,7 @@ class FatherAereckSchedule : Script {
                         it.softTimers.stop("aereck_preaching")
                         it.say("Okay get the fuck out of my church now, thanks.")
                         it.mode = EmptyMode
-                    }
+                    },
                 ),
                 ScheduleTransition(
                     PREPARE_RING_BELL_HOUR,
@@ -124,7 +124,7 @@ class FatherAereckSchedule : Script {
                             tele(TOP_OF_LADDER_2)
                             setSpawnAndWander(this, TOP_OF_LADDER_2)
                         }
-                    }
+                    },
                 ),
                 ScheduleTransition(
                     RING_BELL_HOUR,
@@ -141,7 +141,7 @@ class FatherAereckSchedule : Script {
                             tele(BOTTOM_OF_LADDER_1)
                             setSpawnAndWander(it, SERMON_LOC)
                         }
-                    }
+                    },
                 ),
                 ScheduleTransition(
                     GO_HOME_HOUR,
@@ -153,7 +153,7 @@ class FatherAereckSchedule : Script {
                             tele(AERECK_STAIRS_TOP)
                             setSpawnAndWander(it, AERECK_SLEEP_SPOT)
                         }
-                    }
+                    },
                 ),
                 ScheduleTransition(
                     SLEEP_HOUR,
@@ -163,7 +163,7 @@ class FatherAereckSchedule : Script {
                             mode = PauseMode
                             say("zzz...")
                         }
-                    }
+                    },
                 ),
             ),
         )
