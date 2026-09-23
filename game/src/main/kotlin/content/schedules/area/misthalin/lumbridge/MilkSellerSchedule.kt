@@ -22,7 +22,7 @@ import world.gregs.voidps.engine.queue.queue as enqueue
 private var milkSellerNpc: NPC? = null
 private var gertrudeNpc: NPC? = null
 private const val MILK_SELLER_STRING_ID = "milk_seller"
-private var milkSellerSpawnTile: Tile? = null
+private val MILK_SELLER_SPAWN_TILE: Tile = Tile(3189, 3293, 0)
 
 private const val TRAVEL_WARN_HOUR = 4
 private const val TRAVEL_HOUR = 5
@@ -48,7 +48,6 @@ private val EDGEVILLE_FAIRY_RING = Tile(3129, 3497, 0)
 private val PORT_SARIM_TELE_SPOT = Tile(3043, 3270, 0)
 private val WIZARDS_TOWER_FAIRY_RING = Tile(3107, 3149, 0)
 
-private val LUMBRIDGE_GATE = GameObjects.at(LUMBRIDGE_GATE_NORTH).first()
 private val GERTRUDE_DOOR = GameObjects.at(GERTRUDE_DOOR_OUTSIDE).first()
 
 private val SELL_LOCATIONS = arrayOf(
@@ -59,7 +58,7 @@ private val SELL_LOCATIONS = arrayOf(
     PORT_SARIM,
     RIMMINGTON,
     DRAYNOR,
-    milkSellerSpawnTile,
+    MILK_SELLER_SPAWN_TILE,
 )
 
 private var routeIndex = 0
@@ -89,10 +88,9 @@ class MilkSellerSchedule(graph: NavigationGraph) : Script {
 
         npcSpawn(MILK_SELLER_STRING_ID) {
             milkSellerNpc = this
-            milkSellerSpawnTile = this.tile
             this["full_pathfinding"] = true
 
-            // NpcSchedules.registry.register(schedule)
+            NpcSchedules.registry.register(schedule)
         }
         npcDespawn(MILK_SELLER_STRING_ID) {
             NpcSchedules.registry.unregister(schedule)
@@ -114,7 +112,8 @@ class MilkSellerSchedule(graph: NavigationGraph) : Script {
 
 private fun travelSomewhereNew(npc: NPC) {
     npc.say("Well Bessie, time we headed out.")
-    when (val destination = nextSellingLocation()) {
+    val destination = nextSellingLocation()
+    when (destination) {
         LUMBRIDGE -> travelToLumbridge(npc)
         VARROCK -> travelToVarrock(npc)
         EDGEVILLE -> varrockToEdgeville(npc)
@@ -122,7 +121,7 @@ private fun travelSomewhereNew(npc: NPC) {
         RIMMINGTON -> faladorToRimmington(npc)
         PORT_SARIM -> rimmingtonToPortSarim(npc)
         DRAYNOR -> portSarimToDraynor(npc)
-        milkSellerSpawnTile -> draynorToSpawn(npc)
+        MILK_SELLER_SPAWN_TILE -> draynorToSpawn(npc)
     }
 }
 
@@ -131,14 +130,14 @@ private fun nextSellingLocation(): Tile {
 
     routeIndex = (routeIndex + 1) % SELL_LOCATIONS.size
 
-    return destination!!
+    return destination
 }
 
 private fun draynorToSpawn(npc: NPC) {
     npc.enqueue("milk_seller_to_spawn") {
         patrolDelay("wizard_tower_to_draynor")
         say("Home sweet home.")
-        setSpawnAndWander(npc, milkSellerSpawnTile!!)
+        setSpawnAndWander(npc, MILK_SELLER_SPAWN_TILE)
     }
 }
 
@@ -203,7 +202,7 @@ private fun travelToLumbridge(npc: NPC) {
 
 private fun travelToVarrock(npc: NPC) {
     npc.travelTo(LUMBRIDGE_MARKET, "milk_seller_lumbridge_to_market") {
-        travelTo(milkSellerSpawnTile!!, "milk_seller_lumbridge_to_spawn") {
+        travelTo(MILK_SELLER_SPAWN_TILE, "milk_seller_lumbridge_to_spawn") {
             travelTo(LUMBRIDGE_GATE_SOUTH, "milk_seller_spawn_to_gate") {
                 tele(LUMBRIDGE_GATE_NORTH)
                 travelTo(VARROCK_SOUTH_MINE, "milk_seller_gate_to_mines") {
@@ -226,10 +225,10 @@ private fun varrockToEdgeville(npc: NPC) {
         npcOpenDoor(GERTRUDE_DOOR, 69420)
         travelTo(GERTRUDE_DOOR_INSIDE, "milk_seller_walk_in_gertrudes_home") {
             enqueue("milk_seller_gertrude_talk") {
-                milkSellerNpc!!.mode = PauseMode
+                milkSellerNpc?.mode = PauseMode
                 say("Hey Gertrude, came to see if you need a top-off.")
                 pause(3)
-                gertrudeNpc!!.say("Thank you dearie. Want a kitten?")
+                gertrudeNpc?.say("Thank you dearie. Want a kitten?")
                 pause(3)
                 say("Oh no, thank you. Bessie is enough for me.")
                 pause(3)
@@ -237,7 +236,7 @@ private fun varrockToEdgeville(npc: NPC) {
                 pause(3)
                 say("I better get back to it before she breaks the house down.")
                 pause(3)
-                gertrudeNpc!!.say("Haha, take care dearie.")
+                gertrudeNpc?.say("Haha, take care dearie.")
                 npcOpenDoor(GERTRUDE_DOOR, 5)
                 travelTo(SOUTH_WEST_GE, "milk_seller_gertrude_to_ge") {
                     enqueue("milk_seller_bessie_teleport") {

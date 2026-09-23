@@ -1,6 +1,5 @@
 package content.skill.magic.book.lunar
 
-import content.entity.combat.hit.damage
 import content.skill.magic.spell.removeSpellItems
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
@@ -20,10 +19,6 @@ class HealOther : Script {
                 message("This player does not need healing.")
                 return@onPlayerApproach
             }
-            if (levels.get(Skill.Constitution) < levels.getMax(Skill.Constitution) * 0.11) {
-                message("You don't have enough life points.")
-                return@onPlayerApproach
-            }
             if (!get("accept_aid", true)) {
                 message("This player is not currently accepting aid.") // TODO proper message
                 return@onPlayerApproach
@@ -38,9 +33,8 @@ class HealOther : Script {
             target.gfx("heal_other")
             target.sound("heal_other_impact")
             exp(Skill.Magic, Tables.int("spells.heal_other.xp") / 10.0)
-            val restored = target.levels.restore(Skill.Constitution, amount)
+            target.levels.restore(Skill.Constitution, amount)
             target.message("You have been healed by $name.")
-            damage(restored, delay = 2)
         }
     }
 }
