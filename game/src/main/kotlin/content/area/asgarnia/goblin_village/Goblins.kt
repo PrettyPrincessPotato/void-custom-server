@@ -1,5 +1,6 @@
 package content.area.asgarnia.goblin_village
 
+import content.entity.effect.transform
 import content.entity.player.dialogue.*
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
@@ -53,6 +54,12 @@ class Goblins : Script {
             npc<Disheartened>("Grubfoot wear red armour! Grubfoot wear green armour!")
             npc<Quiz>("Why they not make up their minds?")
             npc<Frustrated>(npcId = "general_bentnoze_rfd", "Shut up Grubfoot!")
+            choice {
+                option<Neutral>("Can you turn me into a goblin?") {
+                    transform("goblin_staff_red") // Attacking animations aren't properly assigned
+                }
+                option<Neutral>("Goodbye.")
+            }
         }
     }
 }
