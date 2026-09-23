@@ -1,4 +1,4 @@
 [the_lost_talisman]
 persist = true
 format = "list"
-values = [ "unstarted", "searching", "completed" ]
+values = [ "unstarted", "searching", "altar_found", "completed" ]
