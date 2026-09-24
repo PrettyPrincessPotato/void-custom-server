@@ -14,6 +14,7 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.dialogue.talkWith
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.Settings
+import world.gregs.voidps.engine.data.definition.Areas
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 
@@ -43,7 +44,7 @@ class Banker : Script {
             openBank()
         }
         objectOperate("Bank", "*") {
-            if (!banksOpen) {
+            if (!banksOpen && it.target.tile !in Areas["zanaris"]) {
                 message(CLOSED_BANK_TEXT)
                 return@objectOperate
             }
@@ -54,7 +55,7 @@ class Banker : Script {
             openBank()
         }
         objectOperate("Collect") {
-            if (!banksOpen) {
+            if (!banksOpen && it.target.tile !in Areas["zanaris"]) {
                 message(CLOSED_BANK_TEXT)
                 return@objectOperate
             }
@@ -68,7 +69,7 @@ class Banker : Script {
         itemOnObjectOperate(obj = "bank_deposit_box*", handler = BankDeposit::itemOnDeposit)
 
         objectOperate("Use", "bank_booth_*", arrive = false) { (target) ->
-            if (!banksOpen) {
+            if (!banksOpen && target.tile !in Areas["zanaris"]) {
                 message(CLOSED_BANK_TEXT)
                 return@objectOperate
             }
@@ -77,7 +78,7 @@ class Banker : Script {
             menu()
         }
         objectOperate("Use-quickly", "bank_booth_*", arrive = false) { (target) ->
-            if (!banksOpen) {
+            if (!banksOpen && target.tile !in Areas["zanaris"]) {
                 message(CLOSED_BANK_TEXT)
                 return@objectOperate
             }
