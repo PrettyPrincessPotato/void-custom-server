@@ -30,6 +30,10 @@ The branch must be:
 
 When in doubt, choose the option that makes solo *and* group play smoother and harder to break.
 
+- **Reason from the player's journey**: when asking "is this content accessible," frame it as
+  "where would a player at level X with skill Y look for it?" and confirm that answer is a
+  source they can actually reach at that level.
+
 ## Personal Content (personal-flavor)
 
 Orientation index for the personal systems on this branch. Treat "planned" items as in-progress —
@@ -93,6 +97,8 @@ verify current behavior in code before assuming anything is shipped.
 - Follow the style of the surrounding Kotlin codebase.
 - Prefer adding content via Void's script system instead of modifying engine internals.
 - Do not alter restoration behavior from `main`; personal-flavor changes should be additive.
+- Much of the personal content lives in cache files** (TOML drop tables, `cs2` scripts,
+    `smithing.tables`), not just Kotlin — check those files when working on items, skills, or drops.
 - Never propose untested behavior: run the server locally and exercise the changed feature in-game.
 - Run `./gradlew spotlessApply` before committing.
 - Don't paste large blocks of existing code into responses; reference file paths instead.
