@@ -187,4 +187,3 @@ For any new or modified content, verify:
 - Prebuilt client: https://github.com/GregHib/void-client
 - Personal-flavor branch: https://github.com/PrettyPrincessPotato/void-custom-server/tree/personal-flavor
 - Github issues for personal-flavor: https://github.com/PrettyPrincessPotato/void-custom-server/issues
-```
