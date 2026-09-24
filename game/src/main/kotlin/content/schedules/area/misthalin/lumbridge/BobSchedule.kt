@@ -18,6 +18,7 @@ import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.timer.toTicks
+import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
 import java.util.concurrent.TimeUnit
 
@@ -66,6 +67,7 @@ class BobSchedule(graph: NavigationGraph) : Script {
                             npcOpenDoor(shopDoorClosed, DOOR_CLOSE_TIME)
                             it.travelTo(BOBS_SPAWN_POINT, queueName = "bob_door_to_desk") {
                                 it.collision = CollisionStrategies.Indoors
+                                face(Direction.EAST)
                                 setSpawnAndWander(it, BOBS_SPAWN_POINT)
                             }
                         }

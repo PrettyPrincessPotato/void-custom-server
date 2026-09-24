@@ -6,7 +6,7 @@ drops = [
 ]
 
 [chaos_druid_secondary]
-roll = 128
+roll = 158
 drops = [
   { id = "law_rune", amount = 2, chance = 7 },
   { id = "mithril_bolts", min = 2, max = 12, chance = 4 },
@@ -15,6 +15,7 @@ drops = [
   { id = "earth_rune", amount = 9, chance = 2 },
   { id = "mind_rune", amount = 12, chance = 2 },
   { id = "nature_rune", amount = 3 },
+  { id = "chaos_talisman", chance = 15 },
   { id = "coins", amount = 3, chance = 5 },
   { id = "coins", amount = 8, chance = 5 },
   { id = "coins", amount = 29, chance = 3 },

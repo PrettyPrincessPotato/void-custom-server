@@ -8,6 +8,7 @@ import content.entity.npc.schedule.NpcSchedules
 import content.entity.npc.schedule.ScheduleAction
 import content.entity.npc.schedule.ScheduleTransition
 import world.gregs.voidps.engine.Script
+import world.gregs.voidps.engine.data.definition.Areas
 
 const val BANK_CLOSE_TIME = 20
 const val BANK_OPEN_TIME = 5
@@ -19,6 +20,9 @@ var banksOpen = true // Always starts true, server starts at noon.
 class BankerSchedule : Script {
     init {
         npcSpawn(BANKER_STRING_ID) {
+            if(this.tile in Areas["zanaris"]){
+                return@npcSpawn
+            }
             val banker = this
 
             val schedule = NpcScheduleController(
