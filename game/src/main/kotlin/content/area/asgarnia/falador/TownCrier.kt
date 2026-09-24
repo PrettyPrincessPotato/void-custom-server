@@ -6,6 +6,7 @@ import content.entity.player.dialogue.type.ChoiceOption
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
+import content.world.time.WorldTime.hour
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.definition.Areas
@@ -24,7 +25,7 @@ class TownCrier : Script {
         "The Grand Exchange is now open! Buy items from other players!",
         "New content is being actively developed - stay tuned for updates!",
         "You can now fight with your friends anywhere!",
-        "Goblins are slowly mustering forces near Falador!",
+        "The time is about $hour:00!",
     )
 
     private val historicalOverheads = listOf(
