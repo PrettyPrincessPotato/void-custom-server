@@ -91,14 +91,37 @@ verify current behavior in code before assuming anything is shipped.
 - When touching smithing: do **not** assume standard 2011 fail rates, XP values, or item lists.
   Check `smithing.tables` first.
 
+### City Raids
+
+- **Custom city raid framework** in `content/activity/city_raids/`.
+- Factions send groups of NPCs to march on and besiege towns; as of now the
+  Goblin tribe → Falador raid is the only implemented one, with the framework
+  built to extend to other factions and destinations.
+- **This feature is in a messy, WIP state and may need to be reworked from the ground up.**
+  Do not assume it is a polished, complete system.
+- **In-code comments/TODOs about this feature's status and issues are unreliable.**
+  Treat the project's **GitHub issues tracker** as the source of truth for what is broken,
+  what is WIP, and what needs reworking.
+- Architecture (for orientation): `RaidManager`, `RaidStore`, `RaidState`, `RaidFaction` /
+  `FactionRelations`, `RaidIdentityResolver`, `RaidCombatRules`, and per-faction controllers
+  under `goblins/`.
+- When working on this:
+  - **Check the GitHub issues tracker first** before assuming the current state or any
+    known issue.
+  - Expect to possibly rewrite parts or all of it.
+  - Treat it as a **world-state event**, not a per-player quest — it affects all players in
+    the target town.
+  - Don't hardcode Falador or goblins into shared logic; keep it extensible.
+
+
 ## Working Rules
 
 - Keep changes small, focused, and easy to review; one logical change per commit.
 - Follow the style of the surrounding Kotlin codebase.
 - Prefer adding content via Void's script system instead of modifying engine internals.
 - Do not alter restoration behavior from `main`; personal-flavor changes should be additive.
-- Much of the personal content lives in cache files** (TOML drop tables, `cs2` scripts,
-    `smithing.tables`), not just Kotlin — check those files when working on items, skills, or drops.
+- Much of the personal content lives in cache files (TOML drop tables, `cs2` scripts,
+  `smithing.tables`), not just Kotlin — check those files when working on items, skills, or drops.
 - Never propose untested behavior: run the server locally and exercise the changed feature in-game.
 - Run `./gradlew spotlessApply` before committing.
 - Don't paste large blocks of existing code into responses; reference file paths instead.
@@ -141,4 +164,6 @@ For any new or modified content, verify:
 - Void wiki: https://greghib.github.io/void/docs
 - Scripts guide: https://greghib.github.io/void/docs/scripts
 - Prebuilt client: https://github.com/GregHib/void-client
+- Personal-flavor branch: https://github.com/PrettyPrincessPotato/void-custom-server/tree/personal-flavor
+- Github issues for personal-flavor: https://github.com/PrettyPrincessPotato/void-custom-server/issues
 ```
