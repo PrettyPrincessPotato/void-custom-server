@@ -152,6 +152,27 @@ For any new or modified content, verify:
 - **Performance**: no per-tick hot-spots that scale badly with nearby players.
 - **Compatibility**: works with the 2011 client and existing cache.
 
+## GitHub Workflow
+
+- Use a GitHub Issue as the canonical source for active multi-step plans; search open
+  issues for a relevant plan when no issue number is given (ask if there are multiple
+  plausible matches), and reference issue numbers in branch names, PRs, and progress
+  updates.
+- The user has approved using a locally-stored GitHub auth token for creating or
+  modifying issues, PRs, and comments via the GitHub CLI/API. **Never echo the token**
+  into responses, logs, committed files, or tool output.
+- Keep the issue synchronized with implementation progress, decisions, and completion.
+- When the user asks for issue/PR text to post themselves, provide it in a fenced
+  Markdown code block for easy copy/paste.
+
+## Branch Gate
+
+- If the current branch does not match the required base (`main` for restoration,
+  `personal-flavor` for custom work), stop before editing, explicitly name the mismatch,
+  and ask whether to switch or create the correct branch.
+- If scope is mixed or unclear, ask whether to preserve custom changes or restore
+  original content before choosing a base branch.
+
 ## Handling Issues
 
 1. Identify the branch: restoration bug → `main`; personal content → `personal-flavor`.
