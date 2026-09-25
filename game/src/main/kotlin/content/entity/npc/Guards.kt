@@ -25,6 +25,7 @@ class Guards : Script {
                 interactNpc(target, "Attack")
             }
         }
+
         npcDeath("*") {
             val guard = killer as? NPC ?: return@npcDeath
             when {
