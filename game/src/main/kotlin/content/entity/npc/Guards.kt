@@ -9,11 +9,19 @@ import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.queue.queue
 
+// Combat definitions used by generic citizens and ducks; they have combat stats but are not guard targets
+private val citizenCombatDefs = setOf("man", "woman", "farmer", "duck_walk", "duck_swim")
+
 class Guards : Script {
     init {
-        // Blanket catch to have all guards attack random NPCs. Not clean yet but good enough.
         huntNPC("aggressive_npcs") { target ->
-            if (id.contains("guard_") && !target.id.contains("guard") && !target.isFamiliar && target.canFight()) {
+            if (
+                id.contains("guard_") &&
+                    !target.id.contains("guard") &&
+                    !target.isFamiliar &&
+                    target.canFight() &&
+                    target.def["combat_def", ""] !in citizenCombatDefs
+            ) {
                 interactNpc(target, "Attack")
             }
         }
