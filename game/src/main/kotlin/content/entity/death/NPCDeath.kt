@@ -80,14 +80,9 @@ class NPCDeath(
                 delay(if (ticks == 0) 4 else ticks)
                 if (killer is Player) {
                     AuditLog.event(killer, "killed", npc, tile)
-                    val contributors = contributors(npc, killer)
-
-                    for (player in contributors) {
-                        slay(player, npc)
-
-                        if (onDeath.dropItems) {
-                            dropLoot(npc, player, tile)
-                        }
+                    slay(killer, npc)
+                    if (onDeath.dropItems) {
+                        dropLoot(npc, killer, tile)
                     }
                 }
                 queue.clear()
@@ -247,16 +242,4 @@ class NPCDeath(
             player.message("You still need to kill ${player.slayerTaskRemaining} monsters to completed your current Slayer assignment.", ChatType.Filter)
         }
     }
-}
-
-private fun contributors(npc: NPC, killer: Character?): List<Player> {
-    val players = npc.damageDealers.keys
-        .filterIsInstance<Player>()
-        .toMutableSet()
-
-    if (killer is Player) {
-        players += killer
-    }
-
-    return players.toList()
 }
