@@ -20,7 +20,7 @@ var banksOpen = true // Always starts true, server starts at noon.
 class BankerSchedule : Script {
     init {
         npcSpawn(BANKER_STRING_ID) {
-            if(this.tile in Areas["zanaris"]){
+            if (this.tile in Areas["zanaris"]) {
                 return@npcSpawn
             }
             val banker = this
