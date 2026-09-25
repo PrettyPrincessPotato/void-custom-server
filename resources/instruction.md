@@ -120,6 +120,11 @@ verify current behavior in code before assuming anything is shipped.
 - Follow the style of the surrounding Kotlin codebase.
 - Prefer adding content via Void's script system instead of modifying engine internals.
 - Do not alter restoration behavior from `main`; personal-flavor changes should be additive.
+- **Prefer a new file over editing a `main`-owned file**: if a personal change can
+  live in a new file (new script, table, controller, etc.) instead of editing a file
+  that belongs to `main`, prefer that. Direct edits to a `main`-owned file can be
+  overwritten by a later upstream update to that same file, silently dropping the
+  personal work.
 - Much of the personal content lives in cache files (TOML drop tables, `cs2` scripts,
   `smithing.tables`), not just Kotlin — check those files when working on items, skills, or drops.
 - Never propose untested behavior: run the server locally and exercise the changed feature in-game.
@@ -161,6 +166,7 @@ For any new or modified content, verify:
 - The user has approved using a locally-stored GitHub auth token for creating or
   modifying issues, PRs, and comments via the GitHub CLI/API. **Never echo the token**
   into responses, logs, committed files, or tool output.
+- The user also doesn't have git set up properly yet. There is no token to grab.
 - Keep the issue synchronized with implementation progress, decisions, and completion.
 - When the user asks for issue/PR text to post themselves, provide it in a fenced
   Markdown code block for easy copy/paste.
