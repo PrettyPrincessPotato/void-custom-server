@@ -65,9 +65,9 @@ object Site {
         File(buildDir, "worlds.html").writeText(Website.worldsPage())
         File(buildDir, "hiscores.html").writeText(Hiscores.page(gameData))
         File(buildDir, "log.html").writeText(AdventurersLog.page(gameData))
+        File(buildDir, "exchange.html").writeText(Exchange.page())
+        File(buildDir, "play.html").writeText(Play.page())
         if (FULL) {
-            File(buildDir, "exchange.html").writeText(Exchange.page())
-            File(buildDir, "play.html").writeText(Play.page())
             val devDir = File(buildDir, "dev")
             devDir.mkdirs()
             File(devDir, "index.html").writeText(Dev.dashboardPage())

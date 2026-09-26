@@ -116,15 +116,15 @@ object WorldMap {
                         "color:var(--text-strong);background:var(--surface-header);border-bottom:1px solid var(--border-subtle)"
                     xText("p.name")
                 }
-                button {
-                    menuItemStyle(danger = false, first = true)
-                    // Routed through `selectPlayer` rather than a bare coordinate jump so the
-                    // console's players list highlights whoever the map just moved to.
-                    onClick("selectPlayer(p.name); menuOpen = false")
-                    icon(Icons.CROSSHAIR, size = 13)
-                    +" Move here"
-                }
                 if (Site.FULL) {
+                    button {
+                        menuItemStyle(danger = false, first = true)
+                        // Routed through `selectPlayer` rather than a bare coordinate jump so the
+                        // console's players list highlights whoever the map just moved to.
+                        onClick("selectPlayer(p.name); menuOpen = false")
+                        icon(Icons.CROSSHAIR, size = 13)
+                        +" Move here"
+                    }
                     button {
                         menuItemStyle(danger = true, first = false)
                         onClick("kickPlayer(p.name); menuOpen = false")
@@ -363,8 +363,8 @@ object WorldMap {
     }
 
     fun page(mapLabels: MapLabels): String = voidPage(
-        title = "Void — world map",
-        description = "A lazily-tiled, zoomable map of the Void game world.",
+        title = "Void - World Map",
+        description = "An interactive map of the Void game world.",
         data = "worldMapApp()",
         head = {
             link(rel = "stylesheet", href = "style/world-map.css")

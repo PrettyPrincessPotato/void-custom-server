@@ -12,7 +12,7 @@
   // Maps the site's category chip labels (baked into `Exchange.kt`) to the API's category ids.
   var CATEGORY_ID = {
     All: "all", Weapons: "weapons", Armour: "armour", Runes: "runes",
-    Consumables: "consumables", Resources: "resources", Curios: "curios",
+    Consumables: "consumables", Resources: "resources", Misc: "misc",
   };
   var TIMEFRAME_ID = { "24H": "24h", "7D": "7d", "30D": "30d", "1Y": "1y", All: "all" };
 
@@ -42,18 +42,10 @@
     return M[d.getUTCMonth()] + " " + String(d.getUTCFullYear()).slice(2);
   }
 
-  // Coloured category border/code, mirroring the chips baked into `Exchange.kt` - kept here since
-  // the API's `categoryCode` already gives the three-letter tile code, only the border colour
-  // (a CSS variable) needs a client-side lookup.
-  var CAT_BORDER = {
-    weapons: "var(--ember-600)", armour: "var(--border-strong)", runes: "var(--steel-600)",
-    consumables: "var(--moss-600)", resources: "var(--border-strong)", curios: "var(--gold-500)",
-  };
-
   function itemRow(it, kind) {
     var d = it.delta24h;
     return {
-      id: it.id, name: it.name, cat: it.categoryName, code: it.categoryCode, border: CAT_BORDER[it.category] || "var(--border-strong)",
+      id: it.id, name: it.name, cat: it.categoryName, code: it.categoryCode, icon: it.iconUrl,
       m1: kind === "vol" ? short(it.volume24h) : kind === "price" ? gp(it.price) : pct(d),
       m2: kind === "vol" ? gp(it.price) : kind === "price" ? short(it.volume24h) + " traded" : gp(it.price),
       m1Color: kind === "delta" ? col(d) : "var(--text-strong)",
@@ -63,7 +55,7 @@
   function searchRow(it) {
     var d = it.delta24h;
     return {
-      id: it.id, name: it.name, examine: it.examine, code: it.categoryCode, border: CAT_BORDER[it.category] || "var(--border-strong)",
+      id: it.id, name: it.name, examine: it.examine, code: it.categoryCode, icon: it.iconUrl,
       price: gp(it.price), delta: pct(d), deltaColor: col(d),
       vol: short(it.volume24h), limit: it.buyLimit != null ? fmt(it.buyLimit) : "None",
     };
@@ -71,13 +63,14 @@
 
   function relatedRow(it) {
     var d = it.delta24h;
-    return { id: it.id, name: it.name, code: it.categoryCode, border: CAT_BORDER[it.category] || "var(--border-strong)", delta: pct(d), deltaColor: col(d) };
+    return { id: it.id, name: it.name, code: it.categoryCode, icon: it.iconUrl, delta: pct(d), deltaColor: col(d) };
   }
 
   function itemView(it) {
     var d = it.delta24h;
     return {
-      name: it.name, cat: it.categoryName, code: it.categoryCode, border: CAT_BORDER[it.category] || "var(--border-strong)",
+      // The detail page shows the 2x `{id}_hd.png` sprite rather than the 36x32 list one.
+      name: it.name, cat: it.categoryName, code: it.categoryCode, icon: it.iconUrl ? it.iconUrl.replace(/\.png$/, "_hd.png") : null,
       examine: it.examine, price: gp(it.price), delta: pct(d), deltaColor: col(d),
       memberLabel: it.members ? "Members" : "Free",
       memberBg: it.members ? "rgba(224,174,60,.14)" : "var(--umber-700)",
@@ -90,17 +83,17 @@
     return [
       { label: "Buy limit", value: it.buyLimit != null ? fmt(it.buyLimit) : "None", note: it.buyLimitWindowHours ? "per " + it.buyLimitWindowHours + " hours" : "" },
       { label: "Margin", value: gp(it.margin), note: "buy minus sell" },
-      { label: "Tax", value: gp(it.tax), note: "2%, capped at 5m" },
-      { label: "Daily volume", value: short(it.volume24h), note: "units, 24h mean" },
-      { label: "High alchemy", value: gp(it.highAlchemy), note: "nature rune not included" },
-      { label: "Low alchemy", value: gp(it.lowAlchemy), note: "fire runes only" },
+      // { label: "Tax", value: gp(it.tax), note: "2%, capped at 5m" },
+      // { label: "Daily volume", value: short(it.volume24h), note: "units, 24h mean" },
+      { label: "Low alchemy", value: gp(it.lowAlchemy), note: "" },
+      { label: "High alchemy", value: gp(it.highAlchemy), note: "" },
       { label: "Shop value", value: gp(it.shopValue), note: "general store base" },
       { label: "Members", value: it.members ? "Yes" : "No", note: it.members ? "members worlds only" : "all worlds" },
     ];
   }
 
   var EMPTY_ITEM = {
-    name: "", cat: "", code: "", border: "var(--border-strong)", examine: "",
+    name: "", cat: "", code: "", icon: null, examine: "",
     price: "0 gp", delta: "+0.00%", deltaColor: "var(--moss-500)",
     memberLabel: "Free", memberBg: "var(--umber-700)", memberColor: "var(--parch-200)", memberBorder: "var(--border-strong)",
   };
@@ -113,6 +106,7 @@
       summaryTiles: [],
       topVolume: [], risers: [], fallers: [], mostExpensive: [],
       searchResults: [],
+      searchKey: null, // query string of the last search requested
       items: {}, // itemId -> ItemDetail, cached across navigation
       historyPoints: {}, // "itemId:timeframe" -> PricePoint[]
       relatedItems: [],
@@ -128,9 +122,14 @@
           self.clearData();
           if (world != null) self.reload();
         });
-        this.$watch("q", function () { if (self.page === "search") self.loadSearch(); });
-        this.$watch("cat", function () { if (self.page === "search") self.loadSearch(); });
-        this.$watch("sort", function () { if (self.page === "search") self.loadSearch(); });
+        var onFilter = function () {
+          if (self.page !== "search") return;
+          history.replaceState(null, "", self.searchHash());
+          self.loadSearch();
+        };
+        this.$watch("q", onFilter);
+        this.$watch("cat", onFilter);
+        this.$watch("sort", onFilter);
         this.$watch("tf", function () { if (self.page === "item") self.loadHistory(); });
       },
       destroy: function () {
@@ -142,6 +141,7 @@
         this.summaryTiles = [];
         this.topVolume = []; this.risers = []; this.fallers = []; this.mostExpensive = [];
         this.searchResults = [];
+        this.searchKey = null;
         this.items = {};
         this.historyPoints = {};
         this.relatedItems = [];
@@ -183,9 +183,25 @@
         params.set("category", CATEGORY_ID[this.cat] || "all");
         params.set("sort", this.sort === "vol" ? "volume" : this.sort);
         params.set("pageSize", "100");
-        getJson(API + "/items?" + params.toString()).then(function (data) {
-          self.searchResults = data.items.map(searchRow);
-        }).catch(function () { self.searchResults = []; });
+        // Restoring a search from the hash can change q/cat/sort and trigger their watchers as well
+        // as the explicit load, so a request identical to the last one is skipped.
+        var key = params.toString();
+        if (key === this.searchKey) return;
+        this.searchKey = key;
+        getJson(API + "/items?" + key).then(function (data) {
+          if (self.searchKey === key) self.searchResults = data.items.map(searchRow);
+        }).catch(function () { if (self.searchKey === key) { self.searchResults = []; self.searchKey = null; } });
+      },
+      // The search's query, category and sort live in the hash so going back from an item
+      // restores the search that led to it.
+      searchHash: function () {
+        var params = new URLSearchParams();
+        var q = this.q.trim();
+        if (q) params.set("q", q);
+        if (this.cat !== "All") params.set("cat", this.cat);
+        if (this.sort !== "vol") params.set("sort", this.sort);
+        var s = params.toString();
+        return "#search" + (s ? "?" + s : "");
       },
       get results() { return this.searchResults; },
 
@@ -231,7 +247,11 @@
           this.id = decodeURIComponent(h.slice(5));
           this.page = "item";
           if (load) this.enterItem(this.id);
-        } else if (h === "search") {
+        } else if (h === "search" || h.indexOf("search?") === 0) {
+          var params = new URLSearchParams(h.slice(7));
+          this.q = params.get("q") || "";
+          this.cat = CATEGORY_ID[params.get("cat")] ? params.get("cat") : "All";
+          this.sort = params.get("sort") || "vol";
           this.page = "search";
           if (load) this.loadSearch();
         } else {
@@ -273,7 +293,13 @@
         if (wasSearch) this.q = "";
         history.pushState(null, "", "#");
       },
-      goSearch: function () { this.page = "search"; this.loadSearch(); history.pushState(null, "", "#search"); },
+      goSearch: function () {
+        // Re-submitting from the search page updates its entry rather than stacking duplicates.
+        if (this.page === "search") history.replaceState(null, "", this.searchHash());
+        else history.pushState(null, "", this.searchHash());
+        this.page = "search";
+        this.loadSearch();
+      },
 
       get itemRaw() { return this.items[this.id]; },
       get itemMissing() { return this.itemRaw === null; },
