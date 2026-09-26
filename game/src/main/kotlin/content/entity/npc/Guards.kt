@@ -17,10 +17,10 @@ class Guards : Script {
         huntNPC("aggressive_npcs") { target ->
             if (
                 id.contains("guard_") &&
-                    !target.id.contains("guard") &&
-                    !target.isFamiliar &&
-                    target.canFight() &&
-                    target.def["combat_def", ""] !in citizenCombatDefs
+                !target.id.contains("guard") &&
+                !target.isFamiliar &&
+                target.canFight() &&
+                target.def["combat_def", ""] !in citizenCombatDefs
             ) {
                 interactNpc(target, "Attack")
             }
