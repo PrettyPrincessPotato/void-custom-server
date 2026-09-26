@@ -34,6 +34,7 @@ When in doubt, choose the option that makes solo *and* group play smoother and h
   "where would a player at level X with skill Y look for it?" and confirm that answer is a
   source they can actually reach at that level.
 - As far as Membership goes, personal-flavor is membership agnostic, meaning if something is "free to play" vs "members", then it shouldn't be taken into consideration. They are one and the same while in `personal-flavor`.
+- Not every addition needs a brand new test file, especially in `personal-flavor.`
 
 ## Personal Content (personal-flavor)
 
