@@ -1,0 +1,3 @@
+spawns = [
+    { id = "nature_chest", x = 2963, y = 3209, level = 1, rotation = 0 },
+]

@@ -1,4 +1,5 @@
 spawns = [
     { id = "bank_deposit_box", x = 3250, y = 3423, rotation = 0 }, # East Varrock facing south
     { id = "bank_deposit_box", x = 3184, y = 3432, rotation = 2 }, # West Varrock facing north
+    { id = "nature_chest", x = 3185, y = 3412, level = 1, rotation = 0 },
 ]

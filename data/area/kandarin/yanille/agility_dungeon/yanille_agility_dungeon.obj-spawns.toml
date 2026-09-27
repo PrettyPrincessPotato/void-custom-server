@@ -1,0 +1,3 @@
+spawns = [
+    { id = "ardougne_castle_chest", x = 2614, y = 9569, level = 0, rotation = 1 },
+]

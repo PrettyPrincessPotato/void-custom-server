@@ -1,0 +1,3 @@
+spawns = [
+    { id = "big_coin_chest", x = 2975, y = 3332, level = 1, rotation = 3 },
+]
