@@ -16,6 +16,7 @@ import world.gregs.voidps.engine.timer.toTicks
 import java.time.LocalDate
 import java.time.Month
 import java.util.concurrent.TimeUnit
+import world.gregs.voidps.engine.queue.queue as enqueue
 
 class TownCrier : Script {
 
@@ -24,7 +25,6 @@ class TownCrier : Script {
     private val currentOverheads = listOf(
         "New content is being actively developed - stay tuned for updates!",
         "You can now fight with your friends anywhere!",
-        "The time is about $hour:00!",
     )
 
     private val historicalOverheads = listOf(
@@ -93,8 +93,12 @@ class TownCrier : Script {
         }
 
         npcTimerTick("town_crier_overhead") {
-            anim("bell_ring")
-            say(activeOverhead)
+            enqueue("town_crier_cry") {
+                anim("bell_ring")
+                say("The time is about $hour:00!")
+                pause(3)
+                say(activeOverhead)
+            }
             Timer.CONTINUE
         }
 
