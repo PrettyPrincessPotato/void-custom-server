@@ -88,11 +88,11 @@ class GoblinRaidController(
             waypoints = route.map { it to 0 },
             loop = false,
             noCollision = noCollision,
-            onComplete = {
+            /* onComplete = {
                 if (!member.npc.dead) {
                     onComplete()
                 }
-            },
+            }, */
         )
     }
 
