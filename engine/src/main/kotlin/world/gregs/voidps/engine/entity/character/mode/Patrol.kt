@@ -9,14 +9,22 @@ import world.gregs.voidps.type.Tile
 /**
  * Walks a preset path of [waypoints] pausing at each point for the number of ticks provided.
  * [character] is teleported to the next point when the path is blocked for longer than [MAX_DELAY]
+ * [resume] continues from the last waypoint reached instead of starting from the beginning
  */
 class Patrol(
     character: Character,
     private val waypoints: List<Pair<Tile, Int>>,
     private val loop: Boolean = true,
     private val noCollision: Boolean = false,
-    private val onComplete: () -> Unit = {},
+    private val resume: Boolean = false,
 ) : Movement(character) {
+
+    override fun start() {
+        super.start()
+        if (!resume) {
+            character.clear("patrol_index")
+        }
+    }
 
     override fun tick() {
         val (waypoint, delay) = waypoint()
@@ -59,13 +67,11 @@ class Patrol(
     }
 
     override fun onCompletion() {
-        onComplete()
     }
 
     override fun stop(replacement: Mode) {
         super.stop(replacement)
         character.clear("patrol_delay")
-        character.clear("patrol_index")
     }
 
     private fun waypoint() = waypoints[character["patrol_index", 0].rem(waypoints.size)]
