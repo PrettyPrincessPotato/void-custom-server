@@ -25,6 +25,8 @@ class TownCrier : Script {
     private val currentOverheads = listOf(
         "New content is being actively developed - stay tuned for updates!",
         "You can now fight with your friends anywhere!",
+        "The wilderness contains a new ghost!",
+        "Rumors of wandering friendly golem around ${Settings["server.name"]}",
     )
 
     private val historicalOverheads = listOf(
