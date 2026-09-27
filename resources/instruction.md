@@ -122,6 +122,7 @@ verify current behavior in code before assuming anything is shipped.
 - Follow the style of the surrounding Kotlin codebase.
 - Prefer adding content via Void's script system instead of modifying engine internals.
 - Do not alter restoration behavior from `main`; personal-flavor changes should be additive.
+- TOML files are the exception
 - **Prefer a new file over editing a `main`-owned file**: if a personal change can
   live in a new file (new script, table, controller, etc.) instead of editing a file
   that belongs to `main`, prefer that. Direct edits to a `main`-owned file can be
