@@ -3,6 +3,7 @@ package content.skill.agility.course
 import content.entity.combat.hit.damage
 import content.entity.player.dialogue.Happy
 import content.entity.player.dialogue.type.npc
+import content.entity.player.dialogue.type.statement
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.data.Settings
@@ -23,6 +24,7 @@ class GnomeAdvanced : Script {
         objectOperate("Climb-up", "gnome_tree_branch_advanced") {
             if (!has(Skill.Agility, 85, message = true)) {
                 npc<Happy>("gnome_trainer", "Sorry mate, you're not experienced enough to try that route. I suggest you carry on over the balancing rope instead.")
+                statement("You require 85 agility to start this agility arena.")
                 return@objectOperate
             }
             NPCs.gnomeTrainer("Terrorbirds could climb faster than that!", Zone(9263413))

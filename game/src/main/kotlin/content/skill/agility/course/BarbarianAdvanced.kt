@@ -1,5 +1,6 @@
 package content.skill.agility.course
 
+import content.entity.player.dialogue.type.statement
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.player.clearRenderEmote
@@ -15,6 +16,7 @@ class BarbarianAdvanced : Script {
     init {
         objectOperate("Run-up", "barbarian_outpost_run_wall") {
             if (!has(Skill.Agility, 90, message = true)) {
+                statement("You require 90 agility to enter the advanced route here.")
                 return@objectOperate
             }
             clear("face_entity")
