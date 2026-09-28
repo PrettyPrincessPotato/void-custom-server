@@ -1,0 +1,3 @@
+spawns = [
+    { id = "blood_rune_chest", x = 3182, y = 3812, rotation = 1 },
+]
