@@ -4,7 +4,6 @@ import content.entity.obj.door.Door.replace
 import content.entity.obj.door.Door.revert
 import world.gregs.voidps.engine.entity.obj.GameObject
 
-class NpcDoorHelper
 fun npcOpenDoor(
     door: GameObject,
     duration: Int,
