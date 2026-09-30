@@ -80,7 +80,7 @@ object Damage {
         type == "magic" && spell == "magic_dart" -> effectiveLevel(source, Skill.Magic) + 100
         type == "magic" -> {
             var damage = Tables.intOrNull("spells.$spell.max_hit") ?: 0
-            damage = min(damage, capSpellDamage(source, spell, damage))
+            damage = capSpellDamage(source, spell, damage)
             if (damage == -1) {
                 damage = 0
             }
