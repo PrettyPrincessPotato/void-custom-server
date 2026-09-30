@@ -15,7 +15,13 @@ fun npcOpenDoor(
 ): Boolean {
     if (door.id.endsWith("_closed")) {
         replace(
-            door, door.def, door.def.opened, tileRotation, objRotation, duration, collision,
+            door,
+            door.def,
+            door.def.opened,
+            tileRotation,
+            objRotation,
+            duration,
+            collision,
             revert(door.def, door, "close"),
         )
         return true
@@ -32,7 +38,13 @@ fun npcCloseDoor(
 ): Boolean {
     if (door.id.endsWith("_opened")) {
         replace(
-            door, door.def, door.def.closed, tileRotation, objRotation, duration, collision,
+            door,
+            door.def,
+            door.def.closed,
+            tileRotation,
+            objRotation,
+            duration,
+            collision,
             revert(door.def, door, "open"),
         )
         return true

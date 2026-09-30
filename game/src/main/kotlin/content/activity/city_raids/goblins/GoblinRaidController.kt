@@ -5,7 +5,6 @@ import content.activity.city_raids.RaidManager
 import content.activity.city_raids.RaidMember
 import content.activity.city_raids.RaidState
 import content.activity.city_raids.routes_and_pois.IceMountainArea
-import content.entity.combat.dead
 import world.gregs.voidps.engine.entity.character.mode.Patrol
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.type.Tile

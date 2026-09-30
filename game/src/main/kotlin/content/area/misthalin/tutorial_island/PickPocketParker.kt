@@ -64,7 +64,7 @@ class PickPocketParker : Script {
                         mode = PauseMode
                         say("Hello, I'd like to deposit my gold.")
                         pause(3)
-                        if(pickpocketted) {
+                        if (pickpocketted) {
                             pickpocketted = false
                             say("Huh? That's strange, my purse feels lighter than normal.")
                             pause(3)
@@ -104,7 +104,6 @@ class PickPocketParker : Script {
             }
             banker = null
         }
-
 
         npcSpawn("man") {
             if (this.index != parker?.index) {
