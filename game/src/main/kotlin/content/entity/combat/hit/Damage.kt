@@ -1,6 +1,8 @@
 package content.entity.combat.hit
 
 import com.github.michaelbull.logging.InlineLogger
+import content.activity.level_sync.SpellTierSync.Companion.capFixedDamage
+import content.activity.level_sync.SpellTierSync.Companion.capSpellDamage
 import content.activity.level_sync.combatCurrentLevel
 import content.entity.combat.Bonus
 import content.entity.combat.Target
@@ -24,6 +26,7 @@ import world.gregs.voidps.engine.queue.queue
 import world.gregs.voidps.engine.queue.strongQueue
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import world.gregs.voidps.type.random
+import kotlin.math.min
 import kotlin.ranges.IntRange
 
 object Damage {
@@ -73,10 +76,11 @@ object Damage {
     fun maximum(source: Character, target: Character, type: String, weapon: Item, spell: String = "", success: Boolean = false, range: IntRange? = null): Int = when {
         type == "dragonfire" -> Dragonfire.maxHit(source, target, success || source is NPC && spell != "")
         source is NPC -> source.def["max_hit_$type", range?.last ?: 0]
-        type == "magic" && weapon.id.startsWith("saradomin_sword") -> 160
+        type == "magic" && weapon.id.startsWith("saradomin_sword") -> min(160, capFixedDamage(source, 160))
         type == "magic" && spell == "magic_dart" -> effectiveLevel(source, Skill.Magic) + 100
         type == "magic" -> {
             var damage = Tables.intOrNull("spells.$spell.max_hit") ?: 0
+            damage = min(damage, capSpellDamage(source, spell, damage))
             if (damage == -1) {
                 damage = 0
             }
