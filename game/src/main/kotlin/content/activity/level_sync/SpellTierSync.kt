@@ -58,7 +58,7 @@ class SpellTierSync : Script {
             }
             spellMaxHits = maxHits.toMap()
             // Prefix max: the cap at level L is the strongest spell castable at or below L.
-            for (level in 2..99) {
+            for (level in 1..99) {
                 spellTierCap[level] = maxOf(bestAtLevel[level], spellTierCap[level - 1])
             }
         }
