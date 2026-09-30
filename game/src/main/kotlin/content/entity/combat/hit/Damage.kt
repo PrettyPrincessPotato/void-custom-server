@@ -1,6 +1,7 @@
 package content.entity.combat.hit
 
 import com.github.michaelbull.logging.InlineLogger
+import content.activity.level_sync.combatCurrentLevel
 import content.entity.combat.Bonus
 import content.entity.combat.Target
 import content.entity.player.combat.special.specialAttack
@@ -104,7 +105,11 @@ object Damage {
     }
 
     private fun effectiveLevel(character: Character, skill: Skill): Int {
-        var level = character.levels.get(skill)
+        var level = if (character is Player) {
+            character.combatCurrentLevel(skill)
+        } else {
+            character.levels.get(skill)
+        }
         if (skill != Skill.Magic) {
             level = Prayer.effectiveLevelModifier(character, skill, false, level)
         }
