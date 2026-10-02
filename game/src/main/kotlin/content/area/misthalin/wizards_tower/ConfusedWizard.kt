@@ -31,7 +31,6 @@ class ConfusedWizard : Script {
 
     private fun spawnConfusedWizard() {
         wizard = NPCs.add("wizard_yanille", spawnTile)
-        wizard!!["full_pathfinding"] = false
     }
 
     init {
