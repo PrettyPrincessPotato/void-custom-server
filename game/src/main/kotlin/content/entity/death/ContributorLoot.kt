@@ -41,7 +41,7 @@ class ContributorLoot(private val tables: DropTables) : Script {
     init {
         npcDeath("*") { onDeath ->
             var killer = killer
-            if (killer is NPC && killer.contains("owner_index")) {
+            if (killer is NPC && killer.ownerIndex != -1) {
                 killer = Players.indexed(killer["owner_index", -1])
             }
             val npc = this
