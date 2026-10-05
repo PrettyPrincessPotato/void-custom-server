@@ -40,18 +40,11 @@ open class Movement(
     private var needsCalculation = true
 
     internal fun calculate() {
-        if (character.steps.isNotEmpty() && !needsCalculation || strategy == null) {
+        if (!needsCalculation || strategy == null) {
             return
         }
         val tile = strategy.destination(character)
-        // Players, and owned familiars (which a player directs around the map), use full
-        // pathfinding so they route around obstacles. Other NPCs use cheap single-step movement.
-        val pathfinds =
-            character is Player ||
-                    (character is NPC && (
-                            (character as NPC).ownerIndex != 1 ||
-                            character["full_pathfinding", false]
-                            ))
+        val pathfinds = Steps.smartPathing(character)
         if (pathfinds && !tile.noCollision) {
             val route = pathFinder.findPath(character, strategy, shape)
             character.steps.queueRoute(route, tile, tile.noCollision, noRun = strategy.forceWalk(character))
@@ -259,7 +252,7 @@ open class Movement(
             character.tile = character.tile.add(delta)
             val to = character.tile
             character.visuals.moved = true
-            if (Settings["world.players.collision", false] && !character.contains("dead")) {
+            if (playerCollision && !character.dead) {
                 move(character, from, to)
             }
             if (character is Player) {
@@ -281,6 +274,8 @@ open class Movement(
             }
         }
 
+        private val playerCollision by Settings.bool("world.players.collision", false)
+
         private fun Player.original(tile: Tile): Tile {
             if (!Instances.reserved(tile.region)) {
                 return tile
@@ -290,19 +285,23 @@ open class Movement(
         }
 
         private fun move(character: Character, from: Tile, to: Tile) {
+            if (from == to) {
+                return
+            }
             val mask = character.collisionFlag
             val size = character.size
+            if (size == 1) {
+                Collisions.move(from.x, from.y, from.level, to.x, to.y, to.level, mask)
+                return
+            }
             for (x in 0 until size) {
                 for (y in 0 until size) {
-                    val fromX = from.x + x
-                    val fromY = from.y + y
-                    val toX = to.x + x
-                    val toY = to.y + y
-
-                    if (fromX != toX || fromY != toY || from.level != to.level) {
-                        Collisions.remove(fromX, fromY, from.level, mask)
-                        Collisions.add(toX, toY, to.level, mask)
-                    }
+                    Collisions.remove(from.x + x, from.y + y, from.level, mask)
+                }
+            }
+            for (x in 0 until size) {
+                for (y in 0 until size) {
+                    Collisions.add(to.x + x, to.y + y, to.level, mask)
                 }
             }
         }

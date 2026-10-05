@@ -5,7 +5,6 @@ import content.activity.level_sync.combatCurrentLevel
 import content.activity.level_sync.combatMaxHitpoints
 import content.activity.level_sync.syncedLevels
 import content.entity.combat.Bonus
-import content.entity.combat.dead
 import content.entity.player.combat.special.specialAttack
 import content.entity.player.equip.Equipment
 import content.skill.magic.spell.spell
