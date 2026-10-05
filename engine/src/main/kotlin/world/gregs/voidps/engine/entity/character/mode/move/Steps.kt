@@ -106,9 +106,9 @@ class Steps(
     }
 
     companion object {
-        private const val MAX_STEPS = 25
+        private const val MAX_STEPS = 50
         private const val SINGLE_STEP = 1
 
-        fun smartPathing(character: Character) = character is Player || (character as? NPC)?.id?.endsWith("_familiar") == true
+        fun smartPathing(character: Character) = character is Player || (character as? NPC)?.id?.endsWith("_familiar") == true || character["full_pathfinding", false]
     }
 }
