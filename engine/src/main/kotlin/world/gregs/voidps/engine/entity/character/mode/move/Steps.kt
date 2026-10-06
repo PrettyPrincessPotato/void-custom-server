@@ -12,7 +12,7 @@ import world.gregs.voidps.type.Tile
 class Steps(
     internal val character: Character,
 ) : AbstractList<Step>() {
-    private val ids = IntArray(if (smartPathing(character)) MAX_STEPS else SINGLE_STEP)
+    private var ids = IntArray(if (smartPathing(character)) MAX_STEPS else SINGLE_STEP)
     private var head = 0
     private var count = 0
 
@@ -59,6 +59,9 @@ class Steps(
 
     fun queueRoute(route: Route, target: Tile? = null, noCollision: Boolean = false, noRun: Boolean = false) {
         clearSteps()
+        if (ids.size < MAX_STEPS) {
+            ids = IntArray(MAX_STEPS)
+        }
         for (waypoint in route.waypoints) {
             add(character.tile.copy(waypoint.x, waypoint.z).step(noCollision, noRun))
         }
