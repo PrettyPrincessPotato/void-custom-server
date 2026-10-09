@@ -109,7 +109,6 @@ drop_table = "ghost"
 [stronghold_ghost_mask]
 id = 5371
 clone = "stronghold_ghost_hair"
-drop_table = "empty"
 
 [ghost_level_76]
 id = 5372

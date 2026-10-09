@@ -66,7 +66,7 @@ class Zygomite : Script {
 
     fun fungicide(player: Player, target: NPC, index: Int) {
         if (!player.inventory.discharge(player, index)) {
-            player.message("You need a fungicide to kill the zygomite.") // TODO proper message
+            player.message("You do not have any fungicide spray!")
             return
         }
         val hitpoints = target.levels.get(Skill.Constitution)
