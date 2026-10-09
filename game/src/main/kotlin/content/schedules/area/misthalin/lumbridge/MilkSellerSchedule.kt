@@ -36,8 +36,6 @@ private val PORT_SARIM = Tile(3043, 3256, 0)
 private val RIMMINGTON = Tile(2959, 3218, 0)
 private val DRAYNOR = Tile(3080, 3250, 0)
 
-private val LUMBRIDGE_GATE_SOUTH = Tile(3177, 3315, 0)
-private val LUMBRIDGE_GATE_NORTH = Tile(3177, 3316, 0)
 private val GERTRUDE_DOOR_OUTSIDE = Tile(3151, 3412, 0)
 private val GERTRUDE_DOOR_INSIDE = Tile(3151, 3411, 0)
 
@@ -69,7 +67,6 @@ private val SELL_LOCATIONS = arrayOf(
 private val LUMBRIDGE_LOC = NpcLocation("milk_seller_lumbridge", LUMBRIDGE)
 private val LUMBRIDGE_MARKET_LOC = NpcLocation("lumbridge_market", LUMBRIDGE_MARKET)
 private val SPAWN_LOC = NpcLocation("milk_seller_spawn", MILK_SELLER_SPAWN_TILE)
-private val GATE_SOUTH_LOC = NpcLocation("lumbridge_gate_south", LUMBRIDGE_GATE_SOUTH)
 private val VARROCK_MINE_LOC = NpcLocation("varrock_south_mine", VARROCK_SOUTH_MINE)
 private val BLUE_MOON_LOC = NpcLocation("blue_moon_inn", BLUE_MOON_INN)
 private val VARROCK_LOC = NpcLocation("varrock", VARROCK)
@@ -233,34 +230,24 @@ class MilkSellerSchedule(graph: NavigationGraph) : Script {
         routeExecutor.move(
             npc,
             NpcRouteTarget(
-                location = GATE_SOUTH_LOC,
-                queueName = "milk_seller_lumbridge_to_gate",
+                location = BLUE_MOON_LOC,
+                queueName = "milk_seller_to_inn",
                 onArrival = { npc ->
-                    npc.tele(LUMBRIDGE_GATE_NORTH) // TODO: Properly open gates
+                    npc.say("Hey, just dropping off the usual.") // bot network prefers back door, needs opening
                     routeExecutor.move(
                         npc,
                         NpcRouteTarget(
-                            location = BLUE_MOON_LOC,
-                            queueName = "milk_seller_to_inn",
+                            location = VARROCK_LOC,
+                            queueName = "milk_seller_to_varrock",
                             onArrival = { npc ->
-                                npc.say("Hey, just dropping off the usual.") // bot network prefers back door, needs opening
-                                routeExecutor.move(
-                                    npc,
-                                    NpcRouteTarget(
-                                        location = VARROCK_LOC,
-                                        queueName = "milk_seller_to_varrock",
-                                        onArrival = { npc ->
-                                            npc.say("We should remember to stop by Gertrude's on the way over, Bessie.")
-                                            // Moo
-                                            setSpawnAndWander(npc, VARROCK)
-                                        }
-                                    )
-                                )
-                            }
-                        )
+                                npc.say("We should remember to stop by Gertrude's on the way over, Bessie.")
+                                // Moo
+                                setSpawnAndWander(npc, VARROCK)
+                            },
+                        ),
                     )
-                }
-            )
+                },
+            ),
         )
     }
 

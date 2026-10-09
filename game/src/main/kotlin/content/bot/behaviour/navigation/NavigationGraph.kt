@@ -8,6 +8,7 @@ import content.bot.behaviour.condition.Condition
 import content.bot.behaviour.requirements
 import content.bot.bot
 import content.bot.isBot
+import content.entity.npc.movement.NpcRouteSegment
 import world.gregs.config.Config
 import world.gregs.config.ConfigReader
 import world.gregs.voidps.engine.data.definition.Areas
@@ -270,7 +271,7 @@ class NavigationGraph(
      */
     fun findNpcRoute(
         startTile: Tile,
-        output: MutableList<Tile>,
+        output: MutableList<NpcRouteSegment>,
         target: (Tile) -> Boolean,
     ): Boolean {
         output.clear()
@@ -281,6 +282,7 @@ class NavigationGraph(
         val visited = BooleanArray(nodeCount)
         val distance = IntArray(nodeCount) { Int.MAX_VALUE }
         val parentNode = IntArray(nodeCount) { -1 }
+        val previousEdge = IntArray(nodeCount) { -1 }
 
         distance[start] = 0
         queue.add(NavigationGraph.Node(start, 0))
@@ -295,16 +297,19 @@ class NavigationGraph(
             visited[node] = true
 
             if (target(Tile(tiles[node]))) {
+                // Reconstruct the route as edge indices, not node tiles: the
+                // executor needs each edge's actions (door/gate opens) to
+                // run while walking it.
                 val route = mutableListOf<Int>()
                 var previous = node
 
                 while (parentNode[previous] != -1) {
-                    route.add(previous)
+                    route.add(previousEdge[previous])
                     previous = parentNode[previous]
                 }
 
                 route.reverse()
-                output.addAll(route.map { Tile(tiles[it]) })
+                output.addAll(route.map { toSegment(it) })
                 return true
             }
 
@@ -323,11 +328,30 @@ class NavigationGraph(
 
                 distance[next] = newDistance
                 parentNode[next] = node
+                previousEdge[next] = edge
                 queue.add(Node(next, newDistance))
             }
         }
 
         return false
+    }
+
+    /**
+     * Turn an edge into a walkable segment: its BotWalkTo action tiles in order,
+     * ending at the edge's end tile, with the full action list attached so
+     * the executor can run the object actions before walking.
+     */
+    private fun toSegment(edge: Int): NpcRouteSegment {
+        val actions = actions(edge) ?: emptyList()
+        val tiles = actions
+            .filterIsInstance<BotWalkTo>()
+            .map { Tile(it.x, it.y) }
+            .toMutableList()
+        val end = endTile(edge)
+        if (tiles.isEmpty() || tiles.last() != end) {
+            tiles.add(end)
+        }
+        return NpcRouteSegment(tiles, actions)
     }
 
     private fun nearestNode(tile: Tile): Int? {
