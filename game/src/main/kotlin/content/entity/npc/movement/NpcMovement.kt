@@ -4,6 +4,7 @@ import org.rsmod.game.pathfinder.collision.CollisionStrategies
 import org.rsmod.game.pathfinder.flag.CollisionFlag
 import world.gregs.voidps.engine.entity.character.mode.Wander
 import world.gregs.voidps.engine.entity.character.mode.move.Movement
+import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.map.collision.check
@@ -16,7 +17,7 @@ fun NPC.travelTo(
     queueName: String,
     destinationArea: Area? = null,
     noClip: Boolean = false,
-    maxRetries: Int = 3,
+    maxRetries: Int = 10,
     onGiveUp: (NPC) -> Unit = {
         println("travelTo give-up: ${it.id} at ${it.tile}, target $destination")
     },
@@ -89,7 +90,14 @@ fun NPC.travelTo(
             if (tile == destination || destinationArea?.contains(tile) == true) {
                 onArrival()
             } else {
+                // Last-resort escape: the walk spent its budget but the
+                // route is not over. Pop to the node we were aiming for
+                // and count it as arrival — a rare visible pop is sturdier
+                // than an NPC that falls over, and the destination is a
+                // navmesh node, so it is walkable by construction.
                 onGiveUp(this)
+                tele(destination)
+                onArrival()
             }
         } finally {
             clearStamps()
