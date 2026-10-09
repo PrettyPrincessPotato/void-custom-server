@@ -39,8 +39,6 @@ private val DRAYNOR = Tile(3080, 3250, 0)
 private val GERTRUDE_DOOR_OUTSIDE = Tile(3151, 3412, 0)
 private val GERTRUDE_DOOR_INSIDE = Tile(3151, 3411, 0)
 
-private val LUMBRIDGE_MARKET = Tile(3221, 3243, 0)
-private val VARROCK_SOUTH_MINE = Tile(3179, 3363, 0)
 private val BLUE_MOON_INN = Tile(3229, 3399, 0)
 private val SOUTH_WEST_GE = Tile(3134, 3461, 0)
 private val EDGEVILLE_FAIRY_RING = Tile(3129, 3497, 0)
@@ -60,14 +58,7 @@ private val SELL_LOCATIONS = arrayOf(
     MILK_SELLER_SPAWN_TILE,
 )
 
-// Travel destinations as navmesh locations. Area-less on purpose: these are
-// single-tile stops, and isAt() tolerates the last graph node landing within
-// two tiles. Only genuinely large arrival zones (shop floors, taverns) need
-// a named area.
 private val LUMBRIDGE_LOC = NpcLocation("milk_seller_lumbridge", LUMBRIDGE)
-private val LUMBRIDGE_MARKET_LOC = NpcLocation("lumbridge_market", LUMBRIDGE_MARKET)
-private val SPAWN_LOC = NpcLocation("milk_seller_spawn", MILK_SELLER_SPAWN_TILE)
-private val VARROCK_MINE_LOC = NpcLocation("varrock_south_mine", VARROCK_SOUTH_MINE)
 private val BLUE_MOON_LOC = NpcLocation("blue_moon_inn", BLUE_MOON_INN)
 private val VARROCK_LOC = NpcLocation("varrock", VARROCK)
 private val GERTRUDE_OUTSIDE_LOC = NpcLocation("gertrude_door_outside", GERTRUDE_DOOR_OUTSIDE)
@@ -250,68 +241,6 @@ class MilkSellerSchedule(graph: NavigationGraph) : Script {
             ),
         )
     }
-
-//    private fun travelToVarrock(npc: NPC) {
-//        routeExecutor.move(
-//            npc,
-//            NpcRouteTarget(
-//                location = LUMBRIDGE_MARKET_LOC,
-//                queueName = "milk_seller_lumbridge_to_market",
-//                onArrival = { npc ->
-//                    routeExecutor.move(
-//                        npc,
-//                        NpcRouteTarget(
-//                            location = SPAWN_LOC,
-//                            queueName = "milk_seller_lumbridge_to_spawn",
-//                            onArrival = { npc ->
-//                                routeExecutor.move(
-//                                    npc,
-//                                    NpcRouteTarget(
-//                                        location = GATE_SOUTH_LOC,
-//                                        queueName = "milk_seller_spawn_to_gate",
-//                                        onArrival = { npc ->
-//                                            npc.tele(LUMBRIDGE_GATE_NORTH)
-//                                            routeExecutor.move(
-//                                                npc,
-//                                                NpcRouteTarget(
-//                                                    location = VARROCK_MINE_LOC,
-//                                                    queueName = "milk_seller_gate_to_mines",
-//                                                    onArrival = { npc ->
-//                                                        routeExecutor.move(
-//                                                            npc,
-//                                                            NpcRouteTarget(
-//                                                                location = BLUE_MOON_LOC,
-//                                                                queueName = "milk_seller_mines_to_inn",
-//                                                                onArrival = { npc ->
-//                                                                    npc.say("Hey, just dropping off the usual.")
-//                                                                    routeExecutor.move(
-//                                                                        npc,
-//                                                                        NpcRouteTarget(
-//                                                                            location = VARROCK_LOC,
-//                                                                            queueName = "milk_seller_inn_to_varrock",
-//                                                                            onArrival = { npc ->
-//                                                                                npc.say("We should remember to stop by Gertrude's on the way over, Bessie.")
-//                                                                                // Moo
-//                                                                                setSpawnAndWander(npc, VARROCK)
-//                                                                            },
-//                                                                        ),
-//                                                                    )
-//                                                                },
-//                                                            ),
-//                                                        )
-//                                                    },
-//                                                ),
-//                                            )
-//                                        },
-//                                    ),
-//                                )
-//                            },
-//                        ),
-//                    )
-//                },
-//            ),
-//        )
-//    }
 
     private fun varrockToEdgeville(npc: NPC) {
         routeExecutor.move(
