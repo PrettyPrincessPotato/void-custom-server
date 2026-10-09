@@ -6,13 +6,13 @@ import world.gregs.voidps.type.Area
 import world.gregs.voidps.type.Tile
 
 /**
- *
+ * Used for declaring locations that the NPC intends to travel to.
+ * [area] Optional because most destinations are single tiles; a named area is only
+ * needed for genuinely large arrival zones (shop floors, taverns).
  */
 data class NpcLocation(
     val id: String,
     val tile: Tile,
-    // Optional because most destinations are single tiles; a named area is only
-    // needed for genuinely large arrival zones (shop floors, taverns).
     val area: Area? = null,
     val navTag: String? = null,
     val collision: CollisionStrategy = CollisionStrategies.Normal,
