@@ -1,0 +1,41 @@
+edges = [
+    { from = { x = 3101, y = 3421 }, to = { x = 3093, y = 3420 } }, # varrock_into_barbarian_village
+    { from = { x = 3093, y = 3420 }, to = { x = 3088, y = 3421 } },
+    { from = { x = 3088, y = 3421 }, to = { x = 3084, y = 3417 } },
+    { from = { x = 3084, y = 3417 }, to = { x = 3080, y = 3416 } }, # barbarian_village_south_of_mining_spot
+    { from = { x = 3080, y = 3416 }, to = { x = 3077, y = 3418 } },
+    { from = { x = 3077, y = 3418 }, to = { x = 3073, y = 3418 } },
+    { from = { x = 3073, y = 3418 }, to = { x = 3063, y = 3417 } },
+    { from = { x = 3063, y = 3417 }, to = { x = 3052, y = 3410 } },
+    { from = { x = 3052, y = 3410 }, to = { x = 3047, y = 3411 } },
+    { from = { x = 3047, y = 3411 }, to = { x = 3043, y = 3415 } },
+    { from = { x = 3043, y = 3415 }, to = { x = 3038, y = 3424 } },
+    { from = { x = 3038, y = 3424 }, to = { x = 3031, y = 3428 } },
+    { from = { x = 3031, y = 3428 }, to = { x = 3024, y = 3424 } },
+    { from = { x = 3024, y = 3424 }, to = { x = 3017, y = 3426 } },
+    { from = { x = 3017, y = 3426 }, to = { x = 3011, y = 3431 } }, # south_of_dwarf_mine
+    { from = { x = 3011, y = 3431 }, to = { x = 3002, y = 3432 } },
+    { from = { x = 3002, y = 3432 }, to = { x = 2996, y = 3433 } },
+    { from = { x = 2996, y = 3433 }, to = { x = 2988, y = 3428 } },
+    { from = { x = 2988, y = 3428 }, to = { x = 2987, y = 3421 } },
+    { from = { x = 2987, y = 3421 }, to = { x = 2976, y = 3414 } },
+    { from = { x = 2976, y = 3414 }, to = { x = 2971, y = 3413 } }, # falador_crossroads_east
+    { from = { x = 2971, y = 3413 }, to = { x = 2967, y = 3408 } }, # falador_crossroads_south
+    { from = { x = 2967, y = 3408 }, to = { x = 2964, y = 3404 } },
+    { from = { x = 2964, y = 3404 }, to = { x = 2966, y = 3397 } },
+    { from = { x = 2966, y = 3397 }, to = { x = 2965, y = 3383 } }, # falador_to_teleport_area
+    { from = { x = 2965, y = 3383 }, to = { x = 2970, y = 3379 } }, # falador_teleport_area_east
+    { from = { x = 2970, y = 3379 }, to = { x = 2978, y = 3379 } },
+    { from = { x = 2978, y = 3379 }, to = { x = 2992, y = 3370 } },
+    { from = { x = 2992, y = 3370 }, to = { x = 3000, y = 3363 } },
+    { from = { x = 3000, y = 3363 }, to = { x = 3006, y = 3363 } }, # falador_fork_west
+    { from = { x = 3006, y = 3363 }, to = { x = 3005, y = 3355 } }, # falador_fork
+    { from = { x = 3005, y = 3355 }, to = { x = 3007, y = 3350 } }, # falador_fork_south
+    { from = { x = 3007, y = 3350 }, to = { x = 3007, y = 3332 } },
+    { from = { x = 3007, y = 3332 }, to = { x = 3005, y = 3326 } },
+    { from = { x = 3005, y = 3326 }, to = { x = 3007, y = 3320 } },
+    { from = { x = 3007, y = 3320 }, to = { x = 3006, y = 3309 } },
+    { from = { x = 3006, y = 3309 }, to = { x = 3004, y = 3303 } },
+    { from = { x = 3004, y = 3303 }, to = { x = 3007, y = 3295 } },
+    { from = { x = 3101, y = 3421 }, to = { x = 3135, y = 3416 } }, # falador_to_port_sarim
+]

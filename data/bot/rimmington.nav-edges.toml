@@ -1,0 +1,22 @@
+edges = [
+    { from = { x = 3008, y = 3279 }, to = { x = 3005, y = 3277 } }, # port_sarim_crossroads_west
+    { from = { x = 3005, y = 3277 }, to = { x = 3003, y = 3279 } },
+    { from = { x = 3003, y = 3279 }, to = { x = 3000, y = 3278 } },
+    { from = { x = 3000, y = 3278 }, to = { x = 2998, y = 3278 } },
+    { from = { x = 2998, y = 3278 }, to = { x = 2996, y = 3280 } },
+    { from = { x = 2996, y = 3280 }, to = { x = 2994, y = 3282 } },
+    { from = { x = 2994, y = 3282 }, to = { x = 2991, y = 3281 } },
+    { from = { x = 2991, y = 3281 }, to = { x = 2989, y = 3278 } },
+    { from = { x = 2989, y = 3278 }, to = { x = 2984, y = 3277 } }, # rimmington_crossroads_east
+    { from = { x = 2984, y = 3277 }, to = { x = 2980, y = 3274 } }, # rimmington_crossroads
+    { from = { x = 2980, y = 3274 }, to = { x = 2976, y = 3271 } }, # rimmington_crossroads_south
+    { from = { x = 2976, y = 3271 }, to = { x = 2973, y = 3269 } },
+    { from = { x = 2973, y = 3269 }, to = { x = 2975, y = 3265 } },
+    { from = { x = 2975, y = 3265 }, to = { x = 2974, y = 3261 } }, # rimmington_road_to_village
+    { from = { x = 2974, y = 3261 }, to = { x = 2963, y = 3253 } }, # rimmington_road_to_village
+    { from = { x = 2963, y = 3253 }, to = { x = 2954, y = 3242 } },
+    { from = { x = 2954, y = 3242 }, to = { x = 2956, y = 3238 } },
+    { from = { x = 2956, y = 3238 }, to = { x = 2956, y = 3230 } },
+    { from = { x = 2956, y = 3230 }, to = { x = 2956, y = 3224 } }, # rimmington_village_to_front_of_portal
+    { from = { x = 2956, y = 3224 }, to = { x = 2957, y = 3216 } }, # rimmington_village_to_square_north
+]
