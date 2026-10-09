@@ -30,7 +30,7 @@ class NativeNpcRouteExecutor : NpcRouteExecutor {
     override fun move(npc: NPC, target: NpcRouteTarget) {
         val location = target.location
 
-        if (npc.tile in location.area) {
+        if (location.isAt(npc.tile)) {
             target.onArrival(npc)
             return
         }
@@ -39,7 +39,7 @@ class NativeNpcRouteExecutor : NpcRouteExecutor {
 
         npc.travelTo(
             destination = location.tile,
-            destinationArea = location.area,
+            destinationArea = location.arriveArea,
             queueName = target.queueName,
         ) {
             target.onArrival(this)
@@ -57,13 +57,47 @@ class NpcNavMeshRouteFinder(
     ): List<Tile>? {
         val route = mutableListOf<Tile>()
 
-        val found = graph.findNpcRoute(
-            startTile = context.tile,
-            output = route,
-            target = { tile ->
-                tile in target.area
-            },
-        )
+        if (graph.findNpcRoute(
+                startTile = context.tile,
+                output = route,
+                target = { tile -> target.isAt(tile) },
+            )
+        ) {
+            log(context, target, route, "found=true")
+            return route
+        }
+
+        // No graph node within the arrival radius: relax the radius so the
+        // graph walks the long way to the nearest node and the native
+        // pathfinder only has the last few tiles. Level-strict, because
+        // distanceTo returns -1 across levels and would match stair nodes.
+        if (target.area == null) {
+            for (radius in NpcLocation.ARRIVE_RADIUS + 1..MAX_FINAL_LEG_RADIUS) {
+                if (graph.findNpcRoute(
+                        startTile = context.tile,
+                        output = route,
+                        target = { tile ->
+                            tile.level == target.tile.level &&
+                                tile.distanceTo(target.tile) <= radius
+                        },
+                    )
+                ) {
+                    log(context, target, route, "found=true, relaxedRadius=$radius")
+                    return route
+                }
+            }
+        }
+
+        log(context, target, route, "found=false")
+        return null
+    }
+
+    private fun log(
+        context: NpcRouteContext,
+        target: NpcLocation,
+        route: List<Tile>,
+        result: String,
+    ) {
         println(
             "NPC route search: " +
                 "start=${context.tile}, " +
@@ -72,12 +106,16 @@ class NpcNavMeshRouteFinder(
                 "targetTile=${target.tile}, " +
                 "targetArea=${target.area}, " +
                 "navTag=${target.navTag}, " +
-                "found=$found, " +
+                "$result, " +
                 "routeLength=${route.size}, " +
                 "lastTile=${route.lastOrNull()}",
         )
+    }
 
-        return route.takeIf { found }
+    companion object {
+        // The final native leg must stay inside the pathfinder's 128x128
+        // search box; 10 also matches nearestNode's 10-tile snap cap.
+        private const val MAX_FINAL_LEG_RADIUS = 10
     }
 }
 
@@ -98,7 +136,7 @@ class GraphNpcRouteExecutor(
         target: NpcRouteTarget,
         announce: Boolean,
     ) {
-        if (npc.tile in target.location.area) {
+        if (target.location.isAt(npc.tile)) {
             target.onArrival(npc)
             return
         }
@@ -106,14 +144,13 @@ class GraphNpcRouteExecutor(
         val route = finder.find(
             context = NpcRouteContext(npc.tile),
             target = target.location,
-        ) ?: run {
-            // Native executor handles the dialogue if graph routing fails.
-            NativeNpcRouteExecutor().move(npc, target)
-            return
-        }
+        )
 
-        val waypoint = route.firstOrNull { it != npc.tile } ?: run {
-            target.onArrival(npc)
+        val waypoint = route?.firstOrNull { it != npc.tile } ?: run {
+            // The graph can't get closer than where we already are (no route,
+            // or we're standing on the nearest node): the native pathfinder
+            // takes the final leg from here — a few tiles, by construction.
+            NativeNpcRouteExecutor().move(npc, target)
             return
         }
 
@@ -126,7 +163,7 @@ class GraphNpcRouteExecutor(
             destinationArea = null,
             queueName = target.queueName,
         ) {
-            if (tile in target.location.area) {
+            if (target.location.isAt(tile)) {
                 target.onArrival(this)
             } else {
                 moveInternal(

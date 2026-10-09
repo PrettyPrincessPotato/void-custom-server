@@ -78,6 +78,19 @@ class PathFindingCommands(val patrols: PatrolDefinitions) : Script {
             println("Invalid path: ${timeInvalid}ms")
         }
 
+        adminCommand(
+            "pf_probe",
+            stringArg("dest-x", optional = true),
+            stringArg("dest-y", optional = true),
+            desc = "Probe the pathfinder from here to a tile (default: 3225,3225)",
+        ) { args ->
+            val destX = args.getOrNull(0)?.toIntOrNull() ?: 3225
+            val destY = args.getOrNull(1)?.toIntOrNull() ?: 3225
+            val pf = PathFinder(flags = Collisions.map, useRouteBlockerFlags = true)
+            val route = pf.findPath(tile.level, tile.x, tile.y, destX, destY)
+            println("pf_probe: success=${route.success}, alternative=${route.alternative}, waypoints=${route.waypoints}")
+        }
+
         adminCommand("show_col", desc = "Show nearby collision") {
             val area = tile.toCuboid(10)
             val steps: StepValidator = get()

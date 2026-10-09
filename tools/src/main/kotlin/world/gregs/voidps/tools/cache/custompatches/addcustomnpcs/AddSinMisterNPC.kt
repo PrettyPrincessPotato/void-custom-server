@@ -72,7 +72,7 @@ object AddSinMisterNPC {
             scaleXY = source.scaleXY,
             scaleZ = source.scaleZ,
             renderEmote = source.renderEmote,
-            mainOptionIndex = 0.toByte(),             // "Trade" as left-click option
+            mainOptionIndex = 0.toByte(), // "Trade" as left-click option
             primaryShadowColour = source.primaryShadowColour,
             secondaryShadowColour = source.secondaryShadowColour,
             primaryShadowModifier = source.primaryShadowModifier,
@@ -152,7 +152,7 @@ object AddSinMisterNPC {
         // Find a safe ID in a brand-new archive beyond the cache's current range
         val lastArchive = library.index(Index.NPCS).last()?.id ?: -1
         val safeArchive = lastArchive + 1
-        val safeId = safeArchive * 128  // first ID in the new archive (file 0)
+        val safeId = safeArchive * 128 // first ID in the new archive (file 0)
         println("  Found safe ID: $safeId (archive $safeArchive, file 0)")
         println("  This is beyond the cache's last NPC archive ($lastArchive).")
         println("  Using $safeId instead.")
@@ -168,7 +168,7 @@ object AddSinMisterNPC {
         val file = decoder.getFile(id)
         val data = library.data(Index.NPCS, archive, file)
             ?: throw IllegalStateException(
-                "NPC $id not found in cache at archive $archive, file $file"
+                "NPC $id not found in cache at archive $archive, file $file",
             )
         decoder.readLoop(definition, ArrayReader(data))
         return definition
