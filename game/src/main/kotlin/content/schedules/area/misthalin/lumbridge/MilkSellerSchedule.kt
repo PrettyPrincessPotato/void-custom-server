@@ -65,8 +65,10 @@ private val GERTRUDE_OUTSIDE_LOC = NpcLocation("gertrude_door_outside", GERTRUDE
 private val FALADOR_LOC = NpcLocation("milk_seller_falador", FALADOR)
 private val SOUTH_WEST_GE_LOC = NpcLocation("south_west_ge", SOUTH_WEST_GE)
 private val EDGEVILLE_LOC = NpcLocation("milk_seller_edgeville", EDGEVILLE)
-private val PORT_SARIM_TELE_LOC = NpcLocation("port_sarim_tele_spot", PORT_SARIM_TELE_SPOT)
+private val DRAYNOR_LOC = NpcLocation("milk_seller_draynor", DRAYNOR)
 private val RIMMINGTON_LOC = NpcLocation("milk_seller_rimmington", RIMMINGTON)
+private val SPAWN_LOC = NpcLocation("milk_seller_spawn", MILK_SELLER_SPAWN_TILE)
+private val PORT_SARIM_LOC = NpcLocation("milk_seller_port_sarim", PORT_SARIM)
 
 private var routeIndex = 0
 
@@ -122,12 +124,12 @@ class MilkSellerSchedule(graph: NavigationGraph) : Script {
         when (destination) {
             LUMBRIDGE -> travelToLumbridge(npc)
             VARROCK -> travelToVarrock(npc)
-            EDGEVILLE -> varrockToEdgeville(npc)
+            EDGEVILLE -> travelToEdgeville(npc)
             FALADOR -> travelToFalador(npc)
             RIMMINGTON -> travelToRimmington(npc)
-            PORT_SARIM -> rimmingtonToPortSarim(npc)
-            DRAYNOR -> portSarimToDraynor(npc)
-            MILK_SELLER_SPAWN_TILE -> draynorToSpawn(npc)
+            PORT_SARIM -> travelToPortSarim(npc)
+            DRAYNOR -> travelToDraynor(npc)
+            MILK_SELLER_SPAWN_TILE -> travelToSpawn(npc)
         }
     }
 
@@ -139,46 +141,50 @@ class MilkSellerSchedule(graph: NavigationGraph) : Script {
         return destination
     }
 
-    private fun draynorToSpawn(npc: NPC) {
-        npc.enqueue("milk_seller_to_spawn") {
-            patrolDelay("wizard_tower_to_draynor")
-            say("Home sweet home.")
-            setSpawnAndWander(npc, MILK_SELLER_SPAWN_TILE)
-        }
-    }
-
-    private fun portSarimToDraynor(npc: NPC) {
+    private fun travelToSpawn(npc: NPC) {
         routeExecutor.move(
             npc,
             NpcRouteTarget(
-                location = PORT_SARIM_TELE_LOC,
-                queueName = "milk_seller_to_tele",
+                location = SPAWN_LOC,
+                queueName = "milk_seller_to_spawn",
                 onArrival = { npc ->
-                    npc.enqueue("milk_seller_to_draynor") {
-                        say("Could you please take us away, Bessie?")
-                        pause(3)
-                        // Moo
-                        pause(3)
-                        tele(WIZARDS_TOWER_FAIRY_RING)
-                        say("Thanks, Bessie.")
-                        pause(3)
-                        // Moo
-                        pause(3)
-                        patrolDelay("wizard_tower_to_draynor")
-                        setSpawnAndWander(npc, DRAYNOR)
+                    npc.enqueue("milk_seller_spawn_banter") {
+                        say("Home sweet home.")
+                        setSpawnAndWander(npc, MILK_SELLER_SPAWN_TILE)
                     }
+                }
+            )
+        )
+    }
+
+    private fun travelToDraynor(npc: NPC) {
+        routeExecutor.move(
+            npc,
+            NpcRouteTarget(
+                location = DRAYNOR_LOC,
+                queueName = "milk_seller_to_draynor",
+                onArrival = { npc ->
+                    setSpawnAndWander(npc, DRAYNOR)
                 },
             ),
         )
     }
 
-    private fun rimmingtonToPortSarim(npc: NPC) {
-        npc.enqueue("milk_seller_to_port_sarim") {
-            patrolDelay("rimmington_to_port_sarim")
-            say("Let's be sure to sell to the bar while we're here.")
-            // Moo
-            setSpawnAndWander(npc, PORT_SARIM)
-        }
+    private fun travelToPortSarim(npc: NPC) {
+        routeExecutor.move(
+            npc,
+            NpcRouteTarget(
+                location = PORT_SARIM_LOC,
+                queueName = "milk_seller_to_port_sarim",
+                onArrival = { npc ->
+                    npc.enqueue("milk_seller_to_port_sarim") {
+                        say("Let's be sure to sell to the bar while we're here.")
+                        // Moo
+                        setSpawnAndWander(npc, PORT_SARIM)
+                    }
+                }
+            )
+        )
     }
 
     private fun travelToRimmington(npc: NPC) {
@@ -284,36 +290,16 @@ class MilkSellerSchedule(graph: NavigationGraph) : Script {
         )
     }
 
-    private fun varrockToEdgeville(npc: NPC) {
+    private fun travelToEdgeville(npc: NPC) {
         routeExecutor.move(
             npc,
             NpcRouteTarget(
-                location = SOUTH_WEST_GE_LOC,
-                queueName = "milk_seller_varrock_to_ge",
+                location = EDGEVILLE_LOC,
+                queueName = "milk_seller_ge_to_edgeville",
                 onArrival = { npc ->
-                    npc.enqueue("milk_seller_bessie_teleport") {
-                        // TODO: Learn how to properly handle border guards with NPCs.
-                        say("Ugh... Guards... Bessie, could you please?")
-                        pause(3)
-                        // Moo...
-                        pause(3)
-                        tele(EDGEVILLE_FAIRY_RING)
-                        say("Thanks, Bessie.")
-                        pause(3)
-                        // Moo.
-                        routeExecutor.move(
-                            npc,
-                            NpcRouteTarget(
-                                location = EDGEVILLE_LOC,
-                                queueName = "milk_seller_ge_to_edgeville",
-                                onArrival = { npc ->
-                                    // Moo...
-                                    npc.say("Out in the Wilderness? Gods, no.")
-                                    setSpawnAndWander(npc, EDGEVILLE)
-                                },
-                            ),
-                        )
-                    }
+                    // Moo...
+                    npc.say("Out in the Wilderness? Gods, no.")
+                    setSpawnAndWander(npc, EDGEVILLE)
                 },
             ),
         )
