@@ -2,6 +2,7 @@ package content.bot.behaviour.navigation
 
 import content.bot.behaviour.action.ActionParser
 import content.bot.behaviour.action.BotAction
+import content.bot.behaviour.action.BotInteractObject
 import content.bot.behaviour.action.BotWalkTo
 import content.bot.behaviour.actions
 import content.bot.behaviour.condition.Condition
@@ -314,6 +315,23 @@ class NavigationGraph(
             }
 
             for (edge in adjacentEdges[node] ?: continue) {
+                // NPCs can only execute Open/Close object actions
+                // (NpcDoorHelper.executeEdgeActions). Any edge carrying another
+                // object action — agility tunnels, stairs, portals, tolls —
+                // would route them through a wall or level change they can't
+                // cross, so NPC route search skips those edges and routes
+                // around via edges the NPC can actually walk.
+                val edgeActions = actions[edge]
+                if (edgeActions != null &&
+                    edgeActions.any { action ->
+                        action !is BotWalkTo &&
+                            !(action is BotInteractObject &&
+                                (action.option == "Open" || action.option == "Close"))
+                    }
+                ) {
+                    continue
+                }
+
                 val next = endNodes[edge]
 
                 if (visited[next]) {
