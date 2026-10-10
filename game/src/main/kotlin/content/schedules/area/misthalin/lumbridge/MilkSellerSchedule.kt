@@ -60,12 +60,13 @@ private val SELL_LOCATIONS = arrayOf(
 
 private val LUMBRIDGE_LOC = NpcLocation("milk_seller_lumbridge", LUMBRIDGE)
 private val BLUE_MOON_LOC = NpcLocation("blue_moon_inn", BLUE_MOON_INN)
-private val VARROCK_LOC = NpcLocation("varrock", VARROCK)
+private val VARROCK_LOC = NpcLocation("milk_seller_varrock", VARROCK)
 private val GERTRUDE_OUTSIDE_LOC = NpcLocation("gertrude_door_outside", GERTRUDE_DOOR_OUTSIDE)
-private val GERTRUDE_INSIDE_LOC = NpcLocation("gertrude_door_inside", GERTRUDE_DOOR_INSIDE)
+private val FALADOR_LOC = NpcLocation("milk_seller_falador", FALADOR)
 private val SOUTH_WEST_GE_LOC = NpcLocation("south_west_ge", SOUTH_WEST_GE)
-private val EDGEVILLE_LOC = NpcLocation("edgeville", EDGEVILLE)
+private val EDGEVILLE_LOC = NpcLocation("milk_seller_edgeville", EDGEVILLE)
 private val PORT_SARIM_TELE_LOC = NpcLocation("port_sarim_tele_spot", PORT_SARIM_TELE_SPOT)
+private val RIMMINGTON_LOC = NpcLocation("milk_seller_rimmington", RIMMINGTON)
 
 private var routeIndex = 0
 
@@ -122,8 +123,8 @@ class MilkSellerSchedule(graph: NavigationGraph) : Script {
             LUMBRIDGE -> travelToLumbridge(npc)
             VARROCK -> travelToVarrock(npc)
             EDGEVILLE -> varrockToEdgeville(npc)
-            FALADOR -> edgevilleToFalador(npc)
-            RIMMINGTON -> faladorToRimmington(npc)
+            FALADOR -> travelToFalador(npc)
+            RIMMINGTON -> travelToRimmington(npc)
             PORT_SARIM -> rimmingtonToPortSarim(npc)
             DRAYNOR -> portSarimToDraynor(npc)
             MILK_SELLER_SPAWN_TILE -> draynorToSpawn(npc)
@@ -180,26 +181,38 @@ class MilkSellerSchedule(graph: NavigationGraph) : Script {
         }
     }
 
-    private fun faladorToRimmington(npc: NPC) {
-        npc.enqueue("milk_seller_to_rimmington") {
-            enqueue("milk_seller_rimmington_banter") {
-                patrolDelay("falador_to_rimmington")
-                say("Maybe the local witch here needs milk for some brews.")
-                // Moo
-                setSpawnAndWander(npc, RIMMINGTON)
-            }
-        }
+    private fun travelToRimmington(npc: NPC) {
+        routeExecutor.move(
+            npc,
+            NpcRouteTarget(
+                location = RIMMINGTON_LOC,
+                queueName = "milk_seller_to_rimmington",
+                onArrival = { npc ->
+                    npc.enqueue("milk_seller_rimmington_banter") {
+                        say("Maybe the local witch here needs milk for some brews.")
+                        // Moo
+                        setSpawnAndWander(npc, RIMMINGTON)
+                    }
+                }
+            )
+        )
     }
 
-    private fun edgevilleToFalador(npc: NPC) {
-        npc.enqueue("milk_seller_to_falador") {
-            enqueue("milk_seller_falador_banter") {
-                patrolDelay("edgeville_to_falador")
-                say("I hear the white knights need plenty of milk to drink.")
-                // Moo
-                setSpawnAndWander(npc, FALADOR)
-            }
-        }
+    private fun travelToFalador(npc: NPC) {
+        routeExecutor.move(
+            npc,
+            NpcRouteTarget(
+                location = FALADOR_LOC,
+                queueName = "milk_seller_to_falador",
+                onArrival = { npc ->
+                    npc.enqueue("milk_seller_falador_banter") {
+                        say("I hear the white knights need plenty of milk to drink.")
+                        // Moo
+                        setSpawnAndWander(npc, FALADOR)
+                    }
+                }
+            )
+        )
     }
 
     private fun travelToLumbridge(npc: NPC) {
@@ -242,69 +255,65 @@ class MilkSellerSchedule(graph: NavigationGraph) : Script {
         )
     }
 
-    private fun varrockToEdgeville(npc: NPC) {
+    private fun travelToGertrude(npc: NPC) {
         routeExecutor.move(
             npc,
             NpcRouteTarget(
                 location = GERTRUDE_OUTSIDE_LOC,
                 queueName = "milk_seller_varrock_to_gertrude",
                 onArrival = { npc ->
-                    npcOpenDoor(GERTRUDE_DOOR, 69420)
-                    routeExecutor.move(
-                        npc,
-                        NpcRouteTarget(
-                            location = GERTRUDE_INSIDE_LOC,
-                            queueName = "milk_seller_walk_in_gertrudes_home",
-                            onArrival = { npc ->
-                                npc.enqueue("milk_seller_gertrude_talk") {
-                                    milkSellerNpc?.mode = PauseMode
-                                    say("Hey Gertrude, came to see if you need a top-off.")
-                                    pause(3)
-                                    gertrudeNpc?.say("Thank you dearie. Want a kitten?")
-                                    pause(3)
-                                    say("Oh no, thank you. Bessie is enough for me.")
-                                    pause(3)
-                                    // Moo
-                                    pause(3)
-                                    say("I better get back to it before she breaks the house down.")
-                                    pause(3)
-                                    gertrudeNpc?.say("Haha, take care dearie.")
-                                    npcOpenDoor(GERTRUDE_DOOR, 5)
-                                    routeExecutor.move(
-                                        npc,
-                                        NpcRouteTarget(
-                                            location = SOUTH_WEST_GE_LOC,
-                                            queueName = "milk_seller_gertrude_to_ge",
-                                            onArrival = { npc ->
-                                                npc.enqueue("milk_seller_bessie_teleport") {
-                                                    say("Ugh... Guards... Bessie, could you please?")
-                                                    pause(3)
-                                                    // Moo...
-                                                    pause(3)
-                                                    tele(EDGEVILLE_FAIRY_RING)
-                                                    say("Thanks, Bessie.")
-                                                    pause(3)
-                                                    // Moo.
-                                                    routeExecutor.move(
-                                                        npc,
-                                                        NpcRouteTarget(
-                                                            location = EDGEVILLE_LOC,
-                                                            queueName = "milk_seller_ge_to_edgeville",
-                                                            onArrival = { npc ->
-                                                                npc.say("I hope the programmer remembers to enter flavor text here...")
-                                                                // Moo
-                                                                setSpawnAndWander(npc, EDGEVILLE)
-                                                            },
-                                                        ),
-                                                    )
-                                                }
-                                            },
-                                        ),
-                                    )
-                                }
-                            },
-                        ),
-                    )
+                    npc.enqueue("milk_seller_gertrude_talk") {
+                        npcOpenDoor(GERTRUDE_DOOR, 69420)
+                        walkToDelay(GERTRUDE_DOOR_INSIDE)
+                        milkSellerNpc?.mode = PauseMode
+                        say("Hey Gertrude, came to see if you need a top-off.")
+                        pause(3)
+                        gertrudeNpc?.say("Thank you dearie. Want a kitten?")
+                        pause(3)
+                        say("Oh no, thank you. Bessie is enough for me.")
+                        pause(3)
+                        // Moo
+                        pause(3)
+                        say("I better get back to it before she breaks the house down.")
+                        pause(3)
+                        gertrudeNpc?.say("Haha, you take care dearie.")
+                        npcOpenDoor(GERTRUDE_DOOR, 5)
+                    }
+                }
+            )
+        )
+    }
+
+    private fun varrockToEdgeville(npc: NPC) {
+        routeExecutor.move(
+            npc,
+            NpcRouteTarget(
+                location = SOUTH_WEST_GE_LOC,
+                queueName = "milk_seller_varrock_to_ge",
+                onArrival = { npc ->
+                    npc.enqueue("milk_seller_bessie_teleport") {
+                        // TODO: Learn how to properly handle border guards with NPCs.
+                        say("Ugh... Guards... Bessie, could you please?")
+                        pause(3)
+                        // Moo...
+                        pause(3)
+                        tele(EDGEVILLE_FAIRY_RING)
+                        say("Thanks, Bessie.")
+                        pause(3)
+                        // Moo.
+                        routeExecutor.move(
+                            npc,
+                            NpcRouteTarget(
+                                location = EDGEVILLE_LOC,
+                                queueName = "milk_seller_ge_to_edgeville",
+                                onArrival = { npc ->
+                                    // Moo...
+                                    npc.say("Out in the Wilderness? Gods, no.")
+                                    setSpawnAndWander(npc, EDGEVILLE)
+                                },
+                            ),
+                        )
+                    }
                 },
             ),
         )
