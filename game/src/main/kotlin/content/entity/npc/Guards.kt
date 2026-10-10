@@ -10,7 +10,7 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.queue.queue
 
 // Combat definitions used by generic citizens and ducks; they have combat stats but are not guard targets
-private val citizenCombatDefs = setOf("man", "woman", "farmer", "duck_walk", "duck_swim")
+private val citizenCombatDefs = setOf("man", "woman", "farmer", "duck_walk", "duck_swim", "cow")
 
 class Guards : Script {
     init {
