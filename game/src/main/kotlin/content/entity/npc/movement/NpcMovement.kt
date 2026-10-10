@@ -115,6 +115,10 @@ private fun hopCrossesBorder(start: Tile, end: Tile): Boolean {
     val dx = end.x - start.x
     val dy = end.y - start.y
     val steps = maxOf(abs(dx), abs(dy))
+    if (steps == 0) {
+        // No hop — can't cross anything.
+        return false
+    }
     for (i in 0..steps) {
         val t = Tile(start.x + (dx * i) / steps, start.y + (dy * i) / steps)
         if (t.level == 0 && borderPassages.any { it.contains(t) }) {
