@@ -26,7 +26,6 @@ private const val HANK_STRING_ID = "hank"
 
 private const val WAKE_UP_HOUR = 5
 private const val GO_FISHING_HOUR = 6
-private const val BACK_TO_SHOP_HOUR = 7
 private const val BEHIND_COUNTER_HOUR = 8
 private const val CLEAN_UP_HOUR = 17
 private const val CLOSE_SHOP_HOUR = 18
@@ -70,24 +69,19 @@ class HankSchedule(graph: NavigationGraph) : Script {
                     ScheduleAction.Custom {
                         it.travelTo(HANK_FISHING_SPOT, "hank_shop_to_fishing") {
                             face(Direction.EAST)
-                            anim("fish_rod")
+                            anim("fish_rod") // No fishing rod, but does the animation, surprisingly. Doesn't loop animation, though.
                             mode = PauseMode
-                        }
-                    },
-                ),
-                ScheduleTransition(
-                    BACK_TO_SHOP_HOUR,
-                    ScheduleAction.Custom {
-                        it.clearAnim()
-                        it.travelTo(hankSpawn!!, "hank_fishing_to_shop") {
-                            setSpawnAndWander(it, hankSpawn!!, true)
                         }
                     },
                 ),
                 ScheduleTransition(
                     BEHIND_COUNTER_HOUR,
                     ScheduleAction.Custom {
-                        it.say("Smells like fish in here.")
+                        it.clearAnim()
+                        it.travelTo(hankSpawn!!, "hank_fishing_to_shop") {
+                            setSpawnAndWander(it, hankSpawn!!, true)
+                            it.say("Smells like fish in here.")
+                        }
                     },
                 ),
                 ScheduleTransition(
