@@ -1,5 +1,6 @@
 package content.area.misthalin.lumbridge
 
+import content.entity.npc.shop.fishing.isFishingShopOpen
 import content.entity.npc.shop.openShop
 import content.entity.player.dialogue.Neutral
 import content.entity.player.dialogue.type.choice
@@ -12,7 +13,11 @@ class Hank : Script {
             npc<Neutral>("Good day to you! Welcome to my fishing shop. Would you like to buy some fishing equipment or sell some fish?")
             choice {
                 option("Can I see your fishing supplies?") {
-                    openShop(it.target.def["shop"])
+                    if (isFishingShopOpen()) {
+                        openShop(it.target.def["shop"])
+                    } else {
+                        it.target.say("The shop is closed for now, come back later.")
+                    }
                 }
                 option("Farewell.")
             }
