@@ -1,0 +1,4 @@
+[tamed_cow_familiar]
+id = 16257
+examine = "Grass doggo."
+combat_def = "tamed_cow_familiar"
