@@ -2,12 +2,11 @@ package content.world.time
 
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.command.adminCommand
-import world.gregs.voidps.engine.client.command.boolArg
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.timer.toTicks
 import java.util.concurrent.TimeUnit
 
-private var WORLD_CLOCK_DEBUG = false
+private var worldClockDebug = false
 
 const val HOUR_TICK_NAME = "ingame_hour_tick"
 class WorldClock : Script {
@@ -16,7 +15,7 @@ class WorldClock : Script {
     private val liveInt = 5 // 2 IRL hours = 1 full day in-game
 
     private fun toggleDebug() {
-        WORLD_CLOCK_DEBUG = !WORLD_CLOCK_DEBUG
+        worldClockDebug = !worldClockDebug
         World.timers.stop(HOUR_TICK_NAME)
         World.timers.start(HOUR_TICK_NAME)
     }
@@ -29,7 +28,7 @@ class WorldClock : Script {
         }
 
         worldTimerStart(HOUR_TICK_NAME) {
-            if (WORLD_CLOCK_DEBUG) {
+            if (worldClockDebug) {
                 TimeUnit.SECONDS.toTicks(debugInt)
             } else {
                 TimeUnit.MINUTES.toTicks(liveInt)
@@ -47,7 +46,7 @@ class WorldClock : Script {
                 announcement.onTimeOfDayChanged(currentTimeOfDay)
             }
 
-            if (WORLD_CLOCK_DEBUG) {
+            if (worldClockDebug) {
                 TimeUnit.SECONDS.toTicks(debugInt)
             } else {
                 TimeUnit.MINUTES.toTicks(liveInt)

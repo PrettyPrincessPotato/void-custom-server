@@ -5,7 +5,6 @@ import org.rsmod.game.pathfinder.flag.CollisionFlag
 import world.gregs.voidps.engine.data.definition.Areas
 import world.gregs.voidps.engine.entity.character.mode.Wander
 import world.gregs.voidps.engine.entity.character.mode.move.Movement
-import kotlin.math.abs
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.map.collision.Collisions
@@ -13,6 +12,7 @@ import world.gregs.voidps.engine.map.collision.check
 import world.gregs.voidps.type.Area
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.area.Rectangle
+import kotlin.math.abs
 import world.gregs.voidps.engine.queue.queue as enqueue
 
 fun NPC.travelTo(

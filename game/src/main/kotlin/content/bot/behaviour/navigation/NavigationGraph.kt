@@ -325,8 +325,10 @@ class NavigationGraph(
                 if (edgeActions != null &&
                     edgeActions.any { action ->
                         action !is BotWalkTo &&
-                            !(action is BotInteractObject &&
-                                (action.option == "Open" || action.option == "Close"))
+                            !(
+                                action is BotInteractObject &&
+                                    (action.option == "Open" || action.option == "Close")
+                                )
                     }
                 ) {
                     continue

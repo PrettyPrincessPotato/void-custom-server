@@ -86,9 +86,9 @@ class HankSchedule(graph: NavigationGraph) : Script {
                 ),
                 ScheduleTransition(
                     CLEAN_UP_HOUR,
-                    ScheduleAction.Custom{
+                    ScheduleAction.Custom {
                         it.say("Better start cleaning up...")
-                    }
+                    },
                 ),
                 ScheduleTransition(
                     CLOSE_SHOP_HOUR,

@@ -14,7 +14,6 @@ import content.entity.npc.schedule.ScheduleAction
 import content.entity.npc.schedule.ScheduleTransition
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.entity.character.mode.PauseMode
-import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.type.Tile
@@ -152,8 +151,8 @@ class MilkSellerSchedule(graph: NavigationGraph) : Script {
                         say("Home sweet home.")
                         setSpawnAndWander(npc, MILK_SELLER_SPAWN_TILE)
                     }
-                }
-            )
+                },
+            ),
         )
     }
 
@@ -182,8 +181,8 @@ class MilkSellerSchedule(graph: NavigationGraph) : Script {
                         // Moo
                         setSpawnAndWander(npc, PORT_SARIM)
                     }
-                }
-            )
+                },
+            ),
         )
     }
 
@@ -199,8 +198,8 @@ class MilkSellerSchedule(graph: NavigationGraph) : Script {
                         // Moo
                         setSpawnAndWander(npc, RIMMINGTON)
                     }
-                }
-            )
+                },
+            ),
         )
     }
 
@@ -216,8 +215,8 @@ class MilkSellerSchedule(graph: NavigationGraph) : Script {
                         // Moo
                         setSpawnAndWander(npc, FALADOR)
                     }
-                }
-            )
+                },
+            ),
         )
     }
 
@@ -285,8 +284,8 @@ class MilkSellerSchedule(graph: NavigationGraph) : Script {
                         gertrudeNpc?.say("Haha, you take care dearie.")
                         npcOpenDoor(GERTRUDE_DOOR, 5)
                     }
-                }
-            )
+                },
+            ),
         )
     }
 
