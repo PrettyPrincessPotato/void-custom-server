@@ -2,3 +2,8 @@
 id = 16257
 examine = "Grass doggo."
 combat_def = "tamed_cow_familiar"
+
+[tamed_calf_familiar]
+id = 16258
+examine = "Miniature grass doggo."
+combat_def = "tamed_cow_familiar"
